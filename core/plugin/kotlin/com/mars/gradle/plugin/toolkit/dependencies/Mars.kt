@@ -66,13 +66,16 @@ object Mars {
        * UiKit 的第三方扩展，一些比较著名的第三方 View 的强化
        * 让布局或 View 更适合使用 UiKit 编写，可能是布局易用化也可能是复杂化...
        */
-      val extensions = Extensions
+      val extension = Extension
 
-      object Extensions {
-        private const val artifactPrefix = "${Ui.artifactPrefix}-extensions"
+      object Extension {
+        private const val artifactPrefix = "${Ui.artifactPrefix}-extension"
 
         /* 增强 https://github.com/cashapp/contour */
         const val contour = "$artifactPrefix-contour:_"
+
+        /* 增强 https://github.com/cashapp/contour */
+        const val coil = "$artifactPrefix-coil:_"
 
         /* 增强 https://github.com/gyf-dev/ImmersionBar */
         const val immersionbar = "$artifactPrefix-immersionbar:_"

@@ -3,7 +3,7 @@
   "component": {
     "group": "com.mars.library",
     "module": "toolkit-stubs",
-    "version": "0.2.28",
+    "version": "0.2.29",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -11,7 +11,7 @@
   "createdBy": {
     "gradle": {
       "version": "6.6.1",
-      "buildId": "fphcpx3nmrar5kpjfe5ntw74py"
+      "buildId": "pxo4t6so45hkndcns5iyjrufvy"
     }
   },
   "variants": [
@@ -25,8 +25,8 @@
       },
       "files": [
         {
-          "name": "toolkit-stubs-0.2.28.aar",
-          "url": "toolkit-stubs-0.2.28.aar",
+          "name": "toolkit-stubs-0.2.29.aar",
+          "url": "toolkit-stubs-0.2.29.aar",
           "size": 273590,
           "sha512": "30dd0997a2d52be18a8d687c58cd359ce2ad124efbe7179e4af7cd00fa59399e72e7e188d4f9893c3253a0f3eb2c68f50fd17e273ff02b9f239667d8220a6b2e",
           "sha256": "4863d291d36ad4e66753a891b0cc1fcae0837cf1890d0d367bf31e39c442ab5a",
@@ -137,8 +137,8 @@
       ],
       "files": [
         {
-          "name": "toolkit-stubs-0.2.28.aar",
-          "url": "toolkit-stubs-0.2.28.aar",
+          "name": "toolkit-stubs-0.2.29.aar",
+          "url": "toolkit-stubs-0.2.29.aar",
           "size": 273590,
           "sha512": "30dd0997a2d52be18a8d687c58cd359ce2ad124efbe7179e4af7cd00fa59399e72e7e188d4f9893c3253a0f3eb2c68f50fd17e273ff02b9f239667d8220a6b2e",
           "sha256": "4863d291d36ad4e66753a891b0cc1fcae0837cf1890d0d367bf31e39c442ab5a",

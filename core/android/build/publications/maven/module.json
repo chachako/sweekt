@@ -3,7 +3,7 @@
   "component": {
     "group": "com.mars.library",
     "module": "toolkit-core-android",
-    "version": "0.2.28",
+    "version": "0.2.29",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -11,7 +11,7 @@
   "createdBy": {
     "gradle": {
       "version": "6.6.1",
-      "buildId": "6w42sb65m5chth44w4byywrq44"
+      "buildId": "pxo4t6so45hkndcns5iyjrufvy"
     }
   },
   "variants": [
@@ -48,14 +48,14 @@
           "group": "com.mars.library",
           "module": "toolkit-core-jvm",
           "version": {
-            "requires": "0.2.28"
+            "requires": "0.2.29"
           }
         }
       ],
       "files": [
         {
-          "name": "toolkit-core-android-0.2.28.aar",
-          "url": "toolkit-core-android-0.2.28.aar",
+          "name": "toolkit-core-android-0.2.29.aar",
+          "url": "toolkit-core-android-0.2.29.aar",
           "size": 248692,
           "sha512": "01b6901f5642a6bc035dabd3537a43e73e56a5926c7b3be63bc2d22f24fa41b352fd46fbbd017c63a4ba2f7abd133ac3803043d4aa778ba7f8024884b12999f7",
           "sha256": "919913600586f089df74244a307fea5fe3e4ca88443122dae119e1665e7a8bfc",
@@ -97,7 +97,7 @@
           "group": "com.mars.library",
           "module": "toolkit-core-jvm",
           "version": {
-            "requires": "0.2.28"
+            "requires": "0.2.29"
           }
         },
         {
@@ -243,8 +243,8 @@
       ],
       "files": [
         {
-          "name": "toolkit-core-android-0.2.28.aar",
-          "url": "toolkit-core-android-0.2.28.aar",
+          "name": "toolkit-core-android-0.2.29.aar",
+          "url": "toolkit-core-android-0.2.29.aar",
           "size": 248692,
           "sha512": "01b6901f5642a6bc035dabd3537a43e73e56a5926c7b3be63bc2d22f24fa41b352fd46fbbd017c63a4ba2f7abd133ac3803043d4aa778ba7f8024884b12999f7",
           "sha256": "919913600586f089df74244a307fea5fe3e4ca88443122dae119e1665e7a8bfc",

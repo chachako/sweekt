@@ -3,7 +3,7 @@
   "component": {
     "group": "com.mars.library",
     "module": "toolkit-ui-extension-coil",
-    "version": "0.2.28",
+    "version": "0.2.29",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -11,7 +11,7 @@
   "createdBy": {
     "gradle": {
       "version": "6.6.1",
-      "buildId": "uyuxkto4lfax7bebfnegtirvfi"
+      "buildId": "pxo4t6so45hkndcns5iyjrufvy"
     }
   },
   "variants": [
@@ -28,7 +28,7 @@
           "group": "com.mars.library",
           "module": "toolkit-ui-runtime",
           "version": {
-            "requires": "0.2.28"
+            "requires": "0.2.29"
           }
         },
         {
@@ -44,8 +44,8 @@
       ],
       "files": [
         {
-          "name": "toolkit-ui-extension-coil-0.2.28.aar",
-          "url": "toolkit-ui-extension-coil-0.2.28.aar",
+          "name": "toolkit-ui-extension-coil-0.2.29.aar",
+          "url": "toolkit-ui-extension-coil-0.2.29.aar",
           "size": 60287,
           "sha512": "d422db369c3939640819eccef5e0a564519d937d6ca8199379e7614098b5027589253ee3de3946d82e30299f972a07aa85288687bedb6e5f7fd0891cd9eeb487",
           "sha256": "64ac7c3c35cc13e5f6c20213bde0727378d8cc0429aa46b895e2ecd46e9967de",
@@ -67,7 +67,7 @@
           "group": "com.mars.library",
           "module": "toolkit-ui-runtime",
           "version": {
-            "requires": "0.2.28"
+            "requires": "0.2.29"
           }
         },
         {
@@ -173,8 +173,8 @@
       ],
       "files": [
         {
-          "name": "toolkit-ui-extension-coil-0.2.28.aar",
-          "url": "toolkit-ui-extension-coil-0.2.28.aar",
+          "name": "toolkit-ui-extension-coil-0.2.29.aar",
+          "url": "toolkit-ui-extension-coil-0.2.29.aar",
           "size": 60287,
           "sha512": "d422db369c3939640819eccef5e0a564519d937d6ca8199379e7614098b5027589253ee3de3946d82e30299f972a07aa85288687bedb6e5f7fd0891cd9eeb487",
           "sha256": "64ac7c3c35cc13e5f6c20213bde0727378d8cc0429aa46b895e2ecd46e9967de",

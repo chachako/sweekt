@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/android" />
             <option value="$PROJECT_DIR$/core/jvm" />
+            <option value="$PROJECT_DIR$/core/plugin" />
             <option value="$PROJECT_DIR$/stubs" />
             <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/ui/extensions" />

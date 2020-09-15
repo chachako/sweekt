@@ -11,7 +11,7 @@
   "createdBy": {
     "gradle": {
       "version": "6.6.1",
-      "buildId": "s46bsxssvna57mrujl6pm5lh3m"
+      "buildId": "pxo4t6so45hkndcns5iyjrufvy"
     }
   },
   "variants": [
@@ -61,19 +61,19 @@
           "group": "com.mars.library",
           "module": "toolkit-core-jvm",
           "version": {
-            "requires": "0.2.27"
+            "requires": "0.2.29"
           }
         }
       ],
       "files": [
         {
-          "name": "toolkit-0.2.27.jar",
-          "url": "toolkit-0.2.27.jar",
-          "size": 284411,
-          "sha512": "23efcea2a36cc4bafe9ec7b925e9ef7de36fb70fb2d7ef92ea5e95459c9f0e1f3989013bfeeaf2b47c0de94380ccc6624e97d6eb9333c1b17a4214b740a5d0fa",
-          "sha256": "f023fb3c8afaaeb93f21de8318ed6d96ad0518c14ecf3318cbf05562a0626200",
-          "sha1": "4d478010583b2f259a6639b7b09c13bbf039fe36",
-          "md5": "ac54d0e72ce1860adbcb6fe05637b6e3"
+          "name": "toolkit-0.2.29.jar",
+          "url": "toolkit-0.2.29.jar",
+          "size": 284509,
+          "sha512": "12777799e0a148a761654bbbef030db586140b99fedbedd66309fa0e1d15554629ee0de1eb8f7cf5076c5f4ada7470bee42f7196ae55e2546b2ae14fe64b242b",
+          "sha256": "bafe3658c2b46cccf71cadb9c89354def7d7f3e55aaad3a911b9114fd0081162",
+          "sha1": "c56fc97d526e3940d68718618556b5ff39595ab9",
+          "md5": "a87e1e8b9f5a27e36d06fafbe34188b5"
         }
       ]
     },
@@ -163,19 +163,19 @@
           "group": "com.mars.library",
           "module": "toolkit-core-jvm",
           "version": {
-            "requires": "0.2.27"
+            "requires": "0.2.29"
           }
         }
       ],
       "files": [
         {
-          "name": "toolkit-0.2.27.jar",
-          "url": "toolkit-0.2.27.jar",
-          "size": 284411,
-          "sha512": "23efcea2a36cc4bafe9ec7b925e9ef7de36fb70fb2d7ef92ea5e95459c9f0e1f3989013bfeeaf2b47c0de94380ccc6624e97d6eb9333c1b17a4214b740a5d0fa",
-          "sha256": "f023fb3c8afaaeb93f21de8318ed6d96ad0518c14ecf3318cbf05562a0626200",
-          "sha1": "4d478010583b2f259a6639b7b09c13bbf039fe36",
-          "md5": "ac54d0e72ce1860adbcb6fe05637b6e3"
+          "name": "toolkit-0.2.29.jar",
+          "url": "toolkit-0.2.29.jar",
+          "size": 284509,
+          "sha512": "12777799e0a148a761654bbbef030db586140b99fedbedd66309fa0e1d15554629ee0de1eb8f7cf5076c5f4ada7470bee42f7196ae55e2546b2ae14fe64b242b",
+          "sha256": "bafe3658c2b46cccf71cadb9c89354def7d7f3e55aaad3a911b9114fd0081162",
+          "sha1": "c56fc97d526e3940d68718618556b5ff39595ab9",
+          "md5": "a87e1e8b9f5a27e36d06fafbe34188b5"
         }
       ]
     }

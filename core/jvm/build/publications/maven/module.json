@@ -3,7 +3,7 @@
   "component": {
     "group": "com.mars.library",
     "module": "toolkit-core-jvm",
-    "version": "0.2.28",
+    "version": "0.2.29",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -11,7 +11,7 @@
   "createdBy": {
     "gradle": {
       "version": "6.6.1",
-      "buildId": "vr66chsysfhkzdi5gjqvmltwfi"
+      "buildId": "pxo4t6so45hkndcns5iyjrufvy"
     }
   },
   "variants": [
@@ -40,8 +40,8 @@
       ],
       "files": [
         {
-          "name": "toolkit-core-jvm-0.2.28.jar",
-          "url": "toolkit-core-jvm-0.2.28.jar",
+          "name": "toolkit-core-jvm-0.2.29.jar",
+          "url": "toolkit-core-jvm-0.2.29.jar",
           "size": 87911,
           "sha512": "658292c3ec93378d1f110d48da919e03d6b1d5f5e30e53cd13b3c62ede44ded3f13f53e85f0a5fefc923ddbf8594e9a3c1c43d77d5b1d64fad627fba422e00b2",
           "sha256": "ec19650763ca4a99a7d6cf4925f38f0ed26b1826c0790e8b1741a5357c2804d4",
@@ -95,8 +95,8 @@
       ],
       "files": [
         {
-          "name": "toolkit-core-jvm-0.2.28.jar",
-          "url": "toolkit-core-jvm-0.2.28.jar",
+          "name": "toolkit-core-jvm-0.2.29.jar",
+          "url": "toolkit-core-jvm-0.2.29.jar",
           "size": 87911,
           "sha512": "658292c3ec93378d1f110d48da919e03d6b1d5f5e30e53cd13b3c62ede44ded3f13f53e85f0a5fefc923ddbf8594e9a3c1c43d77d5b1d64fad627fba422e00b2",
           "sha256": "ec19650763ca4a99a7d6cf4925f38f0ed26b1826c0790e8b1741a5357c2804d4",
