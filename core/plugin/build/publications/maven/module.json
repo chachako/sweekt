@@ -1,0 +1,183 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.mars.gradle.plugin",
+    "module": "plugin",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.6.1",
+      "buildId": "s46bsxssvna57mrujl6pm5lh3m"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "4.2.0-alpha10",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.koin",
+          "module": "koin-core",
+          "version": {
+            "requires": "2.2.0-beta-1",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.koin",
+          "module": "koin-core-ext",
+          "version": {
+            "requires": "2.2.0-beta-1",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.mars.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.2.27"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-0.2.27.jar",
+          "url": "toolkit-0.2.27.jar",
+          "size": 284411,
+          "sha512": "23efcea2a36cc4bafe9ec7b925e9ef7de36fb70fb2d7ef92ea5e95459c9f0e1f3989013bfeeaf2b47c0de94380ccc6624e97d6eb9333c1b17a4214b740a5d0fa",
+          "sha256": "f023fb3c8afaaeb93f21de8318ed6d96ad0518c14ecf3318cbf05562a0626200",
+          "sha1": "4d478010583b2f259a6639b7b09c13bbf039fe36",
+          "md5": "ac54d0e72ce1860adbcb6fe05637b6e3"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.dokka",
+          "module": "dokka-gradle-plugin",
+          "version": {
+            "requires": "1.4.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.dokka",
+          "module": "dokka-android-gradle-plugin",
+          "version": {
+            "requires": "0.9.18",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.jfrog.bintray.gradle",
+          "module": "gradle-bintray-plugin",
+          "version": {
+            "requires": "1.8.5",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "de.fayard.refreshVersions",
+          "module": "refreshVersions",
+          "version": {
+            "requires": "0.9.5",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "4.2.0-alpha10",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.koin",
+          "module": "koin-core",
+          "version": {
+            "requires": "2.2.0-beta-1",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.koin",
+          "module": "koin-core-ext",
+          "version": {
+            "requires": "2.2.0-beta-1",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.mars.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.2.27"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-0.2.27.jar",
+          "url": "toolkit-0.2.27.jar",
+          "size": 284411,
+          "sha512": "23efcea2a36cc4bafe9ec7b925e9ef7de36fb70fb2d7ef92ea5e95459c9f0e1f3989013bfeeaf2b47c0de94380ccc6624e97d6eb9333c1b17a4214b740a5d0fa",
+          "sha256": "f023fb3c8afaaeb93f21de8318ed6d96ad0518c14ecf3318cbf05562a0626200",
+          "sha1": "4d478010583b2f259a6639b7b09c13bbf039fe36",
+          "md5": "ac54d0e72ce1860adbcb6fe05637b6e3"
+        }
+      ]
+    }
+  ]
+}

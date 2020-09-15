@@ -1,0 +1,2 @@
+com/mars/ui/extension/coil/BuildConfig.java
+ com.mars.ui.extension.coil.BuildConfig

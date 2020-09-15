@@ -1,0 +1,29 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml:1:1-5:12
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml:1:1-5:12
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml:1:1-5:12
+	package
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml:2:5-47
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml:4:5-66
+	android:name
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml:4:22-63
+uses-sdk
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/ui/extensions/immersive/AndroidManifest.xml

@@ -1,0 +1,151 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.mars.library",
+    "module": "toolkit-stubs",
+    "version": "0.2.28",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.6.1",
+      "buildId": "fphcpx3nmrar5kpjfe5ntw74py"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "toolkit-stubs-0.2.28.aar",
+          "url": "toolkit-stubs-0.2.28.aar",
+          "size": 273590,
+          "sha512": "30dd0997a2d52be18a8d687c58cd359ce2ad124efbe7179e4af7cd00fa59399e72e7e188d4f9893c3253a0f3eb2c68f50fd17e273ff02b9f239667d8220a6b2e",
+          "sha256": "4863d291d36ad4e66753a891b0cc1fcae0837cf1890d0d367bf31e39c442ab5a",
+          "sha1": "8178f9f8c0a41a954c4829785cb2f2038a53d872",
+          "md5": "2d8e5137a79f3e025f0f577d939f95e5"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.10",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.3.9",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.3.9",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.3.0-alpha01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.5.0-alpha02",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-common-java8",
+          "version": {
+            "requires": "2.3.0-alpha07",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-runtime-ktx",
+          "version": {
+            "requires": "2.3.0-alpha07",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.3.0-alpha07",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-livedata-core-ktx",
+          "version": {
+            "requires": "2.3.0-alpha07",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-stubs-0.2.28.aar",
+          "url": "toolkit-stubs-0.2.28.aar",
+          "size": 273590,
+          "sha512": "30dd0997a2d52be18a8d687c58cd359ce2ad124efbe7179e4af7cd00fa59399e72e7e188d4f9893c3253a0f3eb2c68f50fd17e273ff02b9f239667d8220a6b2e",
+          "sha256": "4863d291d36ad4e66753a891b0cc1fcae0837cf1890d0d367bf31e39c442ab5a",
+          "sha1": "8178f9f8c0a41a954c4829785cb2f2038a53d872",
+          "md5": "2d8e5137a79f3e025f0f577d939f95e5"
+        }
+      ]
+    }
+  ]
+}

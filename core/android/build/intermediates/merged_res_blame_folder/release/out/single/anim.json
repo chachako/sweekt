@@ -1,0 +1,122 @@
+[
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_radio_to_on_mtrl_ring_outer_path_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_radio_to_on_mtrl_ring_outer_path_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_checkbox_to_unchecked_box_inner_merged_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_checkbox_to_unchecked_box_inner_merged_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_checkbox_to_checked_box_outer_merged_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_checkbox_to_checked_box_outer_merged_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/fragment_close_enter.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/ce4c61c0fa0ceb777e1555a505e64f91/fragment-1.2.0/res/anim/fragment_close_enter.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/fragment_fade_exit.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/ce4c61c0fa0ceb777e1555a505e64f91/fragment-1.2.0/res/anim/fragment_fade_exit.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_checkbox_to_unchecked_check_path_merged_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_checkbox_to_unchecked_check_path_merged_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_tooltip_exit.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_tooltip_exit.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_radio_to_off_mtrl_ring_outer_path_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_radio_to_off_mtrl_ring_outer_path_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_tooltip_enter.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_tooltip_enter.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_popup_enter.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/fragment_fade_enter.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/ce4c61c0fa0ceb777e1555a505e64f91/fragment-1.2.0/res/anim/fragment_fade_enter.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_popup_exit.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_fade_out.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/fragment_open_exit.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/ce4c61c0fa0ceb777e1555a505e64f91/fragment-1.2.0/res/anim/fragment_open_exit.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_radio_to_off_mtrl_dot_group_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_radio_to_off_mtrl_dot_group_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_checkbox_to_checked_icon_null_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_checkbox_to_checked_icon_null_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/fragment_open_enter.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/ce4c61c0fa0ceb777e1555a505e64f91/fragment-1.2.0/res/anim/fragment_open_enter.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_slide_in_top.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/fragment_close_exit.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/ce4c61c0fa0ceb777e1555a505e64f91/fragment-1.2.0/res/anim/fragment_close_exit.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_checkbox_to_checked_box_inner_merged_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_checkbox_to_checked_box_inner_merged_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_fade_in.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_checkbox_to_unchecked_icon_null_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_checkbox_to_unchecked_icon_null_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_radio_to_on_mtrl_ring_outer_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_radio_to_on_mtrl_ring_outer_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/abc_slide_out_top.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_radio_to_on_mtrl_dot_group_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_radio_to_on_mtrl_dot_group_animation.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/core/android/build/intermediates/res/merged/release/anim/btn_radio_to_off_mtrl_ring_outer_animation.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-2/files-2.1/e4a047fafb1e41dc4445ca68ba9a2283/appcompat-1.1.0/res/anim/btn_radio_to_off_mtrl_ring_outer_animation.xml"
+    }
+]

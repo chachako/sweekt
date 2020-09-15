@@ -1,0 +1,12 @@
+android/app/LoadedApk.java
+ android.app.LoadedApk
+android/content/res/AssetManager.java
+ android.content.res.AssetManager
+android/os/SELinux.java
+ android.os.SELinux
+com/mars/stub/BuildConfig.java
+ com.mars.stub.BuildConfig
+android/app/ActivityThread.java
+ android.app.ActivityThread
+android/content/res/CompatibilityInfo.java
+ android.content.res.CompatibilityInfo

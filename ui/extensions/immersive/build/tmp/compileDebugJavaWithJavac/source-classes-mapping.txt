@@ -1,0 +1,2 @@
+com/mars/ui/extensions/immersive/BuildConfig.java
+ com.mars.ui.extensions.immersive.BuildConfig

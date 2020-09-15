@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml:1:1-37
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml:1:1-37
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml:1:1-37
+	package
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml:1:11-34
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml:1:1-37
+uses-sdk
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+		ADDED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/MultiPlatform/Projects/Mars/toolkit/stubs/sources/AndroidManifest.xml

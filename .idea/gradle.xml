@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/android" />
+            <option value="$PROJECT_DIR$/core/jvm" />
+            <option value="$PROJECT_DIR$/stubs" />
+            <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/extensions" />
+            <option value="$PROJECT_DIR$/ui/extensions/coil" />
+            <option value="$PROJECT_DIR$/ui/plugin" />
+            <option value="$PROJECT_DIR$/ui/runtime" />
+            <option value="$PROJECT_DIR$/ui/samples" />
+            <option value="$PROJECT_DIR$/ui/samples/ebook" />
+            <option value="$PROJECT_DIR$/ui/samples/updater" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
