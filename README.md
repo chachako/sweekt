@@ -21,7 +21,7 @@ com.mars.library:toolkit-core-jvm:$version
 com.mars.library:toolkit-core-android:$version
 ```
 
-[UI-Kit](https://github.com/MarsPlanning/toolkit/tree/master/core/plugin) - 以 AndroidViews 衍生的一个强大的 UI 工具包：[示例](https://github.com/MarsPlanning/toolkit/tree/master/ui/samples)
+[UI-Kit](https://github.com/MarsPlanning/toolkit/tree/master/ui) - 以 AndroidViews 衍生的一个强大的 UI 工具包：[示例](https://github.com/MarsPlanning/toolkit/tree/master/ui/samples)
 ```kotlin
 // UiKit 的核心 Gradle 插件（必要）
 com.mars.library:toolkit-ui-plugin:$version
