@@ -1,2 +1,0 @@
-com/mars/toolkit/BuildConfig.java
- com.mars.toolkit.BuildConfig

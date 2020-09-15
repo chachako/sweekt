@@ -1,2 +1,0 @@
-com/mars/ui/BuildConfig.java
- com.mars.ui.BuildConfig

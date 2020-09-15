@@ -1,2 +1,0 @@
-com/rin/ui/samples/ebook/BuildConfig.java
- com.rin.ui.samples.ebook.BuildConfig
