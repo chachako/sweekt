@@ -70,7 +70,7 @@ class IconButton @JvmOverloads constructor(
     /** [ButtonStyle.shape] */
     shape: Shape? = null,
     /** 对于按钮的其他额外调整 */
-    modifier: Modifier? = null,
+    modifier: Modifier = this.modifier,
     /** 按钮中的图标 */
     icon: Drawable? = null,
     /** [IconStyle.color] */

@@ -1,4 +1,5 @@
-@file:Suppress("FunctionName", "MemberVisibilityCanBePrivate", "PropertyName",
+@file:Suppress(
+  "FunctionName", "MemberVisibilityCanBePrivate", "PropertyName",
   "OverridingDeprecatedMember"
 )
 
@@ -65,10 +66,11 @@ import com.mars.ui.util.BlurHelper
 
   override var blurHelper: BlurHelper? = null
 
-  override var modifier: Modifier? = Modifier
+  override var modifier: Modifier = Modifier
     set(value) {
+      if (field == value || value == Modifier) return
       field = value
-      modifier?.realize(this, parent as? ViewGroup)
+      modifier.apply { realize(parent as? ViewGroup) }
     }
 
   /** 记录最后设置的值，以便主题系统来判断是否要更新对应的值 */
@@ -85,8 +87,8 @@ import com.mars.ui.util.BlurHelper
     set(value) {
       field = value!!
       isSelected = true
-      isSingleLine = value.enable
-      ellipsize = if (value.enable) TextUtils.TruncateAt.MARQUEE else TextUtils.TruncateAt.END
+      isSingleLine = value.enabled
+      ellipsize = if (value.enabled) TextUtils.TruncateAt.MARQUEE else TextUtils.TruncateAt.END
       marqueeRepeatLimit = value.repeat
     }
 
@@ -226,7 +228,7 @@ import com.mars.ui.util.BlurHelper
   /** 更新 [Text] 的一些参数 */
   fun update(
     text: String? = null,
-    modifier: Modifier? = null,
+    modifier: Modifier = this.modifier,
     /** 自动调整文本大小以适应容器，默认关闭 */
     isAutoSize: Boolean? = null,
     /** 文本对齐 */
@@ -311,7 +313,7 @@ import com.mars.ui.util.BlurHelper
 
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {
-      (it as? UpdatableModifier)?.update(this, parent as? ViewGroup)
+      (it as? UpdatableModifier)?.apply { update(parent as? ViewGroup) }
     }
   }
 }
@@ -322,11 +324,11 @@ internal data class ShaderModifier(
   val shader: Shader? = null,
   val shaderProvider: ((View) -> Shader)? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    myself as TextView
-    if (shader != null) myself.paint.shader = shader
-    if (shaderProvider != null) myself.doOnLayout {
-      myself.paint.shader = shaderProvider.invoke(myself)
+  override fun View.realize(parent: ViewGroup?) {
+    this as TextView
+    if (shader != null) paint.shader = shader
+    if (shaderProvider != null) doOnLayout {
+      paint.shader = shaderProvider.invoke(this)
     }
   }
 }

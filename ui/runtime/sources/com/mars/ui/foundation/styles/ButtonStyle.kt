@@ -3,7 +3,6 @@
 package com.mars.ui.foundation.styles
 
 import com.mars.ui.core.Border
-import com.mars.ui.core.Modifier
 import com.mars.ui.core.Padding
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.shape.Shape
@@ -48,8 +47,7 @@ data class ButtonStyle(
   override var id: Int = -1
 
   fun apply(provider: ModifierProvider) {
-    provider.modifier = (provider.modifier ?: Modifier)
-      .padding(padding)
+    provider.modifier = provider.modifier.padding(padding)
       .rippleForeground(colorRipple, shape ?: currentShapes.small)
       .background(
         normal = color,

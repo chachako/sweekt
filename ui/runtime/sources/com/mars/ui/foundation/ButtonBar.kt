@@ -54,7 +54,7 @@ inline fun UiKit.ButtonBar(
   }
   it.captured.forEachIndexed { index, view ->
     if (view is ButtonUI) view.setOnClickListener { onClick(index, view) }
-    spaceModifier?.realize(view, it)
+    spaceModifier?.apply { view.realize(it) }
   }
   it.endCapture()
 }

@@ -1,6 +1,6 @@
 @file:Suppress(
-  "FunctionName", "MemberVisibilityCanBePrivate", "NAME_SHADOWING",
-  "NON_EXHAUSTIVE_WHEN", "OverridingDeprecatedMember"
+  "FunctionName", "MemberVisibilityCanBePrivate",
+  "OverridingDeprecatedMember", "NON_EXHAUSTIVE_WHEN", "NAME_SHADOWING"
 )
 
 package com.mars.ui.foundation
@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import androidx.core.view.children
 import androidx.core.view.forEach
 import com.mars.toolkit.float
+import com.mars.toolkit.widget.LinearLayoutParams
 import com.mars.ui.Theme
 import com.mars.ui.UiKit
 import com.mars.ui.UiKitMarker
@@ -49,10 +50,11 @@ open class Linear @JvmOverloads constructor(
 
   private var capture = false
 
-  override var modifier: Modifier? = null
+  override var modifier: Modifier = Modifier
     set(value) {
+      if (field == value || value == Modifier) return
       field = value
-      modifier?.realize(this, parent as? ViewGroup)
+      modifier.apply { realize(parent as? ViewGroup) }
     }
 
   /** 获取子控件的总宽度/高度 */
@@ -87,6 +89,7 @@ open class Linear @JvmOverloads constructor(
   /** 子内容的主轴方向对齐 */
   var mainAxisAlign: MainAxisAlignment = MainAxisAlignment.Start
     set(value) {
+      if (field == value) return
       field = value
       value.toGravity(orientation == HORIZONTAL)?.also {
         var gravity = it
@@ -100,6 +103,7 @@ open class Linear @JvmOverloads constructor(
   /** 子内容的交叉轴方向对齐 */
   var crossAxisAlign: CrossAxisAlignment = CrossAxisAlignment.Start
     set(value) {
+      if (field == value) return
       field = value
       value.toGravity(orientation == HORIZONTAL)?.also {
         var gravity = it
@@ -133,7 +137,7 @@ open class Linear @JvmOverloads constructor(
     super.addView(child, index, params)
   }
 
-  override fun addViewInLayout(
+  public override fun addViewInLayout(
     child: View?,
     index: Int,
     params: ViewGroup.LayoutParams?,
@@ -237,30 +241,26 @@ open class Linear @JvmOverloads constructor(
   override fun updateUiKitTheme() {
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {
-      (it as? UpdatableModifier)?.update(this, parent as? ViewGroup)
+      (it as? UpdatableModifier)?.apply { update(parent as? ViewGroup) }
     }
   }
 
   /** 调整子控件在此线性布局中的重心 */
-  fun Modifier.gravity(align: Alignment) = +LinearLayoutModifier(alignment = align)
+  fun Modifier.gravity(align: Alignment) = +LinearLayoutModifier(_alignment = align)
 
   /** 调整子控件在此线性布局中的权重 */
-  fun Modifier.weight(weight: Number) = +LinearLayoutModifier(weight = weight)
+  fun Modifier.weight(weight: Number) = +LinearLayoutModifier(_weight = weight)
 }
 
 /** 线性布局参数的调整实现 */
 private data class LinearLayoutModifier(
-  val weight: Number? = null,
-  val alignment: Alignment? = null,
+  val _weight: Number? = null,
+  val _alignment: Alignment? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    myself.layoutParams = myself.linearLayoutParams.also { lp ->
-      alignment?.gravity?.also { lp.gravity = it }
-      weight?.float?.also { lp.weight = it }
+  override fun View.realize(parent: ViewGroup?) {
+    layoutParams = LinearLayoutParams {
+      _alignment?.gravity?.also { gravity = it }
+      _weight?.float?.also { weight = it }
     }
   }
 }
-
-/** 返回或创建一个线性布局参数的实例 */
-val View.linearLayoutParams: LinearLayout.LayoutParams
-  get() = layoutParams as? LinearLayout.LayoutParams ?: LinearLayout.LayoutParams(layoutParams)

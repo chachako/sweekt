@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.mars.toolkit.float
 import com.mars.toolkit.lerp
 import com.mars.toolkit.view.idOrNew
+import com.mars.toolkit.widget.LinearLayoutParams
 import com.mars.ui.UiKit
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.LayoutSize
@@ -27,7 +28,6 @@ import com.mars.ui.core.unit.toPx
 import com.mars.ui.extension.pager.Pager
 import com.mars.ui.extension.pager.PagerUser
 import com.mars.ui.foundation.Linear
-import com.mars.ui.foundation.linearLayoutParams
 import kotlin.math.abs
 
 
@@ -260,7 +260,7 @@ open class TabBar(context: Context) : Linear(context), PagerUser {
       _Scope.dividerCreator(it)?.also { divider ->
         dividerIds.add(divider.idOrNew)
         // 添加到每个视图的后方
-        addView(divider, it + 1 + addedCount, divider.linearLayoutParams.apply {
+        addView(divider, it + 1 + addedCount, divider.LinearLayoutParams {
           // 主轴为垂直方向，交叉轴为水平方向
           dividerAlign.toGravity(true)?.also { gravity = it }
           // 判断是否需要将水平方向的高度填满

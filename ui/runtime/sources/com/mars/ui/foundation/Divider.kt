@@ -156,10 +156,7 @@ import kotlin.math.roundToInt
   }
 }
 
-/**
- * 分频器/分割线
- * @receiver 自动将此视图添加进父布局中
- */
+/** 分频器/分割线 */
 fun UiKit.Divider(
   /** [DividerStyle.color] */
   color: Color = Color.Unset,

@@ -119,13 +119,13 @@ inline var View.backgroundResource: Int
 var View.margin: Int
   @Deprecated(NoGetter, level = DeprecationLevel.HIDDEN) get() = noGetter
   set(@Px value) {
-    layoutParams = margin { setMargins(value) }
+    layoutParams = MarginLayoutParams { setMargins(value) }
   }
 
 var View.horizontalMargin: Int
   @Deprecated(NoGetter, level = DeprecationLevel.HIDDEN) get() = noGetter
   set(@Px value) {
-    layoutParams = margin {
+    layoutParams = MarginLayoutParams {
       leftMargin = value
       rightMargin = value
     }
@@ -134,46 +134,46 @@ var View.horizontalMargin: Int
 var View.verticalMargin: Int
   @Deprecated(NoGetter, level = DeprecationLevel.HIDDEN) get() = noGetter
   set(@Px value) {
-    layoutParams = margin {
+    layoutParams = MarginLayoutParams {
       topMargin = value
       bottomMargin = value
     }
   }
 
 var View.marginTop: Int
-  get() = margin().topMargin
+  get() = MarginLayoutParams().topMargin
   set(@Px value) {
-    layoutParams = margin { topMargin = value }
+    layoutParams = MarginLayoutParams { topMargin = value }
   }
 
 var View.marginBottom: Int
-  get() = margin().bottomMargin
+  get() = MarginLayoutParams().bottomMargin
   set(@Px value) {
-    layoutParams = margin { bottomMargin = value }
+    layoutParams = MarginLayoutParams { bottomMargin = value }
   }
 
 var View.marginLeft: Int
-  get() = margin().leftMargin
+  get() = MarginLayoutParams().leftMargin
   set(@Px value) {
-    layoutParams = margin { leftMargin = value }
+    layoutParams = MarginLayoutParams { leftMargin = value }
   }
 
 var View.marginRight: Int
-  get() = margin().rightMargin
+  get() = MarginLayoutParams().rightMargin
   set(@Px value) {
-    layoutParams = margin { rightMargin = value }
+    layoutParams = MarginLayoutParams { rightMargin = value }
   }
 
 var View.marginStart: Int
-  get() = margin().marginStart
+  get() = MarginLayoutParams().marginStart
   set(@Px value) {
-    layoutParams = margin { marginStart = value }
+    layoutParams = MarginLayoutParams { marginStart = value }
   }
 
 var View.marginEnd: Int
-  get() = margin().marginEnd
+  get() = MarginLayoutParams().marginEnd
   set(@Px value) {
-    layoutParams = margin { marginEnd = value }
+    layoutParams = MarginLayoutParams { marginEnd = value }
   }
 
 var View.padding: Int
@@ -488,9 +488,4 @@ infix fun View.copyClickTo(target: View) = target.onClick { callOnClick() }
 fun View.assignId(): Int = generateViewId().also { generatedId ->
   id = generatedId
   isSaveEnabled = false // New id will be generated, so can't restore saved state.
-}
-
-private inline fun View.margin(block: ViewGroup.MarginLayoutParams.() -> Unit = {}): ViewGroup.MarginLayoutParams {
-  if (layoutParams == null) error("$id 控件 ${javaClass.name} 没有 LayoutParams, 无法进行任何的 margin 操作")
-  return MarginLayoutParams(block = block)
 }

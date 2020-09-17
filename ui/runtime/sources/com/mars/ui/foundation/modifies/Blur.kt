@@ -57,17 +57,18 @@ private data class BlurMaterialModifier(
     BlurMaterial(radius, overlayColor)
   ) as? BlurMaterial ?: error("fun BlurEffect(material..) 参数必须是一个 BlurMaterial")
 
-  override fun realize(myself: View, parent: ViewGroup?) {
-    (myself as BlurEffect).blurHelper = BlurHelper(myself).also { helper ->
+  override fun View.realize(parent: ViewGroup?) {
+    (this as BlurEffect).blurHelper = BlurHelper(this).also { helper ->
       resolvedMaterial.radius?.float?.apply { helper.radius = this }
       resolvedMaterial.overlayColor.useOrNull()?.apply { helper.overlayColor = argb }
       helper.attach()
     }
   }
 
-  override fun update(myself: View, parent: ViewGroup?) {
-    (myself as? BlurEffect)?.blurHelper?.overlayColor = resolvedMaterial.overlayColor.useOrNull()
-      ?.resolveColor()
-      ?.argb
+  override fun View.update(parent: ViewGroup?) {
+    (this as? BlurEffect)?.blurHelper?.overlayColor =
+      resolvedMaterial.overlayColor.useOrNull()
+        ?.resolveColor()
+        ?.argb
   }
 }

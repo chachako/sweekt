@@ -30,6 +30,6 @@ inline fun <V : View> UiKit.With(
   this.asLayout.addView(it)
   (it as? ModifierProvider)?.also {
     it.modifier = modifier
-  } ?: modifier.realize(it, this.asLayout)
+  } ?: modifier.apply { it.realize(this@With.asLayout) }
   block(it)
 }

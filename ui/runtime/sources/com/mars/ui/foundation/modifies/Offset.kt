@@ -19,11 +19,11 @@ fun Modifier.offset(x: SizeUnit? = null, y: SizeUnit? = null) =
  * @see [View.setTranslationY]
  */
 private data class OffsetModifier(
-  val x: SizeUnit? = null,
-  val y: SizeUnit? = null,
+  val _x: SizeUnit? = null,
+  val _y: SizeUnit? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    x?.toPxOrNull()?.apply(myself::setTranslationX)
-    y?.toPxOrNull()?.apply(myself::setTranslationY)
+  override fun View.realize(parent: ViewGroup?) {
+    _x?.toPxOrNull()?.apply(::setTranslationX)
+    _y?.toPxOrNull()?.apply(::setTranslationY)
   }
 }

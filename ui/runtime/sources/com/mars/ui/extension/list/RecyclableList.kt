@@ -70,7 +70,7 @@ inline fun <Source : Any> UiKit.RecyclableList(
   defineScope: ListDefineScope<Source>.() -> Unit
 ): RecyclableList = With(::RecyclableList) {
   it.layoutManager = layoutManager(it.context).apply {
-    when(this) {
+    when (this) {
       is LinearLayoutManager -> this.orientation = orientation.native
       is GridLayoutManager -> this.orientation = orientation.native
       is StaggeredGridLayoutManager -> this.orientation = orientation.native

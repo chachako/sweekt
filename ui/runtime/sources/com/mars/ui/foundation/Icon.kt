@@ -1,11 +1,7 @@
 @file:Suppress(
-  "FunctionName",
-  "MemberVisibilityCanBePrivate",
-  "RestrictedApi",
-  "NAME_SHADOWING",
-  "SuspiciousVarProperty",
-  "PropertyName",
-  "DEPRECATION"
+  "FunctionName", "PropertyName", "RestrictedApi",
+  "SuspiciousVarProperty", "MemberVisibilityCanBePrivate",
+  "NAME_SHADOWING", "DEPRECATION"
 )
 
 package com.mars.ui.foundation
@@ -75,7 +71,8 @@ open class Icon @JvmOverloads constructor(
             insetStart = iconPadding.start.toIntPxOrNull() ?: LayerDrawableBuilder.DIMEN_UNDEFINED,
             insetTop = iconPadding.top.toIntPxOrNull() ?: LayerDrawableBuilder.DIMEN_UNDEFINED,
             insetEnd = iconPadding.end.toIntPxOrNull() ?: LayerDrawableBuilder.DIMEN_UNDEFINED,
-            insetBottom = iconPadding.bottom.toIntPxOrNull() ?: LayerDrawableBuilder.DIMEN_UNDEFINED,
+            insetBottom = iconPadding.bottom.toIntPxOrNull()
+              ?: LayerDrawableBuilder.DIMEN_UNDEFINED,
           )
         }.build()
       } ?: realBackground)
@@ -84,7 +81,7 @@ open class Icon @JvmOverloads constructor(
   /** 更新 [Text] 的一些参数 */
   fun update(
     asset: Drawable? = null,
-    modifier: Modifier? = null,
+    modifier: Modifier = this.modifier,
     color: Color = Color.Unset,
     padding: Padding = Padding.Unspecified,
     size: SizeUnit = SizeUnit.Unspecified,

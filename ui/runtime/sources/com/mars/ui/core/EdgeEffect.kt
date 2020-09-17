@@ -125,20 +125,47 @@ class SpringEdgeEffect(
 
     fun createFactory() = SpringEdgeEffectFactory()
 
-    private fun View.createEdgeEffect(direction: Int): EdgeEffect? = run {
-      view = this
+    fun createEdgeEffect(view: View, direction: Int): EdgeEffect? = run {
+      this.view = view
       when (direction) {
-        DIRECTION_LEFT -> SpringEdgeEffect(context, ::getWidth, ::shiftX, ::activeEdgeX, 0.34f)
-        DIRECTION_TOP -> SpringEdgeEffect(context, ::getHeight, ::shiftY, ::activeEdgeY, 0.34f)
-        DIRECTION_RIGHT -> SpringEdgeEffect(context, ::getWidth, ::shiftX, ::activeEdgeX, -0.34f)
-        DIRECTION_BOTTOM -> SpringEdgeEffect(context, ::getHeight, ::shiftY, ::activeEdgeY, -0.34f)
+        DIRECTION_LEFT -> SpringEdgeEffect(
+          view.context,
+          view::getWidth,
+          ::shiftX,
+          ::activeEdgeX,
+          0.34f
+        )
+        DIRECTION_TOP -> SpringEdgeEffect(
+          view.context,
+          view::getHeight,
+          ::shiftY,
+          ::activeEdgeY,
+          0.34f
+        )
+        DIRECTION_RIGHT -> SpringEdgeEffect(
+          view.context,
+          view::getWidth,
+          ::shiftX,
+          ::activeEdgeX,
+          -0.34f
+        )
+        DIRECTION_BOTTOM -> SpringEdgeEffect(
+          view.context,
+          view::getHeight,
+          ::shiftY,
+          ::activeEdgeY,
+          -0.34f
+        )
         else -> null
       }
     }
 
     inner class SpringEdgeEffectFactory : RecyclerView.EdgeEffectFactory() {
       override fun createEdgeEffect(recyclerView: RecyclerView, direction: Int): EdgeEffect =
-        recyclerView.createEdgeEffect(direction) ?: super.createEdgeEffect(recyclerView, direction)
+        createEdgeEffect(view = recyclerView, direction = direction) ?: super.createEdgeEffect(
+          recyclerView,
+          direction
+        )
     }
   }
 }

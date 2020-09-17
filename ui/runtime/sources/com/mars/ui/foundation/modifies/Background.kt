@@ -129,14 +129,14 @@ private data class BackgroundModifier(
   val colorFilter: ColorFilter? = null,
   val shape: Shape? = null,
 ) : Modifier, UpdatableModifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
+  override fun View.realize(parent: ViewGroup?) {
     if (border != null
       || alpha != 1f
       || shape != null
     ) {
-      myself.background = MaterialShapeDrawable(
+      background = MaterialShapeDrawable(
         shape?.toModelBuilder()?.build()
-          ?: (myself.background as? MaterialShapeDrawable)?.shapeAppearanceModel
+          ?: (background as? MaterialShapeDrawable)?.shapeAppearanceModel
           ?: RectangleShape.toModelBuilder().build()
       ).also {
         it.alpha = (255 * alpha).roundToInt()
@@ -153,11 +153,12 @@ private data class BackgroundModifier(
         border?.color?.useOrNull()?.argb?.run(ColorStateList::valueOf)?.run(it::setStrokeColor)
         border?.size?.toPx()?.run(it::setStrokeWidth)
       }
-    } else if (color.isSet) myself.background = ColorDrawable(color.argb)
+    } else if (color.isSet) background = ColorDrawable(color.argb)
   }
 
-  override fun update(myself: View, parent: ViewGroup?) {
-    when (val background = myself.background) {
+  override fun View.update(parent: ViewGroup?) {
+    val background = background
+    when (background) {
       is MaterialShapeDrawable -> {
         background.fillColor = color.useOrElse { Color.Transparent }.resolveColor().argb
           .run(ColorStateList::valueOf)
@@ -171,6 +172,7 @@ private data class BackgroundModifier(
         background.color = color.useOrElse { Color.Transparent }.resolveColor().argb
       }
     }
+    this.background = background
   }
 }
 
@@ -179,8 +181,8 @@ private data class DrawBackgroundModifier(
   val drawable: Drawable? = null,
   val imageResource: Int? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    if (drawable != null) if (myself.background != drawable) myself.background = drawable
-    if (imageResource != null) myself.setBackgroundResource(imageResource)
+  override fun View.realize(parent: ViewGroup?) {
+    if (drawable != null) if (background != drawable) background = drawable
+    if (imageResource != null) setBackgroundResource(imageResource)
   }
 }

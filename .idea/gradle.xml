@@ -14,16 +14,15 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/android" />
             <option value="$PROJECT_DIR$/core/jvm" />
-            <option value="$PROJECT_DIR$/core/plugin" />
             <option value="$PROJECT_DIR$/stubs" />
             <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/ui/extensions" />
             <option value="$PROJECT_DIR$/ui/extensions/coil" />
+            <option value="$PROJECT_DIR$/ui/extensions/consecutive-scroller" />
             <option value="$PROJECT_DIR$/ui/plugin" />
             <option value="$PROJECT_DIR$/ui/runtime" />
             <option value="$PROJECT_DIR$/ui/samples" />
             <option value="$PROJECT_DIR$/ui/samples/ebook" />
-            <option value="$PROJECT_DIR$/ui/samples/updater" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

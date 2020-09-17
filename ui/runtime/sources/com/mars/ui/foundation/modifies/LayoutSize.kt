@@ -4,6 +4,7 @@ package com.mars.ui.foundation.modifies
 
 import android.view.View
 import android.view.ViewGroup
+import com.mars.toolkit.widget.LayoutParams
 import com.mars.ui.core.LayoutSize
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.unit.SizeUnit
@@ -18,11 +19,11 @@ fun Modifier.size(width: SizeUnit, height: SizeUnit) =
 
 /** 调整 View 的宽度 */
 fun Modifier.width(width: SizeUnit) =
-  +LayoutSizeModifier(width = width)
+  +LayoutSizeModifier(w = width)
 
 /** 调整 View 的高度 */
 fun Modifier.height(height: SizeUnit) =
-  +LayoutSizeModifier(height = height)
+  +LayoutSizeModifier(h = height)
 
 /** 根据 View 的内容决定大小 */
 fun Modifier.wrapContent() =
@@ -51,16 +52,13 @@ fun Modifier.matchParentHeight() =
 
 /** 布局大小调整的具体实现 [ViewGroup.LayoutParams] */
 private data class LayoutSizeModifier(
-  val width: SizeUnit? = null,
-  val height: SizeUnit? = null,
+  val w: SizeUnit? = null,
+  val h: SizeUnit? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    myself.layoutParams = myself.layoutParams?.also {
-      width?.toIntPxOrNull()?.apply { it.width = this }
-      height?.toIntPxOrNull()?.apply { it.height = this }
-    } ?: ViewGroup.LayoutParams(
-      width?.toIntPxOrNull() ?: ViewGroup.LayoutParams.WRAP_CONTENT,
-      height?.toIntPxOrNull() ?: ViewGroup.LayoutParams.WRAP_CONTENT
-    )
+  override fun View.realize(parent: ViewGroup?) {
+    layoutParams = LayoutParams {
+      w?.toIntPxOrNull()?.also { width = it }
+      h?.toIntPxOrNull()?.also { height = it }
+    }
   }
 }

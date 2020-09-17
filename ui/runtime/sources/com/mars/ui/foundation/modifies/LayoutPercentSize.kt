@@ -155,10 +155,10 @@ private data class LayoutPercentSizeModifier(
   val height: Float? = null,
   val benchmark: Benchmark = Benchmark.Parent,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
+  override fun View.realize(parent: ViewGroup?) {
     when (benchmark) {
-      Benchmark.Parent -> parent?.doOnLayout { changeSize(myself, it.width, it.height) }
-      Benchmark.Root -> changeSize(myself, appScreenWidth, appScreenHeight)
+      Benchmark.Parent -> parent?.doOnLayout { changeSize(this, it.width, it.height) }
+      Benchmark.Root -> changeSize(this, appScreenWidth, appScreenHeight)
     }
   }
 

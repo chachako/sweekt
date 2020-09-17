@@ -48,10 +48,11 @@ import kotlin.math.roundToInt
 
   override var blurHelper: BlurHelper? = null
 
-  override var modifier: Modifier? = null
+  override var modifier: Modifier = Modifier
     set(value) {
+      if (field == value || value == Modifier) return
       field = value
-      modifier?.realize(this, parent as? ViewGroup)
+      modifier.apply { realize(parent as? ViewGroup) }
     }
 
   /**
@@ -102,7 +103,7 @@ import kotlin.math.roundToInt
     imageResource: Int? = null,
     imageBitmap: Bitmap? = null,
     imageDrawable: Drawable? = null,
-    modifier: Modifier? = null,
+    modifier: Modifier = this.modifier,
     scaleType: com.mars.ui.core.graphics.ScaleType? = null,
     tint: Color? = this.backupTintColor,
     tintList: ColorStateList? = null,
@@ -140,7 +141,7 @@ import kotlin.math.roundToInt
 
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {
-      (it as? UpdatableModifier)?.update(this, parent as? ViewGroup)
+      (it as? UpdatableModifier)?.apply { update(parent as? ViewGroup) }
     }
   }
 }

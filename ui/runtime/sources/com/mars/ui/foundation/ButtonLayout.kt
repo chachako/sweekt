@@ -146,7 +146,7 @@ inline fun UiKit.Button(
   }
   it.captured.forEachIndexed { index, view ->
     if (index > 0) {
-      spaceModifier.realize(view, it)
+      spaceModifier.apply { view.realize(it) }
     }
   }
   it.endCapture()

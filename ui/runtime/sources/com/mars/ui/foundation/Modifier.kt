@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.mars.ui.core.Modifier
 
 interface ModifierProvider {
-  var modifier: Modifier?
+  var modifier: Modifier
 }
 
 /**
@@ -22,7 +22,7 @@ inline fun <T : ViewGroup> T.ModifyScope(
   scope.startCapture()
   children(this)
   scope.captured.forEach {
-    modifier.realize(it, this)
+    modifier.apply { it.realize(this@ModifyScope) }
   }
   scope.endCapture()
 }

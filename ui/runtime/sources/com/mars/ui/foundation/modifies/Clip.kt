@@ -24,14 +24,14 @@ fun Modifier.clipOval() = clip(CircleShape)
 
 /** 根据参数裁剪 View 形状的具体实现 */
 private data class ClipModifier(val shape: Shape) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    val color = when (val bg = myself.background) {
+  override fun View.realize(parent: ViewGroup?) {
+    val color = when (val bg = background) {
       is MaterialShapeDrawable -> bg.fillColor
       is ColorDrawable -> ColorStateList.valueOf(bg.color)
       else -> ColorStateList.valueOf(0x00000000)
     }
-    myself.clipToOutline = true
-    myself.background = MaterialShapeDrawable(
+    clipToOutline = true
+    background = MaterialShapeDrawable(
       shape.toModelBuilder().build()
     ).apply { fillColor = color }
   }

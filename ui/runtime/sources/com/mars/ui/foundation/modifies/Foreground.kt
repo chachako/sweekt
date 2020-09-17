@@ -60,12 +60,12 @@ private data class ForegroundModifier(
   val colorFilter: ColorFilter? = null,
   val shape: Shape? = null,
 ) : Modifier, UpdatableModifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    if (myself !is Foreground) return
+  override fun View.realize(parent: ViewGroup?) {
+    if (this !is Foreground) return
     if (border != null || alpha != 1f || shape != null) {
-      myself.setSupportForeground(MaterialShapeDrawable(
+      setSupportForeground(MaterialShapeDrawable(
         shape?.toModelBuilder()?.build()
-          ?: (myself.foregroundSupport as? MaterialShapeDrawable)?.shapeAppearanceModel
+          ?: (foregroundSupport as? MaterialShapeDrawable)?.shapeAppearanceModel
           ?: RectangleShape.toModelBuilder().build()
       ).also {
         it.alpha = (255 * alpha).roundToInt()
@@ -75,12 +75,13 @@ private data class ForegroundModifier(
         border?.color?.useOrNull()?.argb?.run(ColorStateList::valueOf)?.apply(it::setStrokeColor)
         border?.size?.toPx()?.apply(it::setStrokeWidth)
       })
-    } else if (color.isSet) myself.setSupportForeground(ColorDrawable(color.argb))
+    } else if (color.isSet) setSupportForeground(ColorDrawable(color.argb))
   }
 
-  override fun update(myself: View, parent: ViewGroup?) {
-    if (myself !is Foreground) return
-    when (val foreground = myself.foregroundSupport) {
+  override fun View.update(parent: ViewGroup?) {
+    if (this !is Foreground) return
+    val foreground = foregroundSupport
+    when (foreground) {
       is MaterialShapeDrawable -> {
         foreground.fillColor = color.useOrElse { Color.Transparent }.resolveColor().argb
           .run(ColorStateList::valueOf)
@@ -94,6 +95,7 @@ private data class ForegroundModifier(
         foreground.color = color.useOrElse { Color.Transparent }.resolveColor().argb
       }
     }
+    foreground?.apply(::setSupportForeground)
   }
 }
 
@@ -102,13 +104,13 @@ private data class DrawForegroundModifier(
   val drawable: Drawable? = null,
   val imageResource: Int? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    if (myself !is Foreground) return
+  override fun View.realize(parent: ViewGroup?) {
+    if (this !is Foreground) return
     if (drawable != null) {
-      if (myself.foregroundSupport != drawable) myself.setSupportForeground(drawable)
+      if (foregroundSupport != drawable) setSupportForeground(drawable)
     }
     if (imageResource != null) {
-      myself.setSupportForegroundResource(imageResource)
+      setSupportForegroundResource(imageResource)
     }
   }
 }

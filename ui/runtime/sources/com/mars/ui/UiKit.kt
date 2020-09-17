@@ -21,7 +21,7 @@ import com.mars.ui.theme.*
 @DslMarker annotation class UiKitMarker
 
 interface UiKit {
-  interface Container: UiKit {
+  interface Container : UiKit {
     var colors: Colors
     var typography: Typography
     var materials: Materials
@@ -76,7 +76,7 @@ fun Activity.setUiContent(
       it.lifecycleOwner = lifecycleOwner
       setContentView(it)
     }
-  modifier.realize(uikit, uikit.parent as? ViewGroup)
+  modifier.apply { uikit.realize(uikit.parent as? ViewGroup) }
   uikit.apply(content)
 }
 
@@ -112,7 +112,7 @@ fun ViewGroup.UiKit(
       it.lifecycleOwner = lifecycleOwner
       addView(it)
     }
-  modifier.realize(uikit, uikit.parent as? ViewGroup)
+  modifier.apply { uikit.realize(uikit.parent as? ViewGroup) }
   uikit.apply(content)
 }
 

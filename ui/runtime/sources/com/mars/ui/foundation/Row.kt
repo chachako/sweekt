@@ -21,12 +21,27 @@ class Row @JvmOverloads constructor(
   init {
     orientation = HORIZONTAL
   }
+
+  fun update(
+    modifier: Modifier = this.modifier,
+    /** 子内容的水平方向对齐 */
+    mainAxisAlign: MainAxisAlignment = this.mainAxisAlign,
+    /** 子内容的垂直方向对齐 */
+    crossAxisAlign: CrossAxisAlignment = this.crossAxisAlign,
+    /** 子控件权重总数，这会影响每个子控件的 [AndroidLinearLayout.LayoutParams.weight] */
+    weightSum: Number? = this.weightSum,
+  ) = also {
+    it.modifier = modifier
+    it.mainAxisAlign = mainAxisAlign
+    it.crossAxisAlign = crossAxisAlign
+    if (weightSum != null && it.weightSum != weightSum) it.weightSum = weightSum.float
+  }
 }
 
 /**
  * 水平布局
  * 所有子控件都排放在一行中 [AndroidLinearLayout.HORIZONTAL]
- * @receiver 自动将线性布局添加进父布局中
+ * @see [UiKit.Column]
  */
 inline fun UiKit.Row(
   modifier: Modifier = Modifier,
@@ -38,9 +53,6 @@ inline fun UiKit.Row(
   weightSum: Number? = null,
   children: Row.() -> Unit
 ): Row = With(::Row) {
-  weightSum?.float?.apply(it::setWeightSum)
-  it.mainAxisAlign = mainAxisAlign
-  it.crossAxisAlign = crossAxisAlign
-  it.modifier = modifier
+  it.update(modifier, mainAxisAlign, crossAxisAlign, weightSum)
   it.children()
 }

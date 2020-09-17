@@ -18,12 +18,10 @@ interface Modifier {
    */
   operator fun <T : Modifier> T.unaryPlus(): Modifier = ModifierManager(this)
 
-  @Deprecated("仅供内部使用")
-  fun realize(myself: View, parent: ViewGroup?)
+  fun View.realize(parent: ViewGroup?)
 
   companion object : Modifier {
-    @Deprecated("仅供内部使用")
-    override fun realize(myself: View, parent: ViewGroup?) {
+    override fun View.realize(parent: ViewGroup?) {
       // do nth
     }
   }
@@ -46,9 +44,25 @@ internal class ModifierManager(director: Modifier) : Modifier {
   /**
    * 让所有调整器开始执行调整
    */
-  override fun realize(myself: View, parent: ViewGroup?) {
-    modifiers.forEach { it.realize(myself, parent) }
+  override fun View.realize(parent: ViewGroup?) {
+    modifiers.forEach { it.apply { realize(parent) } }
   }
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as ModifierManager
+
+    if (modifiers.size != other.modifiers.size) return false
+    if (!modifiers.containsAll(other.modifiers)) return false
+    if (modifiers != other.modifiers) return false
+
+    return true
+  }
+
+  override fun hashCode(): Int = modifiers.hashCode()
+
 }
 
 /*
@@ -58,5 +72,5 @@ internal class ModifierManager(director: Modifier) : Modifier {
  * description: 标明这是个可以更新主题颜色的调整器
  */
 interface UpdatableModifier {
-  fun update(myself: View, parent: ViewGroup?)
+  fun View.update(parent: ViewGroup?)
 }

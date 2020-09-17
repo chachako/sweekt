@@ -59,10 +59,11 @@ abstract class LayoutScope @JvmOverloads constructor(
 
   private var capture = false
 
-  open var modifier: Modifier? = null
+  open var modifier: Modifier = Modifier
     set(value) {
+      if (field == value) return
       field = value
-      modifier?.realize(this, parent as? ViewGroup)
+      modifier.apply { realize(parent as? ViewGroup) }
     }
 
   override fun startCapture() {
@@ -110,7 +111,7 @@ abstract class LayoutScope @JvmOverloads constructor(
   override fun updateUiKitTheme() {
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {
-      (it as? UpdatableModifier)?.update(this, parent as? ViewGroup)
+      (it as? UpdatableModifier)?.apply { update(parent as? ViewGroup) }
     }
   }
 }

@@ -5,6 +5,7 @@ package com.mars.toolkit.widget
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.Px
 import androidx.core.view.setMargins
@@ -52,6 +53,9 @@ val View.relativeLayoutParamsOrNull: RelativeLayout.LayoutParams?
 val View.frameLayoutParamsOrNull: FrameLayout.LayoutParams?
   get() = layoutParams as? FrameLayout.LayoutParams
 
+val View.linearLayoutParamsOrNull: LinearLayout.LayoutParams?
+  get() = layoutParams as? LinearLayout.LayoutParams
+
 /** 返回 View 的或创建新的 [ViewGroup.LayoutParams] */
 val View.LayoutParams: ViewGroup.LayoutParams
   get() = LayoutParams()
@@ -67,6 +71,10 @@ val View.RelativeLayoutParams: RelativeLayout.LayoutParams
 /** 返回 View 的或创建新的 [FrameLayout.LayoutParams] */
 val View.FrameLayoutParams: FrameLayout.LayoutParams
   get() = FrameLayoutParams()
+
+/** 返回 View 的或创建新的 [LinearLayout.LayoutParams] */
+val View.LinearLayoutParams: LinearLayout.LayoutParams
+  get() = LinearLayoutParams()
 
 /**
  * 返回 View 的或创建新的 [ViewGroup.LayoutParams]
@@ -128,6 +136,23 @@ inline fun View.FrameLayoutParams(
   when {
     lp == null && it != null -> FrameLayout.LayoutParams(it)
     else -> lp ?: FrameLayout.LayoutParams(width.int, height.int)
+  }.apply(block)
+}
+
+/**
+ * 返回 View 的或创建新的 [LinearLayout.LayoutParams]
+ * @param width View 的宽度
+ * @param height View 的高度
+ */
+inline fun View.LinearLayoutParams(
+  width: Number = wrapContent,
+  height: Number = wrapContent,
+  block: LinearLayout.LayoutParams.() -> Unit = {}
+): LinearLayout.LayoutParams = layoutParams.let {
+  val lp = linearLayoutParamsOrNull
+  when {
+    lp == null && it != null -> LinearLayout.LayoutParams(it)
+    else -> lp ?: LinearLayout.LayoutParams(width.int, height.int)
   }.apply(block)
 }
 

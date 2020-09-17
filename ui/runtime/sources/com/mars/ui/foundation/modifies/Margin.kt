@@ -4,6 +4,8 @@ package com.mars.ui.foundation.modifies
 
 import android.view.View
 import android.view.ViewGroup
+import com.mars.toolkit.view.marginBottom
+import com.mars.toolkit.widget.MarginLayoutParams
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.unit.SizeUnit
 import com.mars.ui.core.unit.toIntPxOrNull
@@ -21,10 +23,10 @@ fun Modifier.margin(
   horizontal: SizeUnit? = null,
   vertical: SizeUnit? = null,
 ) = +MarginModifier(
-  start = horizontal,
-  top = vertical,
-  end = horizontal,
-  bottom = vertical,
+  _start = horizontal,
+  _top = vertical,
+  _end = horizontal,
+  _bottom = vertical,
 )
 
 /** 调整 View 离父布局的四个方向的距离 */
@@ -42,28 +44,17 @@ fun Modifier.marginVertical(size: SizeUnit) =
 
 /** View 自身离父布局的边距调整的具体实现 */
 private data class MarginModifier(
-  val start: SizeUnit? = null,
-  val top: SizeUnit? = null,
-  val end: SizeUnit? = null,
-  val bottom: SizeUnit? = null,
+  val _start: SizeUnit? = null,
+  val _top: SizeUnit? = null,
+  val _end: SizeUnit? = null,
+  val _bottom: SizeUnit? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    myself.layoutParams = when (val lp = myself.layoutParams) {
-      is ViewGroup.MarginLayoutParams -> updateLayoutParams(lp)
-      null -> updateLayoutParams(
-        ViewGroup.MarginLayoutParams(
-          ViewGroup.LayoutParams.WRAP_CONTENT,
-          ViewGroup.LayoutParams.WRAP_CONTENT,
-        )
-      )
-      else -> updateLayoutParams(ViewGroup.MarginLayoutParams(lp))
+  override fun View.realize(parent: ViewGroup?) {
+    MarginLayoutParams {
+      _start?.toIntPxOrNull()?.also(::setMarginStart)
+      _end?.toIntPxOrNull()?.also(::setMarginEnd)
+      _top?.toIntPxOrNull()?.also { topMargin = it }
+      _bottom?.toIntPxOrNull()?.also { marginBottom = it }
     }
-  }
-
-  fun updateLayoutParams(lp: ViewGroup.MarginLayoutParams) = lp.apply {
-    start?.toIntPxOrNull()?.also(::setMarginStart)
-    end?.toIntPxOrNull()?.also(::setMarginEnd)
-    top?.toIntPxOrNull()?.also { topMargin = it }
-    bottom?.toIntPxOrNull()?.also { bottomMargin = it }
   }
 }

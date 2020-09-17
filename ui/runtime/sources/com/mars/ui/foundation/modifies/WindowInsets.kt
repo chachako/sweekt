@@ -1,4 +1,4 @@
-@file:Suppress("NAME_SHADOWING", "OverridingDeprecatedMember")
+@file:Suppress("NAME_SHADOWING", "OverridingDeprecatedMember", "UnusedImport")
 
 package com.mars.ui.foundation.modifies
 
@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import com.mars.toolkit.view.*
+import com.mars.toolkit.view.marginBottom
+import com.mars.toolkit.view.marginLeft
+import com.mars.toolkit.view.marginRight
+import com.mars.toolkit.view.marginTop
+import com.mars.toolkit.widget.MarginLayoutParams
 import com.mars.ui.core.Modifier
 import com.mars.ui.foundation.SafeArea
 
@@ -48,39 +52,40 @@ fun Modifier.safeContentArea(
 
 /** 限制视图在安全区域的具体实现 */
 private class WindowInsetsModifier(
-  val top: Boolean,
-  val bottom: Boolean,
-  val left: Boolean,
-  val right: Boolean,
-  val mode: SafeAreaApplyMode,
+  val _top: Boolean,
+  val _bottom: Boolean,
+  val _left: Boolean,
+  val _right: Boolean,
+  val _mode: SafeAreaApplyMode,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    val paddingLeft = myself.paddingLeft
-    val paddingTop = myself.paddingTop
-    val paddingRight = myself.paddingRight
-    val paddingBottom = myself.paddingBottom
+  override fun View.realize(parent: ViewGroup?) {
+    val paddingLeft = paddingLeft
+    val paddingTop = paddingTop
+    val paddingRight = paddingRight
+    val paddingBottom = paddingBottom
 
-    val marginLeft = myself.marginLeft
-    val marginTop = myself.marginTop
-    val marginRight = myself.marginRight
-    val marginBottom = myself.marginBottom
-    ViewCompat.setOnApplyWindowInsetsListener(myself) { myself, insets ->
-      val top = if (top) insets.getInsets(WindowInsetsCompat.Type.systemBars()).top else 0
-      val left = if (left) insets.getInsets(WindowInsetsCompat.Type.systemBars()).left else 0
-      val right = if (right) insets.getInsets(WindowInsetsCompat.Type.systemBars()).right else 0
-      val bottom = if (bottom) insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom else 0
-      when (mode) {
+    val marginLeft = marginLeft
+    val marginTop = marginTop
+    val marginRight = marginRight
+    val marginBottom = marginBottom
+
+    ViewCompat.setOnApplyWindowInsetsListener(this) { myself, insets ->
+      val top = if (_top) insets.getInsets(WindowInsetsCompat.Type.systemBars()).top else 0
+      val left = if (_left) insets.getInsets(WindowInsetsCompat.Type.systemBars()).left else 0
+      val right = if (_right) insets.getInsets(WindowInsetsCompat.Type.systemBars()).right else 0
+      val bottom = if (_bottom) insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom else 0
+      when (_mode) {
         SafeAreaApplyMode.Padding -> myself.updatePadding(
           left = paddingLeft + left,
           top = paddingTop + top,
           right = paddingRight + right,
           bottom = paddingBottom + bottom
         )
-        SafeAreaApplyMode.Margin -> {
-          myself.marginTop = marginTop + top
-          myself.marginLeft = marginLeft + left
-          myself.marginRight = marginRight + right
-          myself.marginBottom = marginBottom + bottom
+        SafeAreaApplyMode.Margin -> layoutParams = MarginLayoutParams {
+          topMargin = marginTop + top
+          leftMargin = marginLeft + left
+          rightMargin = marginRight + right
+          bottomMargin = marginBottom + bottom
         }
       }
       insets

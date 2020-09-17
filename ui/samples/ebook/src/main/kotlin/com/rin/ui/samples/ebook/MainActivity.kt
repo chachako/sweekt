@@ -5,7 +5,6 @@ package com.rin.ui.samples.ebook
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.mars.toolkit.content.res.resource
@@ -14,8 +13,8 @@ import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.Orientation
 import com.mars.ui.core.unit.dp
-import com.mars.ui.extension.CoilImage
-import com.mars.ui.extension.transforms.asTransformation
+import com.mars.ui.extension.coil.CoilImage
+import com.mars.ui.extension.coil.transforms.asTransformation
 import com.mars.ui.extension.list.CommonRecyclableList
 import com.mars.ui.extension.list.impl.data.dataSourceOf
 import com.mars.ui.foundation.*

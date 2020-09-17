@@ -24,12 +24,12 @@ import com.mars.ui.foundation.modifies.safeArea
   var protectedBottom = true
 
   /** 对区域上锁 */
-  fun lockup() = (modifier ?: Modifier).safeArea(
+  fun lockup() = modifier.safeArea(
     top = protectedTop,
     bottom = protectedBottom,
     left = protectedLeft,
     right = protectedRight
-  ).realize(this, null)
+  ).apply { realize(null) }
 }
 
 

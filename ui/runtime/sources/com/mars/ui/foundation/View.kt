@@ -39,10 +39,11 @@ import android.view.View as AndroidView
 
   override var blurHelper: BlurHelper? = null
 
-  override var modifier: Modifier? = null
+  override var modifier: Modifier = Modifier
     set(value) {
+      if (field == value || value == Modifier) return
       field = value
-      modifier?.realize(this, parent as? ViewGroup)
+      modifier.apply { realize(parent as? ViewGroup) }
     }
 
   override fun onDraw(canvas: Canvas) {
@@ -64,7 +65,7 @@ import android.view.View as AndroidView
   override fun updateUiKitTheme() {
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {
-      (it as? UpdatableModifier)?.update(this, parent as? ViewGroup)
+      (it as? UpdatableModifier)?.apply { update(parent as? ViewGroup) }
     }
   }
 }

@@ -46,22 +46,23 @@ import com.mars.ui.util.BlurHelper
 
   override var blurHelper: BlurHelper? = null
 
-  override var modifier: Modifier? = null
+  override var modifier: Modifier = Modifier
     set(value) {
+      if (field == value || value == Modifier) return
       field = value
-      modifier?.realize(this, parent as? ViewGroup)
+      modifier.apply { realize(parent as? ViewGroup) }
     }
 
-  var enableDraw = false
+  var enabledDraw = false
 
   /**
-   * 只有当 [enableDraw] 开启后才绘制
+   * 只有当 [enabledDraw] 开启后才绘制
    */
   override fun draw(canvas: Canvas?) {
-    if (enableDraw) super.draw(canvas)
+    if (enabledDraw) super.draw(canvas)
   }
 
-  /** see [Space] */
+  /** See also [Space] */
   private fun getDefaultSize2(size: Int, measureSpec: Int): Int {
     var result = size
     val specMode = MeasureSpec.getMode(measureSpec)
@@ -84,7 +85,7 @@ import com.mars.ui.util.BlurHelper
   override fun updateUiKitTheme() {
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {
-      (it as? UpdatableModifier)?.update(this, parent as? ViewGroup)
+      (it as? UpdatableModifier)?.apply { update(parent as? ViewGroup) }
     }
   }
 }
@@ -104,7 +105,7 @@ fun UiKit.Spacer(
     width != null && height == null -> Modifier.width(width)
     width == null && height != null -> Modifier.height(height)
     else -> null
-  }?.realize(it, this.asLayout)
+  }?.apply { it.realize(this@Spacer.asLayout) }
 }
 
 /**
@@ -115,7 +116,7 @@ fun UiKit.Spacer(
 fun UiKit.Spacer(
   size: SizeUnit,
 ): Spacer = With(::Spacer) {
-  Modifier.size(size).realize(it, this.asLayout)
+  Modifier.size(size).apply { it.realize(this@Spacer.asLayout) }
 }
 
 /**
@@ -127,8 +128,8 @@ fun UiKit.Spacer(
   modifier: Modifier
 ): Spacer = With(::Spacer) {
   it.modifier = modifier
-  it.enableDraw = true
-  modifier.realize(it, this.asLayout)
+  it.enabledDraw = true
+  modifier.apply { it.realize(this@Spacer.asLayout) }
 }
 
 /**
@@ -138,7 +139,7 @@ fun UiKit.Spacer(
  *         ————————————————————————————————
  */
 fun Row.Spacer(): Spacer = With(::Spacer) {
-  Modifier.width(Px.Zero).weight(1).realize(it, this)
+  Modifier.width(Px.Zero).weight(1).apply { it.realize(this@Spacer) }
 }
 
 /**
@@ -155,5 +156,5 @@ fun Row.Spacer(): Spacer = With(::Spacer) {
  *         ———————
  */
 fun Column.Spacer(): Spacer = With(::Spacer) {
-  Modifier.height(Px.Zero).weight(1).realize(it, this)
+  Modifier.height(Px.Zero).weight(1).apply { it.realize(this@Spacer) }
 }

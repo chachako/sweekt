@@ -41,21 +41,21 @@ private data class ClickableModifier(
   val onDoubleClick: ((View) -> Unit)? = null,
   val onClick: ((View) -> Unit)? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    onLongClick?.apply { myself.setOnLongClickListener(onLongClick) }
-    onClick?.apply { myself.setOnClickListener(onClick) }
+  override fun View.realize(parent: ViewGroup?) {
+    onLongClick?.apply { setOnLongClickListener(onLongClick) }
+    onClick?.apply { setOnClickListener(onClick) }
     onDoubleClick?.apply {
       var clicked = false
-      myself.onMultipleClick(count = 2) {
-        invoke(myself)
+      onMultipleClick(count = 2) {
+        invoke(this@realize)
         // 确保 onClick 的回调只执行一次
         if (!clicked) {
-          onClick?.apply { myself.setOnClickListener(onClick) }
+          onClick?.apply { setOnClickListener(onClick) }
           clicked = true
         }
       }
     }
-    myself.isClickable = enabled
+    isClickable = enabled
 
   }
 }
@@ -67,9 +67,9 @@ private data class MultiClickableModifier(
   val interval: Long = 1000,
   val onClick: ((View) -> Unit)? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
+  override fun View.realize(parent: ViewGroup?) {
     onClick?.apply {
-      myself.setOnClickListener(object : View.OnClickListener {
+      setOnClickListener(object : View.OnClickListener {
         var clickCount = 0
         var lastClickTime = 0L
         override fun onClick(v: View) {
@@ -90,6 +90,6 @@ private data class MultiClickableModifier(
         }
       })
     }
-    myself.isClickable = enabled
+    isClickable = enabled
   }
 }

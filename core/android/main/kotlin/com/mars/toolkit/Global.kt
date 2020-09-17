@@ -14,8 +14,8 @@ import com.mars.toolkit.content.displayPixels
 import com.mars.toolkit.content.versionCode
 import com.mars.toolkit.content.windowManager
 import org.koin.core.Koin
+import org.koin.core.context.GlobalContext
 import org.koin.core.context.KoinContext
-import org.koin.core.context.KoinContextHandler
 
 
 /**
@@ -29,6 +29,9 @@ inline val appContext: Context
     ?: currentActivityThread?.systemContext
     ?: createContext()
     ?: error("Without an application context, it not found at all! May should initialized 'appContext' property on Application")
+
+/** Fetch variant of current application */
+var appDebugging: Boolean = BuildConfig.DEBUG
 
 /** Fetch current global application version */
 var appVersionCode: Long = -999L
@@ -72,9 +75,9 @@ inline val currentApplication: Application get() = ActivityThread.currentApplica
 /**
  * Fetch the current global Koin instance
  * but before get this property, [KoinContext] must ensure cannot be null
- * @throws KoinContextHandler.getContext
+ * @throws GlobalContext.get
  */
-inline val koin: Koin get() = KoinContextHandler.get()
+inline val koin: Koin get() = GlobalContext.get()
 
 /** Create a [Context] by hidden-api, which will talk the system global */
 fun createContext(): Context? {

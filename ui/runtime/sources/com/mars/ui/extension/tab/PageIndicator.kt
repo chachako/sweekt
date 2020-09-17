@@ -8,6 +8,7 @@ package com.mars.ui.extension.tab
 import android.content.Context
 import android.graphics.Paint
 import androidx.viewpager2.widget.ViewPager2
+import com.mars.toolkit.widget.LinearLayoutParams
 import com.mars.ui.UiKit
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.LayoutSize
@@ -23,7 +24,6 @@ import com.mars.ui.extension.tab.impl.TabIndicator
 import com.mars.ui.extension.tab.impl.TabIndicatorRenderer
 import com.mars.ui.foundation.Spacer
 import com.mars.ui.foundation.With
-import com.mars.ui.foundation.linearLayoutParams
 import com.mars.ui.theme.currentColors
 
 
@@ -51,7 +51,7 @@ class PageIndicator(context: Context) : TabBar(context) {
 
   @PublishedApi internal fun fakeTab() = Spacer(width = indicator.width, height = Px.Zero).also {
     if (indicator.width == LayoutSize.Match) {
-      it.layoutParams = linearLayoutParams.apply { weight = 1f }
+      it.layoutParams = LinearLayoutParams { weight = 1f }
     }
   }
 }

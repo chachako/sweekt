@@ -22,10 +22,10 @@ fun Modifier.padding(
   horizontal: SizeUnit? = null,
   vertical: SizeUnit? = null,
 ) = +PaddingModifier(
-  start = horizontal,
-  top = vertical,
-  end = horizontal,
-  bottom = vertical,
+  _start = horizontal,
+  _top = vertical,
+  _end = horizontal,
+  _bottom = vertical,
 )
 
 /** 调整 View 四个方向的内边距 */
@@ -47,17 +47,17 @@ fun Modifier.paddingVertical(size: SizeUnit) =
 
 /** View 内边距调整的具体实现 */
 private data class PaddingModifier(
-  val start: SizeUnit? = null,
-  val top: SizeUnit? = null,
-  val end: SizeUnit? = null,
-  val bottom: SizeUnit? = null,
+  val _start: SizeUnit? = null,
+  val _top: SizeUnit? = null,
+  val _end: SizeUnit? = null,
+  val _bottom: SizeUnit? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    myself.setPaddingRelative(
-      start?.toIntPxOrNull() ?: myself.paddingStart,
-      top?.toIntPxOrNull() ?: myself.paddingTop,
-      end?.toIntPxOrNull() ?: myself.paddingEnd,
-      bottom?.toIntPxOrNull() ?: myself.paddingBottom,
+  override fun View.realize(parent: ViewGroup?) {
+    setPaddingRelative(
+      _start?.toIntPxOrNull() ?: paddingStart,
+      _top?.toIntPxOrNull() ?: paddingTop,
+      _end?.toIntPxOrNull() ?: paddingEnd,
+      _bottom?.toIntPxOrNull() ?: paddingBottom,
     )
   }
 }

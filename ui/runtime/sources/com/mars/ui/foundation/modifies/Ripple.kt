@@ -41,15 +41,13 @@ private class RippleEffectModifier(
   val shape: Shape,
   val radius: SizeUnit,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    if (myself !is Foreground) return
+  override fun View.realize(parent: ViewGroup?) {
+    if (this !is Foreground) return
     val radius = radius.toIntPxOrNull()
     if (radius == null) {
-      myself.arrange {
-        myself.apply(max(width, height) / 2)
-      }
+      arrange { apply(max(width, height) / 2) }
     } else {
-      myself.apply(radius)
+      apply(radius)
     }
   }
 

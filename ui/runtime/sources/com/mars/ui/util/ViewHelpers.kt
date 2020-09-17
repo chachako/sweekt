@@ -12,5 +12,5 @@ import com.mars.ui.foundation.ModifierProvider
 fun View.withModifier(modifier: Modifier) {
   (this as? ModifierProvider)?.also {
     it.modifier = modifier
-  } ?: modifier.realize(this, parent as? ViewGroup)
+  } ?: modifier.apply { realize(parent as? ViewGroup) }
 }

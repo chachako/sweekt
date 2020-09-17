@@ -1,74 +1,35 @@
-@file:Suppress("SpellCheckingInspection", "GradleDependency", "GradlePluginVersion")
+@file:OptIn(InternalMarsProjectApi::class)
+@file:Suppress("SpellCheckingInspection")
 
-import java.util.Properties
+plugins { `kotlin-dsl`; java; `java-gradle-plugin` }
 
-group = "com.mars.gradle.plugin"
-val projectName = "toolkit"
+createMarsPlugin("toolkit")
 
-plugins {
-  kotlin; `kotlin-dsl`; java; `java-gradle-plugin`; `maven-publish`
-  id("com.jfrog.bintray")
-}
+sourceSets { main.java.srcDirs("main") }
 
-gradlePlugin {
-  plugins.create(project.name) {
-    id = "$group.$projectName"
-    implementationClass = "$group.ToolkitPlugin"
-  }
-}
-
-sourceSets["main"].java.srcDirs("kotlin")
+repositories { gradlePluginPortal() }
 
 dependencies {
-  repositories { gradlePluginPortal() }
-  compileOnly(gradleKotlinDsl())
-  compileOnly(kotlin("gradle-plugin", version = "_"))
-  compileOnly(kotlin("stdlib-jdk8", version = "_"))
-  implementation("org.jetbrains.dokka:dokka-gradle-plugin:_")
-  implementation("org.jetbrains.dokka:dokka-android-gradle-plugin:_")
-  implementation("com.jfrog.bintray.gradle:gradle-bintray-plugin:_")
-  implementation("de.fayard.refreshVersions:refreshVersions:_")
-  api("com.android.tools.build:gradle:_")
-  api("org.koin:koin-core:_")
-  api("org.koin:koin-core-ext:_")
-  apiProjects(":core:jvm")
+  compileOnlyOf(
+    gradleKotlinDsl(),
+    kotlin("gradle-plugin", "_"),
+    kotlin("stdlib-jdk8", "_")
+  )
+  implementationOf(
+    "org.jetbrains.dokka:dokka-gradle-plugin:_",
+    "org.jetbrains.dokka:dokka-android-gradle-plugin:_",
+    "com.jfrog.bintray.gradle:gradle-bintray-plugin:_",
+    "de.fayard.refreshVersions:refreshVersions:_"
+  )
+  apiOf(
+    "com.android.tools.build:gradle:_",
+    AndroidX.annotation,
+    Mars.toolkit.core.jvm
+  )
 }
 
-afterEvaluate {
-  publishing {
-    publications {
-      create<MavenPublication>("maven") {
-        artifactId = projectName
-        groupId = group.toString()
-        version = fetchProperty("publish.version")
-        from(project.components["java"])
-        artifact(tasks.register<Jar>("sourcesJar") {
-          from(sourceSets.main.allSource)
-          archiveClassifier.set("sources")
-        }.get())
-      }
-    }
-  }
-
-  bintray {
-    key = Properties().run {
-      load(rootProject.file("local.properties").reader())
-      get("bintray.api.key")
-    } as String
-    user = fetchProperty("publish.author")
-    pkg.apply {
-      name = "gradle-$projectName"
-      repo = fetchProperty("bintray.repository")
-      version.name = fetchProperty("publish.version")
-      websiteUrl = fetchProperty("bintray.websiteUrl")
-      issueTrackerUrl = fetchProperty("bintray.issueTrackerUrl")
-      vcsUrl = fetchProperty("bintray.vcsUrl")
-      desc = fetchProperty("bintray.description")
-      setLicenses(*fetchProperty("bintray.licenses").split(" ").toTypedArray())
-    }
-    publish = true
-    setPublications("maven")
-  }
-}
-
-fun fetchProperty(key: String): String = (findProperty(key) ?: rootProject.findProperty(key)).toString()
+publishToBintray(
+  group = "com.mars.gradle.plugin",
+  artifact = "toolkit",
+  packageName = "gradle-toolkit"
+)

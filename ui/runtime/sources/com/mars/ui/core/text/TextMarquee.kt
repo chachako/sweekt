@@ -8,7 +8,7 @@ package com.mars.ui.core.text
  */
 data class TextMarquee(
   /** 开启轮播效果 */
-  val enable: Boolean = false,
+  val enabled: Boolean = false,
   /** 播放次数，-1 为无限 */
   val repeat: Int = -1
 )

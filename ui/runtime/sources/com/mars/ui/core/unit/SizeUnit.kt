@@ -33,7 +33,8 @@ inline val SizeUnit.isSpecified get() = !isUnspecified
  * 如果单位未指定则使用 [block] 提供的单位
  * 否则直接使用当前单位
  */
-inline fun SizeUnit.useOrElse(block: () -> SizeUnit): SizeUnit = if (isUnspecified) block() else this
+inline fun SizeUnit.useOrElse(block: () -> SizeUnit): SizeUnit =
+  if (isUnspecified) block() else this
 
 /**
  * 如果单位未指定则返回 null

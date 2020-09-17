@@ -7,8 +7,8 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
+import com.mars.toolkit.widget.FrameLayoutParams
 import com.mars.ui.Theme
 import com.mars.ui.UiKit
 import com.mars.ui.UiKitMarker
@@ -42,10 +42,11 @@ import com.mars.ui.util.BlurHelper
 
   private var capture = false
 
-  override var modifier: Modifier? = null
+  override var modifier: Modifier = Modifier
     set(value) {
+      if (field == value || value == Modifier) return
       field = value
-      modifier?.realize(this, parent as? ViewGroup)
+      modifier.apply { realize(parent as? ViewGroup) }
     }
 
   override fun startCapture() {
@@ -75,37 +76,28 @@ import com.mars.ui.util.BlurHelper
   override fun updateUiKitTheme() {
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {
-      (it as? UpdatableModifier)?.update(this, parent as? ViewGroup)
+      (it as? UpdatableModifier)?.apply { update(parent as? ViewGroup) }
     }
   }
 
   /** 调整子控件在此帧布局中的重心 */
   fun Modifier.gravity(align: Alignment) =
-    +StackModifier(alignment = align)
+    +StackModifier(align)
 }
 
 /** 帧布局参数的调整实现 [FrameLayout.LayoutParams] */
 private data class StackModifier(
-  val alignment: Alignment? = null,
+  val _alignment: Alignment? = null,
 ) : Modifier {
-  override fun realize(myself: View, parent: ViewGroup?) {
-    myself.layoutParams = when (val lp = myself.layoutParams) {
-      is FrameLayout.LayoutParams -> updateLayoutParams(lp)
-      null -> updateLayoutParams(FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT))
-      else -> updateLayoutParams(FrameLayout.LayoutParams(lp))
+  override fun View.realize(parent: ViewGroup?) {
+    layoutParams = FrameLayoutParams {
+      _alignment?.gravity?.also { gravity = it }
     }
-  }
-
-  fun updateLayoutParams(lp: FrameLayout.LayoutParams) = lp.apply {
-    alignment?.gravity?.also { gravity = it }
   }
 }
 
 
-/**
- * 堆叠布局
- * @receiver 自动将帧布局添加进父布局中
- */
+/** 堆叠布局 */
 inline fun UiKit.Stack(
   modifier: Modifier = Modifier,
   children: Stack.() -> Unit
