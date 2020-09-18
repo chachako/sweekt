@@ -21,11 +21,10 @@ buildscript {
     google()
     maven("https://dl.bintray.com/oh-rin/Mars/")
     maven("https://dl.bintray.com/kotlin/kotlin-eap/")
-    maven("https://dl.bintray.com/jmfayard/maven")
   }
 
   listOf(
-    "com.mars.gradle.plugin:toolkit:0.2.41",
+    "com.mars.gradle.plugin:toolkit:0.2.65",
     "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5",
     "de.fayard.refreshVersions:refreshVersions:0.9.5",
     dep("org.jetbrains.kotlin", "kotlin-gradle-plugin"),

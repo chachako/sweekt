@@ -7,13 +7,18 @@
         <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/android" />
             <option value="$PROJECT_DIR$/core/jvm" />
+            <option value="$PROJECT_DIR$/kotlin-compiler" />
+            <option value="$PROJECT_DIR$/preference" />
+            <option value="$PROJECT_DIR$/preference/gradle" />
+            <option value="$PROJECT_DIR$/preference/runtime" />
+            <option value="$PROJECT_DIR$/preference/runtime/base" />
+            <option value="$PROJECT_DIR$/preference/runtime/mmkv" />
             <option value="$PROJECT_DIR$/stubs" />
             <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/ui/extensions" />

@@ -1,0 +1,15 @@
+name: flupref
+description: Key-value storage interface for flutter side, aka MMKV.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -3,7 +3,7 @@ plugins { `android-library`; `kotlin-android` }
 android {
   setupAndroidWithShares()
   sourceSets.main {
-    java.srcDir("sources/kotlin")
+    java.srcDirs("sources/kotlin")
     manifest.srcFile("sources/AndroidManifest.xml")
   }
 }

@@ -19,6 +19,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 /* Setup gradle toolkit core and https://github.com/jmfayard/refreshVersions */
 fun Settings.setupToolkit(
   withRepoInit: Boolean = false,
+  addCleanTask: Boolean = true,
   withOptions: (ToolkitOptions.() -> Unit)? = null
 ) {
   val global = ToolkitOptions().apply { withOptions?.invoke(this) }
@@ -55,19 +56,29 @@ fun Settings.setupToolkit(
               kotlinOptions { invoke(this) }
             }
           }
+          if (tasks.findByName("compileTestKotlin") != null) {
+            tasks.named<KotlinCompile>("compileTestKotlin") {
+              kotlinOptions { invoke(this) }
+            }
+          }
         }
       }
     }
-    val deleteBlock: Task?.() -> Unit = { rootProject.delete(rootProject.buildDir) }
-    tasks.findByName("clean").apply(deleteBlock) ?: task<Delete>("clean", deleteBlock)
+    if (addCleanTask) {
+      val deleteBlock: Task?.() -> Unit = { rootProject.delete(rootProject.buildDir) }
+      tasks.findByName("clean").apply(deleteBlock) ?: task<Delete>("clean", deleteBlock)
+    }
 
     fixDependenciesLost()
   }
 }
 
 @InternalMarsProjectApi
-fun Settings.setupMarsToolkit(options: ToolkitOptions.() -> Unit) {
-  setupToolkit(false) {
+fun Settings.setupMarsToolkit(
+  addCleanTask: Boolean = true,
+  withOptions: (ToolkitOptions.() -> Unit)? = null
+) {
+  setupToolkit(withRepoInit = false, addCleanTask = addCleanTask) {
     versionsPropertiesFile = marsProjectDir.resolve("versions.properties")
     kotlinOptions {
       useIR = true
@@ -76,7 +87,7 @@ fun Settings.setupMarsToolkit(options: ToolkitOptions.() -> Unit) {
       languageVersion = "1.4"
       freeCompilerArgs = commonSuppressionArgs
     }
-    options()
+    withOptions?.invoke(this)
   }
   gradle.rootProject {
     allprojects {

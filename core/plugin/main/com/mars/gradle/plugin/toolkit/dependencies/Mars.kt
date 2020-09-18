@@ -89,3 +89,6 @@ object Mars {
     const val stubs = "$artifactPrefix-stubs:_"
   }
 }
+
+/** 解析依赖项 */
+fun marsLibrary(artifact: String, version: String = "_") = "${Mars.prefix}$artifact:$version"

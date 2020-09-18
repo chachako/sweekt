@@ -2,6 +2,8 @@
 
 package com.mars.gradle.plugin.toolkit.hooker
 
+import com.mars.gradle.plugin.toolkit.data.AndroidTasks
+import com.mars.gradle.plugin.toolkit.ktx.findAndroidTask
 import com.mars.gradle.plugin.toolkit.ktx.findTask
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -15,11 +17,15 @@ import kotlin.time.measureTime
  * github: https://github.com/oh-Rin
  * description: 拦截任务执行时的开始或结尾
  */
-abstract class TaskHooker(private val taskName: String) {
+abstract class TaskHooker(
+  /** @see Project.findAndroidTask */
+  private val hookName: String
+) {
+  constructor(hook: AndroidTasks): this(hook.taskName)
+
   lateinit var project: Project
   private val logger: Logger get() = project.logger
-  protected val taskOrNull: Task? get() = project.findTask(taskName)
-  protected val task: Task get() = taskOrNull!!
+  private val taskOrNull: Task? get() = project.findAndroidTask(hookName)
   private val hookerName by lazy { javaClass.simpleName }
 
   /** 等价于 [Task.doFirst] */

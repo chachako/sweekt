@@ -24,12 +24,14 @@ abstract class FlutterPlugin : FlutterPlugin {
       "methodChannel 需要在你的 FlutterPlugin 的 onAttachedToEngine 或其他位置中注入，不可以为空！"
     )
 
-  override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {}
+  override fun onAttachedToEngine(binding: FlutterPluginBinding) {}
 
-  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine(binding: FlutterPluginBinding) {
     methodChannel?.setMethodCallHandler(null)
     methodChannel = null
     eventChannel?.setStreamHandler(null)
     eventChannel = null
   }
 }
+
+typealias FlutterPluginBinding = FlutterPlugin.FlutterPluginBinding

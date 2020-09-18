@@ -1,0 +1,25 @@
+name: flupref_codegen
+description: Code generator for Flupref that adds platformChannel-invoked for annotating your code with @flupref @entry.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flupref:
+    path: ../runtime
+  source_gen:
+  build_runner:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner:
+  build_test:
+  test:
+
+# https://github.com/frencojobs/derry
+scripts: ../../../../fluscript.yaml

@@ -1,0 +1,21 @@
+package com.mars.preference.kotpref.impl.base
+
+import android.content.SharedPreferences
+import com.mars.preference.kotpref.KotprefModel
+
+internal class FloatPref(
+  val default: Float,
+  override val key: String?,
+  override val commitByDefault: Boolean,
+  override val getterImplProvider: ((thisRef: KotprefModel, preference: SharedPreferences) -> Float)? = null,
+  override val putterImplProvider: ((thisRef: KotprefModel, value: Float, editor: SharedPreferences.Editor) -> SharedPreferences.Editor)? = null
+) : AbstractPref<Float>() {
+  override fun get(thisRef: KotprefModel, preference: SharedPreferences): Float =
+    preference.getFloat(key, default)
+
+  override fun put(
+    thisRef: KotprefModel,
+    value: Float,
+    editor: SharedPreferences.Editor
+  ): SharedPreferences.Editor = editor.putFloat(key, value)
+}

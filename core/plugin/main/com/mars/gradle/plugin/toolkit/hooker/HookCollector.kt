@@ -15,7 +15,7 @@ internal val collected = mutableListOf<KClass<out TaskHooker>>()
  * 将多个 Hooker 注册到 [collected]
  * NOTE: 注册后将会立刻进行挂钩
  */
-fun Project.registerHooks(vararg hookers: KClass<out TaskHooker>) {
+fun Project.registerHooks(vararg hookers: KClass<out TaskHooker>) = afterEvaluate {
   hookers.forEach { hooker ->
     if (!collected.contains(hooker)) {
       hooker.java.getConstructor().newInstance().also {

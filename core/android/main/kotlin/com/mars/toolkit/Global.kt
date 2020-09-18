@@ -23,7 +23,7 @@ import org.koin.core.context.KoinContext
  * @throws IllegalStateException Unknown accident, current app may be crashed
  */
 inline val appContext: Context
-  get() = koin.get()
+  get() = koin.getOrNull()
     ?: currentApplication
     ?: currentActivityThread?.application
     ?: currentActivityThread?.systemContext

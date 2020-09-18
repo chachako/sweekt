@@ -1,0 +1,494 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "_fe_analyzer_shared",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/_fe_analyzer_shared-4.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "analyzer",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/analyzer-0.39.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "archive",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/archive-2.0.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "args",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/args-1.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
+      "name": "async",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/async-2.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "boolean_selector",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/boolean_selector-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
+      "name": "build",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/build-1.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "build_config",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_config-0.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "build_daemon",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_daemon-2.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "build_resolvers",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_resolvers-1.3.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "build_runner",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_runner-1.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "build_runner_core",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_runner_core-5.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "build_test",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_test-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "built_collection",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/built_collection-4.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "built_value",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/built_value-7.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
+      "name": "charcode",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/charcode-1.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "checked_yaml",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/checked_yaml-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
+      "name": "code_builder",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/code_builder-3.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "collection",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/collection-1.14.12",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "convert",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/convert-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.17"
+    },
+    {
+      "name": "coverage",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/coverage-0.13.11",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "crypto",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/crypto-2.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "csslib",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/csslib-0.16.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "dart_style",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/dart_style-1.3.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "fixnum",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/fixnum-0.10.11",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "flupref",
+      "rootUri": "../../runtime",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "flutter",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/packages/flutter",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "flutter_test",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "glob",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/glob-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "graphs",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/graphs-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "html",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/html-0.14.0+3",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
+      "name": "http",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/http-0.12.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
+      "name": "http_multi_server",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/http_multi_server-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/http_parser-3.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
+      "name": "image",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/image-2.1.12",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "io",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/io-0.3.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "js",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/js-0.6.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_annotation-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "logging",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/logging-0.11.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "matcher",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/matcher-0.12.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "meta",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/meta-1.1.8",
+      "packageUri": "lib/",
+      "languageVersion": "1.12"
+    },
+    {
+      "name": "mime",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/mime-0.9.6+3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "multi_server_socket",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/multi_server_socket-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "node_interop",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_interop-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "node_io",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_io-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "node_preamble",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_preamble-1.4.12",
+      "packageUri": "lib/",
+      "languageVersion": "1.24"
+    },
+    {
+      "name": "package_config",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/package_config-1.9.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "path",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.6.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "pedantic",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/pedantic-1.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "petitparser",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/petitparser-2.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
+      "name": "pool",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/pool-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "pub_semver",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/pub_semver-1.4.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "pubspec_parse",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/pubspec_parse-0.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "quiver",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/quiver-2.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "shelf",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/shelf-0.7.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "shelf_packages_handler",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/shelf_packages_handler-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "shelf_static",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/shelf_static-0.2.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "shelf_web_socket",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/shelf_web_socket-0.2.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "sky_engine",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/bin/cache/pkg/sky_engine",
+      "packageUri": "lib/",
+      "languageVersion": "1.11"
+    },
+    {
+      "name": "source_gen",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_gen-0.9.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.5"
+    },
+    {
+      "name": "source_map_stack_trace",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_map_stack_trace-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "source_maps",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_maps-0.10.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "source_span",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "stack_trace",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/stack_trace-1.9.3",
+      "packageUri": "lib/",
+      "languageVersion": "1.23"
+    },
+    {
+      "name": "stream_channel",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/stream_channel-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "stream_transform",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/stream_transform-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "string_scanner",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/string_scanner-1.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "term_glyph",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/term_glyph-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "1.8"
+    },
+    {
+      "name": "test",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/test-1.14.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "test_api",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/test_api-0.2.15",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
+      "name": "test_core",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/test_core-0.3.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "timing",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/timing-0.1.1+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "typed_data",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/typed_data-1.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "vector_math",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/vector_math-2.0.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "vm_service",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/vm_service-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "watcher",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/watcher-0.9.7+15",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
+      "name": "web_socket_channel",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/web_socket_channel-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "webkit_inspection_protocol",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/webkit_inspection_protocol-0.7.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "xml",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/xml-3.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "yaml",
+      "rootUri": "file:///Users/dracula/Library/Android/sdk/flutter/.pub-cache/hosted/pub.flutter-io.cn/yaml-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
+      "name": "flupref_codegen",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    }
+  ],
+  "generated": "2020-06-25T01:51:09.872055Z",
+  "generator": "pub",
+  "generatorVersion": "2.8.4"
+}

@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      flupref_codegen|flupref_generator:
+        enabled: true
+
+builders:
+  flupref_generator:
+    target: ':flupref_generator'
+    import: 'package:flupref_codegen/builder.dart'
+    builder_factories: ['fluprefGenerator']
+    build_extensions: { '.dart': ['.pref.g.part'] }
+    auto_apply: root_package
+    build_to: cache
+    applies_builders: ['source_gen|combining_builder']
