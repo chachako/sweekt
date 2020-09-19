@@ -1,0 +1,2 @@
+com/mars/preference/base/BuildConfig.java
+ com.mars.preference.base.BuildConfig

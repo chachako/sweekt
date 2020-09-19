@@ -1,6 +1,7 @@
-@file:Suppress("PackageDirectoryMismatch", "UnstableApiUsage")
+@file:Suppress("PackageDirectoryMismatch", "UnstableApiUsage", "DEPRECATION")
 
-import com.android.build.api.dsl.AndroidSourceSet
+// TODO com.android.build.api.dsl.AndroidSourceSet
+import com.android.build.gradle.api.AndroidSourceSet
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetContainer

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Kotlin2JvmCompilerArguments">
+    <option name="jvmTarget" value="1.8" />
+  </component>
+  <component name="KotlinCompilerSettings">
+    <option name="additionalArguments" value="-version -Xinline-classes -Xjvm-default=enable -Xskip-prerelease-check -Xallow-jvm-ir-dependencies -Xopt-in=kotlin.RequiresOptIn -Xuse-experimental=kotlin.Experimental -Xuse-experimental=kotlin.ExperimentalStdlibApi -Xuse-experimental=kotlin.ExperimentalUnsignedTypes -Xuse-experimental=kotlin.contracts.ExperimentalContracts -Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi" />
+  </component>
+</project>

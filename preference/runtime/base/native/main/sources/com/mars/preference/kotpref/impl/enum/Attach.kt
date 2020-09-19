@@ -19,7 +19,7 @@ inline fun <reified T : Enum<*>> KotprefModel.enumValue(
  * @param default default enum value
  * @param key custom preferences key
  */
-inline fun <reified T : Enum<*>> KotprefModel.nullableEnumValue(
+inline fun <reified T : Enum<*>> KotprefModel.enumValueNullable(
   default: T? = null,
   key: String? = null,
   commitByDefault: Boolean = commitAllProperties

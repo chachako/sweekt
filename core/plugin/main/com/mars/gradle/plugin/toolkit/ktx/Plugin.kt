@@ -7,7 +7,7 @@ import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 /**
  * 注册一个 Plugin
  * @param id 插件的 ID，如 "com.mars.gradle.plugin.toolkit"
- * @param implementationClass 插件的实现类, 如 "com.mars.gradle.plugin.toolkit.ToolkitPlugin"
+ * @param implementationClass 插件的实现类, 如 "ToolkitPlugin"
  * @param pluginName 插件名称，如 "toolkit"
  */
 fun Project.createPlugin(

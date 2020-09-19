@@ -1,9 +1,10 @@
 package com.mars.preference.kotpref.impl.base
 
 import android.content.SharedPreferences
+import androidx.annotation.RestrictTo
 import com.mars.preference.kotpref.KotprefModel
 
-internal class IntPref(
+class IntPref(
   val default: Int,
   override val key: String?,
   override val commitByDefault: Boolean,

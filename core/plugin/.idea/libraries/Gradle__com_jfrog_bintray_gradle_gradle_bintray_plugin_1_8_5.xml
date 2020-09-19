@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jfrog.bintray.gradle/gradle-bintray-plugin/1.8.5/dcf9242322afb1fed38240ec1c2100d1c43f2f19/gradle-bintray-plugin-1.8.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jfrog.bintray.gradle/gradle-bintray-plugin/1.8.5/4eb7dbcad74450fe9ed004f851951f2a03d6fbe8/gradle-bintray-plugin-1.8.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

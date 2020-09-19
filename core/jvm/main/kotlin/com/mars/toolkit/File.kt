@@ -110,6 +110,23 @@ operator fun File.get(file: String): File = File(this, file).apply {
 }
 
 /**
+ * 将文件改名
+ * @param newName 新的文件名称
+ * @param force 当目标名称的文件已经存在时，覆盖它
+ */
+fun File.rename(newName: String, force: Boolean = false): File {
+  val dest = parentFile.resolve(newName)
+  if (dest.exists()) {
+    if (force)
+      dest.delete()
+    else
+      dest.alreadyExists("你不能够将 $absolutePath 重命名为 $newName, 因为目标文件已经存在，请开启 force 或先删除目标文件。")
+  }
+  renameTo(dest)
+  return dest
+}
+
+/**
  * 获取当前目录树
  *
  * @param depth 获取的目录层级深度:

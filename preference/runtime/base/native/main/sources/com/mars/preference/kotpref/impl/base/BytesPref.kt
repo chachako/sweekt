@@ -1,11 +1,12 @@
 package com.mars.preference.kotpref.impl.base
 
 import android.content.SharedPreferences
+import androidx.annotation.RestrictTo
 import com.mars.preference.core.get
 import com.mars.preference.core.put
 import com.mars.preference.kotpref.KotprefModel
 
-internal class BytesPref(
+class BytesPref(
   val default: ByteArray,
   override val key: String?,
   override val commitByDefault: Boolean,

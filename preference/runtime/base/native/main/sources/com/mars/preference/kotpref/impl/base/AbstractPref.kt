@@ -2,16 +2,16 @@
 
 package com.mars.preference.kotpref.impl.base
 
-import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.SystemClock
 import androidx.annotation.MainThread
+import androidx.annotation.RestrictTo
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.mars.preference.kotpref.KotprefModel
 import com.mars.preference.core.execute
+import com.mars.preference.kotpref.KotprefModel
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

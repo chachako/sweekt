@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.tools.analytics-library:protos:27.2.0-alpha11">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.analytics-library/protos/27.2.0-alpha11/9187e9fcd3d01f3cdcefb8338829df5e8e671c3a/protos-27.2.0-alpha11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.analytics-library/protos/27.2.0-alpha11/1a938aef42c494c7dbad5390ecfb966fbe42951b/protos-27.2.0-alpha11-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

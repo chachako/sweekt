@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mars.library:toolkit-core-jvm:0.2.30">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mars.library/toolkit-core-jvm/0.2.30/4e3354b791a70f7bee5242033d53aa945dab6719/toolkit-core-jvm-0.2.30.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mars.library/toolkit-core-jvm/0.2.30/4eb6bbc2e707e753aa607d6ac6fafbeb7036e451/toolkit-core-jvm-0.2.30-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

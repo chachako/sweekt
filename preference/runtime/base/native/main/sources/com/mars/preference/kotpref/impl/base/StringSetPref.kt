@@ -5,13 +5,13 @@ import android.annotation.TargetApi
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.SystemClock
+import androidx.annotation.RestrictTo
 import com.mars.preference.kotpref.KotprefModel
 import com.mars.preference.core.execute
 import com.mars.preference.core.get
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 class StringSetPref(
   val default: Set<String>,
   val key: String?,

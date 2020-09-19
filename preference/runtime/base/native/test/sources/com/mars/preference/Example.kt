@@ -1,9 +1,7 @@
 package com.mars.preference
 
 import com.mars.preference.core.SharedPrefModel
-import com.mars.preference.kotpref.batchEdit
 import com.mars.preference.kotpref.impl.enum.enumValue
-import com.mars.preference.kotpref.impl.gson.gson
 
 enum class Enum {
   ONE, TWO, THREE, DEFAULT

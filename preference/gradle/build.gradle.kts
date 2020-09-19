@@ -8,12 +8,14 @@ sourceSets {
 }
 
 dependencies {
-  apiProjects(":kotlin-compiler")
+  apiProjects(
+    ":kotlin-compiler",
+    ":core:jvm"
+  )
   implementationOf(
     Kotlin.stdlib.jdk8,
     KotlinX.coroutines.core,
-    Mars.toolkit.core.plugin,
-    Deps.javassist
+    Mars.toolkit.core.plugin
   )
   testImplementationOf(Testing.junit4)
 }

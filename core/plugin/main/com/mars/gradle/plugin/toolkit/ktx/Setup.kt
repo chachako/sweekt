@@ -65,7 +65,6 @@ fun Project.setupAndroidWithShares(applicationId: String? = null) {
   )
 
   extensions.findByType<BaseExtension>()?.apply {
-    this as MixinExtension
     this as ExtensionAware
     compileSdkVersion(shared.compileSdkVersion)
     defaultConfig {
@@ -76,9 +75,6 @@ fun Project.setupAndroidWithShares(applicationId: String? = null) {
       consumerProguardFiles(*shared.libraryProguardFiles)
       testInstrumentationRunner = shared.testInstrumentationRunner
       shared.defaultConfig?.invoke(this)
-    }
-    buildFeatures {
-      compose = shared.enableCompose
     }
     buildTypes {
       getByName("debug") {
@@ -106,6 +102,12 @@ fun Project.setupAndroidWithShares(applicationId: String? = null) {
       main.java.srcDirs("src/main/kotlin")
       test.java.srcDirs("src/test/kotlin")
       androidTest.java.srcDirs("src/androidTest/kotlin")
+    }
+
+    this as MixinExtension
+
+    buildFeatures {
+      compose = shared.enableCompose
     }
     shared.compileOptions?.apply(::compileOptions)
     shared.composeOptions?.apply(::composeOptions) ?: composeOptions {

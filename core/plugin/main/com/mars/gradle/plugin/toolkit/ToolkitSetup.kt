@@ -47,23 +47,16 @@ fun Settings.setupToolkit(
           sourceSets {
             findByName("main")?.java?.srcDirs("src/main/kotlin")
             findByName("test")?.java?.srcDirs("src/test/kotlin")
-            findByName("androidTest")?.java?.srcDirs("src/test/kotlin")
+            findByName("androidTest")?.java?.srcDirs("src/androidTest/kotlin")
           }
         }
         global.kotlinJvmOptions?.apply {
-          if (tasks.findByName("compileKotlin") != null) {
-            tasks.named<KotlinCompile>("compileKotlin") {
-              kotlinOptions { invoke(this) }
-            }
-          }
-          if (tasks.findByName("compileTestKotlin") != null) {
-            tasks.named<KotlinCompile>("compileTestKotlin") {
-              kotlinOptions { invoke(this) }
-            }
-          }
+          (tasks.findByName("compileKotlin") as? KotlinCompile)?.kotlinOptions(this)
+          (tasks.findByName("compileTestKotlin") as? KotlinCompile)?.kotlinOptions(this)
         }
       }
     }
+
     if (addCleanTask) {
       val deleteBlock: Task?.() -> Unit = { rootProject.delete(rootProject.buildDir) }
       tasks.findByName("clean").apply(deleteBlock) ?: task<Delete>("clean", deleteBlock)

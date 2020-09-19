@@ -2,84 +2,109 @@
 
 package com.mars.gradle.plugin.preference
 
-import com.mars.ktcompiler.classesOrObjects
-import com.mars.ktcompiler.defaultPsiFileFactory
-import com.mars.ktcompiler.filterClassOrObject
-import com.mars.ktcompiler.resolveKotlinFile
-import sun.reflect.ReflectionFactory
-import org.jetbrains.kotlin.cli.common.CLIConfigurationKeys
-import org.jetbrains.kotlin.cli.common.messages.MessageCollector
-import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
-import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
-import org.jetbrains.kotlin.com.intellij.mock.MockProject
-import org.jetbrains.kotlin.com.intellij.openapi.extensions.ExtensionPoint
-import org.jetbrains.kotlin.com.intellij.openapi.extensions.Extensions.getRootArea
-import org.jetbrains.kotlin.com.intellij.openapi.util.Disposer
-import org.jetbrains.kotlin.com.intellij.openapi.util.UserDataHolderBase
-import org.jetbrains.kotlin.com.intellij.pom.PomModel
-import org.jetbrains.kotlin.com.intellij.pom.PomModelAspect
-import org.jetbrains.kotlin.com.intellij.pom.PomTransaction
-import org.jetbrains.kotlin.com.intellij.pom.impl.PomTransactionBase
-import org.jetbrains.kotlin.com.intellij.pom.tree.TreeAspect
-import org.jetbrains.kotlin.com.intellij.psi.PsiFileFactory
-import org.jetbrains.kotlin.com.intellij.psi.impl.source.tree.TreeCopyHandler
-import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.idea.KotlinLanguage
-import org.jetbrains.kotlin.psi.KtClassOrObject
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtObjectDeclaration
+import com.mars.ktcompiler.defaultProject
+import com.mars.ktcompiler.psi.*
+import org.jetbrains.kotlin.com.intellij.psi.codeStyle.CodeStyleManager
+import org.jetbrains.kotlin.psi.*
 import org.junit.Test
 
 class ModelObfuscateTest {
 
-  fun Char.encode(): Char {
-    return when (toLowerCase()) {
-      'a' -> 'ִ'
-      'b' -> 'ׁ'
-      'c' -> 'ׅ'
-      'd' -> 'ܼ'
-      'e' -> '࡛'
-      'f' -> 'ٖ'
-      'g' -> '݈'
-      'h' -> '˙'
-      'i' -> '໋'
-      'j' -> '֒'
-      'k' -> '݁'
-      'l' -> 'ؚ'
-      'm' -> '՝'
-      'n' -> '՛'
-      'o' -> '՟'
-      'p' -> 'ܿ'
-      'q' -> 'ּ'
-      'r' -> 'វ'
-      's' -> '٬'
-      't' -> '݇'
-      'u' -> '༹'
-      'v' -> '་'
-      'w' -> 'ܳ'
-      'x' -> '݅'
-      'y' -> 'ࠫ'
-      'z' -> 'ࠣ'
-      else -> this
+  private fun String.fog(): String {
+    fun Char.encode(): Char {
+      return when (toLowerCase()) {
+        'a' -> 'ִ'
+        'b' -> 'ׁ'
+        'c' -> 'ׅ'
+        'd' -> 'ܼ'
+        'e' -> '࡛'
+        'f' -> 'ٖ'
+        'g' -> '݈'
+        'h' -> '˙'
+        'i' -> '໋'
+        'j' -> '֒'
+        'k' -> '݁'
+        'l' -> 'ؚ'
+        'm' -> '՝'
+        'n' -> '՛'
+        'o' -> '՟'
+        'p' -> 'ܿ'
+        'q' -> 'ּ'
+        'r' -> 'វ'
+        's' -> '٬'
+        't' -> '݇'
+        'u' -> '༹'
+        'v' -> '་'
+        'w' -> 'ܳ'
+        'x' -> '݅'
+        'y' -> 'ࠫ'
+        'z' -> 'ࠣ'
+        else -> this
+      }
     }
+    var fogged = ""
+    forEach { fogged += it.encode() }
+    return fogged
   }
+
+  private fun String.addCallArgs(join: String) = "${trimEnd(')')}, $join)"
 
   @Test
   fun parse() {
-    defaultPsiFileFactory
-      .resolveKotlinFile(codeCase)
+    var codeCase = codeCase
+
+    defaultProject.ktPsiFactory
+      .createFile(codeCase)
       .filterClassOrObject(byAnnotation = {
         it.shortName?.identifier?.endsWith("VaguedPref") == true
       })
       .forEach {
-        println(it.javaClass)
+        var newClassCode = it.text
+        val superCallArgs: List<ValueArgument> = it.superTypeCall?.valueArguments ?: return@forEach
+        /**
+         * 如果 SuperPrefModel 的构造调用中定义了 name 参数，或者第二个是字符串时，不加密 preference 文件的名称
+         * ```
+         * // 'PrefExample1' 的储存文件名称将会以 'PrefExample1' 加密
+         * @FoggingPref object PrefExample1 : SharedPrefModel()
+         *
+         * // 'PrefExample2' 的储存文件将会命名为 PrefName
+         * @FoggingPref object PrefExample2 : SharedPrefModel(mode = 2, name = "PrefName")
+         * ```
+         */
+        val isFogPrefName = !superCallArgs.hasArgumentName("name") ||
+          superCallArgs.getOrNull(1)?.getArgumentExpression() !is KtStringTemplateExpression
+
+        if (isFogPrefName) {
+          // 进行混淆
+          val newProperty = it.superTypeCall!!.text.addCallArgs("name = \"${it.name!!.fog()}\"")
+          newClassCode = newClassCode.replaceFirst(it.superTypeCall!!.text, newProperty)
+        }
+
+        // 找出所有需要混淆的属性
+        it.body?.filterProperties(byDelegateExpression = {
+          when {
+            // 确保 delegation 的 initializer 没有定义 key 参数，且调用的参数的第二个不是字符串
+            it is KtCallExpression && it.firstChild.text == "boolean" -> {
+              it.valueArguments.getOrNull(1)?.getArgumentExpression() !is KtStringTemplateExpression
+                && !it.valueArguments.hasArgumentName("key")
+            }
+            else -> false
+          }
+        })?.forEach {
+          val newProperty = it.text.addCallArgs("key = \"${it.name!!.fog()}\"")
+          newClassCode = newClassCode.replace(it.text, newProperty)
+        }
+
+        codeCase = codeCase.replace(it.text, newClassCode)
       }
+
+    println(codeCase)
   }
 
   companion object {
     private const val codeCase = """
       object NightMode : SharedPrefModel(mode = 2) {
-        var itIs by boolean(false)
+        var using by boolean(false)
         var autoSwitch by boolean(true)
 
         var startHour by string("22")
@@ -90,9 +115,11 @@ class ModelObfuscateTest {
       }
       
       @VaguedPref
-      class VagueNightMode() : SharedPrefModel(mode = 2) {
-        var itIs by boolean(false)
-        var autoSwitch by boolean(true)
+      class VagueNightMode(
+      
+      )     : SharedPrefModel(mode = 2 ) {
+        var using by boolean(false, "using")
+        var autoSwitch by boolean(true ) 
 
         var startHour by string("22")
         var startMinute by string("00")
