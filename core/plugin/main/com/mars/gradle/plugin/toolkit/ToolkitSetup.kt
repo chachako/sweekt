@@ -67,7 +67,10 @@ fun Settings.setupToolkit(
 @InternalMarsProjectApi
 fun Settings.setupMarsToolkit(withOptions: (ToolkitOptions.() -> Unit)? = null) {
   setupToolkit(false) {
-    versionsPropertiesFile = marsProjectDir.resolve("versions.properties")
+    // TODO 当所有项目共用 versions.properties 文件时
+    // TODO 并不容易将此文件一并与当前项目 Commit 到 Git 仓库
+    // TODO 这不利于多人协作，但可能我会在以后想到一个好的点子来解决这个问题
+//    versionsPropertiesFile = marsProjectDir.resolve("versions.properties")
     kotlinOptions {
       useIR = true
       jvmTarget = "1.8"
@@ -93,7 +96,7 @@ fun Settings.setupMarsToolkit(withOptions: (ToolkitOptions.() -> Unit)? = null) 
 }
 
 /**
- * 加载 Kotlin 代码以解决导入插件时的报错：
+ * Implementation Kotlin 插件以解决导入插件时的报错：
  * Class '**' is compiled by a new Kotlin compiler backend and cannot be loaded by the old compiler
  * FIXME 等什么时候 Gradle 内置了 1.4 版本的 Kotlin Script 后才能够删除这个方法（该死的 Gradle）
  */

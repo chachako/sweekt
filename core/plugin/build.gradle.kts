@@ -17,7 +17,7 @@ dependencies {
     gradleKotlinDsl(),
     "org.jetbrains.kotlin:kotlin-gradle-plugin:_",
     "org.jetbrains.kotlin:kotlin-stdlib-jdk8:_",
-    "com.android.tools.build:gradle:4.2.0-alpha11"
+    VersionsProperties.resolveDependency("com.android.tools.build", "gradle")
   )
   implementationOf(
     "org.jetbrains.dokka:dokka-gradle-plugin:_",

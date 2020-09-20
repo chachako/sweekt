@@ -24,7 +24,7 @@ buildscript {
   }
 
   listOf(
-    "com.mars.gradle.plugin:toolkit:0.6.2",
+    "com.mars.gradle.plugin:toolkit:0.6.3",
     "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5",
     "de.fayard.refreshVersions:refreshVersions:0.9.5",
     dep("org.jetbrains.kotlin", "kotlin-gradle-plugin"),
