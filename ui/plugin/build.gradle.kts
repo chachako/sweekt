@@ -1,10 +1,10 @@
 @file:OptIn(InternalMarsProjectApi::class)
 
-plugins { kotlin; `java-gradle-plugin`; `kotlin-kapt` }
+plugins { kotlin; `java-gradle-plugin` }
 
 createMarsPlugin("uikit")
 
-sourceSets["main"].java.srcDirs("main")
+sourceSets.main.java.srcDirs("main")
 
 dependencies {
   testImplementationOf(Testing.junit4)

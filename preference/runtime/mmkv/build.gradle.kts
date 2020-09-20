@@ -14,7 +14,6 @@ dependencies {
   importSharedDependencies(this)
   apiOf(
     Tencent.mmkv.static,
-    marsLibrary("annotations"),
     project(":preference:runtime:base")
   )
 }

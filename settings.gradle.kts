@@ -6,7 +6,7 @@
 
 buildscript {
   // parse versions.properties file and collect to Map<String, String>
-  val versions = File(System.getenv("MARS_PROJECT_ROOT"), "versions.properties").readLines()
+  val versions = rootDir.resolve("versions.properties").readLines()
     .filter { it.contains("=") && !it.startsWith("#") }
     .map { it.substringBeforeLast("=") to it.substringAfterLast("=") }
     .toMap()
@@ -24,11 +24,11 @@ buildscript {
   }
 
   listOf(
-    "com.mars.gradle.plugin:toolkit:0.4.2",
+    "com.mars.gradle.plugin:toolkit:0.6.2",
     "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5",
     "de.fayard.refreshVersions:refreshVersions:0.9.5",
     dep("org.jetbrains.kotlin", "kotlin-gradle-plugin"),
-    dep("com.android.tools.build", "gradle", "plugin.android")
+    dep("com.android.tools.build", "gradle")
   ).forEach { dependencies.classpath(it) }
 }
 

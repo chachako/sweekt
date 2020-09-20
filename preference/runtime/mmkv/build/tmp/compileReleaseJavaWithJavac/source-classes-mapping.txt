@@ -1,2 +1,0 @@
-com/mars/preference/mmkv/BuildConfig.java
- com.mars.preference.mmkv.BuildConfig

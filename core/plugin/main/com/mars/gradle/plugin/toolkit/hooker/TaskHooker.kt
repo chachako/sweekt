@@ -4,7 +4,6 @@ package com.mars.gradle.plugin.toolkit.hooker
 
 import com.mars.gradle.plugin.toolkit.data.AndroidTasks
 import com.mars.gradle.plugin.toolkit.ktx.findAndroidTask
-import com.mars.gradle.plugin.toolkit.ktx.findTask
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.logging.Logger

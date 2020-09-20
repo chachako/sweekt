@@ -3,15 +3,13 @@
   "FunctionName",
   "UnstableApiUsage",
   "unused",
-  "UNCHECKED_CAST"
+  "UNCHECKED_CAST", "SpellCheckingInspection"
 )
 
 import com.mars.gradle.plugin.toolkit.ToolkitPlugin
 import de.fayard.refreshVersions.core.bootstrapRefreshVersionsCore
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.initialization.Settings
-import org.gradle.api.tasks.Delete
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -19,7 +17,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 /* Setup gradle toolkit core and https://github.com/jmfayard/refreshVersions */
 fun Settings.setupToolkit(
   withRepoInit: Boolean = false,
-  addCleanTask: Boolean = true,
   withOptions: (ToolkitOptions.() -> Unit)? = null
 ) {
   val global = ToolkitOptions().apply { withOptions?.invoke(this) }
@@ -30,7 +27,13 @@ fun Settings.setupToolkit(
   gradle.rootProject {
     apply<ToolkitPlugin>()
     extensions.configure<ToolkitOptions> {
-      kotlinJvmOptions = global.kotlinJvmOptions
+      kotlinOptions {
+        global.kotlinJvmOptions?.invoke(this)
+        freeCompilerArgs = freeCompilerArgs + listOf(
+          "-Xallow-jvm-ir-dependencies",
+          "-Xskip-prerelease-check"
+        )
+      }
       sharedDependencies.putAll(global.sharedDependencies)
       if (sharedAndroidConfig == null) {
         sharedAndroidConfig = global.sharedAndroidConfig
@@ -57,28 +60,20 @@ fun Settings.setupToolkit(
       }
     }
 
-    if (addCleanTask) {
-      val deleteBlock: Task?.() -> Unit = { rootProject.delete(rootProject.buildDir) }
-      tasks.findByName("clean").apply(deleteBlock) ?: task<Delete>("clean", deleteBlock)
-    }
-
     fixDependenciesLost()
   }
 }
 
 @InternalMarsProjectApi
-fun Settings.setupMarsToolkit(
-  addCleanTask: Boolean = true,
-  withOptions: (ToolkitOptions.() -> Unit)? = null
-) {
-  setupToolkit(withRepoInit = false, addCleanTask = addCleanTask) {
+fun Settings.setupMarsToolkit(withOptions: (ToolkitOptions.() -> Unit)? = null) {
+  setupToolkit(false) {
     versionsPropertiesFile = marsProjectDir.resolve("versions.properties")
     kotlinOptions {
       useIR = true
       jvmTarget = "1.8"
       apiVersion = "1.4"
       languageVersion = "1.4"
-      freeCompilerArgs = commonSuppressionArgs
+      freeCompilerArgs = freeCompilerArgs + commonSuppressionArgs
     }
     withOptions?.invoke(this)
   }
@@ -95,6 +90,15 @@ fun Settings.setupMarsToolkit(
       )
     }
   }
+}
+
+/**
+ * 加载 Kotlin 代码以解决导入插件时的报错：
+ * Class '**' is compiled by a new Kotlin compiler backend and cannot be loaded by the old compiler
+ * FIXME 等什么时候 Gradle 内置了 1.4 版本的 Kotlin Script 后才能够删除这个方法（该死的 Gradle）
+ */
+fun Project.fixOldCompilerWarn() {
+  dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-gradle-plugin")
 }
 
 /* Fixed: https://github.com/jmfayard/refreshVersions/issues/244 */

@@ -1,7 +1,10 @@
 @file:OptIn(InternalMarsProjectApi::class)
 @file:Suppress("SpellCheckingInspection")
 
-plugins { kotlin; `kotlin-dsl`; java; `java-gradle-plugin` }
+plugins {
+  kotlin; `java-gradle-plugin`
+  id("org.gradle.kotlin.kotlin-dsl")
+}
 
 createMarsPlugin("toolkit")
 
@@ -12,9 +15,9 @@ repositories { gradlePluginPortal() }
 dependencies {
   compileOnlyApiOf(
     gradleKotlinDsl(),
-    kotlin("gradle-plugin", "_"),
-    kotlin("stdlib-jdk8", "_"),
-    "com.android.tools.build:gradle:_"
+    "org.jetbrains.kotlin:kotlin-gradle-plugin:_",
+    "org.jetbrains.kotlin:kotlin-stdlib-jdk8:_",
+    "com.android.tools.build:gradle:4.2.0-alpha11"
   )
   implementationOf(
     "org.jetbrains.dokka:dokka-gradle-plugin:_",

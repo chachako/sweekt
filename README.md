@@ -2,7 +2,7 @@
 
 一套由各式各样且功能强大的小工具（Gradle-Plugin、UI-Kit、Ktx 等...）组成的工具包，皆在帮助 Kotlin 开发者快速完成开发，减少代码繁琐性。
 
-# TODO 文档建设中
+# TODO 建设文档与每个小工具的对应示例项目
 
 **已开源依赖**：
 
@@ -21,14 +21,34 @@ com.mars.library:toolkit-core-jvm:$version
 com.mars.library:toolkit-core-android:$version
 ```
 
+[Preference](https://github.com/MarsPlanning/toolkit/tree/master/preference) - 适用于 Android 平台的 Key-Value 储存工具
+```kotlin
+// Preference 核心运行时代码 (默认为 SharedPreference 模型)，实现灵感来源于 [KotPref](https://github.com/chibatching/Kotpref)（必须）
+com.mars.library:toolkit-preference-plugin:$version
+
+// 对 [MMKV](https://github.com/Tencent/MMKV) 提供 Preference 模型的扩展支持 -> [MmkvModel](https://github.com/MarsPlanning/toolkit/blob/master/preference/runtime/mmkv/native/sources/com/mars/preference/mmkv/MmkvModel.kt)
+com.mars.library:toolkit-preference-plugin:$version
+
+// 为所有 Preference 模型提供混淆支持（可选）
+com.mars.library:toolkit-preference-plugin:$version
+```
+
 [UI-Kit](https://github.com/MarsPlanning/toolkit/tree/master/ui) - 以 AndroidViews 衍生的一个强大的 UI 工具包：[示例](https://github.com/MarsPlanning/toolkit/tree/master/ui/samples)
 ```kotlin
-// UiKit 的核心 Gradle 插件（必要）
+// UiKit 的核心 Gradle 插件（必须）
 com.mars.library:toolkit-ui-plugin:$version
 
-// UiKit 的核心运行时代码（必要）
+// UiKit 的核心运行时代码（必须）
 com.mars.library:toolkit-ui-runtime:$version
 
 // 提供 [Coil](https://github.com/coil-kt) 在 UiKit 中的增强
 com.mars.library:toolkit-ui-extension-coil:$version
+
+// 提供 [ConsecutiveScroller](https://github.com/donkingliang/ConsecutiveScroller) 在 UiKit 中的增强
+com.mars.library:toolkit-ui-extension-consecutivescroller:$version
+```
+
+[Kotlin-Compiler-Ktx](https://github.com/MarsPlanning/toolkit/tree/master/kotlin-compiler) - 为 [KotlinCompiler](https://github.com/JetBrains/kotlin/tree/master/compiler) 增加易用的方法（PSI 解析 Kotlin 源文件等）
+```kotlin
+com.mars.library:toolkit-ktcompiler:$version
 ```

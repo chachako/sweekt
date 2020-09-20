@@ -19,10 +19,7 @@ android {
 dependencies {
   importSharedDependencies(this)
   compileOnlyProjects(":stubs")
-  apiOf(
-    marsLibrary("annotations"),
-    project(":core:android")
-  )
+  apiProjects(":core:android")
 }
 
 publishToBintray(artifact = "toolkit-preference-runtime-base")

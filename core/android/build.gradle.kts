@@ -27,7 +27,7 @@ dependencies {
     Deps.koin.androidX.ext
   )
   apiProjects(":core:jvm")
-  compileOnlyProjects(":stubs")
+  compileOnly(Mars.toolkit.stubs)
 }
 
 publishToBintray(artifact = "toolkit-core-android")
