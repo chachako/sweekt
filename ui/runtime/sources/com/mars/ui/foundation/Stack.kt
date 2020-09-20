@@ -80,18 +80,18 @@ import com.mars.ui.util.BlurHelper
     }
   }
 
-  /** 调整子控件在此帧布局中的重心 */
-  fun Modifier.gravity(align: Alignment) =
-    +StackModifier(align)
-}
+  /** 调整子控件在此帧布局中的对齐 */
+  fun Modifier.align(alignment: Alignment) =
+    +ChildrenModifier(alignment)
 
-/** 帧布局参数的调整实现 [FrameLayout.LayoutParams] */
-private data class StackModifier(
-  val _alignment: Alignment? = null,
-) : Modifier {
-  override fun View.realize(parent: ViewGroup?) {
-    layoutParams = FrameLayoutParams {
-      _alignment?.gravity?.also { gravity = it }
+  /** 帧布局参数的调整实现 [FrameLayout.LayoutParams] */
+  private data class ChildrenModifier(
+    val _alignment: Alignment? = null,
+  ) : Modifier {
+    override fun View.realize(parent: ViewGroup?) {
+      layoutParams = FrameLayoutParams {
+        _alignment?.gravity?.also { gravity = it }
+      }
     }
   }
 }

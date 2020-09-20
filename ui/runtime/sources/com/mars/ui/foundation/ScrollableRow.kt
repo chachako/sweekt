@@ -94,7 +94,7 @@ class ScrollableRow @JvmOverloads constructor(
 
   fun update(
     /** 允许滚动 */
-    enabled: Boolean = true,
+    enabled: Boolean = this.scrollable,
     /** 其他更多的可选调整 */
     modifier: Modifier = this.modifier,
     /** 子内容的水平方向对齐 */
@@ -110,7 +110,7 @@ class ScrollableRow @JvmOverloads constructor(
 }
 
 
-/** 可滚动的列视图 [UiKit.Row] */
+/** 可滚动的行视图 [UiKit.Row] */
 fun UiKit.ScrollableRow(
   /** 允许滚动 */
   enabled: Boolean = true,

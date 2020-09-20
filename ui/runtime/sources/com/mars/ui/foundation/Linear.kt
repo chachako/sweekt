@@ -126,7 +126,8 @@ open class Linear @JvmOverloads constructor(
 
   @Deprecated(
     "不应该使用 setGravity 来定义 Mars-Ui 的对齐方式",
-    ReplaceWith("请设置 mainAxisAlign 或 crossAxisAlign", "com.mars.ui.foundation.LinearLayout")
+    ReplaceWith("请设置 mainAxisAlign 或 crossAxisAlign", "com.mars.ui.foundation.LinearLayout"),
+    DeprecationLevel.HIDDEN
   )
   override fun setGravity(gravity: Int) {
     super.setGravity(gravity)
@@ -245,22 +246,22 @@ open class Linear @JvmOverloads constructor(
     }
   }
 
-  /** 调整子控件在此线性布局中的重心 */
-  fun Modifier.gravity(align: Alignment) = +LinearLayoutModifier(_alignment = align)
+  /** 调整子控件在此线性布局中的对齐 */
+  fun Modifier.align(alignment: Alignment) = +ChildrenModifier(_alignment = alignment)
 
   /** 调整子控件在此线性布局中的权重 */
-  fun Modifier.weight(weight: Number) = +LinearLayoutModifier(_weight = weight)
-}
+  fun Modifier.weight(weight: Number) = +ChildrenModifier(_weight = weight)
 
-/** 线性布局参数的调整实现 */
-private data class LinearLayoutModifier(
-  val _weight: Number? = null,
-  val _alignment: Alignment? = null,
-) : Modifier {
-  override fun View.realize(parent: ViewGroup?) {
-    layoutParams = LinearLayoutParams {
-      _alignment?.gravity?.also { gravity = it }
-      _weight?.float?.also { weight = it }
+  /** 线性布局参数的调整实现 */
+  private data class ChildrenModifier(
+    val _weight: Number? = null,
+    val _alignment: Alignment? = null,
+  ) : Modifier {
+    override fun View.realize(parent: ViewGroup?) {
+      layoutParams = LinearLayoutParams {
+        _alignment?.gravity?.also { gravity = it }
+        _weight?.float?.also { weight = it }
+      }
     }
   }
 }

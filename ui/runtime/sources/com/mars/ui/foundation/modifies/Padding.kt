@@ -21,11 +21,11 @@ fun Modifier.padding(
 fun Modifier.padding(
   horizontal: SizeUnit? = null,
   vertical: SizeUnit? = null,
-) = +PaddingModifier(
-  _start = horizontal,
-  _top = vertical,
-  _end = horizontal,
-  _bottom = vertical,
+) = padding(
+  start = horizontal,
+  top = vertical,
+  end = horizontal,
+  bottom = vertical,
 )
 
 /** 调整 View 四个方向的内边距 */

@@ -85,7 +85,7 @@ class ScrollableColumn @JvmOverloads constructor(
 
   fun update(
     /** 允许滚动 */
-    enabled: Boolean = true,
+    enabled: Boolean = this.scrollable,
     /** 其他更多的可选调整 */
     modifier: Modifier = this.modifier,
     /** 子内容的水平方向对齐 */

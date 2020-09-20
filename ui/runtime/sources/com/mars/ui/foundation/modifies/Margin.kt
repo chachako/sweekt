@@ -22,11 +22,11 @@ fun Modifier.margin(
 fun Modifier.margin(
   horizontal: SizeUnit? = null,
   vertical: SizeUnit? = null,
-) = +MarginModifier(
-  _start = horizontal,
-  _top = vertical,
-  _end = horizontal,
-  _bottom = vertical,
+) = margin(
+  start = horizontal,
+  top = vertical,
+  end = horizontal,
+  bottom = vertical,
 )
 
 /** 调整 View 离父布局的四个方向的距离 */
