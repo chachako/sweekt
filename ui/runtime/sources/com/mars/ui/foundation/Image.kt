@@ -15,7 +15,7 @@ import android.view.ViewGroup
 import androidx.annotation.FloatRange
 import androidx.appcompat.widget.AppCompatImageView
 import com.mars.ui.Theme
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.Foreground
 import com.mars.ui.core.Modifier
@@ -43,7 +43,7 @@ import kotlin.math.roundToInt
   BlurEffect,
   Foreground,
   ModifierProvider,
-  UiKit {
+  Ui {
   override var foregroundSupport: Drawable? = null
 
   override var blurHelper: BlurHelper? = null
@@ -156,7 +156,7 @@ import kotlin.math.roundToInt
  * @param colorFilter 滤色镜, [EraseColorFilter] 会取消所有滤色镜的设置
  * @param alpha 图片显示的透明度（不是控件的 [View.getAlpha] 透明度）
  */
-fun UiKit.Image(
+fun Ui.Image(
   asset: Drawable? = null,
   modifier: Modifier = Modifier,
   scaleType: ScaleType = ScaleType.Fit,
@@ -190,7 +190,7 @@ fun UiKit.Image(
  * @param colorFilter 滤色镜, [EraseColorFilter] 会取消所有滤色镜的设置
  * @param alpha 图片显示的透明度（不是控件的 [View.getAlpha] 透明度）
  */
-fun UiKit.Image(
+fun Ui.Image(
   asset: Bitmap,
   modifier: Modifier = Modifier,
   scaleType: ScaleType = ScaleType.Fit,
@@ -224,7 +224,7 @@ fun UiKit.Image(
  * @param colorFilter 滤色镜, [EraseColorFilter] 会取消所有滤色镜的设置
  * @param alpha 图片显示的透明度（不是控件的 [View.getAlpha] 透明度）
  */
-fun UiKit.Image(
+fun Ui.Image(
   asset: Int,
   modifier: Modifier = Modifier,
   scaleType: ScaleType = ScaleType.Fit,

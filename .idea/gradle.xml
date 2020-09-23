@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -22,6 +23,7 @@
             <option value="$PROJECT_DIR$/preference/runtime/mmkv" />
             <option value="$PROJECT_DIR$/stubs" />
             <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/animation" />
             <option value="$PROJECT_DIR$/ui/extensions" />
             <option value="$PROJECT_DIR$/ui/extensions/coil" />
             <option value="$PROJECT_DIR$/ui/extensions/consecutive-scroller" />
@@ -29,6 +31,7 @@
             <option value="$PROJECT_DIR$/ui/runtime" />
             <option value="$PROJECT_DIR$/ui/samples" />
             <option value="$PROJECT_DIR$/ui/samples/ebook" />
+            <option value="$PROJECT_DIR$/ui/screen" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -4,7 +4,7 @@ package com.mars.ui.extension.list.impl
 
 import android.view.View
 import android.view.ViewGroup
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.extension.list.RecyclableList
 import com.mars.ui.extension.list.ViewHolder
@@ -24,7 +24,7 @@ internal typealias DataType = String
  * description: Item 定义域，用于创建视图、绑定视图
  */
 @UiKitMarker
-abstract class ItemDefinition : ViewGroup(UiKit.currentContext), UiKit {
+abstract class ItemDefinition : ViewGroup(Ui.currentContext), Ui {
   protected var content: View? = null
 
   protected var binder: ItemBinder<*, *>? = null
@@ -40,7 +40,7 @@ abstract class ItemDefinition : ViewGroup(UiKit.currentContext), UiKit {
   /**
    * 这是一个假 [ViewGroup]，所以无需重写 [onLayout]
    * 实际上被添加的所有子视图都会添加到 [RecyclableList]
-   * 用处是可以在区域内调用其他 [UiKit] 小部件
+   * 用处是可以在区域内调用其他 [Ui] 小部件
    */
   override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {}
 

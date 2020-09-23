@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import com.mars.ui.Theme
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.Foreground
 import com.mars.ui.core.Modifier
@@ -50,7 +50,7 @@ abstract class LayoutScope @JvmOverloads constructor(
   ViewCatcher,
   BlurEffect,
   Foreground,
-  UiKit {
+  Ui {
   override var foregroundSupport: Drawable? = null
 
   override var blurHelper: BlurHelper? = null

@@ -14,7 +14,7 @@ import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView.EdgeEffectFactory.DIRECTION_LEFT
 import androidx.recyclerview.widget.RecyclerView.EdgeEffectFactory.DIRECTION_RIGHT
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.MainAxisAlignment
 import com.mars.ui.core.Modifier
@@ -27,7 +27,7 @@ class ScrollableRow @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
 ) : HorizontalScrollView(context, attrs, defStyleAttr),
-  UiKit,
+  Ui,
   ViewCatcher,
   ModifierProvider {
   internal var row: Row? = null
@@ -110,8 +110,8 @@ class ScrollableRow @JvmOverloads constructor(
 }
 
 
-/** 可滚动的行视图 [UiKit.Row] */
-fun UiKit.ScrollableRow(
+/** 可滚动的行视图 [Ui.Row] */
+fun Ui.ScrollableRow(
   /** 允许滚动 */
   enabled: Boolean = true,
   /** 其他更多的可选调整 */

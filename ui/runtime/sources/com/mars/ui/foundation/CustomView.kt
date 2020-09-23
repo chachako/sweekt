@@ -4,7 +4,7 @@ package com.mars.ui.foundation
 
 import android.content.Context
 import android.view.View
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.asLayout
 import com.mars.ui.core.Modifier
 
@@ -22,7 +22,7 @@ import com.mars.ui.core.Modifier
  * @param modifier 此视图在布局上或其他的一些调整
  * @param block 提供此视图的所有可使用 api
  */
-inline fun <V : View> UiKit.With(
+inline fun <V : View> Ui.With(
   creator: (Context) -> V,
   modifier: Modifier = Modifier,
   block: (V) -> Unit = {},

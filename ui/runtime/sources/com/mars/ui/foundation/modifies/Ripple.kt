@@ -33,16 +33,30 @@ fun Modifier.rippleForeground(
   color: Color = currentColors.ripple,
   shape: Shape = RectangleShape,
   radius: SizeUnit = SizeUnit.Unspecified,
-) = +RippleEffectModifier(color, shape, radius)
+) = +RippleEffectModifier(color, shape, radius, AttachMode.Foreground)
+
+/**
+ * 将水波纹 [RippleDrawable] 设置为视图的背景
+ *
+ * @param color 涟漪颜色
+ * @param shape 涟漪的遮罩形状，默认为 [RectangleShape]
+ * @param radius 默认使用 [View] 的大小
+ */
+fun Modifier.rippleBackground(
+  color: Color = currentColors.ripple,
+  shape: Shape = RectangleShape,
+  radius: SizeUnit = SizeUnit.Unspecified,
+) = +RippleEffectModifier(color, shape, radius, AttachMode.Background)
 
 
 private class RippleEffectModifier(
   val color: Color,
   val shape: Shape,
   val radius: SizeUnit,
+  val mode: AttachMode,
 ) : Modifier {
   override fun View.realize(parent: ViewGroup?) {
-    if (this !is Foreground) return
+    if (mode == AttachMode.Foreground && this !is Foreground) return
     val radius = radius.toIntPxOrNull()
     if (radius == null) {
       arrange { apply(max(width, height) / 2) }
@@ -51,7 +65,7 @@ private class RippleEffectModifier(
     }
   }
 
-  private fun Foreground.apply(radius: Int) {
+  private fun View.apply(radius: Int) {
     val rippleDrawable = MaterialShapeDrawable(shape.toModelBuilder().build()).run {
       setTint(Color.White.argb)
       RippleDrawable(
@@ -63,17 +77,31 @@ private class RippleEffectModifier(
         null, this
       ).also { setRadius(it, radius) }
     }
-    setSupportForeground(
-      if (foregroundSupport != null) {
+    when (mode) {
+      AttachMode.Background -> background = if (background != null) {
         LayerDrawable(
           arrayOf(
-            foregroundSupport,
+            background,
             rippleDrawable,
           )
         )
       } else {
         rippleDrawable
       }
-    )
+      AttachMode.Foreground -> (this as Foreground).setSupportForeground(
+        if (foregroundSupport != null) {
+          LayerDrawable(
+            arrayOf(
+              foregroundSupport,
+              rippleDrawable,
+            )
+          )
+        } else {
+          rippleDrawable
+        }
+      )
+    }
   }
 }
+
+enum class AttachMode { Background, Foreground }

@@ -5,7 +5,7 @@ package com.mars.ui.foundation
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.Alignment
 import com.mars.ui.core.Border
@@ -86,7 +86,7 @@ interface ButtonUI
 
 
 /** 创建一个按钮 */
-fun UiKit.Button(
+fun Ui.Button(
   /** [ButtonStyle.color] */
   color: Color = Color.Unset,
   /** [ButtonStyle.colorRipple] */
@@ -237,7 +237,7 @@ fun ButtonBar.Button(
   style: ButtonStyle = currentStyles.button,
   /** 按钮按下后的回调 */
   onClick: (View) -> Unit,
-) = (this as UiKit).Button(
+) = (this as Ui).Button(
   color = color,
   colorRipple = colorRipple,
   colorHighlight = colorHighlight,
@@ -270,7 +270,7 @@ fun ButtonBar.Button(
 
 
 /** 创建一个线框按钮 */
-fun UiKit.OutlinedButton(
+fun Ui.OutlinedButton(
   /** [ButtonStyle.border] -> [Border.color] */
   color: Color = Color.Unset,
   /** [ButtonStyle.colorRipple] */
@@ -418,7 +418,7 @@ fun ButtonBar.OutlinedButton(
   style: ButtonStyle = currentStyles.button,
   /** 按钮按下后的回调 */
   onClick: (View) -> Unit,
-) = (this as UiKit).OutlinedButton(
+) = (this as Ui).OutlinedButton(
   color = color,
   colorRipple = colorRipple,
   colorHighlight = colorHighlight,

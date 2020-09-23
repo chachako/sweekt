@@ -8,7 +8,7 @@ package com.mars.ui.foundation
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.*
 import com.mars.ui.core.graphics.Color
@@ -86,7 +86,7 @@ import com.mars.ui.theme.currentStyles
 
 
 /** 创建并添加按钮视图 */
-inline fun UiKit.Button(
+inline fun Ui.Button(
   /** 按钮按下后的回调 */
   noinline onClick: ((View) -> Unit)?,
   /** 按钮内容的水平方向对齐 */
@@ -183,7 +183,7 @@ fun ButtonBar.Button(
   style: ButtonStyle = currentStyles.button,
   /** 按钮内容 */
   children: ButtonLayout.() -> Unit,
-) = (this as UiKit).Button(
+) = (this as Ui).Button(
   onClick = null,
   mainAxisAlign = mainAxisAlign,
   crossAxisAlign = crossAxisAlign,
@@ -203,7 +203,7 @@ fun ButtonBar.Button(
 
 
 /** 创建并添加线框按钮视图 */
-inline fun UiKit.OutlinedButton(
+inline fun Ui.OutlinedButton(
   /** 按钮内容的水平方向对齐 */
   mainAxisAlign: MainAxisAlignment = MainAxisAlignment.Start,
   /** 按钮内容的垂直方向对齐 */
@@ -282,7 +282,7 @@ inline fun ButtonBar.OutlinedButton(
   style: ButtonStyle = currentStyles.button,
   /** 按钮内容 */
   children: ButtonLayout.() -> Unit,
-) = (this as UiKit).OutlinedButton(
+) = (this as Ui).OutlinedButton(
   mainAxisAlign = mainAxisAlign,
   crossAxisAlign = crossAxisAlign,
   color = color,

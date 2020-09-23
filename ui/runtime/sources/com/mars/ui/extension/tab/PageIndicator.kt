@@ -9,7 +9,7 @@ import android.content.Context
 import android.graphics.Paint
 import androidx.viewpager2.widget.ViewPager2
 import com.mars.toolkit.widget.LinearLayoutParams
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.LayoutSize
 import com.mars.ui.core.Modifier
@@ -61,7 +61,7 @@ class PageIndicator(context: Context) : TabBar(context) {
  * 创建一个分页的指示器 View
  * @see TabRow
  */
-fun UiKit.PageIndicator(
+fun Ui.PageIndicator(
   /**
    * 初始总页数，用于决定指示器的数量
    * NOTE: 如果后续与 [ViewPager2] 连接则会覆盖此设置

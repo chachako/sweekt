@@ -4,10 +4,10 @@ package com.mars.ui.theme
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mars.ui.UiKit.Companion.currentContext
+import com.mars.ui.Ui.Companion.currentContext
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.useOrNull
-import com.mars.ui.currentUiKit
+import com.mars.ui.currentUi
 
 /*
  * author: 凛
@@ -309,4 +309,4 @@ fun DarkColors(
 
 
 /** 当前主题范围中的颜色库 */
-@PublishedApi internal val currentColors get() = currentContext.currentUiKit.colors
+@PublishedApi internal val currentColors get() = currentContext.currentUi.colors

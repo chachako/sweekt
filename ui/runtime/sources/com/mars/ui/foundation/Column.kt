@@ -5,7 +5,7 @@ package com.mars.ui.foundation
 import android.content.Context
 import android.util.AttributeSet
 import com.mars.toolkit.float
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.MainAxisAlignment
 import com.mars.ui.core.Modifier
@@ -41,9 +41,9 @@ class Column @JvmOverloads constructor(
 /**
  * 垂直布局
  * 所有子控件都排放在一列中 [AndroidLinearLayout.VERTICAL]
- * @see [UiKit.Row]
+ * @see [Ui.Row]
  */
-inline fun UiKit.Column(
+inline fun Ui.Column(
   modifier: Modifier = Modifier,
   /** 子内容的水平方向对齐 */
   mainAxisAlign: MainAxisAlignment = MainAxisAlignment.Start,

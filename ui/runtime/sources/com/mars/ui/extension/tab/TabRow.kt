@@ -4,7 +4,7 @@ package com.mars.ui.extension.tab
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.MainAxisAlignment
 import com.mars.ui.core.Modifier
@@ -18,7 +18,7 @@ import com.mars.ui.foundation.modifies.matchParent
  * 创建一个横向标签栏
  * @see Row
  */
-inline fun UiKit.TabRow(
+inline fun Ui.TabRow(
   /** 标签栏整体的其他调整 */
   modifier: Modifier = Modifier,
   /** 子内容的水平方向对齐 */
@@ -77,10 +77,10 @@ inline fun UiKit.TabRow(
  * @see TabRow
  * @see Row
  */
-@PublishedApi internal inline fun UiKit.TabBarContainer(
+@PublishedApi internal inline fun Ui.TabBarContainer(
   enable: Boolean,
   modifier: Modifier,
-  children: UiKit.() -> TabBar
+  children: Ui.() -> TabBar
 ): TabBar = when (enable) {
   true -> With(::TabBarContainer, modifier) { it.tabBar = it.children() }.tabBar
   else -> children()

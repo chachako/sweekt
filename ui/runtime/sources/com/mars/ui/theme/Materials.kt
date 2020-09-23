@@ -3,11 +3,11 @@
 package com.mars.ui.theme
 
 import androidx.annotation.RestrictTo
-import com.mars.ui.UiKit.Companion.currentContext
+import com.mars.ui.Ui.Companion.currentContext
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.material.BlurMaterial
 import com.mars.ui.core.graphics.material.Material
-import com.mars.ui.currentUiKit
+import com.mars.ui.currentUi
 
 /*
  * author: 凛
@@ -104,4 +104,4 @@ class Materials(
 }
 
 /** 当前主题范围中的材质库 */
-@PublishedApi internal val currentMaterials get() = currentContext.currentUiKit.materials
+@PublishedApi internal val currentMaterials get() = currentContext.currentUi.materials

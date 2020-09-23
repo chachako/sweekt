@@ -18,4 +18,4 @@ dependencies {
   )
 }
 
-publishToBintray(artifact = "toolkit-ui-runtime")
+publishToBintray(artifact = "toolkit-ui")

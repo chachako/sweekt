@@ -22,4 +22,4 @@ dependencies {
   apiProjects(":core:android")
 }
 
-publishToBintray(artifact = "toolkit-preference-runtime-base")
+publishToBintray(artifact = "toolkit-preference")

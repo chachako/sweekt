@@ -4,7 +4,6 @@ package com.mars.ui.extension.consecutivescroller
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView.EdgeEffectFactory.DIRECTION_TOP
 import com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
 import com.mars.toolkit.data.matchParent
 import com.mars.toolkit.data.wrapContent
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.Modifier
@@ -39,7 +38,7 @@ open class ConsecutiveScrollableColumn @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
 ) : ConsecutiveScrollerLayout(context, attrs, defStyleAttr),
-  UiKit,
+  Ui,
   ViewCatcher,
   ModifierProvider {
   private var scrollable: Boolean = true
@@ -269,7 +268,7 @@ open class ConsecutiveScrollableColumn @JvmOverloads constructor(
 
 
 /**
- * 可连续滚动的列视图 [UiKit.Column]
+ * 可连续滚动的列视图 [Ui.Column]
  *
  * @param enabled 允许滚动
  * @param modifier 其他更多的可选调整
@@ -277,7 +276,7 @@ open class ConsecutiveScrollableColumn @JvmOverloads constructor(
  * @param permanentSticky 常驻吸顶
  * 当前吸顶的 view 不会被后续的吸顶 view 推出屏幕，最终会形成多个 view 排列吸附在顶部的效果
  */
-fun UiKit.ConsecutiveScrollableColumn(
+fun Ui.ConsecutiveScrollableColumn(
   enabled: Boolean = true,
   modifier: Modifier = Modifier,
   stickyOffset: SizeUnit = SizeUnit.Unspecified,

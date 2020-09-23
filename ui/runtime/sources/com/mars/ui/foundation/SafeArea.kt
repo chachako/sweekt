@@ -4,7 +4,7 @@ package com.mars.ui.foundation
 
 import android.content.Context
 import android.util.AttributeSet
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.Modifier
 import com.mars.ui.foundation.modifies.safeArea
@@ -42,7 +42,7 @@ import com.mars.ui.foundation.modifies.safeArea
  * @param right 横屏状态下，避免 Ui 内容入侵到 "导航栏" 区域
  * @param children 区域内的所有 View 都会被限制在安全区域内
  */
-inline fun UiKit.SafeArea(
+inline fun Ui.SafeArea(
   left: Boolean = true,
   right: Boolean = true,
   top: Boolean = true,

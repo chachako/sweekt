@@ -4,7 +4,7 @@ package com.mars.ui
 
 import android.view.ViewGroup
 import com.mars.toolkit.view.forEach
-import com.mars.ui.UiKit.Companion.currentContext
+import com.mars.ui.Ui.Companion.currentContext
 import com.mars.ui.theme.*
 
 
@@ -19,7 +19,7 @@ import com.mars.ui.theme.*
  */
 fun ThemeScope(
   data: Theme,
-  content: UiKit.() -> Unit,
+  content: Ui.() -> Unit,
 ) = Theme.replaceInternal(data).apply(content)
 
 
@@ -79,7 +79,7 @@ data class Theme(
         (it as? User)?.updateUiKitTheme()
       }
 
-    internal fun replaceInternal(newTheme: Theme) = currentContext.currentUiKit.apply {
+    internal fun replaceInternal(newTheme: Theme) = currentContext.currentUi.apply {
       /** 不直接替换颜色库是因为其中有一个 [Colors.isLight] */
       colors.merge(newTheme.colors)
       typography = newTheme.typography

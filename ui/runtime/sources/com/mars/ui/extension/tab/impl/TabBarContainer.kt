@@ -5,7 +5,7 @@ package com.mars.ui.extension.tab.impl
 import android.content.Context
 import android.widget.HorizontalScrollView
 import androidx.core.view.get
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.unit.dp
 import com.mars.ui.core.unit.toIntPx
@@ -22,7 +22,7 @@ import kotlin.math.roundToInt
  * todo: may need rtl support
  */
 @UiKitMarker @PublishedApi
-internal class TabBarContainer(context: Context) : HorizontalScrollView(context), UiKit {
+internal class TabBarContainer(context: Context) : HorizontalScrollView(context), Ui {
   lateinit var tabBar: TabBar
 
   /** 当第一次滑动后指示器的偏移位置 */

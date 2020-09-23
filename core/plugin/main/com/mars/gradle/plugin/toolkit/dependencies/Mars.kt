@@ -5,6 +5,8 @@
   "MemberVisibilityCanBePrivate"
 )
 
+import dependencies.DependencyNotationAndGroup
+
 /*
  * author: 凛
  * date: 2020/8/6 11:45 PM
@@ -16,6 +18,7 @@ object Mars {
   internal const val prefix = "$group:"
 
   const val conductor = prefix + "conductor:_"
+
 
   /* https://github.com/MarsPlanning/toolkit */
   val toolkit = Toolkit
@@ -39,6 +42,7 @@ object Mars {
       const val plugin = "com.mars.gradle.plugin:toolkit:_"
     }
 
+
     /**
      * Mars-UiKit （以 AndroidViews 衍生而来的一个强大的 UI 工具包）
      * 拥有与
@@ -47,20 +51,21 @@ object Mars {
      * 类似的 UI 组合能力（由于 android 的限制，所以目前只是低配版）
      * 但核心并不会脱离于原生，较于声明式框架更适合熟悉原生 Android 开发的开发者
      * 拥有原生 Views 所具备的一切能力，当然也可以与其他 UI 框架混合使用
+     *
+     * NOTE: UiKit 的核心代码（必要）
      */
     val ui = Ui
 
-    object Ui {
-      private const val artifactPrefix = "${Toolkit.artifactPrefix}-ui"
+    object Ui: MarsLibrary("$artifactPrefix-ui") {
 
       /** UiKit 的核心 Gradle 插件（必要） */
-      const val plugin = "$artifactPrefix-plugin:_"
+      val plugin = "$artifactPrefix-plugin:_"
 
-      /** UiKit 的核心代码（必要） */
-      const val runtime = "$artifactPrefix-runtime:_"
+      /** UiKit 的动画（可选） */
+      val animation = "$artifactPrefix-animation:_"
 
-      /** UiKit 的动画扩展 */
-      const val animation = "$artifactPrefix-animation:_"
+      /** UiKit 的屏幕组件，用于取代 Activity 以解锁更多可能性（可选）*/
+      val screen = "$artifactPrefix-screen:_"
 
       /**
        * UiKit 的第三方扩展，一些比较著名的第三方 View 的强化
@@ -69,25 +74,40 @@ object Mars {
       val extension = Extension
 
       object Extension {
-        private const val artifactPrefix = "${Ui.artifactPrefix}-extension"
+        private val artifactPrefix = "${Ui.artifactPrefix}-extension"
 
-        /* 增强 https://github.com/cashapp/contour */
-        const val contour = "$artifactPrefix-contour:_"
+        /* 提供 https://github.com/cashapp/contour 在 UiKit 中的增强 */
+        val contour = "$artifactPrefix-contour:_"
 
-        /* 增强 https://github.com/cashapp/contour */
-        const val coil = "$artifactPrefix-coil:_"
+        /* 提供 https://github.com/coil-kt 在 UiKit 中的增强 */
+        val coil = "$artifactPrefix-coil:_"
 
-        /* 增强 https://github.com/gyf-dev/ImmersionBar */
-        const val immersionbar = "$artifactPrefix-immersionbar:_"
+        /* 提供 https://github.com/donkingliang/ConsecutiveScroller 在 UiKit 中的增强 */
+        val consecutiveScroller = "$artifactPrefix-consecutivescroller:_"
       }
     }
 
-    /** 压缩工具包，适用于所有 jvm 平台 */
-    const val zipper = "$artifactPrefix-zipper:_"
+
+    /* Preference 核心运行时代码 (默认为 SharedPreference 模型)，实现灵感来源于 https://github.com/chibatching/Kotpref（必须）*/
+    val preference = Preference
+
+    object Preference: MarsLibrary("$artifactPrefix-preference") {
+      /** 为所有 Preference 模型提供混淆支持（可选）*/
+      val plugin = "$artifactPrefix-plugin:_"
+
+      /** 对 https://github.com/Tencent/MMKV 提供 Preference 模型的扩展支持 */
+      val mmkv = "$artifactPrefix-mmkv:_"
+    }
+
+
+    /** 为 KotlinCompiler 增加易用的方法（PSI 解析 Kotlin 源文件等） */
+    const val kotlinCompiler = "$artifactPrefix-ktcompiler:_"
 
     /** 一些可以安全绕过 hidden-api 限制的 Stub */
     const val stubs = "$artifactPrefix-stubs:_"
   }
+
+  abstract class MarsLibrary(artifact: String): DependencyNotationAndGroup(group = group, name = artifact)
 }
 
 /** 解析依赖项 */

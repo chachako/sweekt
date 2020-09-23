@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
+import com.mars.ui.core.Modifier
 import com.mars.ui.core.Orientation
 import com.mars.ui.core.SpringEdgeEffect
 import com.mars.ui.core.native
@@ -41,9 +42,11 @@ class RecyclableList @JvmOverloads constructor(
 }
 
 /** 创建一个拥有多种数据类型 Item 的可回收列表 */
-inline fun <Source : Any> UiKit.RecyclableList(
+inline fun <Source : Any> Ui.RecyclableList(
   /** List 数据源 */
   dataSource: DataSource<Source>,
+  /** 列表视图的其他可选修饰 */
+  modifier: Modifier = Modifier,
   /** Item 数据整体（唯一性）差异对比 */
   noinline areItemsTheSame: ItemComparator<Source>? = null,
   /** Item 数据内容差异对比 */
@@ -68,7 +71,7 @@ inline fun <Source : Any> UiKit.RecyclableList(
   fixedSize: Boolean = true,
   /** 列表定义域，可定义不同数据类型的 Item */
   defineScope: ListDefineScope<Source>.() -> Unit
-): RecyclableList = With(::RecyclableList) {
+): RecyclableList = With(::RecyclableList, modifier) {
   it.layoutManager = layoutManager(it.context).apply {
     when (this) {
       is LinearLayoutManager -> this.orientation = orientation.native
@@ -86,9 +89,11 @@ inline fun <Source : Any> UiKit.RecyclableList(
 
 
 /** 创建一个拥有多种数据类型 Item 的可回收列表 */
-inline fun <reified Source : Any> UiKit.CommonRecyclableList(
+inline fun <reified Source : Any> Ui.CommonRecyclableList(
   /** List 数据源 */
   dataSource: DataSource<Source>,
+  /** 列表视图的其他可选修饰 */
+  modifier: Modifier = Modifier,
   /** Item 数据整体（唯一性）差异对比 */
   noinline areItemsTheSame: ItemComparator<Source>? = null,
   /** Item 数据内容差异对比 */
@@ -115,6 +120,7 @@ inline fun <reified Source : Any> UiKit.CommonRecyclableList(
   noinline defineScope: ItemDefinition2<Source>.() -> Unit,
 ): RecyclableList = RecyclableList(
   dataSource,
+  modifier,
   areItemsTheSame,
   areContentsTheSame,
   layoutManager,

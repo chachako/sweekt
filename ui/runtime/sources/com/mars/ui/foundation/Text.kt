@@ -24,7 +24,7 @@ import androidx.core.widget.TextViewCompat
 import com.google.android.material.textview.MaterialTextView
 import com.mars.toolkit.removeFlags
 import com.mars.ui.Theme
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.*
 import com.mars.ui.core.graphics.Color
@@ -61,7 +61,7 @@ import com.mars.ui.util.BlurHelper
   BlurEffect,
   Foreground,
   ModifierProvider,
-  UiKit {
+  Ui {
   override var foregroundSupport: Drawable? = null
 
   override var blurHelper: BlurHelper? = null
@@ -335,7 +335,7 @@ internal data class ShaderModifier(
 
 
 /** 创建一个 [Text] 视图 */
-fun UiKit.Text(
+fun Ui.Text(
   text: String? = null,
   modifier: Modifier = Modifier,
   /** 自动调整文本大小以适应容器，默认关闭 */
@@ -448,7 +448,7 @@ fun ButtonLayout.Text(
   letterSpacing: SizeUnit = SizeUnit.Unspecified,
   /** 文本样式（不是字体样式 [FontStyle]） */
   style: TextStyle = currentTypography.body1,
-) = (this as UiKit).Text(
+) = (this as Ui).Text(
   text = text,
   modifier = modifier,
   isAutoSize = isAutoSize,

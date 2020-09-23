@@ -3,7 +3,7 @@
 package com.mars.ui.extension.pager
 
 import androidx.viewpager2.widget.ViewPager2
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.Modifier
 import com.mars.ui.extension.list.impl.ItemDefinition2
 import com.mars.ui.extension.list.impl.ListDefineScope
@@ -26,7 +26,7 @@ typealias Pager = ViewPager2
  * 支持拥有多种数据类型 Page 的 [dataSource]
  * @see CommonPager
  */
-inline fun <Source : Any> UiKit.Pager(
+inline fun <Source : Any> Ui.Pager(
   /** 分页数据源 */
   dataSource: DataSource<Source>,
   /** 对于视图的其他额外调整 */
@@ -50,7 +50,7 @@ inline fun <Source : Any> UiKit.Pager(
  * 确保所有页面的数据都必须是同一个类型 [Source]，
  * 对于不同页面拥有不同类型的数据，请使用 [Pager]
  */
-inline fun <reified Source : Any> UiKit.CommonPager(
+inline fun <reified Source : Any> Ui.CommonPager(
   /** 分页数据源 */
   dataSource: DataSource<Source>,
   /** 对于视图的其他额外调整 */

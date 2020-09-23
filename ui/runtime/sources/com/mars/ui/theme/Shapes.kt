@@ -2,14 +2,14 @@
 
 package com.mars.ui.theme
 
-import com.mars.ui.UiKit.Companion.currentContext
+import com.mars.ui.Ui.Companion.currentContext
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.material.Material
 import com.mars.ui.core.graphics.shape.RoundedCornerShape
 import com.mars.ui.core.graphics.shape.Shape
 import com.mars.ui.core.graphics.shape.ZeroCornerSize
 import com.mars.ui.core.unit.dp
-import com.mars.ui.currentUiKit
+import com.mars.ui.currentUi
 
 /*
  * author: 凛
@@ -82,4 +82,4 @@ class Shapes(
 }
 
 /** 当前主题范围中的形状库 */
-@PublishedApi internal val currentShapes get() = currentContext.currentUiKit.shapes
+@PublishedApi internal val currentShapes get() = currentContext.currentUi.shapes

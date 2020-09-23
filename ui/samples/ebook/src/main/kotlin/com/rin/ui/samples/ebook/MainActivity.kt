@@ -12,6 +12,7 @@ import com.mars.ui.*
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.Orientation
+import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.unit.dp
 import com.mars.ui.extension.coil.CoilImage
 import com.mars.ui.extension.coil.transforms.asTransformation
@@ -26,9 +27,9 @@ import com.mars.ui.foundation.modifies.*
  * github: https://github.com/oh-Rin
  * description: 
  */
-class MainActivity : AppCompatActivity(), UiKit.Preview {
+class MainActivity : AppCompatActivity(), Ui.Preview {
   val horizontalEdge = 30.dp
-  override var ui: UiScope = {
+  override var uiBody: UiBody = {
     ThemeScope(DarkTheme) {
       Screen()
     }
@@ -37,10 +38,10 @@ class MainActivity : AppCompatActivity(), UiKit.Preview {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     WindowCompat.setDecorFitsSystemWindows(window, false)
-    setUiContent(content = ui)
+    setUiContent(content = uiBody)
   }
 
-  fun UiKit.Screen() {
+  fun Ui.Screen() {
     Column(
       modifier = Modifier.safeContentArea(top = true)
         .background()
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity(), UiKit.Preview {
     }
   }
 
-  fun UiKit.TitleBar() {
+  fun Ui.TitleBar() {
     Row(
       crossAxisAlign = CrossAxisAlignment.Center,
       modifier = Modifier.padding(horizontal = horizontalEdge, vertical = 30.dp)
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity(), UiKit.Preview {
     }
   }
 
-  fun UiKit.Banner() {
+  fun Ui.Banner() {
     CommonRecyclableList(
       dataSource = dataSourceOf(
         Book("https://inews.gtimg.com/newsapp_bt/0/9940432866/1000"),
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity(), UiKit.Preview {
         Book("https://inews.gtimg.com/newsapp_bt/0/9940432866/1000"),
       ),
       orientation = Orientation.Horizontal,
+      modifier = Modifier.background(Color.Red),
     ) {
 //      val image = Image(
 //        modifier = Modifier.height(224.dp),
@@ -95,7 +97,7 @@ class MainActivity : AppCompatActivity(), UiKit.Preview {
       val image = CoilImage(
         lazy = true,
         transformation = Theme.shapes.medium.asTransformation,
-        modifier = Modifier.height(224.dp),
+        modifier = Modifier.height(224.dp).rippleForeground(color = Color.Yellow).clickable(),
       )
       Bind { book ->
         image.update(data = book.cover)

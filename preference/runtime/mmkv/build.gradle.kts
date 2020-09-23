@@ -18,4 +18,4 @@ dependencies {
   )
 }
 
-publishToBintray(artifact = "toolkit-preference-runtime-mmkv")
+publishToBintray(artifact = "toolkit-preference-mmkv")

@@ -20,7 +20,7 @@ import coil.size.Scale
 import coil.size.Size
 import coil.transform.Transformation
 import coil.transition.Transition
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.asLayout
 import com.mars.ui.core.Modifier
 import com.mars.ui.extension.coil.preview.defaultImageLoader
@@ -65,7 +65,7 @@ import java.io.File
  *
  * @see CoilImage.update
  */
-fun UiKit.CoilImage(
+fun Ui.CoilImage(
   data: Any? = null,
   lazy: Boolean = false,
   modifier: Modifier = Modifier,
@@ -132,7 +132,7 @@ fun UiKit.CoilImage(
  *
  * @see ImageView.load
  */
-inline fun UiKit.CoilImage(
+inline fun Ui.CoilImage(
   data: Any?,
   lazy: Boolean = false,
   modifier: Modifier = Modifier,

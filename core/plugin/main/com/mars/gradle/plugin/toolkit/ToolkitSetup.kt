@@ -16,10 +16,19 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /* Setup gradle toolkit core and https://github.com/jmfayard/refreshVersions */
 fun Settings.setupToolkit(
-  withRepoInit: Boolean = false,
+  withRepoInit: Boolean = true,
   withOptions: (ToolkitOptions.() -> Unit)? = null
 ) {
-  val global = ToolkitOptions().apply { withOptions?.invoke(this) }
+  val global = ToolkitOptions().apply {
+    withOptions?.invoke(this)
+    kotlinOptions {
+      /** @see fixOldCompilerWarn */
+      freeCompilerArgs = freeCompilerArgs + listOf(
+        "-Xallow-jvm-ir-dependencies",
+        "-Xskip-prerelease-check"
+      )
+    }
+  }
   VersionsProperties.file = global.versionsPropertiesFile
     ?: this@setupToolkit.rootDir.resolve("versions.properties")
   // initialize refreshVersions
@@ -27,13 +36,7 @@ fun Settings.setupToolkit(
   gradle.rootProject {
     apply<ToolkitPlugin>()
     extensions.configure<ToolkitOptions> {
-      kotlinOptions {
-        global.kotlinJvmOptions?.invoke(this)
-        freeCompilerArgs = freeCompilerArgs + listOf(
-          "-Xallow-jvm-ir-dependencies",
-          "-Xskip-prerelease-check"
-        )
-      }
+      kotlinJvmOptions = global.kotlinJvmOptions
       sharedDependencies.putAll(global.sharedDependencies)
       if (sharedAndroidConfig == null) {
         sharedAndroidConfig = global.sharedAndroidConfig
@@ -66,7 +69,7 @@ fun Settings.setupToolkit(
 
 @InternalMarsProjectApi
 fun Settings.setupMarsToolkit(withOptions: (ToolkitOptions.() -> Unit)? = null) {
-  setupToolkit(false) {
+  setupToolkit {
     // TODO 当所有项目共用 versions.properties 文件时
     // TODO 并不容易将此文件一并与当前项目 Commit 到 Git 仓库
     // TODO 这不利于多人协作，但可能我会在以后想到一个好的点子来解决这个问题

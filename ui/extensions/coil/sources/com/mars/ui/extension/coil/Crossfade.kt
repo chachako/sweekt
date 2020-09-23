@@ -12,7 +12,7 @@ import coil.size.Scale
 import coil.size.Size
 import coil.transform.Transformation
 import coil.transition.CrossfadeTransition
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.asLayout
 import com.mars.ui.core.Modifier
 import com.mars.ui.extension.coil.preview.defaultImageLoader
@@ -26,7 +26,7 @@ import com.mars.ui.foundation.Image
  * @see CoilImage
  * @see CrossfadeTransition
  */
-fun UiKit.CoilFadeImage(
+fun Ui.CoilFadeImage(
   data: Any?,
   lazy: Boolean = false,
   modifier: Modifier = Modifier,
@@ -72,7 +72,7 @@ fun UiKit.CoilFadeImage(
  * @see CoilImage
  * @see CrossfadeTransition
  */
-inline fun UiKit.CoilFadeImage(
+inline fun Ui.CoilFadeImage(
   data: Any?,
   lazy: Boolean = false,
   modifier: Modifier = Modifier,

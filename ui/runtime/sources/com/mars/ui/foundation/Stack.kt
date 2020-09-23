@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.mars.toolkit.widget.FrameLayoutParams
 import com.mars.ui.Theme
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.*
 import com.mars.ui.foundation.modifies.BlurEffect
@@ -33,7 +33,7 @@ import com.mars.ui.util.BlurHelper
   BlurEffect,
   Foreground,
   ModifierProvider,
-  UiKit {
+  Ui {
   override var foregroundSupport: Drawable? = null
 
   override var blurHelper: BlurHelper? = null
@@ -98,7 +98,7 @@ import com.mars.ui.util.BlurHelper
 
 
 /** 堆叠布局 */
-inline fun UiKit.Stack(
+inline fun Ui.Stack(
   modifier: Modifier = Modifier,
   children: Stack.() -> Unit
 ): Stack = With(::Stack) {

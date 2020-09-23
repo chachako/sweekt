@@ -2,12 +2,12 @@
 
 package com.mars.ui.theme
 
-import com.mars.ui.UiKit.Companion.currentContext
+import com.mars.ui.Ui.Companion.currentContext
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.unit.Px
 import com.mars.ui.core.unit.px
 import com.mars.ui.core.unit.sp
-import com.mars.ui.currentUiKit
+import com.mars.ui.currentUi
 import com.mars.ui.foundation.styles.TextStyle
 
 /*
@@ -231,4 +231,4 @@ object PingFangFont {
 
 
 /** 当前主题范围中的排版库 */
-@PublishedApi internal val currentTypography get() = currentContext.currentUiKit.typography
+@PublishedApi internal val currentTypography get() = currentContext.currentUi.typography

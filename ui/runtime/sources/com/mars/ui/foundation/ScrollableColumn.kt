@@ -12,7 +12,7 @@ import android.widget.LinearLayout
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView.EdgeEffectFactory.DIRECTION_BOTTOM
 import androidx.recyclerview.widget.RecyclerView.EdgeEffectFactory.DIRECTION_TOP
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.MainAxisAlignment
 import com.mars.ui.core.Modifier
@@ -25,7 +25,7 @@ class ScrollableColumn @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
 ) : NestedScrollView(context, attrs, defStyleAttr),
-  UiKit,
+  Ui,
   ViewCatcher,
   ModifierProvider {
   internal var column: Column? = null
@@ -101,8 +101,8 @@ class ScrollableColumn @JvmOverloads constructor(
 }
 
 
-/** 可滚动的列视图 [UiKit.Column] */
-fun UiKit.ScrollableColumn(
+/** 可滚动的列视图 [Ui.Column] */
+fun Ui.ScrollableColumn(
   /** 允许滚动 */
   enabled: Boolean = true,
   /** 其他更多的可选调整 */

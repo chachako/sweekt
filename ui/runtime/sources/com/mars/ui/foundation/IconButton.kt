@@ -12,7 +12,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.PointerIcon
 import android.view.View
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.Border
 import com.mars.ui.core.Modifier
@@ -128,7 +128,7 @@ class IconButton @JvmOverloads constructor(
 
 
 /** 创建并添加仅有图标的按钮视图 */
-fun UiKit.IconButton(
+fun Ui.IconButton(
   /** 按钮中的图标 */
   icon: Drawable,
   /** 按钮按下后的回调 */
@@ -214,7 +214,7 @@ fun ButtonBar.IconButton(
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
   style: ButtonStyle = currentStyles.button,
-) = (this as UiKit).IconButton(
+) = (this as Ui).IconButton(
   onClick = null,
   color = color,
   colorRipple = colorRipple,
@@ -235,7 +235,7 @@ fun ButtonBar.IconButton(
 
 
 /** 创建并添加仅有图标的线框按钮视图 */
-fun UiKit.OutlinedIconButton(
+fun Ui.OutlinedIconButton(
   /** 按钮中的图标 */
   icon: Drawable,
   /** 按钮按下后的回调 */
@@ -323,7 +323,7 @@ fun ButtonBar.OutlinedIconButton(
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
   style: ButtonStyle = currentStyles.button,
-) = (this as UiKit).OutlinedIconButton(
+) = (this as Ui).OutlinedIconButton(
   onClick = onClick,
   color = color,
   colorRipple = colorRipple,

@@ -1,11 +1,11 @@
 package com.mars.ui.theme
 
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.Border
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.shape.CircleShape
 import com.mars.ui.core.unit.dp
-import com.mars.ui.currentUiKit
+import com.mars.ui.currentUi
 import com.mars.ui.foundation.styles.ButtonStyle
 import com.mars.ui.foundation.styles.DividerStyle
 
@@ -71,4 +71,4 @@ internal interface Style<T> {
 }
 
 /** 当前主题范围中的样式库 */
-@PublishedApi internal val currentStyles get() = UiKit.currentContext.currentUiKit.styles
+@PublishedApi internal val currentStyles get() = Ui.currentContext.currentUi.styles

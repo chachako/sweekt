@@ -19,7 +19,7 @@ import com.mars.toolkit.float
 import com.mars.toolkit.lerp
 import com.mars.toolkit.view.idOrNew
 import com.mars.toolkit.widget.LinearLayoutParams
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.LayoutSize
 import com.mars.ui.core.graphics.lerp
@@ -295,10 +295,10 @@ open class TabBar(context: Context) : Linear(context), PagerUser {
   }
 
   /**
-   * 定义一个 [ViewGroup] 区域，以允许在代码块中可以调用其他 [UiKit] 小部件
+   * 定义一个 [ViewGroup] 区域，以允许在代码块中可以调用其他 [Ui] 小部件
    * 实际上这没有任何用处，只是达到一个约束效果
    */
-  class Scope internal constructor() : ViewGroup(UiKit.currentContext) {
+  class Scope internal constructor() : ViewGroup(Ui.currentContext) {
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {}
     override fun addView(child: View?, index: Int, params: LayoutParams?) {}
     override fun addViewInLayout(

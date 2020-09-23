@@ -9,7 +9,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.ViewGroup
 import com.mars.toolkit.float
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.Orientation
 import com.mars.ui.core.graphics.Color
@@ -157,7 +157,7 @@ import kotlin.math.roundToInt
 }
 
 /** 分频器/分割线 */
-fun UiKit.Divider(
+fun Ui.Divider(
   /** [DividerStyle.color] */
   color: Color = Color.Unset,
   /** [DividerStyle.thickness] */
@@ -193,7 +193,7 @@ fun UiKit.Divider(
  * 垂直方向的分频器/分割线
  * @see Divider
  */
-fun UiKit.VerticalDivider(
+fun Ui.VerticalDivider(
   /** [DividerStyle.color] */
   color: Color = Color.Unset,
   /** [DividerStyle.thickness] */
@@ -220,7 +220,7 @@ fun UiKit.VerticalDivider(
  * 水平方向的分频器/分割线
  * @see Divider
  */
-fun UiKit.HorizontalDivider(
+fun Ui.HorizontalDivider(
   /** [DividerStyle.color] */
   color: Color = Color.Unset,
   /** [DividerStyle.thickness] */

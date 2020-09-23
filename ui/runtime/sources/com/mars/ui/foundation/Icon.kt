@@ -15,7 +15,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import androidx.core.content.ContextCompat
 import com.mars.toolkit.graphics.drawable.LayerDrawableBuilder
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.asLayout
 import com.mars.ui.core.Modifier
@@ -127,7 +127,7 @@ open class Icon @JvmOverloads constructor(
  * @param style 图标样式 [IconStyle]
  * @see Image
  */
-fun UiKit.Icon(
+fun Ui.Icon(
   asset: Drawable,
   modifier: Modifier = Modifier,
   color: Color = Color.Unset,
@@ -155,7 +155,7 @@ fun UiKit.Icon(
  * @param style 图标样式 [IconStyle]
  * @see Image
  */
-fun UiKit.Icon(
+fun Ui.Icon(
   asset: Bitmap,
   modifier: Modifier = Modifier,
   color: Color = Color.Unset,
@@ -181,7 +181,7 @@ fun UiKit.Icon(
  * @param style 图标样式 [IconStyle]
  * @see Image
  */
-fun UiKit.Icon(
+fun Ui.Icon(
   asset: Int,
   modifier: Modifier = Modifier,
   color: Color = Color.Unset,

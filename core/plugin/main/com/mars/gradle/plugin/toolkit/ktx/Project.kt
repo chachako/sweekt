@@ -8,6 +8,8 @@ import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.register
+import kotlin.reflect.KClass
 
 /**
  * 获取 [BaseExtension]
@@ -85,3 +87,13 @@ fun Project.findTask(name: String): Task? = tasks.findByName(name)
 fun Project.findAndroidTask(name: String): Task? =
   tasks.findByName(name.replace("**", "Release").replace("*", "release"))
     ?: tasks.findByName(name.replace("**", "Debug").replace("*", "debug"))
+
+/** 注册多个插件 */
+fun Project.registerTasks(vararg tasksWithNames: Pair<String, KClass<out Task>>) = tasksWithNames.forEach {
+  this.tasks.register(it.first, it.second)
+}
+
+/** 注册多个插件，以 [Task] 类名作为任务名称 */
+fun Project.registerTasks(vararg tasks: KClass<out Task>) = tasks.forEach {
+  this.tasks.register(it.java.simpleName, it)
+}

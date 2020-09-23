@@ -5,7 +5,7 @@ package com.mars.ui.foundation
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.Orientation
 import com.mars.ui.core.native
@@ -29,7 +29,7 @@ interface ButtonBar
  * @see Row
  * @see Column
  */
-inline fun UiKit.ButtonBar(
+inline fun Ui.ButtonBar(
   /** 在按钮栏内部按钮按下后的回调 */
   crossinline onClick: (index: Int, button: View) -> Unit,
   /** 对于按钮栏的其他额外调整 */

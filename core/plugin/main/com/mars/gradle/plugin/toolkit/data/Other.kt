@@ -3,8 +3,6 @@
 import com.android.build.api.dsl.AndroidSourceSet
 import com.android.build.api.dsl.BuildFeatures
 import com.android.build.api.dsl.CommonExtension
-import com.android.build.api.variant.Variant
-import com.android.build.api.variant.VariantProperties
 import com.android.build.gradle.internal.dsl.BuildType
 import com.android.build.gradle.internal.dsl.DefaultConfig
 import com.android.build.gradle.internal.dsl.ProductFlavor
@@ -20,8 +18,8 @@ internal typealias MixinExtension = CommonExtension<AndroidSourceSet,
   DefaultConfig,
   ProductFlavor,
   SigningConfig,
-  Variant<VariantProperties>,
-  VariantProperties>
+  *, // FIXME 等待 android gradle plugin 4.2 stable 发布
+  *>
 
 /** 读取此项目的 local.properties */
 val Project.localPropertiesOrNull: Properties?

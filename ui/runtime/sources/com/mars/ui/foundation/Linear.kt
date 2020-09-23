@@ -17,7 +17,7 @@ import androidx.core.view.forEach
 import com.mars.toolkit.float
 import com.mars.toolkit.widget.LinearLayoutParams
 import com.mars.ui.Theme
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.core.*
 import com.mars.ui.foundation.modifies.BlurEffect
@@ -41,7 +41,7 @@ open class Linear @JvmOverloads constructor(
   BlurEffect,
   Foreground,
   ModifierProvider,
-  UiKit {
+  Ui {
   override var foregroundSupport: Drawable? = null
 
   override var blurHelper: BlurHelper? = null

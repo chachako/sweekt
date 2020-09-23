@@ -1,8 +1,8 @@
 package com.mars.ui.theme
 
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.core.unit.dp
-import com.mars.ui.currentUiKit
+import com.mars.ui.currentUi
 import com.mars.ui.foundation.styles.IconStyle
 
 
@@ -53,4 +53,4 @@ class Icons(
 }
 
 /** 当前主题范围中的图标样式库 */
-@PublishedApi internal val currentIcons get() = UiKit.currentContext.currentUiKit.icons
+@PublishedApi internal val currentIcons get() = Ui.currentContext.currentUi.icons

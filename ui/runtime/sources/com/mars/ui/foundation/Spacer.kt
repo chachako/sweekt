@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Space
 import com.mars.ui.Theme
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.asLayout
 import com.mars.ui.core.Foreground
@@ -41,7 +41,7 @@ import com.mars.ui.util.BlurHelper
   BlurEffect,
   Foreground,
   ModifierProvider,
-  UiKit {
+  Ui {
   override var foregroundSupport: Drawable? = null
 
   override var blurHelper: BlurHelper? = null
@@ -96,7 +96,7 @@ import com.mars.ui.util.BlurHelper
  * @param width
  * @param height
  */
-fun UiKit.Spacer(
+fun Ui.Spacer(
   width: SizeUnit? = null,
   height: SizeUnit? = null,
 ): Spacer = With(::Spacer) {
@@ -113,7 +113,7 @@ fun UiKit.Spacer(
  * NOTE: [Spacer.draw] 不会进行任何绘制
  * @param size 高宽大小
  */
-fun UiKit.Spacer(
+fun Ui.Spacer(
   size: SizeUnit,
 ): Spacer = With(::Spacer) {
   Modifier.size(size).apply { it.realize(this@Spacer.asLayout) }
@@ -124,7 +124,7 @@ fun UiKit.Spacer(
  * NOTE: [Spacer.draw] 会进行绘制，并且取决于 [modifier]
  * @param modifier 高宽大小
  */
-fun UiKit.Spacer(
+fun Ui.Spacer(
   modifier: Modifier
 ): Spacer = With(::Spacer) {
   it.modifier = modifier

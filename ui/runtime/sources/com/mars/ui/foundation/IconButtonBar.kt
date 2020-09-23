@@ -8,7 +8,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.view.View
 import com.mars.toolkit.content.res.resource
-import com.mars.ui.UiKit
+import com.mars.ui.Ui
 import com.mars.ui.asLayout
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.Orientation
@@ -23,7 +23,7 @@ import com.mars.ui.theme.currentStyles
  * 由多个样式相同的图标按钮组成的按钮栏
  * @see ButtonBar
  */
-fun UiKit.IconButtonBar(
+fun Ui.IconButtonBar(
   /** 指定多个按钮的 [Drawable] 类型图标 */
   icons: Array<Drawable>,
   /** 在按钮栏内部按钮按下后的回调 */
@@ -47,7 +47,7 @@ fun UiKit.IconButtonBar(
  * 由多个样式相同的图标按钮组成的按钮栏
  * @see ButtonBar
  */
-fun UiKit.IconButtonBar(
+fun Ui.IconButtonBar(
   /** 指定多个按钮的 [Bitmap] 类型图标 */
   icons: Array<Bitmap>,
   /** 在按钮栏内部按钮按下后的回调 */
@@ -77,7 +77,7 @@ fun UiKit.IconButtonBar(
  * 由多个样式相同的图标按钮组成的按钮栏
  * @see ButtonBar
  */
-fun UiKit.IconButtonBar(
+fun Ui.IconButtonBar(
   /** 指定多个按钮的 [Resources] 图标，根据 id 寻找 [Drawable] */
   icons: IntArray,
   /** 在按钮栏内部按钮按下后的回调 */
