@@ -1,5 +1,6 @@
 package com.mars.gradle.plugin.toolkit.hooker
 
+import com.mars.toolkit.kotlinClass
 import org.gradle.api.Project
 import kotlin.reflect.KClass
 
@@ -9,7 +10,7 @@ import kotlin.reflect.KClass
  * github: https://github.com/oh-Rin
  * description: 收集一切注册过的 Hooker
  */
-internal val collected = mutableListOf<KClass<out TaskHooker>>()
+@PublishedApi internal val collected = mutableListOf<KClass<out TaskHooker>>()
 
 /**
  * 将多个 Hooker 注册到 [collected]
@@ -23,6 +24,22 @@ fun Project.registerHooks(vararg hookers: KClass<out TaskHooker>) = afterEvaluat
         it.hook()
       }
       collected.add(hooker)
+    }
+  }
+}
+
+/**
+ * 将多个 Hooker 注册到 [collected]
+ * NOTE: 注册后将会立刻进行挂钩
+ */
+fun Project.registerHooks(vararg hookers: TaskHooker) = afterEvaluate {
+  hookers.forEach { hooker ->
+    if (!collected.contains(hooker.kotlinClass)) {
+      hooker.also {
+        it.project = this
+        it.hook()
+      }
+      collected.add(hooker.kotlinClass)
     }
   }
 }
