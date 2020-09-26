@@ -26,7 +26,7 @@ import com.mars.ui.core.unit.SizeUnit
 import com.mars.ui.core.unit.isSpecified
 import com.mars.ui.core.unit.toIntPxOrNull
 import com.mars.ui.foundation.styles.IconStyle
-import com.mars.ui.theme.Styles.Companion.resolveStyle
+import com.mars.ui.theme.Icons.Companion.resolveIcon
 import com.mars.ui.theme.currentIcons
 
 
@@ -112,7 +112,7 @@ open class Icon @JvmOverloads constructor(
   override fun setPaddingRelative(start: Int, top: Int, end: Int, bottom: Int) {}
 
   override fun updateUiKitTheme() {
-    style?.resolveStyle()?.also { style = it }
+    style?.resolveIcon(this)?.also { style = it }
     super.updateUiKitTheme()
   }
 }

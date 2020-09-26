@@ -3,11 +3,11 @@
 package com.mars.ui.theme
 
 import androidx.annotation.RestrictTo
-import com.mars.ui.Ui.Companion.currentContext
+import com.mars.ui.Ui
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.material.BlurMaterial
 import com.mars.ui.core.graphics.material.Material
-import com.mars.ui.currentUi
+import com.mars.ui.currentTheme
 
 /*
  * author: 凛
@@ -92,16 +92,19 @@ class Materials(
      * @return 最后返回主题更新后的排版库的实际材质
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
-    fun Material.resolveMaterial(): Material = when (id) {
-      /** 重新获取一遍即可达到更新效果，因为 [currentMaterials] 值其实已经变化了 */
-      0 -> currentMaterials.thick
-      1 -> currentMaterials.regular
-      2 -> currentMaterials.thin
-      3 -> currentMaterials.ultraThin
-      else -> this // 并非为主题库中的材质，不需要更新
+    fun Material.resolveMaterial(ui: Ui): Material = ui.currentMaterials.run {
+      when (id) {
+        /** 重新获取一遍即可达到更新效果，因为 [currentMaterials] 值其实已经变化了 */
+        0 -> thick
+        1 -> regular
+        2 -> thin
+        3 -> ultraThin
+        else -> this@resolveMaterial // 并非为主题库中的材质，不需要更新
+      }
     }
   }
 }
 
-/** 当前主题范围中的材质库 */
-@PublishedApi internal val currentMaterials get() = currentContext.currentUi.materials
+
+/** 返回当前 Ui 主题范围中的材质库 */
+@PublishedApi internal inline val Ui.currentMaterials: Materials get() = currentTheme.materials

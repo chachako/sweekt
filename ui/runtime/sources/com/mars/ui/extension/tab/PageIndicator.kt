@@ -34,7 +34,7 @@ import com.mars.ui.theme.currentColors
  * description: 分页指示器，实现原理是直接基于标签且不显示 Tab 与 Divider
  */
 class PageIndicator(context: Context) : TabBar(context) {
-  val indicator get() = _Scope.indicatorCreator(0)
+  val indicator get() = context.scope.indicatorCreator(0)
 
   override var pager: Pager? = super.pager
     set(value) {

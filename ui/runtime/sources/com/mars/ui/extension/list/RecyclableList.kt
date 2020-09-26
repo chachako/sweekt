@@ -22,12 +22,11 @@ import com.mars.ui.extension.list.impl.data.DataSource
 import com.mars.ui.extension.list.impl.data.ItemComparator
 import com.mars.ui.foundation.With
 
-
 class RecyclableList @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
-) : RecyclerView(context, attrs, defStyleAttr) {
+) : RecyclerView(context, attrs, defStyleAttr), Ui {
   private val springManager = SpringEdgeEffect.Manager()
 
   init {

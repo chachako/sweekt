@@ -2,14 +2,14 @@
 
 package com.mars.ui.theme
 
-import com.mars.ui.Ui.Companion.currentContext
+import com.mars.ui.Ui
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.material.Material
 import com.mars.ui.core.graphics.shape.RoundedCornerShape
 import com.mars.ui.core.graphics.shape.Shape
 import com.mars.ui.core.graphics.shape.ZeroCornerSize
 import com.mars.ui.core.unit.dp
-import com.mars.ui.currentUi
+import com.mars.ui.currentTheme
 
 /*
  * author: 凛
@@ -71,15 +71,16 @@ class Shapes(
      * 如果存在，根据形状备份的 [Material.id] 判断形状是否为主题排版库中的形状
      * @return 最后返回主题更新后的排版库的实际形状
      */
-    internal fun Shape.resolveShape(): Shape = when (id) {
+    internal fun Shape.resolveShape(ui: Ui): Shape = when (id) {
       /** 重新获取一遍即可达到更新效果，因为 [currentShapes] 值其实已经变化了 */
-      0 -> currentShapes.small
-      1 -> currentShapes.medium
-      2 -> currentShapes.large
+      0 -> ui.currentShapes.small
+      1 -> ui.currentShapes.medium
+      2 -> ui.currentShapes.large
       else -> this // 并非为主题库中的形状，不需要更新
     }
   }
 }
 
-/** 当前主题范围中的形状库 */
-@PublishedApi internal val currentShapes get() = currentContext.currentUi.shapes
+
+/** 返回当前 Ui 主题范围中的形状库 */
+@PublishedApi internal inline val Ui.currentShapes: Shapes get() = currentTheme.shapes

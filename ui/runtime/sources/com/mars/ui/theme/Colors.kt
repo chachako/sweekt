@@ -4,10 +4,10 @@ package com.mars.ui.theme
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mars.ui.Ui.Companion.currentContext
+import com.mars.ui.Ui
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.useOrNull
-import com.mars.ui.currentUi
+import com.mars.ui.currentTheme
 
 /*
  * author: 凛
@@ -181,22 +181,24 @@ class Colors constructor(
      * 如果存在，根据颜色备份的 [Color.id] 判断颜色是否为主题颜色库中的色
      * @return 最后返回主题更新后的颜色库的实际颜色值
      */
-    fun Color.resolveColor(): Color = when (id) {
-      /** 重新获取一遍即可达到更新效果，因为 [currentColors] 值其实已经变化了 */
-      0 -> currentColors.primary
-      1 -> currentColors.primaryVariant
-      2 -> currentColors.secondary
-      3 -> currentColors.secondaryVariant
-      4 -> currentColors.background
-      5 -> currentColors.surface
-      6 -> currentColors.error
-      7 -> currentColors.ripple
-      8 -> currentColors.onPrimary
-      9 -> currentColors.onSecondary
-      10 -> currentColors.onBackground
-      11 -> currentColors.onSurface
-      12 -> currentColors.onError
-      else -> this // 并非为主题库中的颜色，不需要更新
+    fun Color.resolveColor(ui: Ui): Color = ui.currentColors.run {
+      when (id) {
+        /** 重新获取一遍即可达到更新效果，因为 [currentColors] 值其实已经变化了 */
+        0 -> primary
+        1 -> primaryVariant
+        2 -> secondary
+        3 -> secondaryVariant
+        4 -> background
+        5 -> surface
+        6 -> error
+        7 -> ripple
+        8 -> onPrimary
+        9 -> onSecondary
+        10 -> onBackground
+        11 -> onSurface
+        12 -> onError
+        else -> this@resolveColor // 并非为主题库中的颜色，不需要更新
+      }
     }
   }
 }
@@ -308,5 +310,5 @@ fun DarkColors(
 )
 
 
-/** 当前主题范围中的颜色库 */
-@PublishedApi internal val currentColors get() = currentContext.currentUi.colors
+/** 返回当前 Ui 主题范围中的颜色库 */
+@PublishedApi internal inline val Ui.currentColors: Colors get() = currentTheme.colors

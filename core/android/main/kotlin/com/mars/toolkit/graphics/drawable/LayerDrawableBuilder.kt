@@ -8,6 +8,9 @@ import android.view.Gravity.NO_GRAVITY
 import androidx.annotation.RequiresApi
 import java.util.*
 
+fun buildLayerDrawable(block: LayerDrawableBuilder.() -> Unit) =
+  LayerDrawableBuilder().apply(block).build()
+
 class LayerDrawableBuilder {
   @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
   private var paddingMode = LayerDrawableCompat.PADDING_MODE_NEST

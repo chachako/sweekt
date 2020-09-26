@@ -22,7 +22,7 @@ import com.mars.ui.foundation.SafeArea
  * @param bottom 竖屏状态下，避免 ui 内容入侵到导航栏区域
  * @param left 横屏状态下，避免 ui 内容入侵到导航栏区域
  * @param right 横屏状态下，避免 ui 内容入侵到导航栏区域
- * @see View.padding
+ * @see padding
  * @see SafeArea
  */
 fun Modifier.safeArea(
@@ -39,7 +39,7 @@ fun Modifier.safeArea(
  * @param bottom 竖屏状态下，避免 ui 内容入侵到导航栏区域
  * @param left 横屏状态下，避免 ui 内容入侵到导航栏区域
  * @param right 横屏状态下，避免 ui 内容入侵到导航栏区域
- * @see View.margin
+ * @see margin
  * @see SafeArea
  */
 fun Modifier.safeContentArea(

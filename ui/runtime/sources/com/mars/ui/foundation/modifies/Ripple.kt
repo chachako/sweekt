@@ -3,23 +3,24 @@
 package com.mars.ui.foundation.modifies
 
 import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RippleDrawable
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.mars.toolkit.graphics.drawable.setRadius
-import com.mars.toolkit.view.arrange
+import com.mars.ui.Ui
 import com.mars.ui.core.Foreground
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.shape.RectangleShape
 import com.mars.ui.core.graphics.shape.Shape
 import com.mars.ui.core.graphics.useOrElse
+import com.mars.ui.core.graphics.useOrNull
 import com.mars.ui.core.unit.SizeUnit
 import com.mars.ui.core.unit.toIntPxOrNull
 import com.mars.ui.theme.currentColors
-import kotlin.math.max
 
 
 /**
@@ -30,7 +31,7 @@ import kotlin.math.max
  * @param radius 默认使用 [View] 的大小
  */
 fun Modifier.rippleForeground(
-  color: Color = currentColors.ripple,
+  color: Color = Color.Unset,
   shape: Shape = RectangleShape,
   radius: SizeUnit = SizeUnit.Unspecified,
 ) = +RippleEffectModifier(color, shape, radius, AttachMode.Foreground)
@@ -43,7 +44,7 @@ fun Modifier.rippleForeground(
  * @param radius 默认使用 [View] 的大小
  */
 fun Modifier.rippleBackground(
-  color: Color = currentColors.ripple,
+  color: Color = Color.Unset,
   shape: Shape = RectangleShape,
   radius: SizeUnit = SizeUnit.Unspecified,
 ) = +RippleEffectModifier(color, shape, radius, AttachMode.Background)
@@ -57,51 +58,24 @@ private class RippleEffectModifier(
 ) : Modifier {
   override fun View.realize(parent: ViewGroup?) {
     if (mode == AttachMode.Foreground && this !is Foreground) return
-    val radius = radius.toIntPxOrNull()
-    if (radius == null) {
-      arrange { apply(max(width, height) / 2) }
-    } else {
-      apply(radius)
+    val color = color.useOrElse {
+      (this as? Ui)?.currentColors?.ripple?.useOrNull()
+        ?: Color.White.copy(alpha = 0.2f)
+    }.argb
+
+    when (mode) {
+      AttachMode.Background -> background = background.wrapRipple(color)
+      AttachMode.Foreground -> (this as Foreground).setSupportForeground(foregroundSupport.wrapRipple(color))
     }
   }
 
-  private fun View.apply(radius: Int) {
-    val rippleDrawable = MaterialShapeDrawable(shape.toModelBuilder().build()).run {
-      setTint(Color.White.argb)
+  private fun Drawable?.wrapRipple(colorArgb: Int) =
+    MaterialShapeDrawable(shape.toModelBuilder().build()).run {
       RippleDrawable(
-        ColorStateList.valueOf(color.useOrElse {
-          currentColors.ripple.useOrElse {
-            Color.White.copy(alpha = 0.2f)
-          }
-        }.argb),
-        null, this
-      ).also { setRadius(it, radius) }
-    }
-    when (mode) {
-      AttachMode.Background -> background = if (background != null) {
-        LayerDrawable(
-          arrayOf(
-            background,
-            rippleDrawable,
-          )
-        )
-      } else {
-        rippleDrawable
-      }
-      AttachMode.Foreground -> (this as Foreground).setSupportForeground(
-        if (foregroundSupport != null) {
-          LayerDrawable(
-            arrayOf(
-              foregroundSupport,
-              rippleDrawable,
-            )
-          )
-        } else {
-          rippleDrawable
-        }
+        ColorStateList.valueOf(colorArgb),
+        this@wrapRipple, this
       )
     }
-  }
 }
 
 enum class AttachMode { Background, Foreground }

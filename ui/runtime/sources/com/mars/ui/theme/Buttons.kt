@@ -2,10 +2,11 @@ package com.mars.ui.theme
 
 import com.mars.ui.Ui
 import com.mars.ui.core.Border
+import com.mars.ui.core.Padding
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.shape.CircleShape
 import com.mars.ui.core.unit.dp
-import com.mars.ui.currentUi
+import com.mars.ui.currentTheme
 import com.mars.ui.foundation.styles.ButtonStyle
 
 
@@ -22,6 +23,7 @@ class Buttons(
   icon: ButtonStyle = ButtonStyle(
     shape = CircleShape,
     color = Color.Transparent,
+    padding = Padding(all = 14.dp)
   ),
   /** 线框按钮 */
   outlined: ButtonStyle = normal.copy(
@@ -47,15 +49,16 @@ class Buttons(
      * NOTE: 当 [Style.id] 不为 0 时既代表这不是一个主题样式，不需要更新
      * @return 最后返回主题更新后的按钮样式库的实际按钮样式对象
      */
-    internal fun ButtonStyle.resolveIcon(): ButtonStyle = when (id) {
+    internal fun ButtonStyle.resolveButton(ui: Ui): ButtonStyle = when (id) {
       /** 重新获取一遍即可达到更新效果，因为 [currentIcons] 值其实已经变化了 */
-      0 -> currentButtons.normal
-      1 -> currentButtons.icon
-      2 -> currentButtons.outlined
+      0 -> ui.currentButtons.normal
+      1 -> ui.currentButtons.icon
+      2 -> ui.currentButtons.outlined
       else -> this // 并非为主题库中的按钮样式，不需要更新
     }
   }
 }
 
-/** 当前主题范围中的按钮样式库 */
-@PublishedApi internal val currentButtons get() = Ui.currentContext.currentUi.buttons
+
+/** 返回当前 Ui 主题范围中的按钮样式库 */
+@PublishedApi internal inline val Ui.currentButtons: Buttons get() = currentTheme.buttons

@@ -12,6 +12,7 @@ import androidx.annotation.FloatRange
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.mars.toolkit.graphics.drawable.DrawableBuilder
 import com.mars.toolkit.graphics.drawable.buildDrawable
+import com.mars.ui.Ui
 import com.mars.ui.core.Border
 import com.mars.ui.core.Foreground
 import com.mars.ui.core.Modifier
@@ -41,7 +42,51 @@ fun Modifier.foreground(
   border: Border? = null,
   colorFilter: ColorFilter? = null,
   shape: Shape? = null,
-) = +ForegroundModifier(color, alpha, border, colorFilter, shape)
+) = +ForegroundModifier(color, null, alpha, border, colorFilter, shape)
+
+/**
+ * 用 [ColorDrawable] 或 [MaterialShapeDrawable] 调整 View 的前景
+ *
+ * @param normal 默认前景色
+ * @param pressed 按下后的前景色（默认为 [normal]）
+ * @param selected [View.isSelected] == true 状态下的前景色（默认为 [normal]）
+ * @param disabled 禁用后的前景色（默认为 20 透明度的 [normal]）
+ * @param alpha 前景透明度
+ * @param border 前景的边框
+ * @param colorFilter 前景的滤色镜
+ * @param shape 前景形状，默认为 [RectangleShape]
+ */
+fun Modifier.foreground(
+  normal: Color = Color.Unset,
+  pressed: Color = Color.Unset,
+  selected: Color = Color.Unset,
+  disabled: Color = Color.Unset,
+  border: Border? = null,
+  colorFilter: ColorFilter? = null,
+  shape: Shape? = null,
+  @FloatRange(from = .0, to = 1.0) alpha: Float = 1f,
+) = +ForegroundModifier(
+  colorStateList = ColorStateList(
+    arrayOf(
+      intArrayOf(android.R.attr.state_pressed),
+      intArrayOf(-android.R.attr.state_enabled),
+      intArrayOf(android.R.attr.state_selected),
+      intArrayOf(),
+    ),
+    normal.useOrElse { Color.Transparent }.let {
+      intArrayOf(
+        pressed.useOrElse { it }.argb,
+        selected.useOrElse { it }.argb,
+        disabled.useOrElse { it.copy(alpha = 0.2f) }.argb,
+        it.argb,
+      )
+    },
+  ),
+  alpha = alpha,
+  border = border,
+  colorFilter = colorFilter,
+  shape = shape
+)
 
 /** 用任意 [Drawable] 调整 View 的前景 */
 fun Modifier.foreground(drawable: Drawable) = +DrawForegroundModifier(drawable)
@@ -55,6 +100,7 @@ fun Modifier.foreground(block: DrawableBuilder.() -> Unit) = foreground(buildDra
 /** 根据参数调整 View 前景的具体实现 */
 private data class ForegroundModifier(
   val color: Color = Color.Unset,
+  val colorStateList: ColorStateList? = null,
   val alpha: Float = 1f,
   val border: Border? = null,
   val colorFilter: ColorFilter? = null,
@@ -62,7 +108,12 @@ private data class ForegroundModifier(
 ) : Modifier, UpdatableModifier {
   override fun View.realize(parent: ViewGroup?) {
     if (this !is Foreground) return
-    if (border != null || alpha != 1f || shape != null) {
+    if (border != null
+      || alpha != 1f
+      || shape != null
+      || colorFilter != null
+      || colorStateList != null
+    ) {
       setSupportForeground(MaterialShapeDrawable(
         shape?.toModelBuilder()?.build()
           ?: (foregroundSupport as? MaterialShapeDrawable)?.shapeAppearanceModel
@@ -79,20 +130,21 @@ private data class ForegroundModifier(
   }
 
   override fun View.update(parent: ViewGroup?) {
+    if (this !is Ui) return
     if (this !is Foreground) return
     val foreground = foregroundSupport
     when (foreground) {
       is MaterialShapeDrawable -> {
-        foreground.fillColor = color.useOrElse { Color.Transparent }.resolveColor().argb
+        foreground.fillColor = color.useOrElse { Color.Transparent }.resolveColor(this).argb
           .run(ColorStateList::valueOf)
           .apply(foreground::setFillColor)
 
-        foreground.strokeColor = border?.color?.useOrNull()?.resolveColor()?.argb
+        foreground.strokeColor = border?.color?.useOrNull()?.resolveColor(this)?.argb
           ?.run(ColorStateList::valueOf)
           ?.apply(foreground::setStrokeColor)
       }
       is ColorDrawable -> {
-        foreground.color = color.useOrElse { Color.Transparent }.resolveColor().argb
+        foreground.color = color.useOrElse { Color.Transparent }.resolveColor(this).argb
       }
     }
     foreground?.apply(::setSupportForeground)

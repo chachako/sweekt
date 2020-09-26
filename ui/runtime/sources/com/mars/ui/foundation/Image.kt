@@ -137,7 +137,7 @@ import kotlin.math.roundToInt
    * 除非使用的是主题中的值，如 [Colors.onPrimary] 等
    */
   override fun updateUiKitTheme() {
-    backupTintColor?.resolveColor()?.apply(::setImageTintList)
+    backupTintColor?.resolveColor(this)?.apply(::setImageTintList)
 
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {

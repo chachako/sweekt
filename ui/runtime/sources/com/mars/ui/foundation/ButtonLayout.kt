@@ -20,9 +20,9 @@ import com.mars.ui.foundation.modifies.clickable
 import com.mars.ui.foundation.modifies.margin
 import com.mars.ui.foundation.styles.ButtonStyle
 import com.mars.ui.theme.Styles.Companion.resolveStyle
+import com.mars.ui.theme.currentButtons
 import com.mars.ui.theme.currentColors
 import com.mars.ui.theme.currentShapes
-import com.mars.ui.theme.currentStyles
 
 /*
  * author: 凛
@@ -35,7 +35,7 @@ import com.mars.ui.theme.currentStyles
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
   defStyleRes: Int = 0,
-) : Linear(context, attrs, defStyleAttr, defStyleRes), ButtonUI {
+) : Linear(context, attrs, defStyleAttr, defStyleRes), ButtonUi {
   /** 记录最后设置的值，以便主题系统来判断是否要更新对应的值 */
   private var style: ButtonStyle? = null
     set(value) {
@@ -80,7 +80,7 @@ import com.mars.ui.theme.currentStyles
 
   override fun updateUiKitTheme() {
     super.updateUiKitTheme()
-    style?.resolveStyle()?.also { style = it }
+    style?.resolveStyle(this)?.also { style = it }
   }
 }
 
@@ -114,7 +114,7 @@ inline fun Ui.Button(
   /** 按钮内控件的摆放方向 */
   orientation: Orientation = Orientation.Horizontal,
   /** 按钮的样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.normal,
   /** 按钮内容 */
   children: ButtonLayout.() -> Unit,
 ): ButtonLayout = With(::ButtonLayout) {
@@ -180,7 +180,7 @@ fun ButtonBar.Button(
   /** 按钮内控件的摆放方向 */
   orientation: Orientation = Orientation.Horizontal,
   /** 按钮的样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.normal,
   /** 按钮内容 */
   children: ButtonLayout.() -> Unit,
 ) = (this as Ui).Button(
@@ -229,7 +229,7 @@ inline fun Ui.OutlinedButton(
   /** 按钮内控件的摆放方向 */
   orientation: Orientation = Orientation.Horizontal,
   /** 按钮的样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.normal,
   /** 按钮内容 */
   children: ButtonLayout.() -> Unit,
 ) = Button(
@@ -279,7 +279,7 @@ inline fun ButtonBar.OutlinedButton(
   /** 按钮内控件的摆放方向 */
   orientation: Orientation = Orientation.Horizontal,
   /** 按钮的样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.normal,
   /** 按钮内容 */
   children: ButtonLayout.() -> Unit,
 ) = (this as Ui).OutlinedButton(

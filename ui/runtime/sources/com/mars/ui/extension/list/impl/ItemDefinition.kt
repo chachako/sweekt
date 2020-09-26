@@ -2,6 +2,7 @@
 
 package com.mars.ui.extension.list.impl
 
+import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import com.mars.ui.Ui
@@ -24,7 +25,7 @@ internal typealias DataType = String
  * description: Item 定义域，用于创建视图、绑定视图
  */
 @UiKitMarker
-abstract class ItemDefinition : ViewGroup(Ui.currentContext), Ui {
+abstract class ItemDefinition(context: Context) : ViewGroup(context), Ui {
   protected var content: View? = null
 
   protected var binder: ItemBinder<*, *>? = null
@@ -80,7 +81,7 @@ abstract class ItemDefinition : ViewGroup(Ui.currentContext), Ui {
  * [V] Item 视图类型
  * @see ItemDefinition2
  */
-class ItemDefinition1<S, V> @PublishedApi internal constructor() : ItemDefinition() {
+class ItemDefinition1<S, V> @PublishedApi internal constructor(context: Context) : ItemDefinition(context) {
   /**
    * [V] 类型的 Item 视图
    * @see ListDefineScope.DefineItem
@@ -115,7 +116,7 @@ class ItemDefinition1<S, V> @PublishedApi internal constructor() : ItemDefinitio
  * @see ItemDefinition1 与其不同的是，[ItemDefinition2] 绑定的视图类型一律按照 [View] 处理
  * @see content
  */
-class ItemDefinition2<S> @PublishedApi internal constructor() : ItemDefinition() {
+class ItemDefinition2<S> @PublishedApi internal constructor(context: Context) : ItemDefinition(context) {
   /**
    * Item 视图
    * @see ListDefineScope.DefineItem

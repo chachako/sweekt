@@ -10,8 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.FloatRange
 import com.google.android.material.shape.MaterialShapeDrawable
+import com.mars.toolkit.content.res.drawableResource
+import com.mars.toolkit.content.res.resource
 import com.mars.toolkit.graphics.drawable.DrawableBuilder
 import com.mars.toolkit.graphics.drawable.buildDrawable
+import com.mars.toolkit.view.backgroundResource
+import com.mars.ui.Ui
 import com.mars.ui.core.Border
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.UpdatableModifier
@@ -27,11 +31,13 @@ import com.mars.ui.theme.Colors.Companion.resolveColor
 import com.mars.ui.theme.currentColors
 import kotlin.math.roundToInt
 
+private val BackgroundStub = Color.Transparent.apply { id = -100 }
+
 /**
  * 将主题的背景颜色设置到视图上
  * @see Colors.background
  */
-fun Modifier.background() = background(color = currentColors.background)
+fun Modifier.background() = background(color = BackgroundStub)
 
 /**
  * 用 [ColorDrawable] 或 [MaterialShapeDrawable] 调整 View 的背景
@@ -42,10 +48,10 @@ fun Modifier.background() = background(color = currentColors.background)
  * @param shape 背景形状，默认为 [RectangleShape]
  */
 fun Modifier.background(
-  @FloatRange(from = .0, to = 1.0) alpha: Float = 1f,
   border: Border? = null,
   colorFilter: ColorFilter? = null,
   shape: Shape? = null,
+  @FloatRange(from = .0, to = 1.0) alpha: Float = 1f,
 ) = +BackgroundModifier(Color.Unset, null, alpha, border, colorFilter, shape)
 
 /**
@@ -61,10 +67,10 @@ fun Modifier.background(
 fun Modifier.background(
   color: Color = Color.Unset,
   colorStates: ColorStateList? = null,
-  @FloatRange(from = .0, to = 1.0) alpha: Float = 1f,
   border: Border? = null,
   colorFilter: ColorFilter? = null,
   shape: Shape? = null,
+  @FloatRange(from = .0, to = 1.0) alpha: Float = 1f,
 ) = +BackgroundModifier(color, colorStates, alpha, border, colorFilter, shape)
 
 /**
@@ -84,24 +90,24 @@ fun Modifier.background(
   pressed: Color = Color.Unset,
   selected: Color = Color.Unset,
   disabled: Color = Color.Unset,
-  @FloatRange(from = .0, to = 1.0) alpha: Float = 1f,
   border: Border? = null,
   colorFilter: ColorFilter? = null,
   shape: Shape? = null,
+  @FloatRange(from = .0, to = 1.0) alpha: Float = 1f,
 ) = +BackgroundModifier(
-  color = Color.Unset,
   colorStateList = ColorStateList(
     arrayOf(
       intArrayOf(android.R.attr.state_pressed),
       intArrayOf(-android.R.attr.state_enabled),
-      intArrayOf(-android.R.attr.state_selected),
+      intArrayOf(android.R.attr.state_selected),
+      intArrayOf(),
     ),
     normal.useOrElse { Color.Transparent }.let {
       intArrayOf(
-        it.argb,
         pressed.useOrElse { it }.argb,
         selected.useOrElse { it }.argb,
         disabled.useOrElse { it.copy(alpha = 0.2f) }.argb,
+        it.argb,
       )
     },
   ),
@@ -130,9 +136,14 @@ private data class BackgroundModifier(
   val shape: Shape? = null,
 ) : Modifier, UpdatableModifier {
   override fun View.realize(parent: ViewGroup?) {
+    var color = color
+    if (color == BackgroundStub) color = (this as Ui).currentColors.background
+
     if (border != null
       || alpha != 1f
       || shape != null
+      || colorFilter != null
+      || colorStateList != null
     ) {
       background = MaterialShapeDrawable(
         shape?.toModelBuilder()?.build()
@@ -157,19 +168,21 @@ private data class BackgroundModifier(
   }
 
   override fun View.update(parent: ViewGroup?) {
+    if (this !is Ui) return
+
     val background = background
     when (background) {
       is MaterialShapeDrawable -> {
-        background.fillColor = color.useOrElse { Color.Transparent }.resolveColor().argb
+        background.fillColor = color.useOrElse { Color.Transparent }.resolveColor(this).argb
           .run(ColorStateList::valueOf)
           .apply(background::setFillColor)
 
-        background.strokeColor = border?.color?.useOrNull()?.resolveColor()?.argb
+        background.strokeColor = border?.color?.useOrNull()?.resolveColor(this)?.argb
           ?.run(ColorStateList::valueOf)
           ?.apply(background::setStrokeColor)
       }
       is ColorDrawable -> {
-        background.color = color.useOrElse { Color.Transparent }.resolveColor().argb
+        background.color = color.useOrElse { Color.Transparent }.resolveColor(this).argb
       }
     }
     this.background = background
@@ -182,7 +195,9 @@ private data class DrawBackgroundModifier(
   val imageResource: Int? = null,
 ) : Modifier {
   override fun View.realize(parent: ViewGroup?) {
-    if (drawable != null) if (background != drawable) background = drawable
-    if (imageResource != null) setBackgroundResource(imageResource)
+    when {
+      drawable != null -> background = drawable
+      imageResource != null -> backgroundResource = imageResource
+    }
   }
 }

@@ -257,7 +257,7 @@ open class TabBar(context: Context) : Linear(context), PagerUser {
     if (!::dividerCreator.isInitialized) return
     var addedCount = 0
     (0 until tabCount - 1).forEach {
-      _Scope.dividerCreator(it)?.also { divider ->
+      context.scope.dividerCreator(it)?.also { divider ->
         dividerIds.add(divider.idOrNew)
         // 添加到每个视图的后方
         addView(divider, it + 1 + addedCount, divider.LinearLayoutParams {
@@ -276,7 +276,7 @@ open class TabBar(context: Context) : Linear(context), PagerUser {
    * 将 [tabCount] 与 [indicatorCreator] 转换为指示器
    */
   private fun loadIndicators() {
-    indicators = (0..tabCount).map { _Scope.indicatorCreator(it) }
+    indicators = (0..tabCount).map { context.scope.indicatorCreator(it) }
   }
 
   /**
@@ -298,7 +298,9 @@ open class TabBar(context: Context) : Linear(context), PagerUser {
    * 定义一个 [ViewGroup] 区域，以允许在代码块中可以调用其他 [Ui] 小部件
    * 实际上这没有任何用处，只是达到一个约束效果
    */
-  class Scope internal constructor() : ViewGroup(Ui.currentContext) {
+  class Scope internal constructor(context: Context) : ViewGroup(context) {
+    lateinit var ui: Ui
+
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {}
     override fun addView(child: View?, index: Int, params: LayoutParams?) {}
     override fun addViewInLayout(
@@ -310,6 +312,11 @@ open class TabBar(context: Context) : Linear(context), PagerUser {
   }
 
   companion object {
-    internal val _Scope by lazy { Scope() }
+    private var _Scope: Scope? = null
+    internal val Context.scope: Scope
+      get() = _Scope ?: run {
+        _Scope = Scope(this)
+        _Scope!!
+      }
   }
 }

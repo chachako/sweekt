@@ -260,6 +260,8 @@ class Color(var value: ULong, internal var id: Int? = null) {
   operator fun component4(): Float = alpha
   operator fun component5(): ColorSpace = colorSpace
 
+
+
   /**
    * Copies the existing color, changing only the provided values. The [ColorSpace][colorSpace]
    * of the returned [Color] is the same as this [colorSpace].
@@ -300,6 +302,24 @@ class Color(var value: ULong, internal var id: Int? = null) {
    */
   override fun toString(): String {
     return "Color($red, $green, $blue, $alpha, ${colorSpace.name})"
+  }
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as Color
+
+    if (value != other.value) return false
+    if (id != other.id) return false
+
+    return true
+  }
+
+  override fun hashCode(): Int {
+    var result = value.hashCode()
+    result = 31 * result + (id ?: 0)
+    return result
   }
 
   companion object {

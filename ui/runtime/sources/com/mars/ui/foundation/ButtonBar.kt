@@ -22,7 +22,7 @@ class _ButtonBar @JvmOverloads constructor(
 ) : Linear(context, attrs, defStyleAttr, defStyleRes), ButtonBar
 
 /** 定义一个按钮栏区域，以限制 Block 块内只能使用 Button */
-interface ButtonBar
+interface ButtonBar : Ui
 
 /**
  * 由多个按钮组成的按钮栏
@@ -53,7 +53,7 @@ inline fun Ui.ButtonBar(
     }
   }
   it.captured.forEachIndexed { index, view ->
-    if (view is ButtonUI) view.setOnClickListener { onClick(index, view) }
+    if (view is ButtonUi) view.setOnClickListener { onClick(index, view) }
     spaceModifier?.apply { view.realize(it) }
   }
   it.endCapture()

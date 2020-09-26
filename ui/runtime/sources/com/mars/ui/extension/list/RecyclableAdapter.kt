@@ -72,7 +72,7 @@ open class RecyclableAdapter<S : Any>(
           ${itemTypes.map { "${it.key} -> ${it.value}" }.joinToString("\n")}
         }
       """
-    }.runBlock().viewHolder
+    }.runBlock(parent.context).viewHolder
 
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {

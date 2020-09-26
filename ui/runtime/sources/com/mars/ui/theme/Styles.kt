@@ -1,12 +1,8 @@
 package com.mars.ui.theme
 
 import com.mars.ui.Ui
-import com.mars.ui.core.Border
-import com.mars.ui.core.graphics.Color
-import com.mars.ui.core.graphics.shape.CircleShape
 import com.mars.ui.core.unit.dp
-import com.mars.ui.currentUi
-import com.mars.ui.foundation.styles.ButtonStyle
+import com.mars.ui.currentTheme
 import com.mars.ui.foundation.styles.DividerStyle
 
 
@@ -19,15 +15,6 @@ import com.mars.ui.foundation.styles.DividerStyle
 class Styles(
   /** 分割线 */
   divider: DividerStyle = DividerStyle(thickness = 0.5.dp),
-  /** 按钮 */
-  button: ButtonStyle = ButtonStyle(),
-  /** 图标按钮 */
-  iconButton: ButtonStyle = ButtonStyle(shape = CircleShape),
-  /** 线框按钮 */
-  outlinedButton: ButtonStyle = button.copy(
-    color = Color.Transparent,
-    border = Border(size = 1.dp)
-  ),
 ) {
   /**
    * 需要拷贝一份新的样式副本并修改 [Style.id]
@@ -35,8 +22,6 @@ class Styles(
    */
 
   val divider = divider.new(0)
-  val button = button.new(2)
-  val iconButton = iconButton.new(3)
 
   companion object {
 
@@ -49,14 +34,9 @@ class Styles(
      * @return 最后返回主题更新后的样式库的实际样式对象
      */
     @Suppress("UNCHECKED_CAST")
-    internal fun <R : Style<*>> R.resolveStyle(): R = when (this) {
+    internal fun <R : Style<*>> R.resolveStyle(ui: Ui): R = when (this) {
       /** 重新获取一遍即可达到更新效果，因为 [currentStyles] 值其实已经变化了 */
-      is DividerStyle -> if (id == 0) currentStyles.divider else this
-      is ButtonStyle -> when (id) {
-        2 -> currentStyles.button
-        3 -> currentStyles.iconButton
-        else -> this
-      }
+      is DividerStyle -> if (id == 0) ui.currentStyles.divider else this
       else -> this
     } as R
   }
@@ -70,5 +50,6 @@ internal interface Style<T> {
   fun new(id: Int): T
 }
 
-/** 当前主题范围中的样式库 */
-@PublishedApi internal val currentStyles get() = Ui.currentContext.currentUi.styles
+
+/** 返回当前 Ui 主题范围中的样式库 */
+@PublishedApi internal inline val Ui.currentStyles: Styles get() = currentTheme.styles

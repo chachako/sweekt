@@ -37,7 +37,7 @@ import com.mars.ui.extension.list.impl.data.ItemComparator
           ${itemTypes.map { "${it.key} -> ${it.value}" }.joinToString("\n")}
         }
       """
-    }.runBlock().apply {
+    }.runBlock(parent.context).apply {
       getItemView().apply {
         @Suppress("UsePropertyAccessSyntax")
         layoutParams ?: setLayoutParams(LayoutParams(MATCH_PARENT, MATCH_PARENT))

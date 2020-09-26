@@ -175,8 +175,7 @@ import com.mars.ui.util.BlurHelper
        * 如果默认色被设置成了 [Color.Unset] 则使用黑色
        */
       currentColors.onSurface.useOrElse { Color.Black }
-    }
-    super.setTextColor(textColor!!.argb)
+    }.apply { super.setTextColor(argb) }
   }
 
   /** 仅仅是重命名了原方法 */
@@ -193,7 +192,7 @@ import com.mars.ui.util.BlurHelper
   ) {
     fun IconData.resolveDrawable() = run {
       color.useOrElse { iconStyle?.color ?: Color.Unset }.useOrNull()
-        ?.resolveColor()?.argb
+        ?.resolveColor(this@Text)?.argb
         ?.apply(icon::setTint)
 
       icon.setBounds(
@@ -307,9 +306,9 @@ import com.mars.ui.util.BlurHelper
   override fun updateUiKitTheme() {
     /** 修改样式前先备份一下文本色，避免被 [TextStyle.apply] 覆盖 */
     val backupTextColor = textColor
-    style?.resolveTypography()?.also { style = it }
-    iconStyle?.resolveStyle()?.also { iconStyle = it }
-    backupTextColor?.resolveColor()?.apply(::setTextColor)
+    style?.resolveTypography(this)?.also { style = it }
+    iconStyle?.resolveStyle(this)?.also { iconStyle = it }
+    backupTextColor?.resolveColor(this)?.apply(::setTextColor)
 
     // 更新有用到主题颜色库的调整器
     (modifier as? ModifierManager)?.modifiers?.forEach {

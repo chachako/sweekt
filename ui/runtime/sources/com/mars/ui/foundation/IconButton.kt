@@ -26,9 +26,9 @@ import com.mars.ui.foundation.modifies.clickable
 import com.mars.ui.foundation.styles.ButtonStyle
 import com.mars.ui.foundation.styles.IconStyle
 import com.mars.ui.theme.Styles.Companion.resolveStyle
+import com.mars.ui.theme.currentButtons
 import com.mars.ui.theme.currentColors
 import com.mars.ui.theme.currentIcons
-import com.mars.ui.theme.currentStyles
 
 
 /*
@@ -43,7 +43,7 @@ class IconButton @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
   defStyleRes: Int = 0,
-) : Icon(context, attrs, defStyleAttr, defStyleRes), ButtonUI {
+) : Icon(context, attrs, defStyleAttr, defStyleRes), ButtonUi {
   /** 记录最后设置的值，以便主题系统来判断是否要更新对应的值 */
   private var buttonStyle: ButtonStyle? = null
     set(value) {
@@ -122,7 +122,7 @@ class IconButton @JvmOverloads constructor(
 
   override fun updateUiKitTheme() {
     super.updateUiKitTheme()
-    buttonStyle?.resolveStyle()?.also { buttonStyle = it }
+    buttonStyle?.resolveStyle(this)?.also { buttonStyle = it }
   }
 }
 
@@ -160,7 +160,7 @@ fun Ui.IconButton(
   /** 按钮图标的样式 */
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.icon,
 ): IconButton = With(::IconButton) {
   it.update(
     color = color,
@@ -213,7 +213,7 @@ fun ButtonBar.IconButton(
   /** 按钮图标的样式 */
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.icon,
 ) = (this as Ui).IconButton(
   onClick = null,
   color = color,
@@ -267,7 +267,7 @@ fun Ui.OutlinedIconButton(
   /** 按钮图标的样式 */
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.icon,
 ) = IconButton(
   onClick = onClick,
   // 线框按钮不需要背景
@@ -322,7 +322,7 @@ fun ButtonBar.OutlinedIconButton(
   /** 按钮图标的样式 */
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.icon,
 ) = (this as Ui).OutlinedIconButton(
   onClick = onClick,
   color = color,

@@ -299,11 +299,12 @@ fun View.gone() {
 }
 
 /** 裁剪 [View] 的轮廓 */
-fun View.clipOutline(block: Outline.(View) -> Unit) {
+fun View.clipOutline(block: View.(Outline) -> Unit) {
   clipToOutline = true
   outlineProvider = object : ViewOutlineProvider() {
     override fun getOutline(view: View?, outline: Outline?) {
-      outline?.block(this@clipOutline)
+      if (view == null || outline == null) return
+      view.block(outline)
     }
   }
 }

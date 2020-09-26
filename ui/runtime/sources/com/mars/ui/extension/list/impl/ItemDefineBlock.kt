@@ -2,11 +2,12 @@
 
 package com.mars.ui.extension.list.impl
 
+import android.content.Context
 import android.view.View
 import com.mars.ui.extension.list.RecyclableAdapter
 
 interface ItemDefineBlock {
-  fun runBlock(): ItemDefinition
+  fun runBlock(context: Context): ItemDefinition
 }
 
 /**
@@ -21,7 +22,7 @@ interface ItemDefineBlock {
  */
 inline class ItemDefineBlock1<T, V : View>(private val block: ItemDefinition1<T, V>.() -> Unit) :
   ItemDefineBlock {
-  override fun runBlock() = ItemDefinition1<T, V>().apply(block)
+  override fun runBlock(context: Context) = ItemDefinition1<T, V>(context).apply(block)
 }
 
 
@@ -35,5 +36,5 @@ inline class ItemDefineBlock1<T, V : View>(private val block: ItemDefinition1<T,
  */
 inline class ItemDefineBlock2<T>(private val block: ItemDefinition2<T>.() -> Unit) :
   ItemDefineBlock {
-  override fun runBlock() = ItemDefinition2<T>().apply(block)
+  override fun runBlock(context: Context) = ItemDefinition2<T>(context).apply(block)
 }

@@ -18,11 +18,12 @@ import com.mars.ui.core.text.*
 import com.mars.ui.core.unit.SizeUnit
 import com.mars.ui.core.unit.TextUnit
 import com.mars.ui.foundation.modifies.clickable
+import com.mars.ui.foundation.modifies.wrapContent
 import com.mars.ui.foundation.styles.ButtonStyle
 import com.mars.ui.foundation.styles.IconStyle
 import com.mars.ui.foundation.styles.TextStyle
 import com.mars.ui.theme.*
-import com.mars.ui.theme.Styles.Companion.resolveStyle
+import com.mars.ui.theme.Buttons.Companion.resolveButton
 
 /*
  * author: 凛
@@ -34,7 +35,7 @@ import com.mars.ui.theme.Styles.Companion.resolveStyle
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
-) : Text(context, attrs, defStyleAttr) {
+) : Text(context, attrs, defStyleAttr), ButtonUi {
   /** 记录最后设置的值，以便主题系统来判断是否要更新对应的值 */
   internal var buttonStyle: ButtonStyle? = null
     set(value) {
@@ -57,6 +58,46 @@ import com.mars.ui.theme.Styles.Companion.resolveStyle
     padding: Padding = Padding.Unspecified,
     /** [ButtonStyle.shape] */
     shape: Shape = currentShapes.small,
+    text: String? = null,
+    modifier: Modifier = this.modifier,
+    /** 自动调整文本大小以适应容器，默认关闭 */
+    isAutoSize: Boolean? = null,
+    /** 文本对齐 */
+    align: Alignment? = null,
+    /** 文本溢出时的处理 */
+    overflow: TextOverflow? = null,
+    /** 跑马灯效果，当开启时 [overflow] 的设置将失效，且 [maxLines] 只能为 1 */
+    marquee: TextMarquee? = null,
+    /** 限制文本行数 */
+    maxLines: Int? = null,
+    /** 限制文本最长数量 */
+    maxLength: Int? = null,
+    /** 长按选择文本 */
+    isSelectable: Boolean? = null,
+    /** 文本旁边的图标，可设置上下左右四个方向 */
+    icons: EdgeIcons? = null,
+    /** 文本旁边所有的图标的样式 */
+    iconsStyle: IconStyle? = null,
+    /** 文本与图标 [icons] 之间的间隔 */
+    spaceBetween: SizeUnit = SizeUnit.Unspecified,
+    /** [TextStyle.color] */
+    textColor: Color = Color.Unset,
+    /** [TextStyle.lineHeight] */
+    lineHeight: SizeUnit = SizeUnit.Unspecified,
+    /** [TextStyle.decoration] */
+    decoration: TextDecoration? = null,
+    /** [TextStyle.font] */
+    font: Font? = null,
+    /** [TextStyle.fontStyle] */
+    fontStyle: FontStyle = FontStyle.Normal,
+    /** [TextStyle.fontSize] */
+    fontSize: SizeUnit = TextUnit.Inherit,
+    /** [TextStyle.fontName] */
+    fontName: String? = PingFangFont.Regular,
+    /** [TextStyle.letterSpacing] */
+    letterSpacing: SizeUnit = SizeUnit.Unspecified,
+    /** 文本样式（不是字体样式 [FontStyle]） */
+    textStyle: TextStyle = this.style ?: currentTypography.body1,
     /** 按钮的样式 */
     style: ButtonStyle = this.buttonStyle!!,
   ) = also {
@@ -71,28 +112,49 @@ import com.mars.ui.theme.Styles.Companion.resolveStyle
         shape
       )
     )
+    super.update(
+      text = text,
+      modifier = modifier,
+      isAutoSize = isAutoSize,
+      align = align,
+      overflow = overflow,
+      marquee = marquee,
+      maxLines = maxLines,
+      maxLength = maxLength,
+      isSelectable = isSelectable,
+      icons = icons,
+      iconsStyle = iconsStyle,
+      spaceBetween = spaceBetween,
+      color = textColor,
+      lineHeight = lineHeight,
+      decoration = decoration,
+      font = font,
+      fontStyle = fontStyle,
+      fontSize = fontSize,
+      fontName = fontName,
+      letterSpacing = letterSpacing,
+      style = textStyle
+    )
   }
 
   override fun updateUiKitTheme() {
     super.updateUiKitTheme()
-    buttonStyle?.resolveStyle()?.also { buttonStyle = it }
+    buttonStyle?.resolveButton(this)?.also { buttonStyle = it }
   }
 }
 
-/**
- * 标记是一个外观为 Button 的 View
- */
-interface ButtonUI
+/** 标记是一个外观为 Button 的视图 */
+interface ButtonUi
 
 
 /** 创建一个按钮 */
 fun Ui.Button(
   /** [ButtonStyle.color] */
-  color: Color = Color.Unset,
+  color: Color = currentColors.primary,
   /** [ButtonStyle.colorRipple] */
-  colorRipple: Color = Color.Unset,
+  colorRipple: Color = currentColors.ripple,
   /** [ButtonStyle.colorHighlight] */
-  colorHighlight: Color = Color.Unset,
+  colorHighlight: Color = currentColors.primaryVariant,
   /** [ButtonStyle.colorDisabled] */
   colorDisabled: Color = Color.Unset,
   /** [ButtonStyle.border] */
@@ -124,7 +186,7 @@ fun Ui.Button(
   /** 按钮中文本与图标 [icons] 之间的间隔 */
   spaceBetween: SizeUnit = SizeUnit.Unspecified,
   /** [TextStyle.color] */
-  textColor: Color = Color.Unset,
+  textColor: Color = currentColors.onPrimary,
   /** [TextStyle.lineHeight] */
   lineHeight: SizeUnit = SizeUnit.Unspecified,
   /** [TextStyle.font] */
@@ -140,13 +202,14 @@ fun Ui.Button(
   /** 文本样式（不是字体样式 [FontStyle]） */
   textStyle: TextStyle = currentTypography.button,
   /** 按钮样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.normal,
   /** 按钮按下后的回调 */
   onClick: (View) -> Unit,
 ): Button = With(::Button) {
   it.update(
     text = text,
-    modifier = modifier.clickable(onClick = onClick),
+    // 原生创建 Button 默认是宽度填满父布局的，这里我们让它默认最小化
+    modifier = Modifier.clickable(onClick = onClick).wrapContent().apply { +modifier },
     isAutoSize = isAutoSize,
     align = align,
     overflow = overflow,
@@ -156,17 +219,14 @@ fun Ui.Button(
     icons = icons,
     iconsStyle = iconsStyle,
     spaceBetween = spaceBetween,
-    color = textColor,
+    textColor = textColor,
     lineHeight = lineHeight,
     font = font,
     fontStyle = fontStyle,
     fontSize = fontSize,
     fontName = fontName,
     letterSpacing = letterSpacing,
-    style = textStyle,
-  )
-  // 要在后面进行更新，因为 Text 中的 update 方法会覆盖 modifier
-  it.update(
+    textStyle = textStyle,
     color = color,
     colorRipple = colorRipple,
     colorHighlight = colorHighlight,
@@ -182,11 +242,11 @@ fun Ui.Button(
 /** 创建一个按钮 */
 fun ButtonBar.Button(
   /** [ButtonStyle.color] */
-  color: Color = Color.Unset,
+  color: Color = currentColors.primary,
   /** [ButtonStyle.colorRipple] */
-  colorRipple: Color = Color.Unset,
+  colorRipple: Color = currentColors.ripple,
   /** [ButtonStyle.colorHighlight] */
-  colorHighlight: Color = Color.Unset,
+  colorHighlight: Color = currentColors.primaryVariant,
   /** [ButtonStyle.colorDisabled] */
   colorDisabled: Color = Color.Unset,
   /** [ButtonStyle.border] */
@@ -218,7 +278,7 @@ fun ButtonBar.Button(
   /** 按钮中文本与图标 [icons] 之间的间隔 */
   spaceBetween: SizeUnit = SizeUnit.Unspecified,
   /** [TextStyle.color] */
-  textColor: Color = Color.Unset,
+  textColor: Color = currentColors.onPrimary,
   /** [TextStyle.lineHeight] */
   lineHeight: SizeUnit = SizeUnit.Unspecified,
   /** [TextStyle.font] */
@@ -234,7 +294,7 @@ fun ButtonBar.Button(
   /** 文本样式（不是字体样式 [FontStyle]） */
   textStyle: TextStyle = currentTypography.button,
   /** 按钮样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.normal,
   /** 按钮按下后的回调 */
   onClick: (View) -> Unit,
 ) = (this as Ui).Button(
@@ -272,9 +332,9 @@ fun ButtonBar.Button(
 /** 创建一个线框按钮 */
 fun Ui.OutlinedButton(
   /** [ButtonStyle.border] -> [Border.color] */
-  color: Color = Color.Unset,
+  color: Color = currentColors.primaryVariant,
   /** [ButtonStyle.colorRipple] */
-  colorRipple: Color = Color.Unset,
+  colorRipple: Color = currentColors.ripple,
   /** [ButtonStyle.colorHighlight] */
   colorHighlight: Color = Color.Unset,
   /** [ButtonStyle.colorDisabled] */
@@ -308,7 +368,7 @@ fun Ui.OutlinedButton(
   /** 按钮中文本与图标 [icons] 之间的间隔 */
   spaceBetween: SizeUnit = SizeUnit.Unspecified,
   /** [TextStyle.color] */
-  textColor: Color = Color.Unset,
+  textColor: Color = currentColors.primary,
   /** [TextStyle.lineHeight] */
   lineHeight: SizeUnit = SizeUnit.Unspecified,
   /** [TextStyle.font] */
@@ -324,7 +384,7 @@ fun Ui.OutlinedButton(
   /** 文本样式（不是字体样式 [FontStyle]） */
   textStyle: TextStyle = currentTypography.button,
   /** 按钮样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.normal,
   /** 按钮按下后的回调 */
   onClick: (View) -> Unit,
 ) = Button(
@@ -333,7 +393,7 @@ fun Ui.OutlinedButton(
   colorRipple = colorRipple,
   colorHighlight = colorHighlight,
   colorDisabled = colorDisabled,
-  border = Border(borderSize, color.useOrElse { currentColors.onSurface.copy(alpha = 0.12f) }),
+  border = Border(borderSize, color.useOrElse { currentColors.onPrimary }),
   padding = padding,
   shape = shape,
   modifier = modifier,
@@ -363,9 +423,9 @@ fun Ui.OutlinedButton(
 /** 创建一个线框按钮 */
 fun ButtonBar.OutlinedButton(
   /** [ButtonStyle.border] -> [Border.color] */
-  color: Color = Color.Unset,
+  color: Color = currentColors.primaryVariant,
   /** [ButtonStyle.colorRipple] */
-  colorRipple: Color = Color.Unset,
+  colorRipple: Color = currentColors.ripple,
   /** [ButtonStyle.colorHighlight] */
   colorHighlight: Color = Color.Unset,
   /** [ButtonStyle.colorDisabled] */
@@ -399,7 +459,7 @@ fun ButtonBar.OutlinedButton(
   /** 按钮中文本与图标 [icons] 之间的间隔 */
   spaceBetween: SizeUnit = SizeUnit.Unspecified,
   /** [TextStyle.color] */
-  textColor: Color = Color.Unset,
+  textColor: Color = currentColors.primary,
   /** [TextStyle.lineHeight] */
   lineHeight: SizeUnit = SizeUnit.Unspecified,
   /** [TextStyle.font] */
@@ -415,7 +475,7 @@ fun ButtonBar.OutlinedButton(
   /** 文本样式（不是字体样式 [FontStyle]） */
   textStyle: TextStyle = currentTypography.button,
   /** 按钮样式 */
-  style: ButtonStyle = currentStyles.button,
+  style: ButtonStyle = currentButtons.normal,
   /** 按钮按下后的回调 */
   onClick: (View) -> Unit,
 ) = (this as Ui).OutlinedButton(

@@ -2,12 +2,12 @@
 
 package com.mars.ui.theme
 
-import com.mars.ui.Ui.Companion.currentContext
+import com.mars.ui.Ui
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.unit.Px
 import com.mars.ui.core.unit.px
 import com.mars.ui.core.unit.sp
-import com.mars.ui.currentUi
+import com.mars.ui.currentTheme
 import com.mars.ui.foundation.styles.TextStyle
 
 /*
@@ -192,21 +192,23 @@ class Typography(
      * 如果存在，根据样式备份的 [TextStyle.id] 判断样式是否为主题排版库中的样式
      * @return 最后返回主题更新后的排版库的实际样式
      */
-    internal fun TextStyle.resolveTypography(): TextStyle? = when (id) {
-      /** 重新获取一遍即可达到更新效果，因为 [currentTypography] 值其实已经变化了 */
-      0 -> currentTypography.h1
-      1 -> currentTypography.h2
-      2 -> currentTypography.h3
-      3 -> currentTypography.h4
-      4 -> currentTypography.h5
-      5 -> currentTypography.h6
-      6 -> currentTypography.subtitle1
-      7 -> currentTypography.subtitle2
-      8 -> currentTypography.body1
-      9 -> currentTypography.body2
-      10 -> currentTypography.button
-      11 -> currentTypography.caption
-      else -> this // 并非为主题库中的排版，不需要更新
+    internal fun TextStyle.resolveTypography(ui: Ui): TextStyle? = ui.currentTypography.run {
+      when (id) {
+        /** 重新获取一遍即可达到更新效果，因为 [currentTypography] 值其实已经变化了 */
+        0 -> h1
+        1 -> h2
+        2 -> h3
+        3 -> h4
+        4 -> h5
+        5 -> h6
+        6 -> subtitle1
+        7 -> subtitle2
+        8 -> body1
+        9 -> body2
+        10 -> button
+        11 -> caption
+        else -> this@resolveTypography // 并非为主题库中的排版，不需要更新
+      }
     }
   }
 }
@@ -230,5 +232,5 @@ object PingFangFont {
 }
 
 
-/** 当前主题范围中的排版库 */
-@PublishedApi internal val currentTypography get() = currentContext.currentUi.typography
+/** 返回当前 Ui 主题范围中的排版库 */
+@PublishedApi internal inline val Ui.currentTypography: Typography get() = currentTheme.typography

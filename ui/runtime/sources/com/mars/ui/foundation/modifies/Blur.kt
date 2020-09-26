@@ -5,6 +5,7 @@ package com.mars.ui.foundation.modifies
 import android.view.View
 import android.view.ViewGroup
 import com.mars.toolkit.float
+import com.mars.ui.Ui
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.UpdatableModifier
 import com.mars.ui.core.graphics.Color
@@ -23,7 +24,7 @@ import com.mars.ui.util.BlurHelper
  * description: 类似于 iOS 的 UIBlurEffect 或 Flutter 的 ImageFilter.blur
  * reference: https://developer.apple.com/documentation/uikit/uiblureffect
  */
-interface BlurEffect {
+interface BlurEffect : Ui {
   /** 模糊效果的具体实现 [BlurHelper] */
   var blurHelper: BlurHelper?
 }
@@ -49,26 +50,30 @@ fun Modifier.material(blurMaterial: BlurMaterial) = +BlurMaterialModifier(blurMa
 
 /** 为视图提供模糊材质的调整器 */
 private data class BlurMaterialModifier(
-  val material: Material = currentMaterials.regular.resolveMaterial(),
+  val material: Material? = null,
   val radius: Number? = null,
   val overlayColor: Color = Color.Unset,
 ) : Modifier, UpdatableModifier {
-  val resolvedMaterial = material.resolveMaterial().merge(
-    BlurMaterial(radius, overlayColor)
-  ) as? BlurMaterial ?: error("fun BlurEffect(material..) 参数必须是一个 BlurMaterial")
+  val Ui.resolvedMaterial
+    get() = (material ?: currentMaterials.regular.resolveMaterial(this))
+      .resolveMaterial(this)
+      .merge(BlurMaterial(radius, overlayColor)) as? BlurMaterial
+      ?: error("fun BlurEffect(material..) 参数必须是一个 BlurMaterial")
 
   override fun View.realize(parent: ViewGroup?) {
-    (this as BlurEffect).blurHelper = BlurHelper(this).also { helper ->
-      resolvedMaterial.radius?.float?.apply { helper.radius = this }
-      resolvedMaterial.overlayColor.useOrNull()?.apply { helper.overlayColor = argb }
+    if (this !is BlurEffect) return
+    val material = resolvedMaterial
+    blurHelper = BlurHelper(this).also { helper ->
+      material.radius?.float?.apply { helper.radius = this }
+      material.overlayColor.useOrNull()?.apply { helper.overlayColor = argb }
       helper.attach()
     }
   }
 
   override fun View.update(parent: ViewGroup?) {
-    (this as? BlurEffect)?.blurHelper?.overlayColor =
-      resolvedMaterial.overlayColor.useOrNull()
-        ?.resolveColor()
-        ?.argb
+    if (this !is BlurEffect) return
+    blurHelper?.overlayColor = resolvedMaterial.overlayColor.useOrNull()
+      ?.resolveColor(this)
+      ?.argb
   }
 }

@@ -10,6 +10,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import com.mars.toolkit.data.ContextProvider
 
 // Drawable
 

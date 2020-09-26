@@ -12,24 +12,14 @@ import com.mars.toolkit.int
 
 /** 将上下文转换为 [Activity] */
 val Context.asActivity: Activity
-  get() = when (this) {
-    is Activity -> this
-    is ContextWrapper -> baseContext as Activity
-    is ContextProvider -> provideContext().asActivity
-    is ActivityProvider -> provideActivity()
-    else -> this as? Activity
-      ?: throw TypeCastException("不能将 Context 转换为 Activity, 请确保 ${javaClass.name} 或子类是 android.app.Activity")
-  }
+  get() = asActivityOrNull ?: throw TypeCastException("不能将 Context 转换为 Activity, 请确保 ${javaClass.name} 或子类是 android.app.Activity")
 
 /** 将上下文转换为 [Activity] 或 null */
 val Context.asActivityOrNull: Activity?
-  get() = when (this) {
-    is Activity -> this
-    is ContextWrapper -> baseContext as Activity
-    is ContextProvider -> provideContext().asActivity
-    is ActivityProvider -> provideActivity()
-    else -> this as? Activity
-  }
+  get() = this as? Activity
+    ?: (this as? ContextWrapper)?.baseContext?.asActivityOrNull
+    ?: (this as? ContextProvider)?.provideContext()?.asActivityOrNull
+    ?: (this as? ActivityProvider)?.provideActivity()?.asActivityOrNull
 
 /** 获得当前上下文 [Activity] 的窗口 [ViewGroup] */
 val Context.windowView: ViewGroup get() = asActivity.window.decorView as ViewGroup

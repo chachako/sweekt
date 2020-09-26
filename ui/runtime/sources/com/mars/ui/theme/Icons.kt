@@ -2,7 +2,7 @@ package com.mars.ui.theme
 
 import com.mars.ui.Ui
 import com.mars.ui.core.unit.dp
-import com.mars.ui.currentUi
+import com.mars.ui.currentTheme
 import com.mars.ui.foundation.styles.IconStyle
 
 
@@ -41,16 +41,19 @@ class Icons(
      * NOTE: 当 [Style.id] 不为 0 时既代表这不是一个主题样式，不需要更新
      * @return 最后返回主题更新后的图标样式库的实际图标样式对象
      */
-    internal fun IconStyle.resolveIcon(): IconStyle = when (id) {
-      /** 重新获取一遍即可达到更新效果，因为 [currentIcons] 值其实已经变化了 */
-      0 -> currentIcons.small
-      1 -> currentIcons.medium
-      2 -> currentIcons.large
-      3 -> currentIcons.button
-      else -> this // 并非为主题库中的图标样式，不需要更新
+    internal fun IconStyle.resolveIcon(ui: Ui): IconStyle = ui.currentIcons.run {
+      when (id) {
+        /** 重新获取一遍即可达到更新效果，因为 [currentIcons] 值其实已经变化了 */
+        0 -> small
+        1 -> medium
+        2 -> large
+        3 -> button
+        else -> this@resolveIcon // 并非为主题库中的图标样式，不需要更新
+      }
     }
   }
 }
 
-/** 当前主题范围中的图标样式库 */
-@PublishedApi internal val currentIcons get() = Ui.currentContext.currentUi.icons
+
+/** 返回当前 Ui 主题范围中的图标样式库 */
+@PublishedApi internal inline val Ui.currentIcons: Icons get() = currentTheme.icons

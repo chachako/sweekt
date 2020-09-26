@@ -4,26 +4,17 @@ package com.mars.ui.foundation
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Space
-import com.mars.ui.Theme
 import com.mars.ui.Ui
 import com.mars.ui.UiKitMarker
 import com.mars.ui.asLayout
-import com.mars.ui.core.Foreground
 import com.mars.ui.core.Modifier
-import com.mars.ui.core.ModifierManager
-import com.mars.ui.core.UpdatableModifier
 import com.mars.ui.core.unit.Px
 import com.mars.ui.core.unit.SizeUnit
-import com.mars.ui.foundation.modifies.BlurEffect
 import com.mars.ui.foundation.modifies.height
 import com.mars.ui.foundation.modifies.size
 import com.mars.ui.foundation.modifies.width
-import com.mars.ui.util.BlurHelper
 
 /*
  * author: 凛
@@ -32,27 +23,11 @@ import com.mars.ui.util.BlurHelper
  * description: 分频器/分割线
  */
 @UiKitMarker class Spacer @JvmOverloads constructor(
-  context: Context?,
+  context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
   defStyleRes: Int = 0,
-) : View(context, attrs, defStyleAttr, defStyleRes),
-  Theme.User,
-  BlurEffect,
-  Foreground,
-  ModifierProvider,
-  Ui {
-  override var foregroundSupport: Drawable? = null
-
-  override var blurHelper: BlurHelper? = null
-
-  override var modifier: Modifier = Modifier
-    set(value) {
-      if (field == value || value == Modifier) return
-      field = value
-      modifier.apply { realize(parent as? ViewGroup) }
-    }
-
+) : View(context, attrs, defStyleAttr, defStyleRes) {
   var enabledDraw = false
 
   /**
@@ -80,13 +55,6 @@ import com.mars.ui.util.BlurHelper
       getDefaultSize2(suggestedMinimumWidth, widthMeasureSpec),
       getDefaultSize2(suggestedMinimumHeight, heightMeasureSpec)
     )
-  }
-
-  override fun updateUiKitTheme() {
-    // 更新有用到主题颜色库的调整器
-    (modifier as? ModifierManager)?.modifiers?.forEach {
-      (it as? UpdatableModifier)?.apply { update(parent as? ViewGroup) }
-    }
   }
 }
 

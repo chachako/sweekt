@@ -22,13 +22,20 @@ import org.koin.core.context.KoinContext
  * Fetch current global android [Context]
  * @throws IllegalStateException Unknown accident, current app may be crashed
  */
-inline val appContext: Context
+val appContext: Context
+  get() = appContextOrNull
+    ?: createContext()
+    ?: error("Without an application context, it not found at all! May should initialized 'appContext' property on Application")
+
+/**
+ * Fetch current global android [Context] if available
+ * @return context instance or null
+ */
+inline val appContextOrNull: Context?
   get() = koin.getOrNull()
     ?: currentApplication
     ?: currentActivityThread?.application
     ?: currentActivityThread?.systemContext
-    ?: createContext()
-    ?: error("Without an application context, it not found at all! May should initialized 'appContext' property on Application")
 
 /** Fetch variant of current application */
 var appDebugging: Boolean = BuildConfig.DEBUG

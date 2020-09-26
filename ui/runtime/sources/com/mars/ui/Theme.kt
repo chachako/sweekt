@@ -2,25 +2,18 @@
 
 package com.mars.ui
 
-import android.view.ViewGroup
+import com.mars.toolkit.util.generateViewId
 import com.mars.toolkit.view.forEach
-import com.mars.ui.Ui.Companion.currentContext
 import com.mars.ui.theme.*
 
-
 /**
- * 定义一个主题范围，范围内的所有控件风格都可以从此处设置或覆盖
+ * 返回当前 [UiKit] 范围内的唯一主题
  *
  * @author 凛
  * @date 2020/8/8 3:11 AM
  * @github https://github.com/oh-Rin
- * @param data 主题具体数据
- * @param content 具体 UI 内容
  */
-fun ThemeScope(
-  data: Theme,
-  content: Ui.() -> Unit,
-) = Theme.replaceInternal(data).apply(content)
+val Ui.currentTheme: Theme get() = container.theme
 
 
 /**
@@ -28,67 +21,51 @@ fun ThemeScope(
  *
  * @property colors 参考了 Material Design 的颜色系统
  * @property typography 通用的文字排版
+ * @property materials 一些通用的材质
  * @property shapes 一些通用的控件形状
+ * @property icons 一些通用的图标样式
+ * @property buttons 一些通用的按钮样式
+ * @property styles 其他局部控件的一些通用样式
  */
 data class Theme(
-  internal val colors: Colors = LightColors(),
-  internal val typography: Typography = Typography(),
-  internal val materials: Materials = Materials(),
-  internal val shapes: Shapes = Shapes(),
-  internal val styles: Styles = Styles(),
-  internal val icons: Icons = Icons(),
-  internal val buttons: Buttons = Buttons(),
+  var colors: Colors = LightColors(),
+  var typography: Typography = Typography(),
+  var materials: Materials = Materials(),
+  var shapes: Shapes = Shapes(),
+  var icons: Icons = Icons(),
+  var buttons: Buttons = Buttons(),
+  var styles: Styles = Styles(),
 ) {
-  companion object {
-    /** 得到当前界面的主题范围上的唯一 [Colors] 对象 */
-    val colors: Colors get() = currentColors
+  /** 代表持有当前主题对象的 [UiKit] 实例 */
+  internal lateinit var uikit: UiKit
 
-    /** 得到当前界面的主题范围上的唯一 [Typography] 对象 */
-    val typography: Typography get() = currentTypography
+  /**
+   * 将新的主题数据 [newTheme] 覆盖到当前主题上
+   * @param notifyUi 通知所有 Ui 进行主题更新
+   */
+  fun replaceWith(newTheme: Theme, notifyUi: Boolean = true): Theme {
+    /** 不直接替换颜色库是因为其中有一个 [Colors.isLight] */
+    colors = colors.merge(newTheme.colors)
+    typography = newTheme.typography
+    materials = newTheme.materials
+    shapes = newTheme.shapes
+    styles = newTheme.styles
+    icons = newTheme.icons
+    buttons = newTheme.buttons
 
-    /** 得到当前界面的主题范围上的唯一 [Materials] 对象 */
-    val materials: Materials get() = currentMaterials
-
-    /** 得到当前界面的主题范围上的唯一 [Shapes] 对象 */
-    val shapes: Shapes get() = currentShapes
-
-    /** 得到当前界面的主题范围上的唯一 [Styles] 对象 */
-    val styles: Styles get() = currentStyles
-
-    /** 得到当前界面的主题范围上的唯一 [Icons] 对象 */
-    val icons: Icons get() = currentIcons
-
-    /** 得到当前界面的主题范围上的唯一 [Buttons] 对象 */
-    val buttons: Buttons get() = currentButtons
-
-    /** 复制一个副本以覆盖一些主题数据 */
-    fun copy(
-      colors: Colors = currentColors,
-      typography: Typography = currentTypography,
-      materials: Materials = currentMaterials,
-      shapes: Shapes = currentShapes,
-      styles: Styles = currentStyles,
-      icons: Icons = currentIcons,
-      buttons: Buttons = currentButtons,
-    ) = Theme(colors, typography, materials, shapes, styles, icons, buttons)
-
-    /** 将新的主题数据 [newTheme] 覆盖到当前主题范围上 */
-    fun replaceWith(newTheme: Theme) =
-      (replaceInternal(newTheme) as ViewGroup).forEach(recursively = true) {
-        // 主题被替换，更新全部控件以应用新的主题
+    // 通知 Ui 更新
+    if (notifyUi) {
+      uikit.forEach(recursively = true) {
+        // 主题已经替换，更新全部支持主题的控件以应用新主题
         (it as? User)?.updateUiKitTheme()
       }
-
-    internal fun replaceInternal(newTheme: Theme) = currentContext.currentUi.apply {
-      /** 不直接替换颜色库是因为其中有一个 [Colors.isLight] */
-      colors.merge(newTheme.colors)
-      typography = newTheme.typography
-      materials = newTheme.materials
-      shapes = newTheme.shapes
-      styles = newTheme.styles
-      icons = newTheme.icons
-      buttons = newTheme.buttons
     }
+
+    return this
+  }
+
+  companion object {
+    val Id = generateViewId()
   }
 
   interface User {

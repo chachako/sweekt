@@ -9,6 +9,7 @@ import android.view.animation.DecelerateInterpolator
 import com.mars.ui.core.LayoutSize
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.gradient.LinearGradient
+import com.mars.ui.core.graphics.useOrElse
 import com.mars.ui.core.unit.SizeUnit
 import com.mars.ui.core.unit.dp
 import com.mars.ui.theme.currentColors
@@ -21,7 +22,7 @@ import com.mars.ui.theme.currentColors
  */
 data class TabIndicator internal constructor(
   /** 指示器的颜色 */
-  val color: Color = currentColors.primary,
+  val color: Color = Color.Unset,
   /**
    * 指示器的宽度
    * 当为 [LayoutSize.Wrap] 时，包装 Tab 内容视图并取出减去 [View.getPaddingStart], [View.getPaddingEnd] 的宽度
@@ -136,7 +137,7 @@ data class TabIndicator internal constructor(
  */
 fun TabBar.Scope.TabIndicator(
   /** 指示器的颜色 */
-  color: Color = currentColors.primary,
+  color: Color = Color.Unset,
   /**
    * 指示器的渐变效果
    * ```
@@ -164,7 +165,7 @@ fun TabBar.Scope.TabIndicator(
   renderer: TabIndicatorRenderer = TabIndicatorRenderer.Rounded,
 ) = gradient?.let {
   TabIndicator(
-    color = currentColors.background,
+    color = Color.Unset,
     width = width,
     height = height,
     updatePaint = { start, end, top, bottom, offset ->
@@ -185,7 +186,7 @@ fun TabBar.Scope.TabIndicator(
     use = true
   )
 } ?: TabIndicator(
-  color = color,
+  color = color.useOrElse { ui.currentColors.background },
   width = width,
   height = height,
   updatePaint = updatePaint,

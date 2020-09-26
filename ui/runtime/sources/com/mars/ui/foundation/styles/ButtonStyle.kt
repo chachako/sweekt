@@ -2,17 +2,22 @@
 
 package com.mars.ui.foundation.styles
 
+import com.mars.ui.Ui
 import com.mars.ui.core.Border
+import com.mars.ui.core.Modifier
 import com.mars.ui.core.Padding
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.shape.Shape
 import com.mars.ui.core.graphics.useOrElse
+import com.mars.ui.core.unit.dp
 import com.mars.ui.core.useOrElse
 import com.mars.ui.foundation.ModifierProvider
 import com.mars.ui.foundation.modifies.background
 import com.mars.ui.foundation.modifies.padding
+import com.mars.ui.foundation.modifies.rippleBackground
 import com.mars.ui.foundation.modifies.rippleForeground
 import com.mars.ui.theme.*
+import com.mars.ui.theme.Style
 import com.mars.ui.theme.Styles.Companion.resolveStyle
 
 /*
@@ -38,7 +43,7 @@ data class ButtonStyle(
   val border: Border? = null,
 
   /** 按钮的内部边距 */
-  val padding: Padding = Padding.Unspecified,
+  val padding: Padding = Padding(horizontal = 16.dp, vertical = 12.dp),
 
   /** 按钮形状, null 则使用默认的 [Shapes.small] */
   val shape: Shape? = null,
@@ -47,13 +52,17 @@ data class ButtonStyle(
   override var id: Int = -1
 
   fun apply(provider: ModifierProvider) {
-    provider.modifier = provider.modifier.padding(padding)
-      .rippleForeground(colorRipple, shape ?: currentShapes.small)
+    val realShape = shape ?: (provider as Ui).currentShapes.small
+    provider.modifier =  Modifier.apply { +provider.modifier }.padding(padding)
       .background(
         normal = color,
         pressed = colorHighlight,
         disabled = colorDisabled,
         border = border,
+        shape = realShape
+      ).rippleForeground(
+        color = colorRipple,
+        shape = realShape
       )
   }
 

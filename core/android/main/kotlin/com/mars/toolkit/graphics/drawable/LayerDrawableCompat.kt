@@ -355,7 +355,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * `0...getNumberOfLayers()-1`.
    * @param id    The id to assign to the layer.
    * @attr ref android.R.styleable#LayerDrawableItem_id
-   * @see .getId
+   * @see getId
    */
   fun setId(index: Int, id: Int) {
     mLayerState.mChildren!![index]!!.mId = id
@@ -369,7 +369,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * @return The id of the layer or [View.NO_ID] if the
    * layer has no id.
    * @attr ref android.R.styleable#LayerDrawableItem_id
-   * @see .setId
+   * @see setId
    */
   fun getId(index: Int): Int {
     if (index >= mLayerState.mNum) {
@@ -424,7 +424,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * `0...getNumberOfLayers()-1`.
    * @param drawable The drawable to set for the layer.
    * @attr ref android.R.styleable#LayerDrawableItem_drawable
-   * @see .getDrawable
+   * @see getDrawable
    */
   fun setDrawable(index: Int, drawable: Drawable?) {
     if (index >= mLayerState.mNum) {
@@ -454,7 +454,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * `0...getNumberOfLayers()-1`.
    * @return The [Drawable] at the specified layer index.
    * @attr ref android.R.styleable#LayerDrawableItem_drawable
-   * @see .setDrawable
+   * @see setDrawable
    */
   fun getDrawable(index: Int): Drawable? {
     if (index >= mLayerState.mNum) {
@@ -476,8 +476,8 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * @param h     height in pixels, or -1 to use the intrinsic height
    * @attr ref android.R.styleable#LayerDrawableItem_width
    * @attr ref android.R.styleable#LayerDrawableItem_height
-   * @see .getLayerWidth
-   * @see .getLayerHeight
+   * @see getLayerWidth
+   * @see getLayerHeight
    */
   fun setLayerSize(index: Int, w: Int, h: Int) {
     val childDrawable = mLayerState.mChildren!![index]
@@ -499,7 +499,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * @param index the index of the drawable to adjust
    * @return the explicit width of the layer, or -1 if not specified
    * @attr ref android.R.styleable#LayerDrawableItem_width
-   * @see .setLayerSize
+   * @see setLayerSize
    */
   fun getLayerWidth(index: Int): Int {
     val childDrawable = mLayerState.mChildren!![index]
@@ -520,7 +520,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * @param index the index of the drawable to adjust
    * @return the explicit height of the layer, or -1 if not specified
    * @attr ref android.R.styleable#LayerDrawableItem_height
-   * @see .setLayerSize
+   * @see setLayerSize
    */
   fun getLayerHeight(index: Int): Int {
     val childDrawable = mLayerState.mChildren!![index]
@@ -544,7 +544,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * @param index   the index of the drawable to adjust
    * @param gravity the gravity to set for the layer
    * @attr ref android.R.styleable#LayerDrawableItem_gravity
-   * @see .getLayerGravity
+   * @see getLayerGravity
    */
   fun setLayerGravity(index: Int, gravity: Int) {
     val childDrawable = mLayerState.mChildren!![index]
@@ -556,7 +556,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * @return the gravity used to position or stretch the specified layer
    * within its container
    * @attr ref android.R.styleable#LayerDrawableItem_gravity
-   * @see .setLayerGravity
+   * @see setLayerGravity
    */
   fun getLayerGravity(index: Int): Int {
     val childDrawable = mLayerState.mChildren!![index]
@@ -732,7 +732,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
   /**
    * @return the current padding mode
    * @attr ref android.R.styleable#LayerDrawable_paddingMode
-   * @see .setPaddingMode
+   * @see setPaddingMode
    */
   /**
    * Specifies how layer padding should affect the bounds of subsequent
@@ -746,7 +746,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * atop the previous layer
    *
    * @attr ref android.R.styleable#LayerDrawable_paddingMode
-   * @see .getPaddingMode
+   * @see getPaddingMode
    */
   var paddingMode: Int
     get() = mLayerState.mPaddingMode
@@ -759,7 +759,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
   /**
    * Temporarily suspends child invalidation.
    *
-   * @see .resumeChildInvalidation
+   * @see resumeChildInvalidation
    */
   private fun suspendChildInvalidation() {
     mSuspendChildInvalidation = true
@@ -769,7 +769,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * Resumes child invalidation after suspension, immediately performing an
    * invalidation if one was requested by a child during suspension.
    *
-   * @see .suspendChildInvalidation
+   * @see suspendChildInvalidation
    */
   private fun resumeChildInvalidation() {
     mSuspendChildInvalidation = false
@@ -864,7 +864,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * @attr ref android.R.styleable#LayerDrawable_paddingTop
    * @attr ref android.R.styleable#LayerDrawable_paddingRight
    * @attr ref android.R.styleable#LayerDrawable_paddingBottom
-   * @see .setPaddingRelative
+   * @see setPaddingRelative
    */
   fun setPadding(left: Int, top: Int, right: Int, bottom: Int) {
     val layerState = mLayerState
@@ -899,7 +899,7 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
    * @attr ref android.R.styleable#LayerDrawable_paddingTop
    * @attr ref android.R.styleable#LayerDrawable_paddingEnd
    * @attr ref android.R.styleable#LayerDrawable_paddingBottom
-   * @see .setPadding
+   * @see setPadding
    */
   fun setPaddingRelative(start: Int, top: Int, end: Int, bottom: Int) {
     val layerState = mLayerState
@@ -1688,22 +1688,22 @@ class LayerDrawableCompat @JvmOverloads internal constructor(
      * Padding mode used to nest each layer inside the padding of the previous
      * layer.
      *
-     * @see .setPaddingMode
+     * @see setPaddingMode
      */
     const val PADDING_MODE_NEST = 0
 
     /**
      * Padding mode used to stack each layer directly atop the previous layer.
      *
-     * @see .setPaddingMode
+     * @see setPaddingMode
      */
     const val PADDING_MODE_STACK = 1
 
     /**
      * Value used for undefined start and end insets.
      *
-     * @see .getLayerInsetStart
-     * @see .getLayerInsetEnd
+     * @see getLayerInsetStart
+     * @see getLayerInsetEnd
      */
     const val INSET_UNDEFINED = Int.MIN_VALUE
 

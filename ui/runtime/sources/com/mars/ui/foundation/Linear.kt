@@ -114,7 +114,6 @@ open class Linear @JvmOverloads constructor(
       }
     }
 
-
   override fun startCapture() {
     capture = true
   }

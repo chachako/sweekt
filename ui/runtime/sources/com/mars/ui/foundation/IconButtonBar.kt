@@ -15,8 +15,8 @@ import com.mars.ui.core.Orientation
 import com.mars.ui.core.unit.SizeUnit
 import com.mars.ui.foundation.styles.ButtonStyle
 import com.mars.ui.foundation.styles.IconStyle
+import com.mars.ui.theme.currentButtons
 import com.mars.ui.theme.currentIcons
-import com.mars.ui.theme.currentStyles
 
 
 /**
@@ -37,7 +37,7 @@ fun Ui.IconButtonBar(
   /** 按钮图标的样式 */
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
-  buttonStyle: ButtonStyle = currentStyles.button,
+  buttonStyle: ButtonStyle = currentButtons.icon,
 ) = ButtonBar(onClick, modifier, orientation, spaceBetween) {
   icons.forEach { IconButton(it, iconStyle = iconStyle, style = buttonStyle) }
 }
@@ -61,7 +61,7 @@ fun Ui.IconButtonBar(
   /** 按钮图标的样式 */
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
-  buttonStyle: ButtonStyle = currentStyles.button,
+  buttonStyle: ButtonStyle = currentButtons.icon,
 ) = ButtonBar(onClick, modifier, orientation, spaceBetween) {
   icons.forEach {
     IconButton(
@@ -91,7 +91,7 @@ fun Ui.IconButtonBar(
   /** 按钮图标的样式 */
   iconStyle: IconStyle = currentIcons.button,
   /** 按钮的样式 */
-  buttonStyle: ButtonStyle = currentStyles.button,
+  buttonStyle: ButtonStyle = currentButtons.icon,
 ) = ButtonBar(onClick, modifier, orientation, spaceBetween) {
   icons.forEach {
     IconButton(

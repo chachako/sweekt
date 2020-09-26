@@ -147,8 +147,8 @@ import kotlin.math.roundToInt
   override fun updateUiKitTheme() {
     /** 修改样式前先备份一下颜色，避免被 [DividerStyle.apply] 覆盖 */
     val backupColor = color
-    style?.resolveStyle()?.also { style = it }
-    backupColor?.resolveColor()?.also { color = it }
+    style?.resolveStyle(this)?.also { style = it }
+    backupColor?.resolveColor(this)?.also { color = it }
   }
 
   companion object {

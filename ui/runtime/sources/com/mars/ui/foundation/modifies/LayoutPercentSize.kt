@@ -9,6 +9,7 @@ import androidx.annotation.IntRange
 import androidx.core.view.doOnLayout
 import com.mars.toolkit.appScreenHeight
 import com.mars.toolkit.appScreenWidth
+import com.mars.toolkit.data.wrapContent
 import com.mars.toolkit.float
 import com.mars.ui.core.Benchmark
 import com.mars.ui.core.Modifier
@@ -167,8 +168,8 @@ private data class LayoutPercentSizeModifier(
       width?.apply { it.width = (benchmarkWidth / this).roundToInt() }
       height?.apply { it.height = (benchmarkHeight / this).roundToInt() }
     } ?: ViewGroup.LayoutParams(
-      width?.run { (benchmarkWidth / this).roundToInt() } ?: ViewGroup.LayoutParams.WRAP_CONTENT,
-      height?.run { (benchmarkHeight / this).roundToInt() } ?: ViewGroup.LayoutParams.WRAP_CONTENT
+      width?.run { (benchmarkWidth / this).roundToInt() } ?: wrapContent,
+      height?.run { (benchmarkHeight / this).roundToInt() } ?: wrapContent
     )
   }
 }

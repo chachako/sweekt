@@ -17,18 +17,18 @@
 package com.mars.ui.core.unit
 
 import android.graphics.Rect
-import com.mars.ui.Ui
+import com.mars.toolkit.appContext
 import kotlin.math.roundToInt
 
 /**
  * The logical density of the display. This is a scaling factor for the [Dp] unit.
  */
-internal val density: Float get() = Ui.currentContext.resources.displayMetrics.density
+internal val density: Float get() = appContext.resources.displayMetrics.density
 
 /**
  * Current user preference for the scaling factor for fonts.
  */
-internal val fontScale: Float get() = Ui.currentContext.resources.configuration.fontScale
+internal val fontScale: Float get() = appContext.resources.configuration.fontScale
 
 /**
  * Convert [Dp] to Sp. Sp is used for font size, etc.
