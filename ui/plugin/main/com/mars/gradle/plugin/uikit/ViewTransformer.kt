@@ -4,7 +4,7 @@ package com.mars.gradle.plugin.uikit
 
 import com.mars.gradle.plugin.toolkit.booster.transform.TransformContext
 import com.mars.gradle.plugin.toolkit.booster.transform.asm.ClassTransformer
-import com.mars.gradle.plugin.uikit.Constants.facadeViews
+import com.mars.gradle.plugin.uikit.Constants.uikitViews
 import com.mars.gradle.plugin.uikit.Constants.systemViews
 import com.mars.gradle.plugin.uikit.Constants.whitelist
 import org.objectweb.asm.tree.*
@@ -20,16 +20,20 @@ class ViewTransformer : ClassTransformer {
     // we just need to transform the classes of extends android view
     if (systemViews.contains(klass.superName)
       // don't transform uikit views classes
-      && !facadeViews.contains(klass.name)
+      && !uikitViews.contains(klass.name)
       // don't transform uikit parent view classes
       && !whitelist.contains(klass.name)
     ) {
+      val originSuperName = klass.superName
       // replace superclass
       klass.superName = klass.superName.remapping()
       // replace all call-instructions
       klass.methods.forEach {
         it.instructions.toArray().forEach { insn ->
-          if (insn is MethodInsnNode) insn.owner = insn.owner.remapping()
+          // replace only owner with same name as original superclass
+          if (insn is MethodInsnNode && insn.owner == originSuperName) {
+            insn.owner = insn.owner.remapping()
+          }
         }
       }
 //      // replaced, print current calss name

@@ -261,7 +261,6 @@ class Color(var value: ULong, internal var id: Int? = null) {
   operator fun component5(): ColorSpace = colorSpace
 
 
-
   /**
    * Copies the existing color, changing only the provided values. The [ColorSpace][colorSpace]
    * of the returned [Color] is the same as this [colorSpace].
@@ -305,7 +304,6 @@ class Color(var value: ULong, internal var id: Int? = null) {
   }
 
   override fun equals(other: Any?): Boolean {
-    if (this === other) return true
     if (javaClass != other?.javaClass) return false
 
     other as Color
@@ -339,11 +337,11 @@ class Color(var value: ULong, internal var id: Int? = null) {
     /**
      * Because Color is an inline class, this represents an unset value
      * without having to box the Color. It will be treated as [Transparent]
-     * when drawn. A Color can compare with [Unset] for equality or use
-     * [isUnset] to check for the unset value or [isSet] for any color that isn't
-     * [Unset].
+     * when drawn. A Color can compare with [Unspecified] for equality or use
+     * [isUnspecified] to check for the unset value or [isSpecified] for any color that isn't
+     * [Unspecified].
      */
-    val Unset = Color(0f, 0f, 0f, 0f, ColorSpaces.Unset)
+    val Unspecified = Color(0f, 0f, 0f, 0f, ColorSpaces.Unset)
   }
 }
 
@@ -618,22 +616,22 @@ inline val Color.isLight: Boolean get() = luminance() > 0.5F
 inline val Color.isDark: Boolean get() = !isLight
 
 /**
- * `false` when this is [Color.Unset].
+ * `false` when this is [Color.Unspecified].
  */
-inline val Color.isSet: Boolean get() = value != Color.Unset.value
+inline val Color.isSpecified: Boolean get() = value != Color.Unspecified.value
 
 /**
- * `true` when this is [Color.Unset].
+ * `true` when this is [Color.Unspecified].
  */
-inline val Color.isUnset: Boolean get() = value == Color.Unset.value
+inline val Color.isUnspecified: Boolean get() = value == Color.Unspecified.value
 
 /**
- * If this [Color] [isSet] then this is returned, otherwise [block] is executed and its result
+ * If this [Color] [isSpecified] then this is returned, otherwise [block] is executed and its result
  * is returned.
  */
-inline fun Color.useOrElse(block: () -> Color): Color = if (isSet) this else block()
+inline fun Color.useOrElse(block: () -> Color): Color = if (isSpecified) this else block()
 
 /**
- * If this [Color] [isSet] then this is returned, otherwise null is returned.
+ * If this [Color] [isSpecified] then this is returned, otherwise null is returned.
  */
-fun Color.useOrNull(): Color? = if (isSet) this else null
+fun Color.useOrNull(): Color? = if (isSpecified) this else null

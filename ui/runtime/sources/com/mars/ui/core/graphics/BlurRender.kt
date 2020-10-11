@@ -2,10 +2,14 @@ package com.mars.ui.core.graphics
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Paint
 import android.renderscript.Allocation
 import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
+import androidx.core.graphics.applyCanvas
+import com.mars.toolkit.graphics.createBitmap
+
 
 /*
  * author: 凛
@@ -34,6 +38,20 @@ class BlurRender {
     blurOutput = Allocation.createTyped(renderScript, blurInput!!.type)
   }
 
+  /**
+   * 对 [source] 进行一次模糊
+   */
+  fun blurOnce(context: Context, source: Bitmap, radius: Float): Bitmap {
+    val bitmap = createBitmap(source.width, source.height).applyCanvas {
+      val paint = Paint(Paint.FILTER_BITMAP_FLAG or Paint.ANTI_ALIAS_FLAG)
+      drawBitmap(source, 0f, 0f, paint)
+    }
+    prepare(context, bitmap, radius)
+    blur(bitmap, bitmap)
+    release()
+    return bitmap
+  }
+
   fun blur(input: Bitmap, output: Bitmap) {
     blurInput!!.copyFrom(input)
     blurScript!!.setInput(blurInput)
@@ -47,5 +65,4 @@ class BlurRender {
     blurScript?.destroy()?.apply { blurScript = null }
     renderScript?.destroy()?.apply { renderScript = null }
   }
-
 }

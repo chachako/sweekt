@@ -12,9 +12,9 @@ enum class Views(
   // UiKit 的 View 类名
   val uikit: String
 ) {
-  TextView("android/widget/TextView", "com/mars/ui/foundation/Text"),
-  ImageView("android/widget/ImageView", "com/mars/ui/foundation/Image"),
-  LinearLayout("android/widget/LinearLayout", "com/mars/ui/foundation/Linear"),
-  FrameLayout("android/widget/FrameLayout", "com/mars/ui/foundation/Stack"),
-  ViewGroup("android/widget/ViewGroup", "com/mars/ui/foundation/LayoutScope"),
+  TextView("android/widget/TextView", "com/mars/ui/widget/implement/Text"),
+  ImageView("android/widget/ImageView", "com/mars/ui/widget/implement/Image"),
+  LinearLayout("android/widget/LinearLayout", "com/mars/ui/widget/implement/Linear"),
+  FrameLayout("android/widget/FrameLayout", "com/mars/ui/widget/implement/Box"),
+  ViewGroup("android/view/ViewGroup", "com/mars/ui/widget/implement/LayoutScope"),
 }

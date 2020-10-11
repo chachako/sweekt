@@ -11,6 +11,7 @@ android {
 
 dependencies {
   importSharedDependencies(this)
+  compileOnlyProjects(":stubs")
   apiProjects(":core:android")
   apiOf(
     AndroidX.dynamicAnimationKtx,

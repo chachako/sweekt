@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 annotation class DrawableBuilderMarker
 
-fun buildDrawable(block: DrawableBuilder.() -> Unit) = DrawableBuilder().apply(block).build()
+inline fun buildDrawable(block: DrawableBuilder.() -> Unit) = DrawableBuilder().apply(block).build()
 
 fun View.drawBackground(block: DrawableBuilder.() -> Unit) {
   background = DrawableBuilder().apply(block).build()

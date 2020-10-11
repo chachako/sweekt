@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 代表正在截图中 -->
+    <item name="shooting" type="id" />
+</resources>

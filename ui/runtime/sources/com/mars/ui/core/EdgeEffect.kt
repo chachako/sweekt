@@ -28,6 +28,7 @@ class SpringEdgeEffect(
   private val target: KMutableProperty0<Float>,
   private val activeEdge: KMutableProperty0<SpringEdgeEffect?>,
   private val velocityMultiplier: Float,
+  private val reverseAbsorb: Boolean
 ) : EdgeEffect(context) {
   private var translate = 0f
   private val spring = SpringAnimation(null, object : FloatPropertyCompat<Any>("value") {
@@ -44,7 +45,11 @@ class SpringEdgeEffect(
 
   /** 脱离手指且开始惯性自动滚动的回调 */
   override fun onAbsorb(velocity: Int) =
-    releaseSpring(velocityMultiplier * velocity)
+    if (reverseAbsorb) {
+      releaseSpring(-velocityMultiplier * velocity)
+    } else {
+      releaseSpring(velocityMultiplier * velocity)
+    }
 
   /** 到了边缘还继续拉时的回调 */
   override fun onPull(deltaDistance: Float, displacement: Float) {
@@ -125,7 +130,11 @@ class SpringEdgeEffect(
 
     fun createFactory() = SpringEdgeEffectFactory()
 
-    fun createEdgeEffect(view: View, direction: Int): EdgeEffect? = run {
+    fun createEdgeEffect(
+      view: View,
+      direction: Int,
+      reverseAbsorb: Boolean = false
+    ): EdgeEffect? = run {
       this.view = view
       when (direction) {
         DIRECTION_LEFT -> SpringEdgeEffect(
@@ -133,28 +142,32 @@ class SpringEdgeEffect(
           view::getWidth,
           ::shiftX,
           ::activeEdgeX,
-          0.34f
+          0.34f,
+          reverseAbsorb
         )
         DIRECTION_TOP -> SpringEdgeEffect(
           view.context,
           view::getHeight,
           ::shiftY,
           ::activeEdgeY,
-          0.34f
+          0.34f,
+          reverseAbsorb
         )
         DIRECTION_RIGHT -> SpringEdgeEffect(
           view.context,
           view::getWidth,
           ::shiftX,
           ::activeEdgeX,
-          -0.34f
+          -0.34f,
+          reverseAbsorb
         )
         DIRECTION_BOTTOM -> SpringEdgeEffect(
           view.context,
           view::getHeight,
           ::shiftY,
           ::activeEdgeY,
-          -0.34f
+          -0.34f,
+          reverseAbsorb
         )
         else -> null
       }

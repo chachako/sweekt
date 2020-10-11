@@ -11,7 +11,7 @@ android {
 
 dependencies {
   importSharedDependencies(this)
-  apiProjects(":ui:runtime", ":ui:skeleton")
+  apiProjects(":ui:runtime")
 }
 
 publishToBintray(artifact = "toolkit-ui-animation")

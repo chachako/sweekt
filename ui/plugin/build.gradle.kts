@@ -15,4 +15,7 @@ dependencies {
   )
 }
 
-publishToBintray(artifact = "toolkit-ui-plugin")
+publishToBintray(
+  artifact = "toolkit-ui-plugin",
+  group = "com.mars.gradle.plugin"
+)

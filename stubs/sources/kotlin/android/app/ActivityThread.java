@@ -13,50 +13,50 @@ import java.util.List;
 
 public final class ActivityThread {
 	public static ActivityThread currentActivityThread() {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 
 	public static Application currentApplication() {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 
 	public static String currentPackageName() {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 
 	public final LoadedApk getPackageInfoNoCheck(ApplicationInfo ai, CompatibilityInfo compatInfo) {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 
 	public String getProcessName() {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 
 	public final LoadedApk getPackageInfo(String packageName, CompatibilityInfo compatInfo,
 										  int flags) {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 
 	public static String currentProcessName() {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 	public final LoadedApk getPackageInfo(ApplicationInfo ai, CompatibilityInfo compatInfo,
 										  int flags){
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 	public final LoadedApk getPackageInfo(String packageName, CompatibilityInfo compatInfo,
 										  int flags, int userId) {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 
 	public final LoadedApk peekPackageInfo(String packageName, boolean includeCode) {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 
 	public Application getApplication() {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 	public Context getSystemContext() {
-		throw new UnsupportedOperationException("STUB");
+		throw new UnsupportedOperationException("Stub!");
 	}
 }

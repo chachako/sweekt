@@ -33,3 +33,9 @@ publishToBintray(
   artifact = "toolkit",
   packageName = "gradle-toolkit"
 )
+
+tasks.compileKotlin {
+  kotlinOptions {
+    freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-kotlin-package")
+  }
+}

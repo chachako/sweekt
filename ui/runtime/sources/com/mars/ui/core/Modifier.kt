@@ -18,6 +18,8 @@ interface Modifier {
    */
   operator fun <T : Modifier> T.unaryPlus(): Modifier = ModifierManager(this)
 
+  operator fun plus(modifier: Modifier?): Modifier = ModifierManager(modifier)
+
   fun View.realize(parent: ViewGroup?)
 
   companion object : Modifier {
@@ -27,19 +29,20 @@ interface Modifier {
   }
 }
 
+
 /**
  * 用于管理所有修饰符并生成任务链
  * @param director 主管，由它来开始分配修饰任务
  */
-internal class ModifierManager(director: Modifier) : Modifier {
-  internal val modifiers = ArrayDeque<Modifier>(1).apply { add(director) }
+@PublishedApi internal class ModifierManager(director: Modifier? = null) : Modifier {
+  internal val modifiers = ArrayDeque<Modifier>().apply { director?.apply(::add) }
 
   /**
    * 添加修饰符
    */
-  override fun <T : Modifier> T.unaryPlus(): Modifier = this@ModifierManager.plus(this)
+  override operator fun <T : Modifier> T.unaryPlus(): Modifier = this@ModifierManager.plus(this)
 
-  operator fun plus(modifier: Modifier?): Modifier = also {
+  override operator fun plus(modifier: Modifier?): Modifier = also {
     if (modifier is ModifierManager) modifiers.addAll(modifier.modifiers)
     else modifier?.also(modifiers::add)
   }
@@ -66,9 +69,14 @@ internal class ModifierManager(director: Modifier) : Modifier {
 
 }
 
+
 /**
  * 声明这是个可以更新主题颜色的修饰符
  */
 interface UpdatableModifier {
   fun View.update(parent: ViewGroup?)
 }
+
+
+/** 以 DSL 形式创建修饰符 */
+inline fun modify(block: Modifier.() -> Unit) = Modifier.apply(block)

@@ -6,11 +6,9 @@ import android.content.Context
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import com.google.android.material.R
-import com.mars.toolkit.data.ContextProvider
 import com.mars.ui.UiPreview.Companion.currentIdePreview
 import com.mars.ui.core.Modifier
+import com.mars.ui.widget.implement.FakeLayoutScope
 
 interface Ui {
   companion object {
@@ -33,8 +31,10 @@ interface Ui {
   interface Preview {
     /** Provide root of current ui */
     val uiBody: UIBody
+
     /** Optional modifier for [uiBody] */
     val modifier: Modifier get() = Modifier
+
     /** Theme data for [uiBody] */
     val theme: Theme get() = Theme()
   }
@@ -49,14 +49,20 @@ inline val Ui.asLayout: ViewGroup
   get() = this as? ViewGroup ?: error("意外情况！Ui 实例不能作为一个 ViewGroup")
 
 /** 从视图中返回当前屏幕上的唯一的 [Ui.Container] 实例 */
-@PublishedApi internal val Ui.container: Ui.Container
+val Ui.container: Ui.Container
   get() = currentIdePreview
     ?: this as? Ui.Container
-    ?: this.asView.parent.findContainer()
+    ?: this.asView.realParent?.findContainer()
     ?: error("没有找到当前的 Ui 容器, 请确保使用 *.setUiContent(...) 将 UI 内容添加到任意界面上")
 
+/** 获取真实的父视图 */
+internal val View.realParent: ViewGroup? get() = when(this) {
+  is FakeLayoutScope -> realParent
+  else -> getTag(R.id.real_parent_view) as? ViewGroup ?: parent as? ViewGroup
+}
+
 /** 遍历 View 祖先找到 [Ui.Container] */
-private fun ViewParent.findContainer(): Ui.Container? = when (this) {
+private fun View.findContainer(): Ui.Container? = when (this) {
   is Ui.Container -> container
-  else -> parent?.findContainer()
+  else -> realParent?.findContainer()
 }

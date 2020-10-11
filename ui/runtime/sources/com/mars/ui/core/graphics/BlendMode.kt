@@ -20,6 +20,7 @@ package com.mars.ui.core.graphics
 
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.PorterDuff
 
 
 /**
@@ -293,30 +294,30 @@ enum class BlendMode {
 }
 
 /**
- * Convert the [BlendMode] to the corresponding [android.graphics.PorterDuff.Mode] if it exists,
- * falling back on the default of [android.graphics.PorterDuff.Mode.SRC_OVER] for unsupported types
+ * Convert the [BlendMode] to the corresponding [PorterDuff.Mode] if it exists,
+ * falling back on the default of [PorterDuff.Mode.SRC_OVER] for unsupported types
  */
-internal fun BlendMode.toPorterDuffMode(): android.graphics.PorterDuff.Mode? = when (this) {
-  BlendMode.Clear -> android.graphics.PorterDuff.Mode.CLEAR
-  BlendMode.Src -> android.graphics.PorterDuff.Mode.SRC
-  BlendMode.Dst -> android.graphics.PorterDuff.Mode.DST
-  BlendMode.SrcOver -> android.graphics.PorterDuff.Mode.SRC_OVER
-  BlendMode.DstOver -> android.graphics.PorterDuff.Mode.DST_OVER
-  BlendMode.SrcIn -> android.graphics.PorterDuff.Mode.SRC_IN
-  BlendMode.DstIn -> android.graphics.PorterDuff.Mode.DST_IN
-  BlendMode.SrcOut -> android.graphics.PorterDuff.Mode.SRC_OUT
-  BlendMode.DstOut -> android.graphics.PorterDuff.Mode.DST_OUT
-  BlendMode.SrcAtop -> android.graphics.PorterDuff.Mode.SRC_ATOP
-  BlendMode.DstAtop -> android.graphics.PorterDuff.Mode.DST_ATOP
-  BlendMode.Xor -> android.graphics.PorterDuff.Mode.XOR
-  BlendMode.Plus -> android.graphics.PorterDuff.Mode.ADD
-  BlendMode.Screen -> android.graphics.PorterDuff.Mode.SCREEN
-  BlendMode.Overlay -> android.graphics.PorterDuff.Mode.OVERLAY
-  BlendMode.Darken -> android.graphics.PorterDuff.Mode.DARKEN
-  BlendMode.Lighten -> android.graphics.PorterDuff.Mode.LIGHTEN
+internal fun BlendMode.toPorterDuffMode(): PorterDuff.Mode? = when (this) {
+  BlendMode.Clear -> PorterDuff.Mode.CLEAR
+  BlendMode.Src -> PorterDuff.Mode.SRC
+  BlendMode.Dst -> PorterDuff.Mode.DST
+  BlendMode.SrcOver -> PorterDuff.Mode.SRC_OVER
+  BlendMode.DstOver -> PorterDuff.Mode.DST_OVER
+  BlendMode.SrcIn -> PorterDuff.Mode.SRC_IN
+  BlendMode.DstIn -> PorterDuff.Mode.DST_IN
+  BlendMode.SrcOut -> PorterDuff.Mode.SRC_OUT
+  BlendMode.DstOut -> PorterDuff.Mode.DST_OUT
+  BlendMode.SrcAtop -> PorterDuff.Mode.SRC_ATOP
+  BlendMode.DstAtop -> PorterDuff.Mode.DST_ATOP
+  BlendMode.Xor -> PorterDuff.Mode.XOR
+  BlendMode.Plus -> PorterDuff.Mode.ADD
+  BlendMode.Screen -> PorterDuff.Mode.SCREEN
+  BlendMode.Overlay -> PorterDuff.Mode.OVERLAY
+  BlendMode.Darken -> PorterDuff.Mode.DARKEN
+  BlendMode.Lighten -> PorterDuff.Mode.LIGHTEN
   BlendMode.Modulate -> {
     // b/73224934 Android PorterDuff Multiply maps to Skia Modulate
-    android.graphics.PorterDuff.Mode.MULTIPLY
+    PorterDuff.Mode.MULTIPLY
   }
   else -> null
 }

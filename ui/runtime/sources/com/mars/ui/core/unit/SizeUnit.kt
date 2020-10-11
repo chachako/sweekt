@@ -1,6 +1,10 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.mars.ui.core.unit
 
 import com.mars.ui.core.unit.SizeUnit.Companion.Unspecified
+import kotlin.math.max
+import kotlin.math.min
 
 /*
  * author: 凛
@@ -41,3 +45,6 @@ inline fun SizeUnit.useOrElse(block: () -> SizeUnit): SizeUnit =
  * 否则直接使用当前单位
  */
 fun SizeUnit.useOrNull(): SizeUnit? = if (isUnspecified) null else this
+
+inline fun min(a: SizeUnit, b: SizeUnit): Float = min(a.toPx(), b.toPx())
+inline fun max(a: SizeUnit, b: SizeUnit): Float = max(a.toPx(), b.toPx())

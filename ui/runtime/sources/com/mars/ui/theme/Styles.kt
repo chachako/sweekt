@@ -3,7 +3,7 @@ package com.mars.ui.theme
 import com.mars.ui.Ui
 import com.mars.ui.core.unit.dp
 import com.mars.ui.currentTheme
-import com.mars.ui.foundation.styles.DividerStyle
+import com.mars.ui.widget.style.DividerStyle
 
 
 /*

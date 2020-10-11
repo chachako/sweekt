@@ -16,7 +16,7 @@ data class BlurMaterial(
   internal val radius: Number? = null,
 
   /** 覆盖层颜色, 默认不叠加任何颜色 */
-  internal val overlayColor: Color = Color.Unset,
+  internal val overlayColor: Color = Color.Unspecified,
 ) : Material {
   /** [Materials.resolveMaterial] */
   override var id: Int = -1

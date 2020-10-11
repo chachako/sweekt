@@ -2,23 +2,15 @@
 
 package com.mars.ui.extension.pager
 
-import androidx.viewpager2.widget.ViewPager2
 import com.mars.ui.Ui
 import com.mars.ui.core.Modifier
-import com.mars.ui.extension.list.impl.ItemDefinition2
-import com.mars.ui.extension.list.impl.ListDefineScope
-import com.mars.ui.extension.list.impl.data.DataSource
-import com.mars.ui.extension.list.impl.data.ItemComparator
-import com.mars.ui.extension.pager.impl.Adapter
-import com.mars.ui.foundation.With
-
-/*
- * author: 凛
- * date: 2020/8/20 12:27 AM
- * github: https://github.com/oh-Rin
- * description: 分页容器
- */
-typealias Pager = ViewPager2
+import com.mars.ui.extension.list.implement.ItemDefinition2
+import com.mars.ui.extension.list.implement.ListDefineScope
+import com.mars.ui.extension.list.implement.data.DataSource
+import com.mars.ui.extension.list.implement.data.ItemComparator
+import com.mars.ui.extension.pager.implement.Adapter
+import com.mars.ui.extension.pager.implement.Pager
+import com.mars.ui.widget.With
 
 
 /**

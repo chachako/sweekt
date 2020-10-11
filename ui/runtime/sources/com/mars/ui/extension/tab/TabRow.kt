@@ -8,11 +8,11 @@ import com.mars.ui.Ui
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.MainAxisAlignment
 import com.mars.ui.core.Modifier
-import com.mars.ui.extension.tab.impl.*
-import com.mars.ui.foundation.Row
-import com.mars.ui.foundation.VerticalDivider
-import com.mars.ui.foundation.With
-import com.mars.ui.foundation.modifies.matchParent
+import com.mars.ui.extension.tab.implement.*
+import com.mars.ui.widget.Row
+import com.mars.ui.widget.VerticalDivider
+import com.mars.ui.widget.With
+import com.mars.ui.widget.modifier.matchParent
 
 /**
  * 创建一个横向标签栏

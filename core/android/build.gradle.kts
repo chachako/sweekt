@@ -8,6 +8,7 @@ android {
     main {
       manifest.srcFile("main/AndroidManifest.xml")
       java.srcDir("main/kotlin")
+      res.srcDir("main/res")
     }
     test.java.srcDir("test/kotlin")
   }

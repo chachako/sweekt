@@ -30,8 +30,6 @@
             <option value="$PROJECT_DIR$/ui/plugin" />
             <option value="$PROJECT_DIR$/ui/runtime" />
             <option value="$PROJECT_DIR$/ui/samples" />
-            <option value="$PROJECT_DIR$/ui/samples/ebook" />
-            <option value="$PROJECT_DIR$/ui/samples/skeleton-example" />
             <option value="$PROJECT_DIR$/ui/skeleton" />
           </set>
         </option>

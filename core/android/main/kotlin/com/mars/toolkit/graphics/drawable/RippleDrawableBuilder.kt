@@ -6,7 +6,7 @@ import android.graphics.drawable.*
 import android.os.Build
 import android.util.StateSet
 
-fun buildRippleDrawable(block: RippleDrawableBuilder.() -> Unit) =
+inline fun buildRippleDrawable(block: RippleDrawableBuilder.() -> Unit) =
   RippleDrawableBuilder().apply(block).build()
 
 class RippleDrawableBuilder : DrawableWrapperBuilder<RippleDrawableBuilder>() {

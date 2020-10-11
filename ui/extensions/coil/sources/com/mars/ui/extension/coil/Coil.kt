@@ -23,9 +23,10 @@ import coil.transition.Transition
 import com.mars.ui.Ui
 import com.mars.ui.asLayout
 import com.mars.ui.core.Modifier
+import com.mars.ui.extension.coil.implement.CoilImage
 import com.mars.ui.extension.coil.preview.defaultImageLoader
-import com.mars.ui.foundation.Image
-import com.mars.ui.foundation.With
+import com.mars.ui.widget.Image
+import com.mars.ui.widget.With
 import okhttp3.HttpUrl
 import java.io.File
 

@@ -17,7 +17,7 @@ object Constants {
   )
 
   /** 替换后的新的 View 包名 */
-  val facadeViews = arrayOf(
+  val uikitViews = arrayOf(
     Views.TextView.uikit,
     Views.ImageView.uikit,
     Views.LinearLayout.uikit,

@@ -21,10 +21,12 @@ buildscript {
     google()
     maven("https://dl.bintray.com/oh-rin/Mars/")
     maven("https://dl.bintray.com/kotlin/kotlin-eap/")
+    maven(rootDir.resolve(".repo").absolutePath)
   }
 
   listOf(
-    "com.mars.gradle.plugin:toolkit:0.6.9",
+    "com.mars.gradle.plugin:toolkit:0.6.18",
+    "com.mars.gradle.plugin:toolkit-ui-plugin:0.6.18",
     "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5",
     "de.fayard.refreshVersions:refreshVersions:0.9.5",
     dep("org.jetbrains.kotlin", "kotlin-gradle-plugin"),
@@ -44,6 +46,7 @@ setupMarsToolkit {
       KotlinX.coroutines.core,
       KotlinX.coroutines.android,
       AndroidX.appCompat,
+      AndroidX.core,
       AndroidX.core.ktx,
       AndroidX.lifecycle.commonJava8,
       AndroidX.lifecycle.runtimeKtx,

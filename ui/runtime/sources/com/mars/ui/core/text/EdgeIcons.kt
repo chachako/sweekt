@@ -7,7 +7,7 @@ import com.mars.ui.core.Padding
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.IconData
 import com.mars.ui.core.unit.SizeUnit
-import com.mars.ui.foundation.styles.IconStyle
+import com.mars.ui.widget.style.IconStyle
 
 /*
  * author: 凛
@@ -40,7 +40,7 @@ fun EdgeIcons(all: IconData? = null) = EdgeIcons(all, all, all, all)
 fun EdgeStartIcon(
   icon: Drawable,
   /** 图标颜色 */
-  color: Color = Color.Unset,
+  color: Color = Color.Unspecified,
   /** 图标大小 */
   size: SizeUnit = SizeUnit.Unspecified,
   /** 图标宽度，优先级比 [size] 要高 */
@@ -62,7 +62,7 @@ fun EdgeStartIcon(
 fun EdgeEndIcon(
   icon: Drawable,
   /** 图标颜色 */
-  color: Color = Color.Unset,
+  color: Color = Color.Unspecified,
   /** 图标大小 */
   size: SizeUnit = SizeUnit.Unspecified,
   /** 图标宽度，优先级比 [size] 要高 */
@@ -84,7 +84,7 @@ fun EdgeEndIcon(
 fun EdgeTopIcon(
   icon: Drawable,
   /** 图标颜色 */
-  color: Color = Color.Unset,
+  color: Color = Color.Unspecified,
   /** 图标大小 */
   size: SizeUnit = SizeUnit.Unspecified,
   /** 图标宽度，优先级比 [size] 要高 */
@@ -106,7 +106,7 @@ fun EdgeTopIcon(
 fun EdgeBottomIcon(
   icon: Drawable,
   /** 图标颜色 */
-  color: Color = Color.Unset,
+  color: Color = Color.Unspecified,
   /** 图标大小 */
   size: SizeUnit = SizeUnit.Unspecified,
   /** 图标宽度，优先级比 [size] 要高 */

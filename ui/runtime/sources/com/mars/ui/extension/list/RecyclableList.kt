@@ -3,8 +3,6 @@
 package com.mars.ui.extension.list
 
 import android.content.Context
-import android.graphics.Canvas
-import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,31 +12,15 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mars.ui.Ui
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.Orientation
-import com.mars.ui.core.SpringEdgeEffect
 import com.mars.ui.core.native
-import com.mars.ui.extension.list.impl.ItemDefinition2
-import com.mars.ui.extension.list.impl.ListDefineScope
-import com.mars.ui.extension.list.impl.data.DataSource
-import com.mars.ui.extension.list.impl.data.ItemComparator
-import com.mars.ui.foundation.With
+import com.mars.ui.extension.list.implement.ItemDefinition2
+import com.mars.ui.extension.list.implement.ListDefineScope
+import com.mars.ui.extension.list.implement.RecyclableAdapter
+import com.mars.ui.extension.list.implement.RecyclableList
+import com.mars.ui.extension.list.implement.data.DataSource
+import com.mars.ui.extension.list.implement.data.ItemComparator
+import com.mars.ui.widget.With
 
-class RecyclableList @JvmOverloads constructor(
-  context: Context,
-  attrs: AttributeSet? = null,
-  defStyleAttr: Int = 0
-) : RecyclerView(context, attrs, defStyleAttr), Ui {
-  private val springManager = SpringEdgeEffect.Manager()
-
-  init {
-    edgeEffectFactory = springManager.createFactory()
-  }
-
-  override fun draw(canvas: Canvas) {
-    springManager.withSpring(canvas) {
-      super.draw(canvas)
-    }
-  }
-}
 
 /** 创建一个拥有多种数据类型 Item 的可回收列表 */
 inline fun <Source : Any> Ui.RecyclableList(

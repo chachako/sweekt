@@ -5,7 +5,7 @@ package com.mars.ui.core.graphics
 import android.graphics.drawable.Drawable
 import com.mars.ui.core.Padding
 import com.mars.ui.core.unit.SizeUnit
-import com.mars.ui.foundation.styles.IconStyle
+import com.mars.ui.widget.style.IconStyle
 
 /*
  * author: 凛
@@ -16,7 +16,7 @@ import com.mars.ui.foundation.styles.IconStyle
 data class IconData(
   val icon: Drawable,
   /** 图标颜色 */
-  val color: Color = Color.Unset,
+  val color: Color = Color.Unspecified,
   /** 图标大小 */
   val size: SizeUnit = SizeUnit.Unspecified,
   /** 图标宽度，优先级比 [size] 要高 */

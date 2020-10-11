@@ -12,6 +12,7 @@ val commonSuppressionArgs = mutableListOf(
   "-Xallow-jvm-ir-dependencies",
   "-Xskip-prerelease-check",
   "-Xopt-in=kotlin.RequiresOptIn",
+  "-Xopt-in=kotlin.time.ExperimentalTime",
   "-Xuse-experimental=kotlin.Experimental",
   "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
   "-Xuse-experimental=kotlin.ExperimentalUnsignedTypes",

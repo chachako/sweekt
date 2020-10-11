@@ -7,58 +7,80 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.annotation.MainThread
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.lifecycle.Observer
 import androidx.savedstate.SavedStateRegistry
 import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.ViewTreeSavedStateRegistryOwner
-import com.mars.ui.*
+import com.mars.toolkit.view.gone
+import com.mars.toolkit.view.idOrNew
+import com.mars.toolkit.view.visible
+import com.mars.ui.UIBody
+import com.mars.ui.Ui
+import com.mars.ui.animation.core.MotionDirection
+import com.mars.ui.core.Modifier
+import com.mars.ui.core.modify
+import com.mars.ui.isSpecified
+import com.mars.ui.setUiContent
+import com.mars.ui.skeleton.animation.SkeletonTransition
+import com.mars.ui.skeleton.owners.NavigationOwner
+import com.mars.ui.skeleton.owners.TransitionOwner
+import com.mars.ui.widget.modifier.background
+import com.mars.ui.widget.modifier.matchParent
 import kotlinx.coroutines.CoroutineScope
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-/*
- * author: 凛
- * date: 2020/9/21 下午6:20
- * github: https://github.com/oh-Rin
- * description: 代表了一个附加于手机显示器上具有用户界面的单一屏幕，类似于 Activity / Fragment
+
+/**
+ * 骨骼对象可以视为用户界面或行为的一部分
+ * 类似于 [Activity] / [Fragment]
+ *
+ * ```
  * onCreate
  * onAppear
- * onStart
- * onResume
- * onPause
  * onDisappear
  * onDestroy
+ * ```
+ *
+ * @author 凛
+ * @github https://github.com/oh-Rin
+ * @date 2020/10/3 - 22:58
  */
 abstract class Skeleton : SkeletonTransfer(),
   Ui.Preview,
   LifecycleOwner,
   ViewModelStoreOwner,
   SavedStateRegistryOwner,
-  CoroutineScope {
+  CoroutineScope,
+  NavigationOwner,
+  TransitionOwner {
   /** 持有当前骨骼对象的 [View] 引擎 */
-  lateinit var engine: SkeletalEngine
+  lateinit var system: SkeletalSystem
 
   /**
    * 代表了当前骨架上显示的视图
    * @see uiBody
    */
-  lateinit var view: View
+  private var _view: View? = null
+  val view: View get() = _view!!.apply { idOrNew }
 
   /** 定义了当前骨架的唯一 ID */
   val id: Int get() = view.id
 
   /**
-   * 创建当前骨架整体的 Ui 视图（默认不指定）
+   * 创建当前 [Skeleton] 的整体 Ui 视图（默认不指定）
    * 重写此属性以指定 Ui, 或者在其他任意时机手动调用 [setUiContent] 来指定 Ui
    *
-   * @warn [UIBody] 在成功加载到 [Skeleton] 后会自动设置为 [Ui.Unspecified]
+   * @warn [UIBody] 在成功加载到 [Skeleton] 后
+   * 将会自动重新设置为 [Ui.Unspecified] 以释放内存
    */
   override var uiBody: UIBody = Ui.Unspecified
 
   private var _viewModelStore: ViewModelStore? = null
-  private val _lifecycleRegistry = LifecycleRegistry(this)
+  private var _lifecycleRegistry: LifecycleRegistry? = null
   private val _savedStateRegistryController = SavedStateRegistryController.create(this)
 
   private val children = hashMapOf<UUID, Skeleton>()
@@ -66,19 +88,48 @@ abstract class Skeleton : SkeletonTransfer(),
   override val coroutineContext: CoroutineContext
     get() = lifecycleScope.coroutineContext
 
+  override var defaultPushTransition: SkeletonTransition? = null
+    get() = field ?: SkeletonTransition.Push + MotionDirection.EndToStart
+
+  override var defaultPopTransition: SkeletonTransition? = null
+    get() = field ?: SkeletonTransition.Push + MotionDirection.StartToEnd
+
 
   /**
    * 代表当前 [Skeleton] 处于内容创建阶段
    * [uiBody] 如果指定，则会在继承类调用 `super.onCreate` 时加载
+   *
+   * @see savedInstanceState
    */
   @MainThread @CallSuper
   open fun onCreate(savedInstanceState: Bundle?) {
-    // 如果 Ui 已经指定，则先添加内容视图
-    if (uiBody.isSpecified) {
-      setUiContent(uiBody)
+    if (_lifecycleRegistry == null) {
+      _lifecycleRegistry = LifecycleRegistry(this)
+      _savedStateRegistryController.performRestore(savedInstanceState)
     }
-    // 释放指定的 Ui
-    uiBody = Ui.Unspecified
+    _lifecycleRegistry!!.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    // 如果 Ui 已经指定，则先添加内容视图
+    attachView()
+  }
+
+  /**
+   * 代表当前 [Skeleton] 内容已经创建完成
+   * @see onCreate
+   */
+  internal fun onCreated() {
+    // 我们需要确保当前界面至少显示一个空白 UI
+    if (_view == null) {
+      _view = system.setUiContent(
+        modifier = modify {
+          matchParent()
+          background()
+          +modifier
+        },
+        theme = theme
+      ) {} as View
+    }
+    // 如果已经在 onCreate 方法中指定了 Ui 内容则需要释放它
+    if (uiBody.isSpecified) uiBody = Ui.Unspecified
   }
 
   /**
@@ -86,8 +137,11 @@ abstract class Skeleton : SkeletonTransfer(),
    *
    * @see [Activity.onStart] [Activity.onResume] 类似状态
    */
-  @MainThread
+  @MainThread @CallSuper
   open fun onAppear() {
+    _lifecycleRegistry!!.handleLifecycleEvent(Lifecycle.Event.ON_START)
+    view.visible()
+    _lifecycleRegistry!!.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
   }
 
   /**
@@ -96,8 +150,11 @@ abstract class Skeleton : SkeletonTransfer(),
    *
    * @see [Activity.onPause] [Activity.onStop] 类似状态
    */
-  @MainThread
+  @MainThread @CallSuper
   open fun onDisappear() {
+    _lifecycleRegistry!!.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    view.gone()
+    _lifecycleRegistry!!.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
   }
 
   /**
@@ -106,20 +163,56 @@ abstract class Skeleton : SkeletonTransfer(),
    *
    * @see Activity.onDestroy 类似状态
    */
-  @MainThread
+  @MainThread @CallSuper
   open fun onDestroy() {
     _viewModelStore?.clear()
     _viewModelStore = null
+    // 将当前 Ui 内容从屏幕中删除
+    system.removeView(view)
+    _lifecycleRegistry!!.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
   }
+
+  /**
+   * 在 [Skeleton] 销毁或系统调用时保存临时状态数据
+   * [更多资料](https://developer.android.com/guide/components/activities/state-changes)
+   *
+   * @param outState 将需要保存的数据放置在其中
+   * @see Activity.onSaveInstanceState
+   * @see Fragment.onSaveInstanceState
+   */
+  @CallSuper
+  open fun onSaveInstanceState(outState: Bundle) {
+    _lifecycleRegistry!!.currentState = Lifecycle.State.CREATED
+    _savedStateRegistryController.performSave(outState)
+  }
+
+  /**
+   * 代表在当前 [Skeleton] 界面点击了返回按钮
+   * @see Activity.onBackPressed 类似状态
+   */
+  @MainThread
+  open fun onBackPressed() {
+    // 弹出当前界面
+    pop()
+  }
+
 
   /**
    * 设置 Ui 内容到骨架上
    * @see uiBody
    */
-  @MainThread
-  open fun setUiContent(ui: UIBody) {
-    view = engine.setUiContent(modifier, theme, ui) as View
-    view.id = id
+  @MainThread fun setUiContent(ui: UIBody) {
+    _view = system.setUiContent(
+      modifier = Modifier.background().plus(modifier),
+      theme = theme,
+      content = ui
+    ) as View
+  }
+
+  internal fun attachView() {
+    if (uiBody.isSpecified) {
+      setUiContent(uiBody)
+    }
   }
 
   private fun initViewTreeOwners() {
@@ -134,14 +227,13 @@ abstract class Skeleton : SkeletonTransfer(),
     children.forEach { (_, screen) -> screen.block() }
   }
 
-  override fun getLifecycle(): Lifecycle = _lifecycleRegistry
+  override fun getLifecycle(): Lifecycle = _lifecycleRegistry!!
 
   override fun getSavedStateRegistry(): SavedStateRegistry =
     _savedStateRegistryController.savedStateRegistry
 
   override fun getViewModelStore(): ViewModelStore {
-    if (_viewModelStore == null)
-      _viewModelStore = ViewModelStore()
+    if (_viewModelStore == null) _viewModelStore = ViewModelStore()
     return _viewModelStore!!
   }
 

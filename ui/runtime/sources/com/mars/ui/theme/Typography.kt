@@ -8,7 +8,7 @@ import com.mars.ui.core.unit.Px
 import com.mars.ui.core.unit.px
 import com.mars.ui.core.unit.sp
 import com.mars.ui.currentTheme
-import com.mars.ui.foundation.styles.TextStyle
+import com.mars.ui.widget.style.TextStyle
 
 /*
  * author: 凛

@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.mars.ui.foundation.Stack
+import com.mars.ui.widget.implement.Box
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
@@ -21,7 +21,7 @@ import org.koin.core.context.startKoin
 @UiKitMarker class UiKit @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
-) : Stack(context, attrs), Ui.Container {
+) : Box(context, attrs), Ui.Container {
   override var theme = Theme().also { it.uikit = this }
 }
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 用来储存真正的父视图 -->
+    <item name="real_parent_view" type="id" />
+    <!-- 用来储存视图裁剪后的外形数据，可能是 Path 或 Shape -->
+    <item name="cropped_outline" type="id" />
+    <!-- 代表正在截图中 -->
+    <item name="shooting" type="id" />
+</resources>

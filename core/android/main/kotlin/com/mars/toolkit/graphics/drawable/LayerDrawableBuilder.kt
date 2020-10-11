@@ -8,7 +8,7 @@ import android.view.Gravity.NO_GRAVITY
 import androidx.annotation.RequiresApi
 import java.util.*
 
-fun buildLayerDrawable(block: LayerDrawableBuilder.() -> Unit) =
+inline fun buildLayerDrawable(block: LayerDrawableBuilder.() -> Unit) =
   LayerDrawableBuilder().apply(block).build()
 
 class LayerDrawableBuilder {

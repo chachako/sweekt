@@ -3,6 +3,7 @@ package com.mars.tools.ktx
 import com.mars.toolkit.children
 import com.mars.toolkit.okio.readText
 import com.mars.toolkit.subtree
+import com.mars.toolkit.zip.flatWriteTo
 import com.mars.toolkit.zip.openZip
 import com.mars.toolkit.zip.toZip
 import org.junit.Assert.assertEquals

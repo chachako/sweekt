@@ -4,10 +4,10 @@ import com.mars.ui.Ui
 import com.mars.ui.core.Border
 import com.mars.ui.core.Padding
 import com.mars.ui.core.graphics.Color
-import com.mars.ui.core.graphics.shape.CircleShape
+import com.mars.ui.core.graphics.shape.OvalShape
 import com.mars.ui.core.unit.dp
 import com.mars.ui.currentTheme
-import com.mars.ui.foundation.styles.ButtonStyle
+import com.mars.ui.widget.style.ButtonStyle
 
 
 /*
@@ -21,7 +21,7 @@ class Buttons(
   normal: ButtonStyle = ButtonStyle(),
   /** 图标按钮 */
   icon: ButtonStyle = ButtonStyle(
-    shape = CircleShape,
+    shape = OvalShape,
     color = Color.Transparent,
     padding = Padding(all = 14.dp)
   ),

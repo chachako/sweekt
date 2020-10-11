@@ -1,0 +1,97 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.mars.gradle.plugin",
+    "module": "toolkit-ui-plugin",
+    "version": "0.6.16",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8-20200920220028+0000",
+      "buildId": "si2v5ewwu5earj6f5w23tqbexi"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "toolkit-ui-plugin-0.6.16.jar",
+          "url": "toolkit-ui-plugin-0.6.16.jar",
+          "size": 7431,
+          "sha512": "3372d667f85323f799a3e4485a96f7a8f5689c25bafbb5fe173e8144e79905476c7d779ef3192fe34a3f2b70922dcee72ac5e87dbb2d99a5173b308df87b8515",
+          "sha256": "ed44a532dfdcff5071ecb6af598aef34d819c5d4352ceecd8c182ad63a9dec42",
+          "sha1": "261d8fab162992275910e88c0679ae26696a6eaa",
+          "md5": "2dc281e9a7736cba110f78a7866a6872"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.10",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.3.9",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.mars.gradle.plugin",
+          "module": "toolkit",
+          "version": {
+            "requires": "0.6.3",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-ui-plugin-0.6.16.jar",
+          "url": "toolkit-ui-plugin-0.6.16.jar",
+          "size": 7431,
+          "sha512": "3372d667f85323f799a3e4485a96f7a8f5689c25bafbb5fe173e8144e79905476c7d779ef3192fe34a3f2b70922dcee72ac5e87dbb2d99a5173b308df87b8515",
+          "sha256": "ed44a532dfdcff5071ecb6af598aef34d819c5d4352ceecd8c182ad63a9dec42",
+          "sha1": "261d8fab162992275910e88c0679ae26696a6eaa",
+          "md5": "2dc281e9a7736cba110f78a7866a6872"
+        }
+      ]
+    }
+  ]
+}

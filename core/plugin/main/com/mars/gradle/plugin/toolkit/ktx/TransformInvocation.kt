@@ -45,7 +45,7 @@ val TransformInvocation.bootClasspath: Collection<File>
 
 val TransformInvocation.isDataBindingEnabled: Boolean
   get() = project.getAndroid<BaseExtension>().run {
-    buildFeatures.viewBinding ?: dataBinding.isEnabled
+    buildFeatures.viewBinding == true
   }
 
 /**

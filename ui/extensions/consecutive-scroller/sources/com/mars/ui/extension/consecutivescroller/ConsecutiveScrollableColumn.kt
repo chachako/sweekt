@@ -21,9 +21,9 @@ import com.mars.ui.core.Modifier
 import com.mars.ui.core.SpringEdgeEffect
 import com.mars.ui.core.unit.SizeUnit
 import com.mars.ui.core.unit.toIntPxOrNull
-import com.mars.ui.foundation.*
-import com.mars.ui.foundation.modifies.margin as _margin
-import com.mars.ui.foundation.modifies.marginVertical as _marginVertical
+import com.mars.ui.widget.*
+import com.mars.ui.widget.modifier.margin as _margin
+import com.mars.ui.widget.modifier.marginVertical as _marginVertical
 
 /*
  * author: 凛

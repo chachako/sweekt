@@ -1,0 +1,156 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.mars.gradle.plugin",
+    "module": "toolkit",
+    "version": "0.6.18",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8-20200920220028+0000",
+      "buildId": "i5zegbk6krcedjbwhg4muektnq"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.mars.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.6.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin",
+          "version": {
+            "requires": "1.4.10",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.10",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "4.2.0-alpha13"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-0.6.18.jar",
+          "url": "toolkit-0.6.18.jar",
+          "size": 329835,
+          "sha512": "48ffa82d9cb997912b8781116e5d6a7ed63b20deab96e765fd7c407958366b8b0248b91390309daad4ea0eb4fe8d924369d89e9b474d7e563a61c126b2c8752e",
+          "sha256": "1f0a68e3a85ea94e2a512cfc55722b0e073b4978580e0e9baacf83d56ea96cbf",
+          "sha1": "3c13cbf89253577dcc4cd9162f8edd51333a9109",
+          "md5": "ef5ed9e5218de0fc80c882fb5d16baee"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.dokka",
+          "module": "dokka-gradle-plugin",
+          "version": {
+            "requires": "1.4.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.dokka",
+          "module": "dokka-android-gradle-plugin",
+          "version": {
+            "requires": "0.9.18",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.jfrog.bintray.gradle",
+          "module": "gradle-bintray-plugin",
+          "version": {
+            "requires": "1.8.5",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "de.fayard.refreshVersions",
+          "module": "refreshVersions",
+          "version": {
+            "requires": "0.9.5",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.mars.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.6.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-0.6.18.jar",
+          "url": "toolkit-0.6.18.jar",
+          "size": 329835,
+          "sha512": "48ffa82d9cb997912b8781116e5d6a7ed63b20deab96e765fd7c407958366b8b0248b91390309daad4ea0eb4fe8d924369d89e9b474d7e563a61c126b2c8752e",
+          "sha256": "1f0a68e3a85ea94e2a512cfc55722b0e073b4978580e0e9baacf83d56ea96cbf",
+          "sha1": "3c13cbf89253577dcc4cd9162f8edd51333a9109",
+          "md5": "ef5ed9e5218de0fc80c882fb5d16baee"
+        }
+      ]
+    }
+  ]
+}

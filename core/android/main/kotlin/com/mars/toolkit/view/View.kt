@@ -1,13 +1,14 @@
 @file:Suppress(
   "UsePropertyAccessSyntax", "ConflictingExtensionProperty",
-  "UNCHECKED_CAST", "unused"
+  "unchecked_cast", "unused"
 )
 
 package com.mars.toolkit.view
 
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.graphics.Outline
 import android.view.View
 import android.view.ViewGroup
@@ -15,26 +16,22 @@ import android.view.ViewOutlineProvider
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.Px
+import androidx.core.graphics.applyCanvas
+import androidx.core.view.ViewCompat
 import androidx.core.view.allViews
 import androidx.core.view.doOnNextLayout
-import androidx.core.view.drawToBitmap
 import androidx.core.view.setMargins
-import com.mars.toolkit.NoGetter
+import com.mars.toolkit.*
 import com.mars.toolkit.content.asActivity
 import com.mars.toolkit.data.Coordinate
-import com.mars.toolkit.float
-import com.mars.toolkit.int
-import com.mars.toolkit.noGetter
+import com.mars.toolkit.graphics.createBitmap
 import com.mars.toolkit.util.generateViewId
 import com.mars.toolkit.widget.LayoutParams
 import com.mars.toolkit.widget.MarginLayoutParams
-import kotlin.math.max
+
 
 /** 安全获取 [View] 中的 [Activity] */
 inline val View.activity: Activity get() = context.asActivity
-
-/** 返回 [View] 的截图 */
-inline val View.bitmap get() = drawToBitmap()
 
 /** 返回视图的 Id, 如果没有则先使用 [assignId] 创建一个新的 Id */
 val View.idOrNew: Int
@@ -47,6 +44,11 @@ val View.parentView: ViewGroup get() = parent as ViewGroup
 
 /** 返回整个视图树，Same as [ViewGroup.allViews] */
 val View.tree: Sequence<View> get() = allViews
+
+/** 设置或返回当前 [View] 是否正在截图 */
+var View.isShooting: Boolean
+  set(value) = setTag(R.id.shooting, value)
+  get() = getTag(R.id.shooting) as? Boolean ?: false
 
 /** 修改 [View] 的高宽度 */
 inline var View.size: Number
@@ -238,7 +240,7 @@ val View.coordinate
  * 将当前视图平移到另一个视图
  * @param target 最终 [View] 的 [Coordinate] 将会与其相同
  */
-fun View.translationTo(target: View) = arrange {
+fun View.translationTo(target: View) = arranged {
   val start = coordinate
   val end = target.coordinate
   translationY = end.yFloat - start.yFloat
@@ -249,7 +251,7 @@ fun View.translationTo(target: View) = arrange {
  * 将当前视图的上下左右位置对齐到另一个视图
  * @param target 最终 [View] 的显示将会与其相同
  */
-fun View.coverTo(target: View) = arrange {
+fun View.coverTo(target: View) = arranged {
   left = target.left
   top = target.top
   bottom = target.bottom
@@ -260,7 +262,7 @@ fun View.coverTo(target: View) = arrange {
  * 将当前视图的 xy 轴改为另一个视图
  * @param target 最终 [View] 的 xy 轴将会与其相同
  */
-fun View.moveTo(target: View) = arrange {
+fun View.moveTo(target: View) = arranged {
   x = target.x
   y = target.y
 }
@@ -269,7 +271,7 @@ fun View.moveTo(target: View) = arrange {
  * 执行 [block] 前确保 View 已经至少进行过一次放置
  * @param block 安全的 View 代码块
  */
-inline fun <V : View> V.arrange(crossinline block: V.() -> Unit) = this.apply {
+inline fun <V : View> V.arranged(crossinline block: V.() -> Unit) = this.apply {
   if (isLaidOut) {
     block()
   } else {
@@ -281,6 +283,29 @@ inline fun <V : View> V.arrange(crossinline block: V.() -> Unit) = this.apply {
 fun View.resetOffset() {
   translationY = 0F
   translationX = 0F
+}
+
+/**
+ * 返回 [View] 的截图
+ * @param scale 1.0 为正常比例，数值越小则图像就会缩放的越小，反之越大
+ */
+fun View.toBitmap(
+  scale: Float = 1.0f,
+  config: Bitmap.Config = Bitmap.Config.ARGB_8888,
+): Bitmap {
+  if (!ViewCompat.isLaidOut(this)) {
+    throw IllegalStateException("View needs to be laid out before calling drawToBitmap()")
+  }
+  isShooting = true
+  val bitmap = createBitmap(width * scale, height * scale, config).applyCanvas {
+    if (scale != 1.0f) {
+      setMatrix(Matrix().apply { preScale(scale, scale) })
+    }
+    translate(-scrollX.toFloat(), -scrollY.toFloat())
+    draw(this)
+  }
+  isShooting = false
+  return bitmap
 }
 
 /** 显示 View */
@@ -300,36 +325,21 @@ fun View.gone() {
 
 /** 裁剪 [View] 的轮廓 */
 fun View.clipOutline(block: View.(Outline) -> Unit) {
-  clipToOutline = true
   outlineProvider = object : ViewOutlineProvider() {
     override fun getOutline(view: View?, outline: Outline?) {
       if (view == null || outline == null) return
       view.block(outline)
     }
   }
+  clipToOutline = true
 }
 
-/**
- * 为 View 设置一个好看的黑色阴影
- *
- * @param shadowValue 阴影大小（半径）
- * @param shadowAlpha 阴影的透明度
- * @param roundRadius 圆角半径，在一些圆角 View 上这会更好
- */
-fun View.elevation(shadowValue: Number, shadowAlpha: Number = 0.2f, roundRadius: Number = -1f) {
-  elevation = shadowValue.float
+/** 设置 [View.getElevation] 的轮廓 */
+fun View.setOutlineProvider(block: View.(Outline) -> Unit) {
   outlineProvider = object : ViewOutlineProvider() {
-    @TargetApi(21)
-    override fun getOutline(view: View, outline: Outline) {
-      if (view.width == 0 || view.height == 0) return
-      outline.apply {
-        alpha = shadowAlpha.float
-        if (roundRadius != -1f) {
-          setRoundRect(0, 0, view.width, max(1, view.height), roundRadius.float)
-        } else {
-          setRect(0, 0, view.width, max(1, view.height))
-        }
-      }
+    override fun getOutline(view: View?, outline: Outline?) {
+      if (view == null || outline == null) return
+      view.block(outline)
     }
   }
 }

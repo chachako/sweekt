@@ -2,14 +2,13 @@
 
 package com.mars.ui.core.graphics.shape
 
+import android.graphics.Path
+import android.graphics.RectF
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.CornerSize
-import com.mars.toolkit.float
+import com.mars.ui.core.graphics.createOutline
+import com.mars.ui.core.graphics.geometry.*
 import com.mars.ui.core.unit.SizeUnit
-import com.mars.ui.theme.Shapes
-import com.mars.ui.theme.Shapes.Companion.resolveShape
 
 /*
  * author: 凛
@@ -17,18 +16,50 @@ import com.mars.ui.theme.Shapes.Companion.resolveShape
  * github: https://github.com/oh-Rin
  * description: 四边为圆角的形状
  */
-data class RoundedCornerShape(
-  override val topLeft: CornerSize = ZeroCornerSize,
-  override val topRight: CornerSize = ZeroCornerSize,
-  override val bottomRight: CornerSize = ZeroCornerSize,
-  override val bottomLeft: CornerSize = ZeroCornerSize,
-) : CornerBasedShape {
-  /** [Shapes.resolveShape] */
-  override var id: Int = -1
-  override val family: Int = CornerFamily.ROUNDED
+open class RoundedCornerShape(
+  topLeft: CornerSize = ZeroCornerSize,
+  topRight: CornerSize = ZeroCornerSize,
+  bottomRight: CornerSize = ZeroCornerSize,
+  bottomLeft: CornerSize = ZeroCornerSize,
+) : CornerBasedShape(topLeft, topRight, bottomRight, bottomLeft) {
+  override fun getOutline(
+    bounds: RectF,
+    topLeft: Float,
+    topRight: Float,
+    bottomRight: Float,
+    bottomLeft: Float
+  ) = when {
+    topLeft + topRight + bottomLeft + bottomRight == 0f -> {
+      RectangleShape.getOutline(bounds, topLeft, topRight, bottomRight, bottomLeft)
+    }
+    else -> createOutline {
+      val roundRect = RoundRect(
+        rectF = bounds,
+        topLeft = topLeft.toRadius(),
+        topRight = topRight.toRadius(),
+        bottomRight = bottomRight.toRadius(),
+        bottomLeft = bottomLeft.toRadius()
+      )
+      if (roundRect.isSimple) {
+        setRoundRect(
+          roundRect.left,
+          roundRect.top,
+          roundRect.right,
+          roundRect.bottom,
+          topLeft
+        )
+      } else {
+        path = Path().apply { addRoundRect(roundRect) }
+      }
+    }
+  }
 
-  /** 创建一个副本并传入给定的 Id 值 */
-  override fun new(id: Int) = copy().also { it.id = id }
+  override fun copy(
+    topLeft: CornerSize,
+    topRight: CornerSize,
+    bottomRight: CornerSize,
+    bottomLeft: CornerSize
+  ): RoundedCornerShape = RoundedCornerShape(topLeft, topRight, bottomRight, bottomLeft)
 }
 
 /** 创建一个四个角大小相同的圆角矩形形状 */
@@ -43,7 +74,7 @@ fun RoundedCornerShape(size: CornerSize) = RoundedCornerShape(size, size, size, 
  * @param percent 角大小占控件大小的 1/x
  */
 fun RoundedCornerShape(@FloatRange(from = .0, to = 1.0) percent: Float) =
-  RoundedCornerShape(CornerPercent(percent))
+  RoundedCornerShape(CornerSize(percent = percent))
 
 /**
  * 创建一个以控件大小为单位
@@ -51,7 +82,7 @@ fun RoundedCornerShape(@FloatRange(from = .0, to = 1.0) percent: Float) =
  * @param percent 角大小占控件大小的百分之几
  */
 fun RoundedCornerShape(@IntRange(from = 0, to = 100) percent: Int) =
-  RoundedCornerShape(percent.float)
+  RoundedCornerShape(CornerSize(percent))
 
 /** 创建一个可单独定义每个角大小的圆角矩形形状 */
 fun RoundedCornerShape(
@@ -76,10 +107,10 @@ fun RoundedCornerShape(
   @IntRange(from = 0, to = 100) bottomRightPercent: Int = 0,
   @IntRange(from = 0, to = 100) bottomLeftPercent: Int = 0
 ) = RoundedCornerShape(
-  topLeftPercent = topLeftPercent.float,
-  topRightPercent = topRightPercent.float,
-  bottomRightPercent = bottomRightPercent.float,
-  bottomLeftPercent = bottomLeftPercent.float,
+  CornerSize(percent = topLeftPercent),
+  CornerSize(percent = topRightPercent),
+  CornerSize(percent = bottomRightPercent),
+  CornerSize(percent = bottomLeftPercent),
 )
 
 /**
@@ -92,14 +123,11 @@ fun RoundedCornerShape(
   @FloatRange(from = .0, to = 1.0) bottomRightPercent: Float = 0f,
   @FloatRange(from = .0, to = 1.0) bottomLeftPercent: Float = 0f
 ) = RoundedCornerShape(
-  CornerPercent(topLeftPercent),
-  CornerPercent(topRightPercent),
-  CornerPercent(bottomRightPercent),
-  CornerPercent(bottomLeftPercent),
+  CornerSize(percent = topLeftPercent),
+  CornerSize(percent = topRightPercent),
+  CornerSize(percent = bottomRightPercent),
+  CornerSize(percent = bottomLeftPercent),
 )
 
-/**
- * 横纵向完全圆的形状
- * 当四个角每个角各占控件大小的百分之五十时既是横纵向圆形的圆角
- */
-val CircleShape by lazy { RoundedCornerShape(percent = 50) }
+/** 定义一个所有角都是圆形的形状 */
+val CircleRoundedShape by lazy { RoundedCornerShape(percent = 50) }

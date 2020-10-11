@@ -225,8 +225,8 @@ fun LightColors(
   surface: Color = Color.White,
   /** 表示出错状态的颜色 */
   error: Color = Color(0xFFB00020),
-  /** 水波纹颜色，一般影响于可按压控件的按下时的涟漪 */
-  ripple: Color = Color(0xFF9965F4),
+  /** 水波纹颜色，一般影响于可按压控件在按下时的涟漪 */
+  ripple: Color = Color(0x66FFFFFF),
   /** 显示在 [primary] 颜色组件上的元素的颜色 */
   onPrimary: Color = Color.White,
   /** 显示在 [secondary] 颜色组件上的元素的颜色 */
@@ -280,8 +280,8 @@ fun DarkColors(
   surface: Color = Color(0xFF121212),
   /** 表示出错状态的颜色 */
   error: Color = Color(0xFFCF6679),
-  /** 水波纹颜色，一般影响于可按压控件的按下时的涟漪 */
-  ripple: Color = Color(0xFFCFABFD),
+  /** 水波纹颜色，一般影响于可按压控件在按下时的涟漪 */
+  ripple: Color = Color(0x40CCCCCC),
   /** 显示在 [primary] 颜色组件上的元素的颜色 */
   onPrimary: Color = Color.Black,
   /** 显示在 [secondary] 颜色组件上的元素的颜色 */
@@ -309,6 +309,34 @@ fun DarkColors(
   isLight = false
 )
 
+/**
+ * 返回一个与当前颜色 [color] 匹配的内容颜色
+ * 内容颜色应该是用于附加在当前颜色上的物件
+ */
+fun Ui.contentColorFor(color: Color, default: Color = Color.Unspecified): Color = currentColors.run {
+  when (color) {
+    primary -> onPrimary
+    primaryVariant -> onPrimary
+    secondary -> onSecondary
+    secondaryVariant -> onSecondary
+    background -> onBackground
+    surface -> onSurface
+    error -> onError
+    else -> default
+  }
+}
+
+/**
+ * 返回与当前颜色 [color] 匹配的变种颜色
+ */
+fun Ui.variantColorFor(color: Color, default: Color = Color.Unspecified): Color = currentColors.run {
+  when (color) {
+    primary -> primaryVariant
+    secondary -> secondaryVariant
+    background -> onBackground
+    else -> default
+  }
+}
 
 /** 返回当前 Ui 主题范围中的颜色库 */
 @PublishedApi internal inline val Ui.currentColors: Colors get() = currentTheme.colors

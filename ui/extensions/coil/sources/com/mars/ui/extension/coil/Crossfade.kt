@@ -16,7 +16,7 @@ import com.mars.ui.Ui
 import com.mars.ui.asLayout
 import com.mars.ui.core.Modifier
 import com.mars.ui.extension.coil.preview.defaultImageLoader
-import com.mars.ui.foundation.Image
+import com.mars.ui.widget.implement.Image
 
 @PublishedApi internal const val DefaultTransitionDuration = 1000
 

@@ -1,5 +1,6 @@
 package com.mars.gradle.plugin.toolkit.booster
 
+import com.mars.toolkit.existOrMkdir
 import com.mars.toolkit.existOrNewFile
 import com.mars.toolkit.okio.bufferedSource
 import com.mars.toolkit.okio.*
@@ -28,6 +29,7 @@ import java.util.zip.ZipInputStream
  * @param transformer The byte data transformer
  */
 fun File.transform(output: File, transformer: (ByteArray) -> ByteArray = { it -> it }) {
+  output.parentFile.existOrMkdir(force = true)
   when {
     isDirectory -> this.toURI().let { base ->
       this.subtree().toList().parallelStream().forEach {

@@ -8,6 +8,7 @@ import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.Project
+import org.gradle.api.initialization.Settings
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.get
@@ -22,6 +23,10 @@ fun Project.setupRepositories(
   withMarsRepo: Boolean = false
 ) {
   repositories.apply {
+    val projectRepoDir = rootDir.resolve(".repo")
+    if (projectRepoDir.exists()) {
+      maven(projectRepoDir.absolutePath)
+    }
     google()
     jcenter()
     mavenCentral()
@@ -32,6 +37,16 @@ fun Project.setupRepositories(
   }
 }
 
+/** 设置主项目与所有项目的通用储存库 */
+fun Settings.setupRepositories(
+  withSnapshots: Boolean = true,
+  withKotlinEap: Boolean = false,
+  withMarsRepo: Boolean = false
+) {
+  gradle.allprojects {
+    setupRepositories(withSnapshots, withKotlinEap, withMarsRepo)
+  }
+}
 
 /**
  * 使用共享的通用配置来设置 Android 项目

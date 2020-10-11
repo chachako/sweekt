@@ -1,60 +1,23 @@
-@file:Suppress(
-  "FunctionName", "NestedLambdaShadowedImplicitParameter",
-  "MemberVisibilityCanBePrivate"
-)
+@file:Suppress("FunctionName")
 
 package com.mars.ui.extension.tab
 
-import android.content.Context
 import android.graphics.Paint
 import androidx.viewpager2.widget.ViewPager2
-import com.mars.toolkit.widget.LinearLayoutParams
 import com.mars.ui.Ui
 import com.mars.ui.core.CrossAxisAlignment
 import com.mars.ui.core.LayoutSize
 import com.mars.ui.core.Modifier
 import com.mars.ui.core.graphics.Color
 import com.mars.ui.core.graphics.gradient.LinearGradient
-import com.mars.ui.core.unit.Px
 import com.mars.ui.core.unit.SizeUnit
 import com.mars.ui.core.unit.useOrElse
-import com.mars.ui.extension.pager.Pager
-import com.mars.ui.extension.tab.impl.TabBar
-import com.mars.ui.extension.tab.impl.TabIndicator
-import com.mars.ui.extension.tab.impl.TabIndicatorRenderer
-import com.mars.ui.foundation.Spacer
-import com.mars.ui.foundation.With
+import com.mars.ui.extension.tab.implement.PageIndicator
+import com.mars.ui.extension.tab.implement.TabBar
+import com.mars.ui.extension.tab.implement.TabIndicator
+import com.mars.ui.extension.tab.implement.TabIndicatorRenderer
+import com.mars.ui.widget.With
 import com.mars.ui.theme.currentColors
-
-
-/*
- * author: 凛
- * date: 2020/8/19 9:10 PM
- * github: https://github.com/oh-Rin
- * description: 分页指示器，实现原理是直接基于标签且不显示 Tab 与 Divider
- */
-class PageIndicator(context: Context) : TabBar(context) {
-  val indicator get() = context.scope.indicatorCreator(0)
-
-  override var pager: Pager? = super.pager
-    set(value) {
-      field = value
-      field?.fakeTabs()
-      super.pager = value
-    }
-
-  private fun Pager.fakeTabs() {
-    // 为每个新增的页添加假标签
-    val new = (adapter?.itemCount ?: 0) - tabCount
-    repeat(new) { fakeTab() }
-  }
-
-  @PublishedApi internal fun fakeTab() = Spacer(width = indicator.width, height = Px.Zero).also {
-    if (indicator.width == LayoutSize.Match) {
-      it.layoutParams = LinearLayoutParams { weight = 1f }
-    }
-  }
-}
 
 
 /**
