@@ -184,11 +184,11 @@ var View.padding: Int
 
 var View.horizontalPadding: Int
   @Deprecated(NoGetter, level = DeprecationLevel.HIDDEN) get() = noGetter
-  set(@Px value) = setPadding(paddingLeft, value, paddingRight, value)
+  set(@Px value) = setPadding(value, paddingTop, value, paddingBottom)
 
 var View.verticalPadding: Int
   @Deprecated(NoGetter, level = DeprecationLevel.HIDDEN) get() = noGetter
-  set(@Px value) = setPadding(value, paddingTop, value, paddingBottom)
+  set(@Px value) = setPadding(paddingLeft, value, paddingRight, value)
 
 var View.paddingTop: Int
   get() = getPaddingTop()
