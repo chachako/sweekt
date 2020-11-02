@@ -345,7 +345,11 @@ fun View.setOutlineProvider(block: View.(Outline) -> Unit) {
 }
 
 /** 从 [View] 父布局上删除自身 */
-fun View.removeFromParent() = parentView.removeView(this)
+fun View?.removeFromParent() {
+  this ?: return
+  val parentView = parent as? ViewGroup ?: return
+  parentView.removeView(this)
+}
 
 /** 获取父布局并转换为 [Type] */
 fun <Type : View?> View.parent() = parent as Type
