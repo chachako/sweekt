@@ -1,6 +1,4 @@
-# Toolkit ![Bintray](https://img.shields.io/bintray/v/oh-rin/Mars/gradle-toolkit?color=B87CEF)
-
-一套由各式各样且功能强大的小工具（Gradle-Plugin、UI-Kit、Ktx 等...）组成的工具包，皆在帮助 Kotlin 开发者快速完成开发，减少代码繁琐性。
+# Toolkit [ 🚧 Work in progress ⛏👷🔧️ 🚧 ]  ![Bintray](https://img.shields.io/bintray/v/oh-rin/Mars/gradle-toolkit?color=B87CEF)
 
 # TODO 建设文档与每个小工具的对应示例项目
 
