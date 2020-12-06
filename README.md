@@ -1,6 +1,5 @@
 # Toolkit [ 🚧 Work in progress ⛏👷🔧️ 🚧 ]  ![Bintray](https://img.shields.io/bintray/v/oh-rin/Mars/gradle-toolkit?color=B87CEF)
 
-# TODO 建设文档与每个小工具的对应示例项目
 
 **已开源依赖**：
 
