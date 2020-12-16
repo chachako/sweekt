@@ -2,21 +2,21 @@ package com.rin.ui.samples.transition
 
 import android.content.Context
 import android.util.AttributeSet
-import com.mars.ui.UIBody
-import com.mars.ui.UiPreview
-import com.mars.ui.core.Alignment
-import com.mars.ui.core.Modifier
-import com.mars.ui.core.graphics.Color
-import com.mars.ui.currentTheme
-import com.mars.ui.skeleton.Skeleton
-import com.mars.ui.widget.Text
-import com.mars.ui.widget.modifier.background
+import com.meowbase.ui.UIBody
+import com.meowbase.ui.UiPreview
+import com.meowbase.ui.core.Alignment
+import com.meowbase.ui.core.Modifier
+import com.meowbase.ui.core.graphics.Color
+import com.meowbase.ui.currentTheme
+import com.meowbase.ui.skeleton.Skeleton
+import com.meowbase.ui.widget.Text
+import com.meowbase.ui.widget.modifier.background
 
 /**
  * 通用的动画骨架
  *
  * @author 凛
- * @github https://github.com/oh-Rin
+ * @github https://github.com/RinOrz
  * @date 2020/10/11 - 22:54
  */
 class AnimationSkeleton(transitionName: String?) : Skeleton() {

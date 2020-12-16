@@ -1,8 +1,8 @@
-@file:OptIn(InternalMarsProjectApi::class)
+@file:OptIn(InternalMeowbaseApi::class)
 
 plugins { kotlin; `java-gradle-plugin` }
 
-createMarsPlugin("uikit")
+createMeowbasePlugin("uikit")
 
 sourceSets.main.java.srcDirs("main")
 
@@ -11,11 +11,11 @@ dependencies {
   implementationOf(
     Kotlin.stdlib.jdk8,
     KotlinX.coroutines.core,
-    Mars.toolkit.core.plugin
+    Meowbase.toolkit.core.plugin
   )
 }
 
 publishToBintray(
   artifact = "toolkit-ui-plugin",
-  group = "com.mars.gradle.plugin"
+  group = "com.meowbase.gradle.plugin"
 )

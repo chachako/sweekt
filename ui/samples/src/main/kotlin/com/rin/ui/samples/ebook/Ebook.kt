@@ -1,16 +1,16 @@
 package com.rin.ui.samples.ebook
 
-import com.mars.toolkit.graphics.loadTypeface
-import com.mars.ui.Theme
-import com.mars.ui.core.graphics.Color
-import com.mars.ui.core.graphics.material.BlurMaterial
-import com.mars.ui.core.graphics.shape.RoundedCornerShape
-import com.mars.ui.core.graphics.shape.SmoothCornerShape
-import com.mars.ui.core.unit.dp
-import com.mars.ui.core.unit.sp
-import com.mars.ui.skeleton.Skeleton
-import com.mars.ui.theme.*
-import com.mars.ui.widget.style.TextStyle
+import com.meowbase.toolkit.graphics.loadTypeface
+import com.meowbase.ui.Theme
+import com.meowbase.ui.core.graphics.Color
+import com.meowbase.ui.core.graphics.material.BlurMaterial
+import com.meowbase.ui.core.graphics.shape.RoundedCornerShape
+import com.meowbase.ui.core.graphics.shape.SmoothCornerShape
+import com.meowbase.ui.core.unit.dp
+import com.meowbase.ui.core.unit.sp
+import com.meowbase.ui.skeleton.Skeleton
+import com.meowbase.ui.theme.*
+import com.meowbase.ui.widget.style.TextStyle
 import com.rin.ui.samples.base.Sample
 import com.rin.ui.samples.ebook.data.Fonts
 import com.rin.ui.samples.ebook.skeleton.HomeSkeleton
@@ -20,7 +20,7 @@ import com.rin.ui.samples.ebook.skeleton.HomeSkeleton
  * [Design](https://dribbble.com/shots/10682895-FREE-Ebooks-APP)
  *
  * @author 凛
- * @github https://github.com/oh-Rin
+ * @github https://github.com/RinOrz
  * @date 2020/10/11 - 23:32
  */
 class Ebook : Sample {

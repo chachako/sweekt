@@ -1,0 +1,139 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.library",
+    "module": "toolkit-ktcompiler",
+    "version": "0.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "ojpkdvttkjbf5ombukej553jau"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-compiler-embeddable",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "2.9.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-ktcompiler-0.1.2.jar",
+          "url": "toolkit-ktcompiler-0.1.2.jar",
+          "size": 14509,
+          "sha512": "a234e1f5f569f87f31c4111519963d861590a3028c98be5225d0c35c3c6770891131a546f23abb243d72ba5f5ee55adba43899ac921dac31268d1c59b4467a8f",
+          "sha256": "effce2a458883f364566f2dde51528e08ad703dafa0a2ca7939295f21e4e0be9",
+          "sha1": "2ef32637f54809aef417668bf7d83f28d10a9642",
+          "md5": "7b3355e6486267f432ccd69467b057e3"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-jdk8",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-compiler-embeddable",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "2.9.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-ktcompiler-0.1.2.jar",
+          "url": "toolkit-ktcompiler-0.1.2.jar",
+          "size": 14509,
+          "sha512": "a234e1f5f569f87f31c4111519963d861590a3028c98be5225d0c35c3c6770891131a546f23abb243d72ba5f5ee55adba43899ac921dac31268d1c59b4467a8f",
+          "sha256": "effce2a458883f364566f2dde51528e08ad703dafa0a2ca7939295f21e4e0be9",
+          "sha1": "2ef32637f54809aef417668bf7d83f28d10a9642",
+          "md5": "7b3355e6486267f432ccd69467b057e3"
+        }
+      ]
+    }
+  ]
+}

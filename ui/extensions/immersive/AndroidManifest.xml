@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mars.ui.extensions.immersive">
+    package="com.meowbase.ui.extensions.immersive">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 </manifest>

@@ -2,7 +2,16 @@
   "UNCHECKED_CAST", "GradleDynamicVersion", "UnstableApiUsage",
   "SpellCheckingInspection", "SafeCastWithReturn",
   "NestedLambdaShadowedImplicitParameter"
-) OptIn(InternalMarsProjectApi::class)]
+) OptIn(InternalMeowbaseApi::class)]
+
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+    jcenter()
+    google()
+    maven(rootDir.resolve(".repo").absolutePath)
+  }
+}
 
 buildscript {
   // parse versions.properties file and collect to Map<String, String>
@@ -20,22 +29,22 @@ buildscript {
     jcenter()
     google()
     maven("https://dl.bintray.com/oh-rin/Mars/")
-    maven("https://dl.bintray.com/kotlin/kotlin-eap/")
+    maven("https://dl.bintray.com/oh-rin/meowbase")
     maven(rootDir.resolve(".repo").absolutePath)
   }
 
   listOf(
-    "com.mars.gradle.plugin:toolkit:0.6.18",
-    "com.mars.gradle.plugin:toolkit-ui-plugin:0.6.18",
+    "com.meowbase.gradle.plugin:toolkit:0.1.4",
+    "com.meowbase.gradle.plugin:toolkit-ui-plugin:0.1.4",
     "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5",
-    "de.fayard.refreshVersions:refreshVersions:0.9.5",
+    dep("de.fayard.refreshVersions", "refreshVersions"),
     dep("org.jetbrains.kotlin", "kotlin-gradle-plugin"),
     dep("com.android.tools.build", "gradle")
   ).forEach { dependencies.classpath(it) }
 }
 
-setupMarsToolkit {
-  shareMarsAndroidConfig {
+setupMeowbaseToolkit {
+  shareMeowbaseAndroidConfig {
     compileSdkVersion = 30
     targetSdkVersion = 30
     minSdkVersion = 21
@@ -64,7 +73,8 @@ setupMarsToolkit {
   shareDependencies("kotlin") {
     implementationOf(
       Kotlin.stdlib.jdk8,
-      KotlinX.coroutines.core
+      KotlinX.coroutines.core,
+      KotlinX.coroutines.jdk8
     )
     testImplementationOf(
       Testing.junit4

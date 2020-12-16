@@ -1,0 +1,156 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.gradle.plugin",
+    "module": "toolkit",
+    "version": "0.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "ojpkdvttkjbf5ombukej553jau"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "de.fayard.refreshVersions",
+          "module": "refreshVersions",
+          "version": {
+            "requires": "0.9.7",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "4.2.0-alpha16"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-0.1.2.jar",
+          "url": "toolkit-0.1.2.jar",
+          "size": 331631,
+          "sha512": "cded4fac9f2e272ada045c3b5fea837d154ed6137fcfd7ca835949ae14a5b0a248f43b2e83dc0ac40d98c1f9ebc7cb2f09830d150c65773f7649c964d6be1129",
+          "sha256": "51fee78764002189612a966c2b1b588ec865ac314656d4090e9d89d5dfbb8399",
+          "sha1": "b6ffb08777950fa9a57937775d1654456416add1",
+          "md5": "94904a9601b569a404426c82d2edfb44"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.dokka",
+          "module": "dokka-gradle-plugin",
+          "version": {
+            "requires": "1.4.10.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.dokka",
+          "module": "dokka-android-gradle-plugin",
+          "version": {
+            "requires": "0.9.18",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.jfrog.bintray.gradle",
+          "module": "gradle-bintray-plugin",
+          "version": {
+            "requires": "1.8.5",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-0.1.2.jar",
+          "url": "toolkit-0.1.2.jar",
+          "size": 331631,
+          "sha512": "cded4fac9f2e272ada045c3b5fea837d154ed6137fcfd7ca835949ae14a5b0a248f43b2e83dc0ac40d98c1f9ebc7cb2f09830d150c65773f7649c964d6be1129",
+          "sha256": "51fee78764002189612a966c2b1b588ec865ac314656d4090e9d89d5dfbb8399",
+          "sha1": "b6ffb08777950fa9a57937775d1654456416add1",
+          "md5": "94904a9601b569a404426c82d2edfb44"
+        }
+      ]
+    }
+  ]
+}

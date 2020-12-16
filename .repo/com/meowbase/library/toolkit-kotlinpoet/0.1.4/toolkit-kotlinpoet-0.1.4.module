@@ -1,0 +1,139 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.library",
+    "module": "toolkit-kotlinpoet",
+    "version": "0.1.4",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "qtllxgnyqzc5hbl5s2jokcarsy"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup",
+          "module": "kotlinpoet",
+          "version": {
+            "requires": "1.7.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-kotlinpoet-0.1.4.jar",
+          "url": "toolkit-kotlinpoet-0.1.4.jar",
+          "size": 195081,
+          "sha512": "74a109e7a256af0a60afc794c702d1af629817584273ffe57a9f7c14606bcd32a5fd27c0cd0184e36a843e927da5dac37417fa8d322038d41273790e690f3af3",
+          "sha256": "e0300bbb481453fd01b5483136a2d34a0b52e6fffab77bdbfc0d3b694327fdff",
+          "sha1": "6dd6f33856325f367809800995b4dd6ea947083a",
+          "md5": "594c40df335407e2a529dc006a69801a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-jdk8",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup",
+          "module": "kotlinpoet",
+          "version": {
+            "requires": "1.7.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-kotlinpoet-0.1.4.jar",
+          "url": "toolkit-kotlinpoet-0.1.4.jar",
+          "size": 195081,
+          "sha512": "74a109e7a256af0a60afc794c702d1af629817584273ffe57a9f7c14606bcd32a5fd27c0cd0184e36a843e927da5dac37417fa8d322038d41273790e690f3af3",
+          "sha256": "e0300bbb481453fd01b5483136a2d34a0b52e6fffab77bdbfc0d3b694327fdff",
+          "sha1": "6dd6f33856325f367809800995b4dd6ea947083a",
+          "md5": "594c40df335407e2a529dc006a69801a"
+        }
+      ]
+    }
+  ]
+}

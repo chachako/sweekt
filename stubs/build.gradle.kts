@@ -11,6 +11,7 @@ android {
 dependencies {
   importSharedDependencies(this)
   importLibs("api", this)
+  implementation(AndroidX.annotation)
 }
 
 publishToBintray(artifact = "toolkit-stubs")

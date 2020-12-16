@@ -1,7 +1,7 @@
 package com.rin.ui.samples
 
 import android.app.Application
-import com.mars.toolkit.other.Logger
+import com.meowbase.toolkit.other.Logger
 import com.rin.ui.samples.base.Sample
 import com.rin.ui.samples.ebook.Ebook
 import org.koin.android.ext.koin.androidContext
@@ -9,7 +9,7 @@ import org.koin.core.context.startKoin
 
 /**
  * @author 凛
- * @github https://github.com/oh-Rin
+ * @github https://github.com/RinOrz
  * @date 2020/9/12 下午5:25
  */
 class Application : Application() {

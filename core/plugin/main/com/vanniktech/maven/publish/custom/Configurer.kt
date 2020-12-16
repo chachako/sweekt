@@ -7,11 +7,11 @@ internal interface Configurer {
    */
   fun configureTarget(target: MavenPublishTarget)
 
-  fun configureKotlinMppProject()
+  fun configureKotlinMppProject(withDoc: Boolean)
 
-  fun configureGradlePluginProject()
+  fun configureGradlePluginProject(withDoc: Boolean)
 
-  fun configureAndroidArtifacts()
+  fun configureAndroidArtifacts(withDoc: Boolean)
 
   fun configureJavaArtifacts(withDoc: Boolean)
 }

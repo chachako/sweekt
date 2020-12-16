@@ -5,25 +5,25 @@ package com.rin.ui.samples.ebook.skeleton
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
-import com.mars.toolkit.lifecycle.mutableLiveDataOf
-import com.mars.ui.Theme
-import com.mars.ui.Ui
-import com.mars.ui.UIBody
-import com.mars.ui.UiPreview
-import com.mars.ui.core.CrossAxisAlignment
-import com.mars.ui.core.Modifier
-import com.mars.ui.core.unit.dp
-import com.mars.ui.widget.*
-import com.mars.ui.widget.modifier.*
-import com.mars.ui.skeleton.Skeleton
-import com.mars.ui.widget.implement.Text
+import com.meowbase.toolkit.lifecycle.mutableLiveDataOf
+import com.meowbase.ui.Theme
+import com.meowbase.ui.Ui
+import com.meowbase.ui.UIBody
+import com.meowbase.ui.UiPreview
+import com.meowbase.ui.core.CrossAxisAlignment
+import com.meowbase.ui.core.Modifier
+import com.meowbase.ui.core.unit.dp
+import com.meowbase.ui.widget.*
+import com.meowbase.ui.widget.modifier.*
+import com.meowbase.ui.skeleton.Skeleton
+import com.meowbase.ui.widget.implement.Text
 import com.rin.ui.samples.ebook.Ebook
 
 /**
  * 主界面骨架
  *
  * @author 凛
- * @github https://github.com/oh-Rin
+ * @github https://github.com/RinOrz
  * @date 2020/10/11 - 23:32
  */
 class HomeSkeleton : Skeleton() {

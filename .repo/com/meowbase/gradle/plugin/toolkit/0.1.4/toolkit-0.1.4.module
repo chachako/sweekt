@@ -1,0 +1,220 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.gradle.plugin",
+    "module": "toolkit",
+    "version": "0.1.4",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8-rc-1",
+      "buildId": "5wxjfdrgizfoddpvdcm35oeiuy"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm-commons",
+          "version": {
+            "requires": "9.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "de.fayard.refreshVersions",
+          "module": "refreshVersions",
+          "version": {
+            "requires": "0.9.7",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-0.1.4.jar",
+          "url": "toolkit-0.1.4.jar",
+          "size": 331735,
+          "sha512": "4d7551ce8bf2e0b8a5b7fbbcadb6a54608d0405855bce3b94319dd1794c36edbafe66a4195420b72c25542cf9f052148022b23350d7986a08093c0d3477e87ab",
+          "sha256": "e8a8a85c226ac744f03905f65320ba963e9b21bf8d18851ceab17133b9788e9e",
+          "sha1": "27c90791f6f04c6ad6794e8f9322c8b0f0e7732e",
+          "md5": "a6606071d582ddb658f3c01764e865d5"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.dokka",
+          "module": "dokka-gradle-plugin",
+          "version": {
+            "requires": "1.4.10.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.dokka",
+          "module": "dokka-android-gradle-plugin",
+          "version": {
+            "requires": "0.9.18",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.jfrog.bintray.gradle",
+          "module": "gradle-bintray-plugin",
+          "version": {
+            "requires": "1.8.5",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.jakewharton.android.repackaged",
+          "module": "dalvik-dx",
+          "version": {
+            "requires": "11.0.0_r3",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "requires": "30.0-jre",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.apache.commons",
+          "module": "commons-compress",
+          "version": {
+            "requires": "1.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "7.0.0-alpha03"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "builder",
+          "version": {
+            "requires": "7.0.0-alpha03"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "builder-model",
+          "version": {
+            "requires": "7.0.0-alpha03"
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.ow2.asm",
+          "module": "asm-commons",
+          "version": {
+            "requires": "9.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-0.1.4.jar",
+          "url": "toolkit-0.1.4.jar",
+          "size": 331735,
+          "sha512": "4d7551ce8bf2e0b8a5b7fbbcadb6a54608d0405855bce3b94319dd1794c36edbafe66a4195420b72c25542cf9f052148022b23350d7986a08093c0d3477e87ab",
+          "sha256": "e8a8a85c226ac744f03905f65320ba963e9b21bf8d18851ceab17133b9788e9e",
+          "sha1": "27c90791f6f04c6ad6794e8f9322c8b0f0e7732e",
+          "md5": "a6606071d582ddb658f3c01764e865d5"
+        }
+      ]
+    }
+  ]
+}

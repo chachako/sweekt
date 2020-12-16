@@ -1,14 +1,9 @@
 plugins {
   android; `kotlin-android`; `kotlin-android-extensions`
-  id("com.mars.gradle.plugin.uikit")
+  id("com.meowbase.gradle.plugin.uikit")
 }
 
-android {
-  setupAndroidWithShares("com.rin.ui.samples")
-  packagingOptions {
-    pickFirst("META-INF/jvm.kotlin_module")
-  }
-}
+android { setupAndroidWithShares("com.rin.ui.samples") }
 
 dependencies {
   importSharedDependencies(this)

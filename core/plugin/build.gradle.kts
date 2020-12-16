@@ -1,4 +1,4 @@
-@file:OptIn(InternalMarsProjectApi::class)
+@file:OptIn(InternalMeowbaseApi::class)
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
@@ -6,36 +6,45 @@ plugins {
   id("org.gradle.kotlin.kotlin-dsl")
 }
 
-createMarsPlugin("toolkit")
+createMeowbasePlugin("toolkit")
 
 sourceSets { main.java.srcDirs("main") }
 
 repositories { gradlePluginPortal() }
 
 dependencies {
+  val agp = VersionsProperties.properties["version.com.android.tools.build..gradle"]
   compileOnlyApiOf(
     gradleKotlinDsl(),
     "org.jetbrains.kotlin:kotlin-gradle-plugin:_",
     "org.jetbrains.kotlin:kotlin-stdlib-jdk8:_",
-    VersionsProperties.resolveDependency("com.android.tools.build", "gradle")
+    "de.fayard.refreshVersions:refreshVersions:_"
   )
   implementationOf(
     "org.jetbrains.dokka:dokka-gradle-plugin:_",
     "org.jetbrains.dokka:dokka-android-gradle-plugin:_",
     "com.jfrog.bintray.gradle:gradle-bintray-plugin:_",
-    "de.fayard.refreshVersions:refreshVersions:_"
+    "com.jakewharton.android.repackaged:dalvik-dx:_",
+    "com.google.guava:guava:_",
+    "org.apache.commons:commons-compress:_",
+    "com.android.tools.build:gradle:$agp",
+    "com.android.tools.build:builder:$agp",
+    "com.android.tools.build:builder-model:$agp"
   )
-  apiOf(Mars.toolkit.core.jvm)
+  apiOf(
+    Meowbase.toolkit.core.jvm,
+    Deps.asm.commons
+  )
 }
 
 publishToBintray(
-  group = "com.mars.gradle.plugin",
+  group = "com.meowbase.gradle.plugin",
   artifact = "toolkit",
   packageName = "gradle-toolkit"
 )
 
 tasks.compileKotlin {
   kotlinOptions {
-    freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-kotlin-package")
+    freeCompilerArgs = freeCompilerArgs + "-Xallow-kotlin-package"
   }
 }

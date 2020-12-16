@@ -7,7 +7,7 @@ part 'mmkv.dart';
 
 part 'system.dart';
 
-const _kChannel = const MethodChannel('mars.flutter.plugins/flupref');
+const _kChannel = const MethodChannel('meowbase.flutter.plugins/flupref');
 
 abstract class FluprefModel {
   static const _KEY = 'key';

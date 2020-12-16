@@ -1,4 +1,4 @@
-@file:OptIn(InternalMarsProjectApi::class)
+@file:OptIn(InternalMeowbaseApi::class)
 
 plugins { `android-library`; `kotlin-android`; `kotlin-kapt` }
 

@@ -4,28 +4,28 @@ import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
 import androidx.core.view.WindowCompat
-import com.mars.toolkit.that
-import com.mars.ui.UIBody
-import com.mars.ui.Ui
-import com.mars.ui.UiPreview
-import com.mars.ui.animation.core.MotionDirection
-import com.mars.ui.core.CrossAxisAlignment
-import com.mars.ui.core.Modifier
-import com.mars.ui.core.graphics.Color
-import com.mars.ui.core.unit.dp
-import com.mars.ui.skeleton.Skeleton
-import com.mars.ui.skeleton.animation.SkeletonTransition
-import com.mars.ui.widget.Button
-import com.mars.ui.widget.ScrollableColumn
-import com.mars.ui.widget.modifier.background
-import com.mars.ui.widget.modifier.margin
-import com.mars.ui.widget.modifier.safeArea
+import com.meowbase.toolkit.that
+import com.meowbase.ui.UIBody
+import com.meowbase.ui.Ui
+import com.meowbase.ui.UiPreview
+import com.meowbase.ui.animation.core.MotionDirection
+import com.meowbase.ui.core.CrossAxisAlignment
+import com.meowbase.ui.core.Modifier
+import com.meowbase.ui.core.graphics.Color
+import com.meowbase.ui.core.unit.dp
+import com.meowbase.ui.skeleton.Skeleton
+import com.meowbase.ui.skeleton.animation.SkeletonTransition
+import com.meowbase.ui.widget.Button
+import com.meowbase.ui.widget.ScrollableColumn
+import com.meowbase.ui.widget.modifier.background
+import com.meowbase.ui.widget.modifier.margin
+import com.meowbase.ui.widget.modifier.safeArea
 
 /**
  * [Skeleton] 转场动画案例
  *
  * @author 凛
- * @github https://github.com/oh-Rin
+ * @github https://github.com/RinOrz
  * @date 2020/10/10 - 12:41
  */
 class TransitionsSkeleton : Skeleton() {

@@ -1,0 +1,127 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.gradle.plugin",
+    "module": "toolkit-preference-plugin",
+    "version": "0.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "ojpkdvttkjbf5ombukej553jau"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-ktcompiler",
+          "version": {
+            "requires": "0.1.2"
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-preference-plugin-0.1.2.jar",
+          "url": "toolkit-preference-plugin-0.1.2.jar",
+          "size": 20953,
+          "sha512": "fd11947ec16b0a72f3331ffaeb9bc0e73d5b43d78ffbf3d2fb22b0d1b3888a2c4012bef05ac9c254c016d27f9c6cf5803c08dbb3b60bf894772bd1f742583bd2",
+          "sha256": "ccba91144a8eaf06c3d8620ce4c0fe5e50ef1a99a5bf129d334fedd5160ae834",
+          "sha1": "8cf4e7b947c92f70cf5ef30cc4e69f5f7dba4a41",
+          "md5": "dd2a094919e6c5b60af7c3721ed03b18"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowbase.gradle.plugin",
+          "module": "toolkit",
+          "version": {
+            "requires": "0.1.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-ktcompiler",
+          "version": {
+            "requires": "0.1.2"
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-preference-plugin-0.1.2.jar",
+          "url": "toolkit-preference-plugin-0.1.2.jar",
+          "size": 20953,
+          "sha512": "fd11947ec16b0a72f3331ffaeb9bc0e73d5b43d78ffbf3d2fb22b0d1b3888a2c4012bef05ac9c254c016d27f9c6cf5803c08dbb3b60bf894772bd1f742583bd2",
+          "sha256": "ccba91144a8eaf06c3d8620ce4c0fe5e50ef1a99a5bf129d334fedd5160ae834",
+          "sha1": "8cf4e7b947c92f70cf5ef30cc4e69f5f7dba4a41",
+          "md5": "dd2a094919e6c5b60af7c3721ed03b18"
+        }
+      ]
+    }
+  ]
+}

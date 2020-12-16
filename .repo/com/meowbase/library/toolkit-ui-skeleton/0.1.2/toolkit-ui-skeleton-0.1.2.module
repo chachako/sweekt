@@ -1,0 +1,191 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.library",
+    "module": "toolkit-ui-skeleton",
+    "version": "0.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7.1",
+      "buildId": "ojpkdvttkjbf5ombukej553jau"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-ui",
+          "version": {
+            "requires": "0.1.2"
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-ui-animation",
+          "version": {
+            "requires": "0.1.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-ui-skeleton-0.1.2.aar",
+          "url": "toolkit-ui-skeleton-0.1.2.aar",
+          "size": 67031,
+          "sha512": "59eda2b33e662ff54ac2ed7a69120f6f9fb6706ccdaa8e8ab175e32731933be6502e29618178f0bd1ea05298363d5cd5912e47f1ce3c93fe7cd8711db4cc135b",
+          "sha256": "3cd669adad72b7fd4a55d40fae89ea3b42cd054975291d633639eaec8a7c6588",
+          "sha1": "eeb2891eec3972f263bddb07a068eafd31b0776f",
+          "md5": "df6eda1eb5e3bd2cdcbc8b3003530d1d"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-ui",
+          "version": {
+            "requires": "0.1.2"
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-ui-animation",
+          "version": {
+            "requires": "0.1.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.3.0-alpha02",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.5.0-alpha05",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.5.0-alpha05",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-common-java8",
+          "version": {
+            "requires": "2.3.0-beta01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-runtime-ktx",
+          "version": {
+            "requires": "2.3.0-beta01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.3.0-beta01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-livedata-core-ktx",
+          "version": {
+            "requires": "2.3.0-beta01",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-ui-skeleton-0.1.2.aar",
+          "url": "toolkit-ui-skeleton-0.1.2.aar",
+          "size": 67031,
+          "sha512": "59eda2b33e662ff54ac2ed7a69120f6f9fb6706ccdaa8e8ab175e32731933be6502e29618178f0bd1ea05298363d5cd5912e47f1ce3c93fe7cd8711db4cc135b",
+          "sha256": "3cd669adad72b7fd4a55d40fae89ea3b42cd054975291d633639eaec8a7c6588",
+          "sha1": "eeb2891eec3972f263bddb07a068eafd31b0776f",
+          "md5": "df6eda1eb5e3bd2cdcbc8b3003530d1d"
+        }
+      ]
+    }
+  ]
+}

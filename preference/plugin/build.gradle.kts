@@ -15,12 +15,12 @@ dependencies {
   implementationOf(
     Kotlin.stdlib.jdk8,
     KotlinX.coroutines.core,
-    Mars.toolkit.core.plugin
+    Meowbase.toolkit.core.plugin
   )
   testImplementationOf(Testing.junit4)
 }
 
 publishToBintray(
   artifact = "toolkit-preference-plugin",
-  group = "com.mars.gradle.plugin"
+  group = "com.meowbase.gradle.plugin"
 )
