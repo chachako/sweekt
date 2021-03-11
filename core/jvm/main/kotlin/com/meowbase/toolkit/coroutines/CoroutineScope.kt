@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2021. Rin Orz (凛)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ *
+ * Github home page: https://github.com/RinOrz
+ */
+
 @file:Suppress("DeferredIsResult", "unused")
 
 package com.meowbase.toolkit.coroutines
@@ -18,7 +35,7 @@ fun CoroutineScope.launchUI(
 
 /**
  * 使用 [Dispatchers.Default] 调度来启动协程
- * NOTE: 适合在主线程之外执行占用大量 CPU 资源的工作，例如对列表排序和解析 JSON等
+ * NOTE: 适合在主线程之外执行占用大量 CPU 资源的工作，例如对列表排序和解析 JSON 等
  * @see launch
  */
 fun CoroutineScope.launchDefault(
@@ -50,7 +67,7 @@ fun <T> CoroutineScope.asyncUI(
 
 /**
  * 使用 [Dispatchers.Default] 调度来创建一个异步程序
- * NOTE: 适合在主线程之外执行占用大量 CPU 资源的工作，例如对列表排序和解析 JSON等
+ * NOTE: 适合在主线程之外执行占用大量 CPU 资源的工作，例如对列表排序和解析 JSON 等
  * @see async
  */
 fun <T> CoroutineScope.asyncDefault(

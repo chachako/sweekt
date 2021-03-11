@@ -1,0 +1,267 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.library",
+    "module": "toolkit-core-android",
+    "version": "0.1.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.0-20201227230035+0000",
+      "buildId": "y2lnzeg3xnezlcm7xjot4g7l3e"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.orhanobut",
+          "module": "logger",
+          "version": {
+            "requires": "2.2.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.koin",
+          "module": "koin-androidx-ext",
+          "version": {
+            "requires": "2.2.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.5"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-core-android-0.1.5.aar",
+          "url": "toolkit-core-android-0.1.5.aar",
+          "size": 252933,
+          "sha512": "ce8d4442557ddd5b4535680c8f1d58ed7de9229c8840ada1508942593b1fd35f0058e3c272609b2fe578b1b0084ba2784e8d6fb2e02f41e4e662e499986b57c9",
+          "sha256": "576e658aea9d02e4f30d258e68ec35a4fa753dc89a68cc33a66a23d1feb0d417",
+          "sha1": "8fe1ba712c1b92919bbcd5f4f0c248d1c0d81a0c",
+          "md5": "fa14420d95f83338f460fb01f58e767b"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.orhanobut",
+          "module": "logger",
+          "version": {
+            "requires": "2.2.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.koin",
+          "module": "koin-androidx-ext",
+          "version": {
+            "requires": "2.2.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowbase.library",
+          "module": "toolkit-core-jvm",
+          "version": {
+            "requires": "0.1.5"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.30-RC",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.3.0-alpha02",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.5.0-alpha05",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.5.0-alpha05",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-common-java8",
+          "version": {
+            "requires": "2.3.0-beta01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-runtime-ktx",
+          "version": {
+            "requires": "2.3.0-beta01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.3.0-beta01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-livedata-core-ktx",
+          "version": {
+            "requires": "2.3.0-beta01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.viewpager2",
+          "module": "viewpager2",
+          "version": {
+            "requires": "1.1.0-alpha01",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "androidx.recyclerview",
+          "module": "recyclerview",
+          "version": {
+            "requires": "1.2.0-alpha06",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.10.0-RC1",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "2.10.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "io.coil-kt",
+          "module": "coil-base",
+          "version": {
+            "requires": "1.1.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-core-android-0.1.5.aar",
+          "url": "toolkit-core-android-0.1.5.aar",
+          "size": 252933,
+          "sha512": "ce8d4442557ddd5b4535680c8f1d58ed7de9229c8840ada1508942593b1fd35f0058e3c272609b2fe578b1b0084ba2784e8d6fb2e02f41e4e662e499986b57c9",
+          "sha256": "576e658aea9d02e4f30d258e68ec35a4fa753dc89a68cc33a66a23d1feb0d417",
+          "sha1": "8fe1ba712c1b92919bbcd5f4f0c248d1c0d81a0c",
+          "md5": "fa14420d95f83338f460fb01f58e767b"
+        }
+      ]
+    }
+  ]
+}

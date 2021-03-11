@@ -1,5 +1,24 @@
+/*
+ * Copyright (c) 2021. Rin Orz (凛)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ *
+ * Github home page: https://github.com/RinOrz
+ */
+
 package com.meowbase.toolkit.okio
 
+import com.meowbase.toolkit.orElse
+import com.meowbase.toolkit.safeCast
 import okio.*
 import java.io.File
 
@@ -12,15 +31,5 @@ fun File.bufferedSink(append: Boolean = false): BufferedSink = sink(append).buff
 /** 返回一个可追加的缓冲的 [Sink] */
 fun File.bufferedAppendingSink(): BufferedSink = bufferedSink(true)
 
-/**
- * 将这个源的内容复制到输出接收器 [out] 中
- * 无论是 [Source] 还是 [Sink]，它们都会在复制完成后自动关闭
- */
-fun Source.copyTo(out: Sink): Long {
-  val sink = out as? BufferedSink ?: out.buffer()
-  return this.use { input ->
-    sink.use { output ->
-      output.writeAll(input)
-    }
-  }
-}
+/** 将这个源的内容写出到 [out] 中 */
+fun Source.copyTo(out: Sink): Long = this.safeCast<BufferedSource>().orElse(::buffer).readAll(out)

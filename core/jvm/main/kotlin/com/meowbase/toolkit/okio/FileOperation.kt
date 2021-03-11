@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2021. Rin Orz (凛)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ *
+ * Github home page: https://github.com/RinOrz
+ */
+
 package com.meowbase.toolkit.okio
 
 import com.meowbase.toolkit.alreadyExists
@@ -14,7 +31,7 @@ import java.nio.charset.Charset
  * 以字节数组的形式获取文件的所有内容
  * @see kotlin.io.readBytes
  */
-fun File.readBytes(): ByteArray = bufferedSource().use { it.readByteArray() }
+fun File.readBytes(): ByteArray = bufferedSource().readBytes()
 
 /**
  * 将字节数组 [array] 写入并覆盖到文件
@@ -263,4 +280,60 @@ fun File.copyRecursively(
   } catch (e: FileSystemException) {
     return false
   }
+}
+
+/**
+ * 将此文件移动到目标文件
+ *
+ * @param target 需要移动到的目标文件
+ * @param overwrite 如果目标文件已存在，是否覆盖目标文件
+ * @throws NoSuchFileException 如果源文件不存在
+ * @throws FileAlreadyExistsException 如果目标文件存在，并且 [overwrite] 为 false
+ * @throws IOException 其他的移动错误
+ * @see kotlin.io.copyTo
+ */
+fun File.moveTo(target: File, overwrite: Boolean = false): File {
+  this.delete()
+  return copyTo(target, overwrite)
+}
+
+/**
+ * 将此文件移动到目标文件
+ *
+ * @param targetPath 需要移动到的目标文件的路径
+ * @param overwrite 如果目标文件已存在，是否覆盖目标文件
+ * @throws NoSuchFileException 如果源文件不存在
+ * @throws FileAlreadyExistsException 如果目标文件存在，并且 [overwrite] 为 false
+ * @throws IOException 其他的移动错误
+ * @see kotlin.io.copyTo
+ */
+fun File.moveTo(targetPath: String, overwrite: Boolean = false): File {
+  this.delete()
+  return copyTo(targetPath, overwrite)
+}
+
+/**
+ * 将当前目录下的所有子 [File] 移动到目标目录
+ *
+ * @see kotlin.io.copyRecursively 更详细的 doc
+ *
+ * @param target 需要移动到的目标目录
+ * @param overwrite 是否允许覆盖已经存在的目标目录及文件
+ * @throws NoSuchFileException 如果源文件不存在
+ * @throws FileAlreadyExistsException 如果目标文件存在，并且 [overwrite] 为 false
+ * @throws IOException 其他的移动错误
+ * @return 一旦移动中途中出现了任何错误或终止则会返回 false, 成功了就会返回 true
+ */
+fun File.moveRecursively(
+  target: File,
+  overwrite: Boolean = false,
+  onError: (File, IOException) -> OnErrorAction = { _, exception -> throw exception }
+): Boolean {
+  if (!this.deleteRecursively()) {
+    return onError(
+      this,
+      FileSystemException(file = this, reason = "Unable to delete file.")
+    ) != OnErrorAction.TERMINATE
+  }
+  return copyRecursively(target, overwrite, onError)
 }

@@ -10,8 +10,8 @@
   },
   "createdBy": {
     "gradle": {
-      "version": "6.7.1",
-      "buildId": "szame6jyjvc7fjlekae5jzhhki"
+      "version": "7.0-20201227230035+0000",
+      "buildId": "hhmqhid6n5f6jcncde2gdo5hiq"
     }
   },
   "variants": [
@@ -56,11 +56,11 @@
         {
           "name": "toolkit-core-android-0.1.4.aar",
           "url": "toolkit-core-android-0.1.4.aar",
-          "size": 255110,
-          "sha512": "a06025eb2124f7623a9d4beb64c2e64ac9db3445b053a0dfdcc0a5b8ecd00a458dce80daabe4d65a8aae71b5c0cbfde960665a2486d05622765dbdbaf11c4f82",
-          "sha256": "4eb3d4a7d0bb359e9b64e25dc070247604d20c72ad24fc2c846c7db3475d6277",
-          "sha1": "fdbc95f01eb0ccaafa32bdb8782fd0bda945028c",
-          "md5": "8176c044d8e4389cf6e0115df36e6e7d"
+          "size": 255687,
+          "sha512": "e30efbca1b58e5bc5a5a3c53009a2db6926a8ae4178ebdcc647d9b9e66aaab44379365754a86734d3077acbd154e47fd30d9b1d307a8b9449222c38b7205a35a",
+          "sha256": "24f8a100edb1a71fb28056a615a8ad2b0d7ca1183ef8389cee46c30dabaf6fce",
+          "sha1": "4200d7f0bb2e6e632912e37d01bcb864f9cc7fb2",
+          "md5": "db4e9dab4c152c14d34213e68ac3e627"
         }
       ]
     },
@@ -255,11 +255,11 @@
         {
           "name": "toolkit-core-android-0.1.4.aar",
           "url": "toolkit-core-android-0.1.4.aar",
-          "size": 255110,
-          "sha512": "a06025eb2124f7623a9d4beb64c2e64ac9db3445b053a0dfdcc0a5b8ecd00a458dce80daabe4d65a8aae71b5c0cbfde960665a2486d05622765dbdbaf11c4f82",
-          "sha256": "4eb3d4a7d0bb359e9b64e25dc070247604d20c72ad24fc2c846c7db3475d6277",
-          "sha1": "fdbc95f01eb0ccaafa32bdb8782fd0bda945028c",
-          "md5": "8176c044d8e4389cf6e0115df36e6e7d"
+          "size": 255687,
+          "sha512": "e30efbca1b58e5bc5a5a3c53009a2db6926a8ae4178ebdcc647d9b9e66aaab44379365754a86734d3077acbd154e47fd30d9b1d307a8b9449222c38b7205a35a",
+          "sha256": "24f8a100edb1a71fb28056a615a8ad2b0d7ca1183ef8389cee46c30dabaf6fce",
+          "sha1": "4200d7f0bb2e6e632912e37d01bcb864f9cc7fb2",
+          "md5": "db4e9dab4c152c14d34213e68ac3e627"
         }
       ]
     }

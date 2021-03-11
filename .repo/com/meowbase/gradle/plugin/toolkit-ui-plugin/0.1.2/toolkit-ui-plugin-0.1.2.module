@@ -1,7 +1,7 @@
 {
   "formatVersion": "1.1",
   "component": {
-    "group": "com.meowbase.gradle.plugin",
+    "group": "com.meowbase.plugin",
     "module": "toolkit-ui-plugin",
     "version": "0.1.2",
     "attributes": {
@@ -71,7 +71,7 @@
           }
         },
         {
-          "group": "com.meowbase.gradle.plugin",
+          "group": "com.meowbase.plugin",
           "module": "toolkit",
           "version": {
             "requires": "0.1.2",

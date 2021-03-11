@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2021. Rin Orz (凛)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ *
+ * Github home page: https://github.com/RinOrz
+ */
+
 @file:[Suppress(
   "UNCHECKED_CAST", "GradleDynamicVersion", "UnstableApiUsage",
   "SpellCheckingInspection", "SafeCastWithReturn",
@@ -28,18 +45,17 @@ buildscript {
     gradlePluginPortal()
     jcenter()
     google()
-    maven("https://dl.bintray.com/oh-rin/Mars/")
     maven("https://dl.bintray.com/oh-rin/meowbase")
     maven(rootDir.resolve(".repo").absolutePath)
   }
 
   listOf(
-    "com.meowbase.gradle.plugin:toolkit:0.1.4",
-    "com.meowbase.gradle.plugin:toolkit-ui-plugin:0.1.4",
+    "com.meowbase.plugin:toolkit:0.1.8",
+    "com.meowbase.plugin:toolkit-ui-plugin:0.1.4",
     "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5",
     dep("de.fayard.refreshVersions", "refreshVersions"),
     dep("org.jetbrains.kotlin", "kotlin-gradle-plugin"),
-    dep("com.android.tools.build", "gradle")
+    dep("com.android.tools.build", "gradle"),
   ).forEach { dependencies.classpath(it) }
 }
 

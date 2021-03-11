@@ -1,0 +1,119 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.library",
+    "module": "toolkit-core-jvm",
+    "version": "0.1.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.0-20201227230035+0000",
+      "buildId": "y2lnzeg3xnezlcm7xjot4g7l3e"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "2.10.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-core-jvm-0.1.5.jar",
+          "url": "toolkit-core-jvm-0.1.5.jar",
+          "size": 150192,
+          "sha512": "53595a4a3c3f9c040da0001054438bd3c5681021590d708b4ca0597e02876a84ded1480d5e37db441917302e0548522d270c4000ab2b5cb582c060dc03b52c98",
+          "sha256": "7ae56fef46da59d98d3c998abf21b1b9a17a5f6d3dc8bf39ed8d391e404d2a96",
+          "sha1": "76e5c07e049a29bc44951f1bb186fa32e258cf7d",
+          "md5": "e3f05c4a302b0ce0e1cd6c0607f67b35"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.30-RC",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-jdk8",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "2.10.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-core-jvm-0.1.5.jar",
+          "url": "toolkit-core-jvm-0.1.5.jar",
+          "size": 150192,
+          "sha512": "53595a4a3c3f9c040da0001054438bd3c5681021590d708b4ca0597e02876a84ded1480d5e37db441917302e0548522d270c4000ab2b5cb582c060dc03b52c98",
+          "sha256": "7ae56fef46da59d98d3c998abf21b1b9a17a5f6d3dc8bf39ed8d391e404d2a96",
+          "sha1": "76e5c07e049a29bc44951f1bb186fa32e258cf7d",
+          "md5": "e3f05c4a302b0ce0e1cd6c0607f67b35"
+        }
+      ]
+    }
+  ]
+}

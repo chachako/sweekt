@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2021. Rin Orz (凛)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ *
+ * Github home page: https://github.com/RinOrz
+ */
+
 @file:Suppress("NAME_SHADOWING")
 
 package com.meowbase.toolkit.graphics
@@ -14,8 +31,9 @@ import com.meowbase.toolkit.existOrNewFile
 import com.meowbase.toolkit.float
 import com.meowbase.toolkit.int
 import com.meowbase.toolkit.util.Base64Mode
-import com.meowbase.toolkit.util.base64DecodeBytes
-import com.meowbase.toolkit.util.base64Encode
+import com.meowbase.toolkit.util.decodeBase64Bytes
+import com.meowbase.toolkit.util.encodeBase64
+import com.meowbase.toolkit.util.encodeBase64Bytes
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -118,7 +136,7 @@ fun Bitmap.toBase64(
     else -> this
   }
   bitmap.compress(Bitmap.CompressFormat.PNG, quality, it)
-  it.toByteArray().base64Encode(flags).apply {
+  it.toByteArray().encodeBase64(flags).apply {
     if (recycle) bitmap.recycle()
   }
 }
@@ -144,7 +162,7 @@ fun Bitmap.toBase64(
  * @param flags [Base64] 解码模式
  */
 fun String.base64ToBitmap(@Base64Mode flags: Int = Base64.DEFAULT): Bitmap =
-  base64DecodeBytes(flags).run { BitmapFactory.decodeByteArray(this, 0, size) }
+  decodeBase64Bytes(flags).run { BitmapFactory.decodeByteArray(this, 0, size) }
 
 /**
  * 创建一个新的位图副本，并为其添加一些内边距填充

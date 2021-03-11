@@ -1,0 +1,97 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowbase.plugin",
+    "module": "toolkit-ui-plugin",
+    "version": "0.1.4",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.0-20201227230035+0000",
+      "buildId": "4kn44fg27zcndmmwkcd5u2uz2y"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "toolkit-ui-plugin-0.1.4.jar",
+          "url": "toolkit-ui-plugin-0.1.4.jar",
+          "size": 7238,
+          "sha512": "404d3c1150fe71adb9fcf110159af1b7ef273c41c9028b0421ab4dc2a8ce49c1b90dd82c772d21a373d92b6ee3b33580310ddbae8bc4f9e2dd3aeaaa9e746ed5",
+          "sha256": "7a14a5e557a54412d425fda3a6f0df65cd838896ae1110b397ef4663dfb7d149",
+          "sha1": "b96fb896dbe3223f7f5a388e39466dae1b08a627",
+          "md5": "d264f35169c3b61b83e01683bde135c1"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.20",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.4.2",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "com.meowbase.plugin",
+          "module": "toolkit",
+          "version": {
+            "requires": "0.1.4",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "toolkit-ui-plugin-0.1.4.jar",
+          "url": "toolkit-ui-plugin-0.1.4.jar",
+          "size": 7238,
+          "sha512": "404d3c1150fe71adb9fcf110159af1b7ef273c41c9028b0421ab4dc2a8ce49c1b90dd82c772d21a373d92b6ee3b33580310ddbae8bc4f9e2dd3aeaaa9e746ed5",
+          "sha256": "7a14a5e557a54412d425fda3a6f0df65cd838896ae1110b397ef4663dfb7d149",
+          "sha1": "b96fb896dbe3223f7f5a388e39466dae1b08a627",
+          "md5": "d264f35169c3b61b83e01683bde135c1"
+        }
+      ]
+    }
+  ]
+}

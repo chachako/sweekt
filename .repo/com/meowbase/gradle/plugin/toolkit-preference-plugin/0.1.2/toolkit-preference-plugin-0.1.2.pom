@@ -6,7 +6,7 @@
   <!-- that they should prefer consuming it instead. -->
   <!-- do_not_remove: published-with-gradle-metadata -->
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.meowbase.gradle.plugin</groupId>
+  <groupId>com.meowbase.plugin</groupId>
   <artifactId>toolkit-preference-plugin</artifactId>
   <version>0.1.2</version>
   <dependencies>
@@ -35,7 +35,7 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>com.meowbase.gradle.plugin</groupId>
+      <groupId>com.meowbase.plugin</groupId>
       <artifactId>toolkit</artifactId>
       <version>0.1.2</version>
       <scope>runtime</scope>
