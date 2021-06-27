@@ -1,0 +1,33 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:2:1-9:12
+	package
+		ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:2:70-107
+		INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:4:5-7:19
+activity#com.meowool.sweekt.permission.PermissionCompatActivity
+ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:5:9-6:75
+	android:theme
+		ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:6:19-73
+	android:name
+		ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml:5:19-88
+uses-sdk
+INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/src/androidMain/AndroidManifest.xml

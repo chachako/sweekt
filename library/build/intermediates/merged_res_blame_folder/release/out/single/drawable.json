@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable/notification_tile_bg.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable/notification_bg_low.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable/notification_bg.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable/notification_icon_background.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable/notification_icon_background.xml"
+    }
+]

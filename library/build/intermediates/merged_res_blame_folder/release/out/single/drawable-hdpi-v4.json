@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable-hdpi-v4/notification_bg_normal.9.png",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable-hdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable-hdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable-hdpi-v4/notification_bg_low_normal.9.png",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+    }
+]

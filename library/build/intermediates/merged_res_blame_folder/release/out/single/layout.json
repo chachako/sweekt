@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/layout/notification_template_part_time.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/layout/custom_dialog.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "/Users/rin/Documents/Develop/Projects/meowool/toolkit/sweekt/library/build/intermediates/res/merged/release/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/rin/.gradle/caches/transforms-3/6354d730a31a039b7a8f5d1604ae79fe/transformed/core-1.5.0/res/layout/notification_template_part_chronometer.xml"
+    }
+]

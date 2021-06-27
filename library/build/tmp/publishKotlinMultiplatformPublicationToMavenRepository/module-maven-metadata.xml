@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.meowool.toolkit</groupId>
+  <artifactId>sweekt</artifactId>
+  <versioning>
+    <latest>1.24-SNAPSHOT</latest>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+      <version>1.1-SNAPSHOT</version>
+      <version>1.2-SNAPSHOT</version>
+      <version>1.21-SNAPSHOT</version>
+      <version>1.22-SNAPSHOT</version>
+      <version>1.23-SNAPSHOT</version>
+      <version>1.24-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20210619071438</lastUpdated>
+  </versioning>
+</metadata>

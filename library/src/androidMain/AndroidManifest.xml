@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.meowool.toolkit.library">
+
+    <application>
+        <activity android:name="com.meowool.sweekt.permission.PermissionCompatActivity"
+                  android:theme="@style/Theme.MeowoolSweekt.Translucent"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,143 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.meowool.toolkit",
+    "module": "sweekt",
+    "version": "1.24-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "library-metadata-1.24-SNAPSHOT.jar",
+          "url": "sweekt-1.24-SNAPSHOT.jar",
+          "size": 15352,
+          "sha512": "24120bfd2234a8ababc10cd24cb587431331df1f041cb25bddd59dc6d1bbf7c49be6f62f266ce0ee246533974aff411a27354a64ba51914707e3579a30ee7cde",
+          "sha256": "84d97a0e150b083f07a367544fbe6e325e149bae8bf73488e5cc93d22ab12f4b",
+          "sha1": "3c52e17e7d97a10ee83a83555b05e57db95e05f8",
+          "md5": "b470a680919952a28d9eda5615763291"
+        }
+      ]
+    },
+    {
+      "name": "debugApiElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "com.android.build.api.attributes.VariantAttr": "debug",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../sweekt-android-debug/1.24-SNAPSHOT/sweekt-android-debug-1.24-SNAPSHOT.module",
+        "group": "com.meowool.toolkit",
+        "module": "sweekt-android-debug",
+        "version": "1.24-SNAPSHOT"
+      }
+    },
+    {
+      "name": "debugRuntimeElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "debug",
+        "com.android.build.api.attributes.VariantAttr": "debug",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../sweekt-android-debug/1.24-SNAPSHOT/sweekt-android-debug-1.24-SNAPSHOT.module",
+        "group": "com.meowool.toolkit",
+        "module": "sweekt-android-debug",
+        "version": "1.24-SNAPSHOT"
+      }
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "release",
+        "com.android.build.api.attributes.VariantAttr": "release",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../sweekt-android/1.24-SNAPSHOT/sweekt-android-1.24-SNAPSHOT.module",
+        "group": "com.meowool.toolkit",
+        "module": "sweekt-android",
+        "version": "1.24-SNAPSHOT"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "com.android.build.api.attributes.BuildTypeAttr": "release",
+        "com.android.build.api.attributes.VariantAttr": "release",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../sweekt-android/1.24-SNAPSHOT/sweekt-android-1.24-SNAPSHOT.module",
+        "group": "com.meowool.toolkit",
+        "module": "sweekt-android",
+        "version": "1.24-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../sweekt-jvm/1.24-SNAPSHOT/sweekt-jvm-1.24-SNAPSHOT.module",
+        "group": "com.meowool.toolkit",
+        "module": "sweekt-jvm",
+        "version": "1.24-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../sweekt-jvm/1.24-SNAPSHOT/sweekt-jvm-1.24-SNAPSHOT.module",
+        "group": "com.meowool.toolkit",
+        "module": "sweekt-jvm",
+        "version": "1.24-SNAPSHOT"
+      }
+    }
+  ]
+}

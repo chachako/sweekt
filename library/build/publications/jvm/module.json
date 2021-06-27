@@ -1,0 +1,105 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../sweekt/1.24-SNAPSHOT/sweekt-1.24-SNAPSHOT.module",
+    "group": "com.meowool.toolkit",
+    "module": "sweekt",
+    "version": "1.24-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.10"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "library-jvm-1.24-SNAPSHOT.jar",
+          "url": "sweekt-jvm-1.24-SNAPSHOT.jar",
+          "size": 105770,
+          "sha512": "b36fe2568ae84e4922aedeaace5795fb22b7338d4a1b5bdedf91d65facd2a814b6c76cdf47247211972cc37e2d83f0059b7d299c8724f1a82c9a05c50836ab02",
+          "sha256": "c197ef42ec8f3be63b0bae66763b35daeb42a9e50b54de3f8adc7399106b54f7",
+          "sha1": "56d387d010b1ce89f927ce22dfda59a5cf574a7f",
+          "md5": "249217541bd3a69be557bd64a514d21e"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.5.10"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.5.0",
+            "rejects": [
+              "_"
+            ]
+          }
+        },
+        {
+          "group": "io.kotest",
+          "module": "kotest-runner-junit5-jvm",
+          "version": {
+            "requires": "+",
+            "rejects": [
+              "_"
+            ]
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "library-jvm-1.24-SNAPSHOT.jar",
+          "url": "sweekt-jvm-1.24-SNAPSHOT.jar",
+          "size": 105770,
+          "sha512": "b36fe2568ae84e4922aedeaace5795fb22b7338d4a1b5bdedf91d65facd2a814b6c76cdf47247211972cc37e2d83f0059b7d299c8724f1a82c9a05c50836ab02",
+          "sha256": "c197ef42ec8f3be63b0bae66763b35daeb42a9e50b54de3f8adc7399106b54f7",
+          "sha1": "56d387d010b1ce89f927ce22dfda59a5cf574a7f",
+          "md5": "249217541bd3a69be557bd64a514d21e"
+        }
+      ]
+    }
+  ]
+}
