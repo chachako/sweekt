@@ -10,3 +10,7 @@ dependencies {
   implementation("com.meowool.toolkit:sweekt:1.24-SNAPSHOT")
 }
 ```
+
+The document has not been written, please refer to kdoc, and the usage please refer to the directory related to test
+1. [CommonTest](/library/src/commonTest/kotlin)
+2. [JvmTest](/library/src/commonTest/kotlin)
