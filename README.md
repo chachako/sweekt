@@ -11,6 +11,8 @@ dependencies {
 }
 ```
 
-The document has not been written, please refer to kdoc, and the usage please refer to the directory related to test
+The document has not been written. 
+
+For more details please refer to kdoc, and the usage please refer to the directory related to test:
 1. [CommonTest](/library/src/commonTest/kotlin)
 2. [JvmTest](/library/src/commonTest/kotlin)
