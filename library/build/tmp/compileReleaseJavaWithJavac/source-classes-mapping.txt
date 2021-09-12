@@ -1,2 +1,0 @@
-com/meowool/toolkit/library/BuildConfig.java
- com.meowool.toolkit.library.BuildConfig
