@@ -55,5 +55,5 @@ fun <T> CoroutineScope.asyncIO(
  *
  * @see withContext for more details
  */
-suspend fun <T> withIOContext(block: suspend CoroutineScope.() -> T): T =
+suspend inline fun <T> withIOContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.IO, block)
