@@ -17,6 +17,14 @@ inline fun <T> T?.ifNull(another: () -> T): T {
 }
 
 /**
+ * When this [T] is `null`, calls the given [action], otherwise it does nothing and returns to itself.
+ */
+inline fun <T> T?.onNull(action: () -> T): T {
+  contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
+  return this ?: action()
+}
+
+/**
  * Select the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
@@ -43,26 +51,3 @@ inline fun <R> Boolean?.select(yes: () -> R, no: () -> R): R = if (this == true)
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
  */
 inline fun <R> Boolean.select(yes: () -> R, no: () -> R): R = if (this) yes() else no()
-
-/**
- * Imitating the ternary operator of java's, when this [Boolean] value is `true`, it returns [default],
- * otherwise it returns `null`.
- *
- * For example `data.isNull() that "no data" ?: "data exists"`, when the `data` is null, returns "no data",
- * otherwise returns "data exists"`.
- */
-inline infix fun <R> Boolean?.that(default: R?): R? {
-  contract {
-    returnsNotNull() implies (this@that != null)
-  }
-  return if (this == true) default else null
-}
-
-/**
- * Imitating the ternary operator of java's, when this [Boolean] value is `true`, it returns [default],
- * otherwise it returns `null`.
- *
- * For example `data.isNull() that "no data" ?: "data exists"`, when the `data` is null, returns "no data",
- * otherwise returns "data exists"`.
- */
-inline infix fun <R> Boolean.that(default: R?): R? = if (this) default else null
