@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalContracts::class)
 @file:Suppress("NOTHING_TO_INLINE")
 
 package com.meowool.sweekt.coroutines

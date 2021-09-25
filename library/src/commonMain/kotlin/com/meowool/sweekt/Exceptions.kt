@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalContracts::class)
-
 package com.meowool.sweekt
 
 import kotlin.contracts.ExperimentalContracts

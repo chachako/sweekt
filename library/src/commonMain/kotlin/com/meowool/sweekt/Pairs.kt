@@ -1,5 +1,7 @@
 package com.meowool.sweekt
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a generic pair of two int values.
  *
@@ -11,8 +13,6 @@ package com.meowool.sweekt
  *
  * @see Pair
  * @author 凛 (https://github.com/RinOrz)
- *
- * TODO: Migrate to common main when supported `value class` of kotlin multiplatform.
  */
 @JvmInline
 value class IntPair(private val packedValue: Long) {
@@ -41,13 +41,24 @@ value class IntPair(private val packedValue: Long) {
 }
 
 /**
- * Creates a tuple of type [Pair] from this and [that].
+ * Packs [first] and [second] to create an inline int pair.
  *
- * This can be useful for creating [Map] literals with less noise, for example:
+ * @see Pair
+ */
+fun IntPair(first: Int, second: Int): IntPair = IntPair(packInts(first, second))
+
+/**
+ * Creates a tuple of type [IntPair] from `this` and [that].
+ *
+ * This can be useful for creating [Map] literals with less noise.
+ *
+ * @see Pair
  */
 infix fun Int.to(that: Int): IntPair = IntPair(packInts(this, that))
 
 /**
  * Converts this int pair into a list.
+ *
+ * @see Pair.toList
  */
 fun IntPair.toList(): List<Int> = listOf(first, second)

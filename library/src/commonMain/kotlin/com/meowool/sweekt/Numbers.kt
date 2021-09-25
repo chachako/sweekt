@@ -11,7 +11,7 @@ import kotlin.math.roundToLong
 /**
  * Returns this [Number] as [Int].
  */
-fun Number.asInt(): Int = when (this) {
+inline fun Number.asInt(): Int = when (this) {
   is Int -> this
   is Double -> roundToInt()
   is Float -> roundToInt()
@@ -21,7 +21,7 @@ fun Number.asInt(): Int = when (this) {
 /**
  * Returns this [Number] as [Float].
  */
-fun Number.asFloat(): Float = when (this) {
+inline fun Number.asFloat(): Float = when (this) {
   is Float -> this
   else -> toFloat()
 }
@@ -29,7 +29,7 @@ fun Number.asFloat(): Float = when (this) {
 /**
  * Returns this [Number] as [Long].
  */
-fun Number.asLong(): Long = when (this) {
+inline fun Number.asLong(): Long = when (this) {
   is Long -> this
   is Double -> roundToLong()
   is Float -> roundToLong()

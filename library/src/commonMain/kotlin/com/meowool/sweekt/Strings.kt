@@ -1,11 +1,8 @@
 @file:Suppress("NOTHING_TO_INLINE", "SpellCheckingInspection")
-@file:OptIn(ExperimentalTypeInference::class, ExperimentalContracts::class)
 
 package com.meowool.sweekt
 
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
-import kotlin.experimental.ExperimentalTypeInference
 
 /**
  * Converts [any] to [String].

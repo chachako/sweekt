@@ -10,11 +10,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.toDelayMillis
 import kotlinx.coroutines.withContext
-import kotlin.contracts.InvocationKind
-import kotlin.contracts.contract
-import kotlin.time.Duration
 
 /**
  * Launches a new coroutine without blocking the current thread and returns a reference to the coroutine as a [Job].
@@ -88,7 +84,7 @@ fun <T> CoroutineScope.asyncDefault(
  *
  * @see withContext for more details
  */
-suspend fun <T> withUiContext(block: suspend CoroutineScope.() -> T): T =
+suspend inline fun <T> withUiContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.Main, block)
 
 /**
@@ -100,5 +96,5 @@ suspend fun <T> withUiContext(block: suspend CoroutineScope.() -> T): T =
  *
  * @see withContext for more details
  */
-suspend fun <T> withDefaultContext(block: suspend CoroutineScope.() -> T): T =
+suspend inline fun <T> withDefaultContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.Default, block)

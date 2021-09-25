@@ -255,3 +255,19 @@ inline fun <T> T.takeTryIfNot(predicate: (T) -> Boolean): T? = takeTryUnless(pre
  * @see kotlin.takeUnless
  */
 inline fun <T> T.takeIfNot(predicate: (T) -> Boolean): T? = takeUnless(predicate)
+
+/**
+ * If this [T] is not null then this is returned, otherwise [another] is executed and its result is returned.
+ */
+inline fun <T> T?.ifNull(another: () -> T): T {
+  contract { callsInPlace(another, InvocationKind.AT_MOST_ONCE) }
+  return this ?: another()
+}
+
+/**
+ * When this [T] is `null`, calls the given [action], otherwise it does nothing and returns to itself.
+ */
+inline fun <T> T?.onNull(action: () -> T): T {
+  contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
+  return this ?: action()
+}

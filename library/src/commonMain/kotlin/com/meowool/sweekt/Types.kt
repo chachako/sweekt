@@ -1,9 +1,7 @@
-@file:OptIn(ExperimentalContracts::class)
 @file:Suppress("NO_ACTUAL_FOR_EXPECT", "NOTHING_TO_INLINE")
 
 package com.meowool.sweekt
 
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.reflect.KClass
