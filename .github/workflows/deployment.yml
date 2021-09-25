@@ -5,6 +5,9 @@ on: [push, workflow_dispatch]
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      ORG_GRADLE_PROJECT_mavenUsername: ${{ secrets.mavenUsername }}
+      ORG_GRADLE_PROJECT_mavenPassword: ${{ secrets.mavenPassword }}
 
     steps:
       - uses: actions/checkout@v2
