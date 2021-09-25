@@ -45,14 +45,14 @@ interface Hosting<T> {
   fun invalidate()
 
   /**
-   * An extension allows to use instances of [Hosting] for mutable property delegation.
+   * An extension allows using instances of [Hosting] for mutable property delegation.
    *
    * E.g. `var value: String by hosting { initializer }`
    */
   operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T)
 
   /**
-   * An extension allows to use instances of [Hosting] for immutable property delegation.
+   * An extension allows using instances of [Hosting] for immutable property delegation.
    *
    * E.g. `val value: String by hosting { initializer }`
    */
@@ -61,6 +61,8 @@ interface Hosting<T> {
 
 /**
  * Record all hosting instances so that they can be taken away at any times.
+ *
+ * Note that this stack is only used to access or store hosting objects, not the [Hosting.value].
  */
 object HostingStack {
   private val instances = mutableMapOf<Any, Hosting<*>>()
@@ -130,7 +132,9 @@ fun <T> hosting(
 }
 
 
-//// Backend
+/////////////////////////////////////////////////
+////                 Backend                 ////
+/////////////////////////////////////////////////
 
 internal expect class HostingImpl<T>() : Hosting<T>
-internal expect class LazyHostingImpl<T>(lock: Any?, initializer: (() -> T)?) : Hosting<T>
+internal expect class LazyHostingImpl<T>(lock: Any?, initializer: () -> T) : Hosting<T>

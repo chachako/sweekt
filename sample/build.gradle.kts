@@ -6,10 +6,6 @@ plugins {
 group = "com.meowool.toolkit"
 version = "1.0-SNAPSHOT"
 
-repositories {
-  jcenter()
-}
-
 dependencies {
   implementation(project(":library"))
   implementation("androidx.appcompat:appcompat:1.2.0")

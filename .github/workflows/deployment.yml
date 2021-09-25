@@ -1,0 +1,39 @@
+name: Publish & Build
+
+on: [push, workflow_dispatch]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      ORG_GRADLE_PROJECT_mavenUsername: ${{ secrets.mavenUsername }}
+      ORG_GRADLE_PROJECT_mavenPassword: ${{ secrets.mavenPassword }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Publish publications
+        uses: gradle/gradle-build-action@v1
+        with:
+          # Publish all projects
+          arguments: publish
+
+  build:
+    needs: publish
+    runs-on: ubuntu-latest
+    env:
+      use.ci.version: true
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Gradle sync
+        uses: gradle/gradle-build-action@v1

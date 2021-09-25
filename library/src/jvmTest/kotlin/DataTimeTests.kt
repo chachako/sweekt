@@ -4,11 +4,8 @@ import com.meowool.sweekt.datetime.currentMonth
 import com.meowool.sweekt.datetime.currentSecond
 import com.meowool.sweekt.datetime.currentYear
 import com.meowool.sweekt.datetime.format
-import com.meowool.sweekt.datetime.isTimeInRange
 import com.meowool.sweekt.datetime.nowDateTime
 import com.meowool.sweekt.datetime.nowInstant
-import com.meowool.sweekt.datetime.resolveToInstant
-import com.meowool.sweekt.datetime.resolveToTime
 import com.meowool.sweekt.datetime.toDateTime
 import com.meowool.sweekt.datetime.todayOfMonth
 import io.kotest.core.spec.style.StringSpec

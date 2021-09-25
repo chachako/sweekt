@@ -39,7 +39,7 @@ fun Char.isEnglishPunctuation(): Boolean = code.let {
 /**
  * Returns `true` if this character is punctuation.
  */
-inline fun Char.isPunctuation(): Boolean = this.category.let {
+fun Char.isPunctuation(): Boolean = this.category.let {
   it == CharCategory.CONNECTOR_PUNCTUATION
     || it == CharCategory.DASH_PUNCTUATION
     || it == CharCategory.END_PUNCTUATION

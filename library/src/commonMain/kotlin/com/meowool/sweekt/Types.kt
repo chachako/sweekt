@@ -26,7 +26,7 @@ expect inline infix fun Any.equalsClass(KClass: KClass<*>): Boolean
 expect inline fun <reified T> Any.equalsClass(): Boolean
 
 /**
- * Cast this object type.
+ * Cast this object type to [T].
  *
  * @param T result type after conversion
  *
@@ -41,47 +41,72 @@ inline fun <reified T> Any?.cast(): T {
 }
 
 /**
- * Safe convert this object to [T] type.
+ * Cast this object type to [T].
  *
- * @param T result type after conversion, returns `null` if the type does not matches.
+ * @param T result type after conversion, returns `null` if the type does not match.
  */
-inline fun <reified T> Any?.safeCast(): T? {
+inline fun <reified T> Any?.castOrNull(): T? {
   contract {
-    returnsNotNull() implies (this@safeCast is T)
-    returns(null) implies (this@safeCast !is T)
+    returnsNotNull() implies (this@castOrNull is T)
+    returns(null) implies (this@castOrNull !is T)
   }
   return this as? T
 }
 
 /**
- * When the this object type is [T], call the [action].
+ * Safe convert this object to [T] type.
  *
- * @return returns `null` if the object type is not [T], otherwise returns itself.
+ * @param T result type after conversion, returns `null` if the type does not match.
  */
-inline fun <reified T> Any?.withType(action: T.() -> Unit): T? {
-  contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
-  return this.safeCast<T>()?.apply(action)
-}
+@Deprecated(
+  "Deprecated function name, use `castOrNull` instead.",
+  replaceWith = ReplaceWith("castOrNull()"),
+  level = DeprecationLevel.ERROR
+)
+inline fun <reified T> Any?.safeCast(): T? = this@safeCast.castOrNull()
 
 /**
- * When the this object type meets [expected], call the [action].
+ * When this object type is [T], call the [action].
  *
  * ```kotlin
  * val foo: Any = "abc"
- * val result = foo.whenType(String::class) {
+ * val result = foo.whenType<String> {
  *   this.replace("c", "d")
  * }
  *
  * result -> "abd"
  * ```
  *
- * @return returns `null` if the object type is not [T], otherwise returns the object by
- * given [action] result.
+ * @return returns `null` if the object type is not [T], otherwise returns itself.
  */
-@Suppress("UNUSED_PARAMETER")
-inline fun <reified T: Any, R> Any?.withType(expected: KClass<T>, action: T.() -> R): R? {
-  contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
-  return this.safeCast<T>()?.let(action)
+inline fun <reified T> Any?.withType(action: T.() -> Unit): T? {
+  contract {
+    returnsNotNull() implies (this@withType is T)
+    callsInPlace(action, InvocationKind.AT_MOST_ONCE)
+  }
+  return this.castOrNull<T>()?.apply(action)
+}
+
+/**
+ * If this object type is [T], call the [action] and return its result.
+ *
+ * ```
+ * val foo: Any = "abc"
+ * val result: Boolean = foo.ifType<String> {
+ *   this.replace("c", "d")
+ *   true
+ * }
+ *
+ * result -> true
+ * ```
+ *
+ * @return returns `null` if the object type is not [T], otherwise returns the object by given [action] result.
+ */
+inline fun <reified T : Any, R> Any?.ifType(action: T.() -> R): R? {
+  contract {
+    callsInPlace(action, InvocationKind.AT_MOST_ONCE)
+  }
+  return this.castOrNull<T>()?.let(action)
 }
 
 /**
@@ -89,7 +114,7 @@ inline fun <reified T: Any, R> Any?.withType(expected: KClass<T>, action: T.() -
  */
 inline fun Any?.isNull(): Boolean {
   contract {
-    returns(true) implies(this@isNull == null)
+    returns(true) implies (this@isNull == null)
   }
   return this == null
 }
@@ -99,7 +124,7 @@ inline fun Any?.isNull(): Boolean {
  */
 inline fun Any?.isNotNull(): Boolean {
   contract {
-    returns(true) implies(this@isNotNull != null)
+    returns(true) implies (this@isNotNull != null)
   }
   return this != null
 }

@@ -10,16 +10,19 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.toDelayMillis
 import kotlinx.coroutines.withContext
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
+import kotlin.time.Duration
 
 /**
- * Launches a new coroutine without blocking the current thread and returns a reference to the
- * coroutine as a [Job]. The coroutine is cancelled when the resulting job
- * is [cancelled][Job.cancel].
+ * Launches a new coroutine without blocking the current thread and returns a reference to the coroutine as a [Job].
+ * The coroutine is cancelled when the resulting job is [cancelled][Job.cancel].
  *
- * Use this dispatcher to run a coroutine on the main Android thread. This should be used only for
- * interacting with the UI and performing quick work. Examples include calling suspend functions,
- * running Android UI framework operations, and updating LiveData objects.
+ * Use this dispatcher to run a coroutine on the main Android thread. This should be used only for interacting with
+ * the UI and performing quick work. Examples include calling suspend functions, running Android UI framework
+ * operations, and updating LiveData objects.
  *
  * @see CoroutineScope.launch for more details
  * @see Dispatchers.Main
@@ -30,12 +33,11 @@ fun CoroutineScope.launchUI(
 ) = launch(Dispatchers.Main, start, action)
 
 /**
- * Launches a new coroutine without blocking the current thread and returns a reference to the
- * coroutine as a [Job]. The coroutine is cancelled when the resulting job
- * is [cancelled][Job.cancel].
+ * Launches a new coroutine without blocking the current thread and returns a reference to the coroutine as a [Job].
+ * The coroutine is cancelled when the resulting job is [cancelled][Job.cancel].
  *
- * This dispatcher is optimized to perform CPU-intensive work outside of the main thread. Example
- * use cases include sorting a list and parsing JSON.
+ * This dispatcher is optimized to perform CPU-intensive work outside the main thread. Example use cases include
+ * sorting a list and parsing JSON.
  *
  * @see CoroutineScope.launch for more details
  * @see Dispatchers.Default
@@ -49,9 +51,9 @@ fun CoroutineScope.launchDefault(
  * Creates a coroutine and returns its future result as an implementation of [Deferred].
  * The running coroutine is cancelled when the resulting deferred is [cancelled][Job.cancel].
  *
- * Use this dispatcher to run a coroutine on the main Android thread. This should be used only for
- * interacting with the UI and performing quick work. Examples include calling suspend functions,
- * running Android UI framework operations, and updating LiveData objects.
+ * Use this dispatcher to run a coroutine on the main Android thread. This should be used only for interacting with the
+ * UI and performing quick work. Examples include calling suspend functions, running Android UI framework operations,
+ * and updating LiveData objects.
  *
  * @see CoroutineScope.async for more details
  * @see Dispatchers.Main
@@ -62,11 +64,11 @@ fun <T> CoroutineScope.asyncUI(
 ): Deferred<T> = async(Dispatchers.Main, start, block)
 
 /**
- * Creates a coroutine and returns its future result as an implementation of [Deferred].
- * The running coroutine is cancelled when the resulting deferred is [cancelled][Job.cancel].
+ * Creates a coroutine and returns its future result as an implementation of [Deferred]. The running coroutine is
+ * cancelled when the resulting deferred is [cancelled][Job.cancel].
  *
- * This dispatcher is optimized to perform CPU-intensive work outside of the main thread. Example
- * use cases include sorting a list and parsing JSON.
+ * This dispatcher is optimized to perform CPU-intensive work outside the main thread. Example use cases include
+ * sorting a list and parsing JSON.
  *
  * @see CoroutineScope.async for more details
  * @see Dispatchers.Default
@@ -77,26 +79,26 @@ fun <T> CoroutineScope.asyncDefault(
 ): Deferred<T> = async(Dispatchers.Default, start, block)
 
 /**
- * Calls the specified suspending block with a given coroutine context, suspends until it completes,
- * and returns the result.
+ * Calls the specified suspending block with a given coroutine context, suspends until it completes, and returns
+ * the result.
  *
- * Use this dispatcher to run a coroutine on the main Android thread. This should be used only for
- * interacting with the UI and performing quick work. Examples include calling suspend functions,
- * running Android UI framework operations, and updating LiveData objects.
+ * Use this dispatcher to run a coroutine on the main Android thread. This should be used only for interacting with
+ * the UI and performing quick work. Examples include calling suspend functions, running Android UI framework
+ * operations, and updating LiveData objects.
  *
  * @see withContext for more details
  */
-suspend fun <T> withUI(block: suspend CoroutineScope.() -> T): T =
+suspend fun <T> withUiContext(block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.Main, block)
 
 /**
- * Calls the specified suspending block with a given coroutine context, suspends until it completes,
- * and returns the result.
+ * Calls the specified suspending block with a given coroutine context, suspends until it completes, and returns
+ * the result.
  *
- * This dispatcher is optimized to perform CPU-intensive work outside of the main thread. Example
- * use cases include sorting a list and parsing JSON.
+ * This dispatcher is optimized to perform CPU-intensive work outside the main thread. Example use cases include
+ * sorting a list and parsing JSON.
  *
  * @see withContext for more details
  */
-suspend fun <T> withDefault(block: suspend CoroutineScope.() -> T): T =
+suspend fun <T> withDefaultContext(block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.Default, block)

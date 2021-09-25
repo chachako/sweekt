@@ -4,6 +4,7 @@
 package com.meowool.sweekt
 
 import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
 import kotlin.experimental.ExperimentalTypeInference
 
 /**
@@ -14,11 +15,31 @@ import kotlin.experimental.ExperimentalTypeInference
 inline fun String(any: Any?): String = any.toString()
 
 /**
- * Returns this string if its not null and not empty, otherwise returns the [another].
+ * Returns this string if it's not null and not empty, otherwise returns the [another].
  */
 inline infix fun String?.or(another: String): String = if (isNullOrEmpty()) another else this
+
+/**
+ * Returns itself if this string is not empty, otherwise null.
+ */
+inline fun String?.takeIfNotEmpty(): String? {
+  contract {
+    returnsNotNull() implies (this@takeIfNotEmpty != null)
+  }
+  return if (isNullOrEmpty()) null else this
+}
+
+/**
+ * Returns itself if this string is empty, otherwise null.
+ */
+inline fun String.takeIfEmpty(): String? = if (isEmpty()) this else null
 
 /**
  * Returns the string without blanks.
  */
 fun String.removeBlanks(): String = filterNot { it.isWhitespace() }
+
+/**
+ * Returns the string without line breaks.
+ */
+fun String.removeLineBreaks(): String = replace("\n", "").replace("\r", "").replace("\r\n", "")

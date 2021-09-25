@@ -7,47 +7,47 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
 /**
- * Make the titlecase of first character of this char sequence and return.
+ * Converts first character of this char sequence to title case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.titlecase
  */
-fun CharSequence.firstCharTitlecase(locale: Locale): String = this.toString().replaceFirstChar {
+actual fun CharSequence.firstCharTitlecase(locale: Locale): String = this.toString().replaceFirstChar {
   if (it.isLowerCase()) it.titlecase(locale) else it.toString()
 }
 
 /**
- * Make the uppercase of first character of this char sequence and return.
+ * Converts first character of this char sequence to upper case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.uppercase
  */
-fun CharSequence.firstCharUppercase(locale: Locale): String = this.toString().replaceFirstChar {
+actual fun CharSequence.firstCharUppercase(locale: Locale): String = this.toString().replaceFirstChar {
   if (it.isLowerCase()) it.uppercase(locale) else it.toString()
 }
 
 /**
- * Make the lowercase of first character of this char sequence and return.
+ * Converts first character of this char sequence to lower case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.lowercase
  */
-fun CharSequence.firstCharLowercase(locale: Locale): String = this.toString().replaceFirstChar {
+actual fun CharSequence.firstCharLowercase(locale: Locale): String = this.toString().replaceFirstChar {
   if (it.isUpperCase()) it.lowercase(locale) else it.toString()
 }
 
 /**
- * Make the uppercase of last character of this char sequence and return.
+ * Converts last character of this char sequence to upper case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.uppercase
  */
-fun CharSequence.lastCharUppercase(locale: Locale): String = replaceLastChar {
+actual fun CharSequence.lastCharUppercase(locale: Locale): String = replaceLastChar {
   if (it.isLowerCase()) it.uppercase(locale) else it.toString()
 }
 
 /**
- * Make the lowercase of last character of this char sequence and return.
+ * Converts last character of this char sequence to lower case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.lowercase
  */
-fun CharSequence.lastCharLowercase(locale: Locale): String = replaceLastChar {
+actual fun CharSequence.lastCharLowercase(locale: Locale): String = replaceLastChar {
   if (it.isUpperCase()) it.lowercase(locale) else it.toString()
 }
 
@@ -58,7 +58,7 @@ fun CharSequence.lastCharLowercase(locale: Locale): String = replaceLastChar {
  * @param transform function that takes the last character and returns the result of the transform applied to the character.
  */
 @OverloadResolutionByLambdaReturnType
-@JvmName("replaceLastCharWithChar")
+@JvmName("replaceLastCharToChar")
 actual inline fun CharSequence.replaceLastChar(transform: (Char) -> Char): String {
   contract { callsInPlace(transform, InvocationKind.EXACTLY_ONCE) }
   return if (isNotEmpty()) substring(0, lastIndex) + transform(this[lastIndex]) else this.toString()
@@ -71,7 +71,7 @@ actual inline fun CharSequence.replaceLastChar(transform: (Char) -> Char): Strin
  * @param transform function that takes the last character and returns the result of the transform applied to the character.
  */
 @OverloadResolutionByLambdaReturnType
-@JvmName("replaceLastCharWithCharSequence")
+@JvmName("replaceLastCharToCharSequence")
 actual inline fun CharSequence.replaceLastChar(transform: (Char) -> CharSequence): String {
   contract { callsInPlace(transform, InvocationKind.EXACTLY_ONCE) }
   return if (isNotEmpty()) substring(0, lastIndex) + transform(this[lastIndex]) else this.toString()

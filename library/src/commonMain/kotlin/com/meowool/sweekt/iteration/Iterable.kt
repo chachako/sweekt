@@ -3,7 +3,6 @@
 
 package com.meowool.sweekt.iteration
 
-import com.meowool.sweekt.safeCast
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
@@ -86,18 +85,29 @@ inline fun <T, I : Iterable<T>> I.onEmpty(action: (I) -> Unit): I {
 }
 
 /**
- * Insert the given [element] at the first of the [Iterable] object and return [Iterable].
+ * Returns itself if this [Iterable] is not empty, otherwise null.
  */
-fun <T> Iterable<T>.insertFirst(element: T): MutableList<T> =
-  this.safeCast<MutableList<T>>()
-    ?.apply { add(0, element) }
-    ?: mutableListOf(element).also { it.addAll(this) }
+inline fun <T, I : Iterable<T>> I?.takeIfNotEmpty(): I? {
+  contract {
+    returnsNotNull() implies (this@takeIfNotEmpty != null)
+  }
+  return if (isNullOrEmpty()) null else this
+}
 
 /**
- * Insert the given [element] at the first of the [Iterable] object and return [Iterable].
+ * Returns itself if this [Iterable] is empty, otherwise null.
  */
-fun <T> Iterable<T>.insertLast(element: T): MutableList<T> =
-  this.asMutableList().apply { add(element) }
+inline fun <T, I : Iterable<T>> I.takeIfEmpty(): I? = if (isEmpty()) this else null
+
+/**
+ * Returns `true` if this iterable starts with given [slice].
+ */
+fun <T> Iterable<T>.startsWith(slice: T) = this.first() == slice
+
+/**
+ * Returns `true` if this iterable ends with given [slice].
+ */
+fun <T> Iterable<T>.endsWith(slice: T) = this.last() == slice
 
 /**
  * Returns `true` if this iterable starts with given [slice].
@@ -143,3 +153,15 @@ inline fun <T> Iterable<T>.has(predicate: (T) -> Boolean): Boolean = any(predica
  * Converts [Iterable] to [Array].
  */
 inline fun <reified T> Iterable<T>.toArray(): Array<T> = this.asCollection().toTypedArray()
+
+/**
+ * Drops the first element of this [Iterable] and returns a new list.
+ */
+inline fun <T> Iterable<T>.dropFirst(): List<T> = drop(1)
+
+/**
+ * Returns a list containing all elements except first [n] elements.
+ *
+ * @throws IllegalArgumentException if [n] is negative.
+ */
+inline fun <T> Iterable<T>.dropFirst(n: Int): List<T> = drop(n)

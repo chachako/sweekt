@@ -258,25 +258,27 @@ fun CharSequence.toJvmQualifiedTypeName(
     // If it starts with `[`, we need to change it to `[]`
     while (qualified.startsWith(ArrayDescriptorPrefix)) {
       qualified = qualified.substring(
-        qualified.startsWith("$ArrayDescriptorPrefix$DescriptorPrefix") then 2 ?: 1
+        qualified.startsWith("$ArrayDescriptorPrefix$DescriptorPrefix").ifTrue { 2 } ?: 1
       )
       arraySymbols += JavaArraySymbol
     }
   }
 
   return run {
-    qualified.isJvmPrimitiveTypeDescriptor().not() then qualified ?: when (qualified) {
-      "I" -> "int"
-      "Z" -> "boolean"
-      "C" -> "int"
-      "D" -> "double"
-      "F" -> "float"
-      "J" -> "long"
-      "S" -> "short"
-      "B" -> "byte"
-      "V" -> "void"
-      else -> error("`$qualified` is a primitive type desciptor definition of JVM, but an unexpected error occurred.")
-    }
+    qualified.isJvmPrimitiveTypeDescriptor().ifTrue {
+      when (qualified) {
+        "I" -> "int"
+        "Z" -> "boolean"
+        "C" -> "int"
+        "D" -> "double"
+        "F" -> "float"
+        "J" -> "long"
+        "S" -> "short"
+        "B" -> "byte"
+        "V" -> "void"
+        else -> error("`$qualified` is a primitive type desciptor definition of JVM, but an unexpected error occurred.")
+      }
+    } ?: qualified
   } + arraySymbols
 }
 
@@ -307,5 +309,5 @@ fun CharSequence.toJvmPackageName(): String = this.toString()
   .substringBeforeLast(InnerClassSeparator)
   .toJvmQualifiedTypeName(canonical = true)
   .replace(JavaArraySymbol, "").run {
-    this.isJvmPrimitiveType() then "java.lang" ?: this.toJvmQualifiedTypeName().substringBeforeLast(TypeSeparator)
+    this.isJvmPrimitiveType().ifTrue { "java.lang" } ?: this.toJvmQualifiedTypeName().substringBeforeLast(TypeSeparator)
   }

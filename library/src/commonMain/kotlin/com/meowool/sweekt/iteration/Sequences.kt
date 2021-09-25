@@ -115,6 +115,21 @@ inline fun <T> Sequence<T>.onEmpty(action: (Sequence<T>) -> Unit): Sequence<T> {
 }
 
 /**
+ * Returns itself if this [Sequence] is not empty, otherwise null.
+ */
+inline fun <T> Sequence<T>?.takeIfNotEmpty(): Sequence<T>? {
+  contract {
+    returnsNotNull() implies (this@takeIfNotEmpty != null)
+  }
+  return if (isNullOrEmpty()) null else this
+}
+
+/**
+ * Returns itself if this [Sequence] is empty, otherwise null.
+ */
+inline fun <T> Sequence<T>.takeIfEmpty(): Sequence<T>? = if (isEmpty()) this else null
+
+/**
  * Returns `true` if this sequence starts with given [slice].
  */
 fun <T> Sequence<T>.startsWith(slice: Iterable<T>) = this.take(slice.size) == slice.asSequence()

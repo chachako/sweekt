@@ -33,10 +33,10 @@ fun Context.asActivity(): Activity = asActivityOrNull()
  *
  * @see Context.asActivity
  */
-fun Context.asActivityOrNull(): Activity? = this.safeCast()
-  ?: this.safeCast<ContextWrapper>()?.baseContext?.asActivityOrNull()
-  ?: this.safeCast<ContextHolder>()?.obtainContext()?.asActivityOrNull()
-  ?: this.safeCast<ActivityHolder>()?.obtainActivity()
+fun Context.asActivityOrNull(): Activity? = this.castOrNull()
+  ?: this.castOrNull<ContextWrapper>()?.baseContext?.asActivityOrNull()
+  ?: this.castOrNull<ContextHolder>()?.obtainContext()?.asActivityOrNull()
+  ?: this.castOrNull<ActivityHolder>()?.obtainActivity()
 
 /**
  * Get the window from this context.

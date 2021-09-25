@@ -44,10 +44,9 @@ internal actual open class HostingImpl<T> : Hosting<T> {
   override fun toString(): String = value.toString()
 }
 
-internal actual class LazyHostingImpl<T> actual constructor(
-  lock: Any?,
-  private var initializer: (() -> T)?
-) : HostingImpl<T>(), Hosting<T> {
+internal actual class LazyHostingImpl<T> actual constructor(lock: Any?, private var initializer: () -> T) :
+  HostingImpl<T>(), Hosting<T> {
+
   // final field is required to enable safe publication of constructed instance
   private val lock = lock ?: this
 
@@ -60,13 +59,7 @@ internal actual class LazyHostingImpl<T> actual constructor(
       else -> synchronized(lock) {
         when (isHosting()) {
           true -> _value as T
-          else -> {
-            // is is not empty when it is first getting
-            val typedValue = initializer?.invoke() ?: error(ErrorHosting)
-            _value = typedValue
-            initializer = null
-            typedValue
-          }
+          false -> initializer().also { _value = it }
         }
       }
     }

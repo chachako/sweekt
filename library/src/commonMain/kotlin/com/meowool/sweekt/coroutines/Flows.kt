@@ -7,7 +7,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
@@ -29,7 +31,7 @@ inline fun <T> Flow<T>.flowOnUI(): Flow<T> = this.flowOn(Dispatchers.Main)
 /**
  * Switch the operation upstream of the stream to the default thread.
  *
- * This dispatcher is optimized to perform CPU-intensive work outside of the main thread. Example
+ * This dispatcher is optimized to perform CPU-intensive work outside the main thread. Example
  * use cases include sorting a list and parsing JSON.
  *
  * @see Dispatchers.Default
@@ -48,7 +50,7 @@ suspend inline fun <T> Flow<T>.size(): Int = this.count()
  *
  * The operation is _terminal_.
  */
-suspend fun <T> Flow<T>.all(predicate: (T) -> Boolean): Boolean = try {
+suspend fun <T> Flow<T>.all(predicate: suspend (T) -> Boolean): Boolean = try {
   collect { value ->
     if (!predicate(value)) {
       throw CancellationException()
@@ -176,19 +178,9 @@ suspend inline fun <T> Flow<T>?.onNullOrEmpty(action: (Flow<T>?) -> Unit): Flow<
 }
 
 /**
- * Call the given [action] when this flow is empty.
- *
- * The operation is _terminal_.
+ * Returns this [Flow] if it's not `null` and the empty flow otherwise.
  */
-@OptIn(ExperimentalTypeInference::class)
-@OverloadResolutionByLambdaReturnType
-suspend inline fun <T> Flow<T>.onEmpty(action: (Flow<T>) -> Unit): Flow<T> {
-  contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
-  if (this.isEmpty()) {
-    action(this)
-  }
-  return this
-}
+inline fun <T> Flow<T>?.orEmpty() = this ?: emptyFlow()
 
 /**
  * Returns `true` if at least one element matches the given [predicate].
@@ -199,3 +191,24 @@ suspend fun <T> Flow<T>.contains(predicate: suspend (T) -> Boolean): Boolean = f
  * Returns `true` if at least one element matches the given [predicate].
  */
 suspend fun <T> Flow<T>.has(predicate: suspend (T) -> Boolean): Boolean = firstOrNull(predicate) != null
+
+/**
+ * Returns `true` if at least one element equals to the given [element].
+ */
+suspend fun <T> Flow<T>.contains(element: T): Boolean = contains { it == element }
+
+/**
+ * Returns a flow containing only distinct elements emitted.
+ */
+fun <T> Flow<T>.distinct(): Flow<T> = flow {
+  val set = mutableSetOf<T>()
+  collect { if (set.add(it)) emit(it) }
+}
+
+/**
+ * Returns a flow containing only elements having distinct keys returned by the given [selector] function.
+ */
+inline fun <T, K> Flow<T>.distinctBy(crossinline selector: (T) -> K): Flow<T> = flow {
+  val keySet = mutableSetOf<K>()
+  collect { if (keySet.add(selector(it))) emit(it) }
+}

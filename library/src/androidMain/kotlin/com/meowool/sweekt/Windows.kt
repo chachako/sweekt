@@ -18,5 +18,5 @@ val Window.rootLayout: ViewGroup
  *
  * @see Window.rootLayout
  */
-inline fun Window.findRootLayout(): ViewGroup? = decorView.safeCast<ViewGroup>()
+inline fun Window.findRootLayout(): ViewGroup? = decorView.castOrNull<ViewGroup>()
   ?: decorView.findViewById(android.R.id.content)
