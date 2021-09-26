@@ -17,12 +17,13 @@ package com.meowool.sweekt {
     method public static inline <R> R? ifFalse(boolean, kotlin.jvm.functions.Function0<? extends R> block);
     method public static inline <R> R? ifTrue(Boolean?, kotlin.jvm.functions.Function0<? extends R> block);
     method public static inline <R> R? ifTrue(boolean, kotlin.jvm.functions.Function0<? extends R> block);
+    method public static inline <R> R! select(Boolean?, R? yes, R? no);
+    method public static inline <R> R! select(boolean, R? yes, R? no);
+    method public static inline <R> R! select(Boolean?, kotlin.jvm.functions.Function0<? extends R> yes, kotlin.jvm.functions.Function0<? extends R> no);
+    method public static inline <R> R! select(boolean, kotlin.jvm.functions.Function0<? extends R> yes, kotlin.jvm.functions.Function0<? extends R> no);
   }
 
   public final class CharSequencesKt {
-    method public static String firstCharLowercase(CharSequence);
-    method public static String firstCharTitlecase(CharSequence);
-    method public static String firstCharUppercase(CharSequence);
     method public static inline void forEachSplit(CharSequence, char delimiter, optional int offset, kotlin.jvm.functions.Function1<? super java.lang.String,kotlin.Unit> action);
     method public static inline void forEachSplitBy(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate, optional int offset, kotlin.jvm.functions.Function1<? super java.lang.String,kotlin.Unit> action);
     method public static inline void forEachSplitIndexedBy(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate, optional int offset, kotlin.jvm.functions.Function2<? super java.lang.Integer,? super java.lang.String,kotlin.Unit> action);
@@ -32,8 +33,6 @@ package com.meowool.sweekt {
     method public static boolean isContainsEnglish(CharSequence?, optional boolean ignorePunctuation);
     method public static boolean isDigits(CharSequence?);
     method public static boolean isEnglish(CharSequence?, optional boolean allowPunctuation);
-    method public static String lastCharLowercase(CharSequence);
-    method public static String lastCharUppercase(CharSequence);
     method public static inline infix <C extends java.lang.CharSequence> C or(C?, C another);
     method public static String remove(CharSequence, int index);
     method public static CharSequence removeBlanks(CharSequence);
@@ -67,8 +66,8 @@ package com.meowool.sweekt {
     method public static String firstCharUppercase(CharSequence, java.util.Locale locale);
     method public static String lastCharLowercase(CharSequence, java.util.Locale locale);
     method public static String lastCharUppercase(CharSequence, java.util.Locale locale);
-    method @kotlin.OverloadResolutionByLambdaReturnType public static inline String replaceLastCharWithChar(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Character> transform);
-    method @kotlin.OverloadResolutionByLambdaReturnType public static inline String replaceLastCharWithCharSequence(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,? extends java.lang.CharSequence> transform);
+    method @kotlin.OverloadResolutionByLambdaReturnType public static inline String replaceLastCharToChar(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Character> transform);
+    method @kotlin.OverloadResolutionByLambdaReturnType public static inline String replaceLastCharToCharSequence(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,? extends java.lang.CharSequence> transform);
   }
 
   public final class CharsKt {
@@ -76,7 +75,7 @@ package com.meowool.sweekt {
     method public static boolean isEnglish(char);
     method public static inline boolean isEnglishNotPunctuation(char);
     method public static boolean isEnglishPunctuation(char);
-    method public static inline boolean isPunctuation(char);
+    method public static boolean isPunctuation(char);
   }
 
   public final class Chars_jvmKt {
@@ -140,13 +139,6 @@ package com.meowool.sweekt {
     property public String tebi;
     property public boolean useSI;
     field public static final com.meowool.sweekt.DefaultDataSizeUnits INSTANCE;
-  }
-
-  public final class DimensionsKt {
-    method public static int asDp(Number);
-    method public static int asDp(Number, android.content.Context context);
-    method public static int asSp(Number);
-    method public static int asSp(Number, android.content.Context context);
   }
 
   public final class ExceptionsKt {
@@ -234,7 +226,7 @@ package com.meowool.sweekt {
   }
 
   public final class Locale_jvmKt {
-    method public static java.util.Locale defaultLocale();
+    method public static inline java.util.Locale defaultLocale();
   }
 
   public final class MathsKt {
@@ -255,9 +247,9 @@ package com.meowool.sweekt {
     method public static inline long addFlag(long, long mask);
     method public static inline short addFlag(short, short mask);
     method public static inline byte addFlag(byte, byte mask);
-    method public static float asFloat(Number);
-    method public static int asInt(Number);
-    method public static long asLong(Number);
+    method public static inline float asFloat(Number);
+    method public static inline int asInt(Number);
+    method public static inline long asLong(Number);
     method public static inline boolean hasFlag(int, int mask);
     method public static inline boolean hasFlag(long, long mask);
     method public static inline boolean hasFlag(short, short mask);
@@ -282,19 +274,10 @@ package com.meowool.sweekt {
     method public static int unpackInt2(long value);
   }
 
-  public final class Pairs_jvmKt {
+  public final class PairsKt {
+    method public static long IntPair(int first, int second);
     method public static infix long to(int, int that);
     method public static java.util.List<java.lang.Integer> toList(long);
-  }
-
-  public final class PreconditionsKt {
-    method public static inline <T> T! ifNull(T?, kotlin.jvm.functions.Function0<? extends T> another);
-    method public static inline <R> R! select(Boolean?, R? yes, R? no);
-    method public static inline <R> R! select(boolean, R? yes, R? no);
-    method public static inline <R> R! select(Boolean?, kotlin.jvm.functions.Function0<? extends R> yes, kotlin.jvm.functions.Function0<? extends R> no);
-    method public static inline <R> R! select(boolean, kotlin.jvm.functions.Function0<? extends R> yes, kotlin.jvm.functions.Function0<? extends R> no);
-    method public static inline infix <R> R? that(Boolean?, R? default);
-    method public static inline infix <R> R? that(boolean, R? default);
   }
 
   public final class ScopeFunctionsKt {
@@ -302,8 +285,10 @@ package com.meowool.sweekt {
     method public static inline <T> T? alsoOrNull(T?, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> block);
     method public static inline <T, R> T! apply(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,kotlin.Unit> catching, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> block);
     method public static inline <T> T? applyOrNull(T?, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> block);
+    method public static inline <T> T! ifNull(T?, kotlin.jvm.functions.Function0<? extends T> another);
     method public static inline <T, R> R! let(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function1<? super T,? extends R> block);
     method public static inline <T, R> R? letOrNull(T?, kotlin.jvm.functions.Function1<? super T,? extends R> block);
+    method public static inline <T> T! onNull(T?, kotlin.jvm.functions.Function0<? extends T> action);
     method public static inline <R> R! run(kotlin.jvm.functions.Function1<? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function0<? extends R> block);
     method public static inline <T, R> R! run(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function1<? super T,? extends R> block);
     method public static inline <R> R? runOrNull(kotlin.jvm.functions.Function0<? extends R> block);
@@ -375,16 +360,16 @@ package com.meowool.sweekt.array {
     method public static inline <T> java.util.List<T> dropLast(T![]);
     method public static <T> java.util.List<T> dropPrefix(T![], T? prefix);
     method public static <T> java.util.List<T> dropPrefix(T![], T?... prefix);
-    method public static <T> java.util.List<T> dropPrefix(T![], T![] prefix);
     method public static <T> java.util.List<T> dropPrefix(T![], Iterable<? extends T> prefix);
+    method public static <T> java.util.List<T> dropPrefixArray(T![], T![] prefix);
     method public static <T> java.util.List<T> dropSuffix(T![], T? suffix);
     method public static <T> java.util.List<T> dropSuffix(T![], T?... suffix);
-    method public static <T> java.util.List<T> dropSuffix(T![], T![] suffix);
     method public static <T> java.util.List<T> dropSuffix(T![], Iterable<? extends T> suffix);
+    method public static <T> java.util.List<T> dropSuffixArray(T![], T![] suffix);
     method public static <T> boolean endsWith(T![], Iterable<? extends T> slice);
     method public static <T> boolean endsWith(T![], kotlin.sequences.Sequence<? extends T> slice);
-    method public static <T> boolean endsWith(T![], T![] slice);
     method public static <T> boolean endsWith(T![], T?... slice);
+    method public static <T> boolean endsWithArray(T![], T![] slice);
     method public static inline <T> boolean has(T![], kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
     method public static inline <T> boolean isNotNullEmpty(T![]?);
     method public static inline <T> T![] onEmpty(T![], kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
@@ -393,8 +378,8 @@ package com.meowool.sweekt.array {
     method public static inline <T> T![]? onNullOrEmpty(T![]?, kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
     method public static <T> boolean startsWith(T![], Iterable<? extends T> slice);
     method public static <T> boolean startsWith(T![], kotlin.sequences.Sequence<? extends T> slice);
-    method public static <T> boolean startsWith(T![], T![] slice);
     method public static <T> boolean startsWith(T![], T?... slice);
+    method public static <T> boolean startsWithArray(T![], T![] slice);
     method public static inline <T> T![]? takeIfEmpty(T![]);
     method public static inline <T> T![]? takeIfNotEmpty(T![]?);
   }
@@ -450,14 +435,14 @@ package com.meowool.sweekt.coroutines {
     method public static <T> kotlinx.coroutines.Deferred<T> asyncUI(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block);
     method public static kotlinx.coroutines.Job launchDefault(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
     method public static kotlinx.coroutines.Job launchUI(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
-    method public static suspend <T> Object? withDefaultContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
-    method public static suspend <T> Object? withUiContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
+    method public static suspend inline <T> Object? withDefaultContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
+    method public static suspend inline <T> Object? withUiContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
   }
 
   public final class Coroutines_jvmKt {
     method public static <T> kotlinx.coroutines.Deferred<T> asyncIO(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block);
     method public static kotlinx.coroutines.Job launchIO(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
-    method public static suspend <T> Object? withIOContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
+    method public static suspend inline <T> Object? withIOContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
   }
 
   public final class FlowsKt {
@@ -517,7 +502,6 @@ package com.meowool.sweekt.datetime {
   }
 
   public final class Formatters_jvmKt {
-    method public static java.time.format.DateTimeFormatter getISO_ZONED_DATE_TIME_FORMATTER();
   }
 
   public final class InstantsKt {
@@ -580,6 +564,54 @@ package com.meowool.sweekt.datetime {
 
 }
 
+package com.meowool.sweekt.dimension {
+
+  public final class DoubleDpsKt {
+    method public static double dpDouble(double, android.content.Context context);
+    method public static float dpFloat(double, android.content.Context context);
+    method public static int dpInt(double, android.content.Context context);
+    method public static long dpLong(double, android.content.Context context);
+    method public static double getDpDouble(double);
+    method public static float getDpFloat(double);
+    method public static int getDpInt(double);
+    method public static long getDpLong(double);
+  }
+
+  public final class FloatDpsKt {
+    method public static double dpDouble(float, android.content.Context context);
+    method public static float dpFloat(float, android.content.Context context);
+    method public static int dpInt(float, android.content.Context context);
+    method public static long dpLong(float, android.content.Context context);
+    method public static double getDpDouble(float);
+    method public static float getDpFloat(float);
+    method public static int getDpInt(float);
+    method public static long getDpLong(float);
+  }
+
+  public final class IntDpsKt {
+    method public static double dpDouble(int, android.content.Context context);
+    method public static float dpFloat(int, android.content.Context context);
+    method public static int dpInt(int, android.content.Context context);
+    method public static long dpLong(int, android.content.Context context);
+    method public static double getDpDouble(int);
+    method public static float getDpFloat(int);
+    method public static int getDpInt(int);
+    method public static long getDpLong(int);
+  }
+
+  public final class LongDpsKt {
+    method public static double dpDouble(long, android.content.Context context);
+    method public static float dpFloat(long, android.content.Context context);
+    method public static int dpInt(long, android.content.Context context);
+    method public static long dpLong(long, android.content.Context context);
+    method public static double getDpDouble(long);
+    method public static float getDpFloat(long);
+    method public static int getDpInt(long);
+    method public static long getDpLong(long);
+  }
+
+}
+
 package com.meowool.sweekt.iteration {
 
   public final class ConvertsKt {
@@ -627,12 +659,12 @@ package com.meowool.sweekt.iteration {
     method public static inline <T> java.util.List<T> dropLast(java.util.List<? extends T>);
     method public static <T> java.util.List<T> dropPrefix(java.util.List<? extends T>, T? prefix);
     method public static <T> java.util.List<T> dropPrefix(java.util.List<? extends T>, T?... prefix);
-    method public static <T> java.util.List<T> dropPrefix(java.util.List<? extends T>, T![] prefix);
     method public static <T> java.util.List<T> dropPrefix(java.util.List<? extends T>, Iterable<? extends T> prefix);
+    method public static <T> java.util.List<T> dropPrefixArray(java.util.List<? extends T>, T![] prefix);
     method public static <T> java.util.List<T> dropSuffix(java.util.List<? extends T>, T? suffix);
     method public static <T> java.util.List<T> dropSuffix(java.util.List<? extends T>, T?... suffix);
-    method public static <T> java.util.List<T> dropSuffix(java.util.List<? extends T>, T![] suffix);
     method public static <T> java.util.List<T> dropSuffix(java.util.List<? extends T>, Iterable<? extends T> suffix);
+    method public static <T> java.util.List<T> dropSuffixArray(java.util.List<? extends T>, T![] suffix);
   }
 
   public final class MapsKt {
@@ -649,37 +681,37 @@ package com.meowool.sweekt.iteration {
   public final class MutableCollectionsKt {
     method public static <T, S extends java.util.Collection<T>> S append(S, T? element);
     method public static <T, S extends java.util.Collection<T>> S append(S, T?... elements);
-    method public static <T, S extends java.util.Collection<T>> S append(S, T![] elements);
     method public static <T, S extends java.util.Collection<T>> S append(S, Iterable<? extends T> elements);
+    method public static <T, S extends java.util.Collection<T>> S appendArray(S, T![] elements);
     method public static <T> boolean replaceAll(java.util.Collection<? super T>, Iterable<? extends T> newElements);
     method public static <T> boolean replaceAll(java.util.Collection<? super T>, kotlin.sequences.Sequence<? extends T> newElements);
     method public static <T> boolean replaceAll(java.util.Collection<? super T>, T?... newElements);
-    method public static <T> boolean replaceAll(java.util.Collection<? super T>, T![] newElements);
+    method public static <T> boolean replaceAllArray(java.util.Collection<? super T>, T![] newElements);
   }
 
   public final class MutableListsKt {
+    method public static <T, I extends java.util.List<T>> I insertArrayAt(I, int index, T![] elements);
     method public static <T, I extends java.util.List<T>> I insertAt(I, int index, T? element);
     method public static <T, I extends java.util.List<T>> I insertAt(I, int index, T?... elements);
-    method public static <T, I extends java.util.List<T>> I insertAt(I, int index, T![] elements);
     method public static <T, I extends java.util.List<T>> I insertAt(I, int index, Iterable<? extends T> elements);
     method public static <T, I extends java.util.List<T>> I insertFirst(I, T? element);
     method public static <T, I extends java.util.List<T>> I insertFirst(I, T?... elements);
-    method public static <T, I extends java.util.List<T>> I insertFirst(I, T![] elements);
     method public static <T, I extends java.util.List<T>> I insertFirst(I, Iterable<? extends T> elements);
+    method public static <T, I extends java.util.List<T>> I insertFirstArray(I, T![] elements);
     method public static <T, I extends java.util.List<T>> I insertLast(I, T? element);
     method public static <T, I extends java.util.List<T>> I insertLast(I, T?... elements);
-    method public static <T, I extends java.util.List<T>> I insertLast(I, T![] elements);
     method public static <T, I extends java.util.List<T>> java.util.List<T> insertLast(I, Iterable<? extends T> elements);
+    method public static <T, I extends java.util.List<T>> I insertLastArray(I, T![] elements);
     method public static <T, I extends java.util.List<T>> I removeFirst(I, int n);
     method public static <T, I extends java.util.List<T>> I removeLast(I, int n);
     method public static <T, I extends java.util.List<T>> I removePrefix(I, T? prefix);
     method public static <T, I extends java.util.List<T>> I removePrefix(I, T?... prefix);
-    method public static <T, I extends java.util.List<T>> I removePrefix(I, T![] prefix);
     method public static <T, I extends java.util.List<T>> I removePrefix(I, Iterable<? extends T> prefix);
+    method public static <T, I extends java.util.List<T>> I removePrefixArray(I, T![] prefix);
     method public static <T, I extends java.util.List<T>> I removeSuffix(I, T? suffix);
     method public static <T, I extends java.util.List<T>> I removeSuffix(I, T?... suffix);
-    method public static <T, I extends java.util.List<T>> I removeSuffix(I, T![] suffix);
     method public static <T, I extends java.util.List<T>> I removeSuffix(I, Iterable<? extends T> suffix);
+    method public static <T, I extends java.util.List<T>> I removeSuffixArray(I, T![] suffix);
   }
 
   public final class SequencesKt {
