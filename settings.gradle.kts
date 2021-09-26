@@ -10,7 +10,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.meowool.gradle.toolkit") version "0.2.2-SNAPSHOT"
+  id("com.meowool.gradle.toolkit") version "0.1.0-SNAPSHOT"
 }
 
 buildscript {
@@ -24,7 +24,6 @@ buildscript {
 }
 
 gradleToolkit {
-  rootProject.buildscript.repositories { mavenCentral() }
   useMeowoolSpec()
   allprojects {
     optIn("com.meowool.sweekt.InternalSweektApi")
