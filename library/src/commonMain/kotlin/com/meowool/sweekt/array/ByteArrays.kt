@@ -11,6 +11,8 @@ package com.meowool.sweekt.array
  * @param byteCount how many element of [bytes] are writing.
  * @param filter whether to filter out bytes without writing.
  * @return this array
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun ByteArray.write(
   bytes: ByteArray,
@@ -38,6 +40,8 @@ inline fun ByteArray.write(
  *
  * @param offset where to start writing.
  * @return this array
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun ByteArray.write(byte: Byte, offset: Int = 0): ByteArray = apply {
   require(offset in 0..this.size) { "offset: $offset, total size: $size" }
@@ -52,6 +56,8 @@ inline fun ByteArray.write(byte: Byte, offset: Int = 0): ByteArray = apply {
  *
  * @param startIndex the start index (inclusive).
  * @param endIndex the end index (exclusive).
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun ByteArray.subarray(startIndex: Int = 0, endIndex: Int = this.size): ByteArray =
   if (startIndex == 0 && endIndex == this.size) this
@@ -62,6 +68,8 @@ inline fun ByteArray.subarray(startIndex: Int = 0, endIndex: Int = this.size): B
  *
  * @param prefix the prefix to be looking.
  * @param offset the offset as the starting index of the looking.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun ByteArray.startsWith(vararg prefix: Byte, offset: Int = 0): Boolean {
   require(offset >= 0) { "offset < 0" }
@@ -78,6 +86,7 @@ inline fun ByteArray.startsWith(vararg prefix: Byte, offset: Int = 0): Boolean {
  * Returns a (new) array and adds the given [value] at the array first.
  *
  * @param value the value to be added.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun ByteArray.addFirst(value: Byte): ByteArray = add(0, value)
 
@@ -85,6 +94,7 @@ inline fun ByteArray.addFirst(value: Byte): ByteArray = add(0, value)
  * Returns a (new) array and adds all the given [values] at the array beginning.
  *
  * @param values all values to be added.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun ByteArray.addFirstAll(values: ByteArray): ByteArray = addAll(0, values)
 
@@ -93,6 +103,8 @@ inline fun ByteArray.addFirstAll(values: ByteArray): ByteArray = addAll(0, value
  *
  * @param index the position within array to add the new [value].
  * @param value the value to be added.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ByteArray.add(index: Int, value: Byte): ByteArray = arrayInsertArray(index, byteArrayOf(value))
 
@@ -101,6 +113,8 @@ fun ByteArray.add(index: Int, value: Byte): ByteArray = arrayInsertArray(index, 
  *
  * @param index the position within array to add the new [values].
  * @param values all values to be added.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ByteArray.addAll(index: Int, values: ByteArray): ByteArray = arrayInsertArray(index, values)
 
@@ -108,6 +122,7 @@ fun ByteArray.addAll(index: Int, values: ByteArray): ByteArray = arrayInsertArra
  * Returns a (new) array and adds the given [value] at the array last.
  *
  * @param value the value to be added.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun ByteArray.add(value: Byte): ByteArray = plus(value)
 
@@ -115,6 +130,7 @@ inline fun ByteArray.add(value: Byte): ByteArray = plus(value)
  * Returns a (new) array and adds all the given [values] at the array last.
  *
  * @param values all values to be added.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun ByteArray.addAll(vararg values: Byte): ByteArray = plus(values)
 
@@ -129,6 +145,7 @@ inline fun ByteArray.addAll(vararg values: Byte): ByteArray = plus(values)
  * ```
  *
  * @param index the index of the element to be removed.
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ByteArray.remove(index: Int): ByteArray = arrayRemove(index)
 
@@ -146,6 +163,7 @@ fun ByteArray.remove(index: Int): ByteArray = arrayRemove(index)
  * ```
  *
  * @param indices the index of the element to be removed.
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ByteArray.remove(vararg indices: Int): ByteArray = arrayRemove(*indices)
 
@@ -157,6 +175,8 @@ fun ByteArray.remove(vararg indices: Int): ByteArray = arrayRemove(*indices)
  *
  * @param startIndex the start index (inclusive).
  * @param endIndex the end index (exclusive).
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ByteArray.removeRange(startIndex: Int = 0, endIndex: Int = this.size): ByteArray =
   arrayRemoveRange(startIndex, endIndex)

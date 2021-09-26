@@ -1,0 +1,14 @@
+// Signature format: 4.0
+package com.meowool.toolkit.sample {
+
+  public final class MainActivity {
+    ctor public MainActivity();
+    method public void onCreate(error.NonExistentClass? savedInstanceState);
+  }
+
+  public final class MainActivityKt {
+    method public static String greet();
+  }
+
+}
+

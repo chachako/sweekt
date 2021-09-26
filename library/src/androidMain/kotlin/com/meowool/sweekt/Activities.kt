@@ -26,6 +26,8 @@ interface ActivityHolder {
  *
  * @see Context.window
  * @see Window.rootLayout
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline val Activity.windowRootLayout: ViewGroup get() = window.rootLayout
 
@@ -34,6 +36,8 @@ inline val Activity.windowRootLayout: ViewGroup get() = window.rootLayout
  *
  * @see Context.findWindow
  * @see Window.rootLayout
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Activity.findWindowRootLayout(): ViewGroup? = window.findRootLayout()
 
@@ -44,6 +48,8 @@ inline fun Activity.findWindowRootLayout(): ViewGroup? = window.findRootLayout()
  * @param configIntent configure the activity intent.
  *
  * @see activityIntent
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <reified A : Activity> Context.start(
   vararg arguments: Pair<String, *>,
@@ -57,6 +63,8 @@ inline fun <reified A : Activity> Context.start(
  * @param configIntent configure the activity intent.
  *
  * @see activityIntent
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <reified A : Activity> Fragment.start(
   vararg arguments: Pair<String, *>,

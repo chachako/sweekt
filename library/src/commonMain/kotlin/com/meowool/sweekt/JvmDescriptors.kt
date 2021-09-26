@@ -11,10 +11,30 @@ private const val DescriptorSuffix = ';'
 private const val JavaArraySymbol = "[]"
 
 /**
+ * E.g.
+ * ```
+ * Ljava.lang.String; = true
+ * Ljava/lang/String; = true
+ * [Ljava.lang.String; = false
+ * java.lang.String = false
+ * Z = false
+ * ```
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+private fun CharSequence.isExactJvmTypeDescriptor(): Boolean =
+  this.first() == DescriptorPrefix
+    && this.last() == DescriptorSuffix
+    // jvm descriptor only allows `.` and `/` punctuation
+    && this.any { it.isPunctuation() && it != DescriptorSeparator && it != TypeSeparator && it != InnerClassSeparator }
+
+/**
  * Returns `true` if this [CharSequence] conforms to the primitive type descriptor or name definition of the JVM.
  *
  * @see CharSequence.isJvmPrimitiveTypeDescriptor
  * @see CharSequence.isJvmPrimitiveTypeName
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun CharSequence.isJvmPrimitiveType(): Boolean = isJvmPrimitiveTypeDescriptor() || isJvmPrimitiveTypeName()
 
@@ -28,6 +48,8 @@ inline fun CharSequence.isJvmPrimitiveType(): Boolean = isJvmPrimitiveTypeDescri
  * [[[[I = true
  * int = false
  * ```
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.isJvmPrimitiveTypeDescriptor(): Boolean {
   // We only need to take an array to check
@@ -45,6 +67,8 @@ fun CharSequence.isJvmPrimitiveTypeDescriptor(): Boolean {
 
 /**
  * Returns `true` if this [Char] conforms to the primitive type descriptor of the JVM.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Char.isJvmPrimitiveTypeDescriptor(): Boolean = when (this) {
   'I', 'Z', 'C', 'D', 'F', 'J', 'S', 'B', 'V' -> true
@@ -59,27 +83,13 @@ fun Char.isJvmPrimitiveTypeDescriptor(): Boolean = when (this) {
  * int = true
  * I = false
  * ```
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.isJvmPrimitiveTypeName(): Boolean = when (this) {
   "int", "boolean", "char", "double", "float", "long", "short", "byte", "void" -> true
   else -> false
 }
-
-/**
- * E.g.
- * ```
- * Ljava.lang.String; = true
- * Ljava/lang/String; = true
- * [Ljava.lang.String; = false
- * java.lang.String = false
- * Z = false
- * ```
- */
-private fun CharSequence.isExactJvmTypeDescriptor(): Boolean =
-  this.first() == DescriptorPrefix
-    && this.last() == DescriptorSuffix
-    // jvm descriptor only allows `.` and `/` punctuation
-    && this.any { it.isPunctuation() && it != DescriptorSeparator && it != TypeSeparator && it != InnerClassSeparator }
 
 /**
  * Returns `true` if this [CharSequence] conforms to the array type descriptor of the JVM.
@@ -92,6 +102,8 @@ private fun CharSequence.isExactJvmTypeDescriptor(): Boolean =
  * [Ljava/lang/String; = true
  * [Ljava.lang.String = false
  * ```
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.isJvmArrayTypeDescriptor(): Boolean {
   if (isJvmPrimitiveTypeDescriptor()) return true
@@ -117,6 +129,7 @@ fun CharSequence.isJvmArrayTypeDescriptor(): Boolean {
  * ```
  *
  * @see CharSequence.isJvmPrimitiveTypeDescriptor
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.isJvmTypeDescriptor(): Boolean =
   this.isJvmPrimitiveTypeDescriptor() || isJvmArrayTypeDescriptor() || isExactJvmTypeDescriptor()
@@ -134,6 +147,7 @@ fun CharSequence.isJvmTypeDescriptor(): Boolean =
  * ```
  *
  * @param separator the separator of the type descriptor after conversion
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.toJvmTypeDescriptor(separator: Char = DescriptorSeparator): String =
   toJvmTypeDescriptor(separator.toString())
@@ -151,6 +165,7 @@ fun CharSequence.toJvmTypeDescriptor(separator: Char = DescriptorSeparator): Str
  * ```
  *
  * @param separator the separator of the type descriptor after conversion
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.toJvmTypeDescriptor(separator: String): String {
   var descriptor = this.toString()
@@ -216,6 +231,8 @@ fun CharSequence.toJvmTypeDescriptor(separator: String): String {
  *
  * @param canonical if the value is `true`, for example, `[La.b.FooBar` will be canonical as `a.b.Foo.Bar[]`
  * @param separator the separator of the qualified name after conversion
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.toJvmQualifiedTypeName(
   canonical: Boolean = false,
@@ -237,6 +254,8 @@ fun CharSequence.toJvmQualifiedTypeName(
  *
  * @param canonical if the value is `true`, for example, `[La.b.FooBar` will be canonical as `a.b.Foo.Bar[]`
  * @param separator the separator of the qualified name after conversion
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.toJvmQualifiedTypeName(
   canonical: Boolean = false,
@@ -292,6 +311,8 @@ fun CharSequence.toJvmQualifiedTypeName(
  * java.lang.Object -> Object
  * [La.b.Foo$Bar -> Bar
  * ```
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.toJvmTypeSimpleName(): String =
   this.toJvmQualifiedTypeName(canonical = true).substringAfterLast(TypeSeparator)
@@ -304,6 +325,8 @@ fun CharSequence.toJvmTypeSimpleName(): String =
  * a.b.Foo$Bar -> a.b
  * I -> java.lang
  * ```
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CharSequence.toJvmPackageName(): String = this.toString()
   .substringBeforeLast(InnerClassSeparator)

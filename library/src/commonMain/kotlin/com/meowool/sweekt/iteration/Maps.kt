@@ -8,6 +8,8 @@ import kotlin.jvm.JvmName
 
 /**
  * Returns itself if this char sequence is not empty, otherwise null.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <K, V, M: Map<out K, V>> M?.takeIfNotEmpty(): M? {
   contract {
@@ -18,6 +20,8 @@ inline fun <K, V, M: Map<out K, V>> M?.takeIfNotEmpty(): M? {
 
 /**
  * Returns itself if this char sequence is empty, otherwise null.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <K, V, M: Map<out K, V>> M.takeIfEmpty(): M? = if (isEmpty()) this else null
 
@@ -26,6 +30,7 @@ inline fun <K, V, M: Map<out K, V>> M.takeIfEmpty(): M? = if (isEmpty()) this el
  * entry of original map.
  *
  * @see Map.flatMap
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <K, V, R> Map<out K, V>.flatMapNotNull(transform: (Map.Entry<K, V>) -> Iterable<R>?): List<R> {
   return flatMapNotNullTo(ArrayList(), transform)
@@ -36,6 +41,7 @@ inline fun <K, V, R> Map<out K, V>.flatMapNotNull(transform: (Map.Entry<K, V>) -
  * entry of original map.
  *
  * @see Map.flatMap
+ * @author 凛 (https://github.com/RinOrz)
  */
 @JvmName("flatMapNotNullSequence")
 @OverloadResolutionByLambdaReturnType
@@ -48,6 +54,7 @@ inline fun <K, V, R> Map<out K, V>.flatMapNotNull(transform: (Map.Entry<K, V>) -
  * map, to the given [destination].
  *
  * @see Map.flatMapTo
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <K, V, R, C : MutableCollection<in R>> Map<out K, V>.flatMapNotNullTo(
   destination: C,
@@ -65,6 +72,7 @@ inline fun <K, V, R, C : MutableCollection<in R>> Map<out K, V>.flatMapNotNullTo
  * map, to the given [destination].
  *
  * @see Map.flatMapTo
+ * @author 凛 (https://github.com/RinOrz)
  */
 @JvmName("flatMapNotNullSequenceTo")
 @OverloadResolutionByLambdaReturnType
@@ -92,6 +100,8 @@ inline fun <K, V, R, C : MutableCollection<in R>> Map<out K, V>.flatMapNotNullTo
  * ----
  * { one -> true, two -> 2 }
  * ```
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <K, V, A : Appendable> Map<K, V>.joinTo(
   buffer: A,
@@ -129,6 +139,8 @@ fun <K, V, A : Appendable> Map<K, V>.joinTo(
  * ----
  * { one: true, two: 2 }
  * ```
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <K, V> Map<K, V>.joinToString(
   separator: CharSequence = ", ",

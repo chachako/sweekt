@@ -21,6 +21,7 @@ val Float.dpInt: Int get() = (this * Resources.getSystem().displayMetrics.densit
  * @see Context.getResources
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Float.dpInt(context: Context): Int = (this * context.resources.displayMetrics.density).roundToInt()
 
@@ -29,6 +30,7 @@ fun Float.dpInt(context: Context): Int = (this * context.resources.displayMetric
  *
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
+ * @author 凛 (https://github.com/RinOrz)
  */
 val Float.dpLong: Long get() = (this * Resources.getSystem().displayMetrics.density).roundToLong()
 
@@ -38,6 +40,7 @@ val Float.dpLong: Long get() = (this * Resources.getSystem().displayMetrics.dens
  * @see Context.getResources
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Float.dpLong(context: Context): Long = (this * context.resources.displayMetrics.density).roundToLong()
 
@@ -46,6 +49,7 @@ fun Float.dpLong(context: Context): Long = (this * context.resources.displayMetr
  *
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
+ * @author 凛 (https://github.com/RinOrz)
  */
 val Float.dpFloat: Float get() = this * Resources.getSystem().displayMetrics.density
 
@@ -55,6 +59,7 @@ val Float.dpFloat: Float get() = this * Resources.getSystem().displayMetrics.den
  * @see Context.getResources
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Float.dpFloat(context: Context): Float = this * context.resources.displayMetrics.density
 
@@ -63,6 +68,7 @@ fun Float.dpFloat(context: Context): Float = this * context.resources.displayMet
  *
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
+ * @author 凛 (https://github.com/RinOrz)
  */
 val Float.dpDouble: Double get() = (this * Resources.getSystem().displayMetrics.density).toDouble()
 
@@ -72,5 +78,6 @@ val Float.dpDouble: Double get() = (this * Resources.getSystem().displayMetrics.
  * @see Context.getResources
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Float.dpDouble(context: Context): Double = (this * context.resources.displayMetrics.density).toDouble()

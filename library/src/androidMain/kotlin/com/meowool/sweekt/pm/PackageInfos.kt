@@ -11,6 +11,8 @@ import android.os.Build
 
 /**
  * Returns `true` if this package has been installed.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 val PackageInfo.isInstalled: Boolean
   get() = try {
@@ -21,6 +23,8 @@ val PackageInfo.isInstalled: Boolean
 
 /**
  * Returns the compatible version code of this package info.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 val PackageInfo.versionCodeCompat: Long
   get() = when {
@@ -30,12 +34,16 @@ val PackageInfo.versionCodeCompat: Long
 
 /**
  * Bridges [PackageManager.getPackageInfo] to make it more convenient to use.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Context.getPackageInfo(packageName: String, flags: Int = 0): PackageInfo =
   this.packageManager.getPackageInfo(packageName, flags)
 
 /**
  * Bridges [PackageManager.getPackageInfo] to make it more convenient to use.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun PackageManager.getPackageInfo(packageName: String): PackageInfo =
   this.getPackageInfo(packageName, 0)

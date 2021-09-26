@@ -21,6 +21,8 @@ import kotlin.coroutines.EmptyCoroutineContext
  * Launch a coroutine in the [ViewModel.viewModelScope].
  *
  * For more details [CoroutineScope.launch].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ViewModel.launch(
   context: CoroutineContext = EmptyCoroutineContext,
@@ -32,6 +34,8 @@ fun ViewModel.launch(
  * Launch a coroutine in the [ViewModel.viewModelScope].
  *
  * For more details [CoroutineScope.launchUI].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ViewModel.launchUI(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -42,6 +46,8 @@ fun ViewModel.launchUI(
  * Launch a coroutine in the [ViewModel.viewModelScope].
  *
  * For more details [CoroutineScope.launchDefault].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ViewModel.launchDefault(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -52,6 +58,8 @@ fun ViewModel.launchDefault(
  * Launch a coroutine in the [ViewModel.viewModelScope].
  *
  * For more details [CoroutineScope.launchIO].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun ViewModel.launchIO(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -63,6 +71,8 @@ fun ViewModel.launchIO(
  * Launch a coroutine in the [ViewModel.viewModelScope].
  *
  * For more details [CoroutineScope.asyncUI].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> ViewModel.asyncUI(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -73,6 +83,8 @@ fun <T> ViewModel.asyncUI(
  * Launch a coroutine in the [ViewModel.viewModelScope].
  *
  * For more details [CoroutineScope.asyncDefault].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> ViewModel.asyncDefault(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -83,6 +95,8 @@ fun <T> ViewModel.asyncDefault(
  * Launch a coroutine in the [ViewModel.viewModelScope].
  *
  * For more details [CoroutineScope.asyncIO].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> ViewModel.asyncIO(
   start: CoroutineStart = CoroutineStart.DEFAULT,

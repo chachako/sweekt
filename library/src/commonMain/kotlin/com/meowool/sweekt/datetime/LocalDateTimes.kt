@@ -15,6 +15,7 @@ import kotlinx.datetime.toLocalDateTime
  * Returns the zoned date-time formed from current instant and the system zone.
  *
  * @see nowInstant
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline val nowDateTime: LocalDateTime get() = nowInstant.toLocalDateTime(TimeZone.currentSystemDefault())
 
@@ -22,21 +23,28 @@ inline val nowDateTime: LocalDateTime get() = nowInstant.toLocalDateTime(TimeZon
  * Converts this date-time to the number of milliseconds from the epoch of 1970-01-01T00:00:00Z.
  *
  * @see Instant.epochMillis
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline val LocalDateTime.epochMillis: Long get() = this.toInstant(TimeZone.currentSystemDefault()).epochMillis
 
 /**
  * Returns `true` if this zoned date-time belongs to this year.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun LocalDateTime.isCurrentYear(): Boolean = this.year == currentYear
 
 /**
  * Returns `true` if this zoned date-time belongs to this month.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun LocalDateTime.isCurrentMonth(): Boolean = this.year == currentYear && this.monthNumber == currentMonth
 
 /**
  * Returns `true` if this zoned date-time belongs to today.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun LocalDateTime.isToday(): Boolean = this.year == currentYear && this.dayOfYear == dayOfYear
 
@@ -44,6 +52,7 @@ fun LocalDateTime.isToday(): Boolean = this.year == currentYear && this.dayOfYea
  * Formats this date-time using the localized formatter.
  *
  * @param locale the locale of the formatter.
+ * @author 凛 (https://github.com/RinOrz)
  */
 expect fun LocalDateTime.format(locale: Locale = defaultLocale()): String
 
@@ -52,6 +61,8 @@ expect fun LocalDateTime.format(locale: Locale = defaultLocale()): String
  *
  * @param pattern the pattern used to format date-time.
  * @param locale the locale of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 expect fun LocalDateTime.format(pattern: String, locale: Locale = defaultLocale()): String
 
@@ -60,6 +71,8 @@ expect fun LocalDateTime.format(pattern: String, locale: Locale = defaultLocale(
  *
  * @param start the range start.
  * @param end the range end.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun LocalDateTime.inRange(
   start: LocalDateTime,
@@ -71,6 +84,8 @@ fun LocalDateTime.inRange(
  *
  * @param start the range start.
  * @param end the range end.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun LocalDateTime.inRange(
   start: Instant,
@@ -82,6 +97,8 @@ fun LocalDateTime.inRange(
  *
  * @param startTime the start time string of range.
  * @param endTime the stop time string of range.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun LocalDateTime.inRange(
   startTime: String,
@@ -94,6 +111,8 @@ inline fun LocalDateTime.inRange(
  * @param pattern the pattern used to resolve time string.
  * @param locale the locale of the formatter.
  * @param zone the zone id of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 expect fun CharSequence.toDateTime(
   pattern: String,
@@ -106,6 +125,8 @@ expect fun CharSequence.toDateTime(
  *
  * @param formatter the formatter to resolve time string.
  * @param zone the zone id of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 expect fun CharSequence.toDateTime(
   formatter: DateTimeFormatter = ISO_ZONED_DATE_TIME_FORMATTER,
@@ -117,6 +138,8 @@ expect fun CharSequence.toDateTime(
  *
  * @param dateTime the date-time to be formatted.
  * @param locale the locale of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun formatDateTime(
   dateTime: LocalDateTime = nowDateTime,
@@ -129,6 +152,8 @@ inline fun formatDateTime(
  * @param pattern the pattern used to format date-time.
  * @param dateTime the date-time to be formatted.
  * @param locale the locale of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun formatDateTime(
   pattern: String,

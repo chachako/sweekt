@@ -13,11 +13,15 @@ inline fun String(any: Any?): String = any.toString()
 
 /**
  * Returns this string if it's not null and not empty, otherwise returns the [another].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline infix fun String?.or(another: String): String = if (isNullOrEmpty()) another else this
 
 /**
  * Returns itself if this string is not empty, otherwise null.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun String?.takeIfNotEmpty(): String? {
   contract {
@@ -28,15 +32,21 @@ inline fun String?.takeIfNotEmpty(): String? {
 
 /**
  * Returns itself if this string is empty, otherwise null.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun String.takeIfEmpty(): String? = if (isEmpty()) this else null
 
 /**
  * Returns the string without blanks.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun String.removeBlanks(): String = filterNot { it.isWhitespace() }
 
 /**
  * Returns the string without line breaks.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun String.removeLineBreaks(): String = replace("\n", "").replace("\r", "").replace("\r\n", "")

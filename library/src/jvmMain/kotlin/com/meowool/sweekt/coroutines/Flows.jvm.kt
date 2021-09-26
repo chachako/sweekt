@@ -14,5 +14,6 @@ import kotlinx.coroutines.flow.flowOn
  * operations.
  *
  * @see Dispatchers.IO
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Flow<T>.flowOnIO(): Flow<T> = this.flowOn(Dispatchers.IO)

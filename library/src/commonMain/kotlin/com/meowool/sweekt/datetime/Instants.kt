@@ -13,11 +13,15 @@ import kotlinx.datetime.toLocalDateTime
 
 /**
  * Returns the current instant from the system clock.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline val nowInstant: Instant get() = Clock.System.now()
 
 /**
  * Converts this instant to the number of milliseconds from the epoch of 1970-01-01T00:00:00Z.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline val Instant.epochMillis: Long get() = this.toEpochMilliseconds()
 
@@ -25,21 +29,28 @@ inline val Instant.epochMillis: Long get() = this.toEpochMilliseconds()
  * Converts the instant to zoned date-time.
  *
  * @param zone the time-zone to create zoned date-time.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Instant.toDateTime(zone: TimeZone = TimeZone.system()): LocalDateTime = toLocalDateTime(zone)
 
 /**
  * Returns `true` if this instant belongs to this year.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Instant.isCurrentYear(zone: TimeZone = TimeZone.system()): Boolean = this.toDateTime(zone).isCurrentYear()
 
 /**
  * Returns `true` if this instant belongs to this month.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Instant.isCurrentMonth(zone: TimeZone = TimeZone.system()): Boolean = this.toDateTime(zone).isCurrentMonth()
 
 /**
  * Returns `true` if this instant belongs to today.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Instant.isToday(zone: TimeZone = TimeZone.system()): Boolean = this.toDateTime(zone).isToday()
 
@@ -47,6 +58,7 @@ inline fun Instant.isToday(zone: TimeZone = TimeZone.system()): Boolean = this.t
  * Formats this instant using the localized formatter.
  *
  * @param locale the locale of the formatter.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Instant.format(locale: Locale = defaultLocale()): String =
   this.toDateTime().format(locale)
@@ -56,6 +68,8 @@ inline fun Instant.format(locale: Locale = defaultLocale()): String =
  *
  * @param pattern the pattern used to format date-time.
  * @param locale the locale of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Instant.format(pattern: String, locale: Locale = defaultLocale()): String =
   this.toDateTime().format(pattern, locale)
@@ -65,6 +79,8 @@ inline fun Instant.format(pattern: String, locale: Locale = defaultLocale()): St
  *
  * @param start the range start.
  * @param end the range end.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Instant.inRange(
   start: Instant,
@@ -76,6 +92,8 @@ fun Instant.inRange(
  *
  * @param start the range start.
  * @param end the range end.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Instant.inRange(
   start: LocalDateTime,
@@ -87,6 +105,8 @@ fun Instant.inRange(
  *
  * @param startTime the start time string of range.
  * @param endTime the stop time string of range.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Instant.inRange(
   startTime: String,
@@ -99,6 +119,8 @@ inline fun Instant.inRange(
  * @param pattern the pattern used to resolve time string.
  * @param locale the locale of the formatter.
  * @param zone the zone id of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun CharSequence.toInstant(
   pattern: String,
@@ -110,6 +132,7 @@ inline fun CharSequence.toInstant(
  * Resolves this [CharSequence] to [Instant] using the given [formatter].
  *
  * @param formatter the formatter to resolve time string.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun CharSequence.toInstant(
   formatter: DateTimeFormatter = ISO_ZONED_DATE_TIME_FORMATTER,
@@ -118,12 +141,16 @@ inline fun CharSequence.toInstant(
 
 /**
  * Take this [Long] as milliseconds and returns instant.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Long.asMilliInstant(): Instant =
   Instant.fromEpochMilliseconds(this)
 
 /**
  * Take this [Long] as seconds and returns instant.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Long.asSecondInstant(nanoAdjustment: Long): Instant =
   Instant.fromEpochSeconds(this, nanoAdjustment)
@@ -133,6 +160,8 @@ inline fun Long.asSecondInstant(nanoAdjustment: Long): Instant =
  *
  * @param instant the instant to be formatted.
  * @param locale the locale of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun formatInstant(
   instant: Instant = nowInstant,
@@ -145,6 +174,8 @@ inline fun formatInstant(
  * @param pattern the pattern used to format date-time.
  * @param instant the instant to be formatted.
  * @param locale the locale of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun formatInstant(
   pattern: String,

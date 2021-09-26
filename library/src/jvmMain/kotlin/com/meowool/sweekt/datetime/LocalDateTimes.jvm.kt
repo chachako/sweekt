@@ -19,6 +19,7 @@ import java.time.format.FormatStyle
  * Formats this date-time using the localized formatter.
  *
  * @param locale the locale of the formatter.
+ * @author 凛 (https://github.com/RinOrz)
  */
 actual fun LocalDateTime.format(locale: Locale): String =
   this.toJavaLocalDateTime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL).withLocale(locale))
@@ -28,6 +29,8 @@ actual fun LocalDateTime.format(locale: Locale): String =
  *
  * @param pattern the pattern used to format date-time.
  * @param locale the locale of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 actual fun LocalDateTime.format(pattern: String, locale: Locale): String =
   this.toJavaLocalDateTime().format(DateTimeFormatter.ofPattern(pattern, locale))
@@ -38,6 +41,8 @@ actual fun LocalDateTime.format(pattern: String, locale: Locale): String =
  * @param pattern the pattern used to resolve time string.
  * @param locale the locale of the formatter.
  * @param zone the zone id of the formatter.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 actual fun CharSequence.toDateTime(pattern: String, locale: Locale, zone: TimeZone): LocalDateTime {
   val zoneId = zone.toJavaZoneId()
@@ -60,6 +65,7 @@ actual fun CharSequence.toDateTime(pattern: String, locale: Locale, zone: TimeZo
  * Parses this [CharSequence] to [LocalDateTime] using the given [formatter].
  *
  * @param formatter the formatter to resolve time string.
+ * @author 凛 (https://github.com/RinOrz)
  */
 actual fun CharSequence.toDateTime(formatter: DateTimeFormatter, zone: TimeZone): LocalDateTime =
   ZonedDateTime.parse(this, formatter.withZone(zone.toJavaZoneId())).toLocalDateTime().toKotlinLocalDateTime()

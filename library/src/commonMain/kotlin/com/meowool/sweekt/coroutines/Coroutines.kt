@@ -22,11 +22,13 @@ import kotlinx.coroutines.withContext
  *
  * @see CoroutineScope.launch for more details
  * @see Dispatchers.Main
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CoroutineScope.launchUI(
   start: CoroutineStart = CoroutineStart.DEFAULT,
   action: suspend CoroutineScope.() -> Unit
-) = launch(Dispatchers.Main, start, action)
+): Job = launch(Dispatchers.Main, start, action)
 
 /**
  * Launches a new coroutine without blocking the current thread and returns a reference to the coroutine as a [Job].
@@ -37,11 +39,13 @@ fun CoroutineScope.launchUI(
  *
  * @see CoroutineScope.launch for more details
  * @see Dispatchers.Default
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CoroutineScope.launchDefault(
   start: CoroutineStart = CoroutineStart.DEFAULT,
   action: suspend CoroutineScope.() -> Unit
-) = launch(Dispatchers.Default, start, action)
+): Job = launch(Dispatchers.Default, start, action)
 
 /**
  * Creates a coroutine and returns its future result as an implementation of [Deferred].
@@ -53,6 +57,8 @@ fun CoroutineScope.launchDefault(
  *
  * @see CoroutineScope.async for more details
  * @see Dispatchers.Main
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> CoroutineScope.asyncUI(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -68,6 +74,8 @@ fun <T> CoroutineScope.asyncUI(
  *
  * @see CoroutineScope.async for more details
  * @see Dispatchers.Default
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> CoroutineScope.asyncDefault(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -83,6 +91,7 @@ fun <T> CoroutineScope.asyncDefault(
  * operations, and updating LiveData objects.
  *
  * @see withContext for more details
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> withUiContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.Main, block)
@@ -95,6 +104,7 @@ suspend inline fun <T> withUiContext(noinline block: suspend CoroutineScope.() -
  * sorting a list and parsing JSON.
  *
  * @see withContext for more details
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> withDefaultContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.Default, block)

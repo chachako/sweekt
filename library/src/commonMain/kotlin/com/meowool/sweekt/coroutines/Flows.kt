@@ -24,6 +24,7 @@ import kotlin.experimental.ExperimentalTypeInference
  * running Android UI framework operations, and updating LiveData objects.
  *
  * @see Dispatchers.Main
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Flow<T>.flowOnUI(): Flow<T> = this.flowOn(Dispatchers.Main)
 
@@ -34,6 +35,7 @@ inline fun <T> Flow<T>.flowOnUI(): Flow<T> = this.flowOn(Dispatchers.Main)
  * use cases include sorting a list and parsing JSON.
  *
  * @see Dispatchers.Default
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Flow<T>.flowOnDefault(): Flow<T> = this.flowOn(Dispatchers.Default)
 
@@ -41,6 +43,8 @@ inline fun <T> Flow<T>.flowOnDefault(): Flow<T> = this.flowOn(Dispatchers.Defaul
  * Returns the number of elements in the flow.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>.size(): Int = this.count()
 
@@ -48,6 +52,8 @@ suspend inline fun <T> Flow<T>.size(): Int = this.count()
  * Returns `true` if all elements match the given [predicate].
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend fun <T> Flow<T>.all(predicate: suspend (T) -> Boolean): Boolean = try {
   collect { value ->
@@ -64,6 +70,8 @@ suspend fun <T> Flow<T>.all(predicate: suspend (T) -> Boolean): Boolean = try {
  * Returns `true` if flow has at least one element.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend fun <T> Flow<T>.any(): Boolean = this.firstOrNull() != null
 
@@ -71,6 +79,8 @@ suspend fun <T> Flow<T>.any(): Boolean = this.firstOrNull() != null
  * Returns `true` if at least one element matches the given [predicate].
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend fun <T> Flow<T>.any(predicate: suspend (T) -> Boolean): Boolean =
   firstOrNull(predicate) != null
@@ -79,6 +89,8 @@ suspend fun <T> Flow<T>.any(predicate: suspend (T) -> Boolean): Boolean =
  * Returns `true` if the flow has no elements.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>.none(): Boolean = this.firstOrNull() == null
 
@@ -86,6 +98,8 @@ suspend inline fun <T> Flow<T>.none(): Boolean = this.firstOrNull() == null
  * Returns `true` if no elements in flow match the given [predicate].
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend fun <T> Flow<T>.none(predicate: suspend (T) -> Boolean): Boolean =
   firstOrNull(predicate) == null
@@ -94,6 +108,8 @@ suspend fun <T> Flow<T>.none(predicate: suspend (T) -> Boolean): Boolean =
  * Returns `true` if the flow was empty, and then cancels flow's collection.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>.isEmpty(): Boolean = this.none()
 
@@ -101,6 +117,8 @@ suspend inline fun <T> Flow<T>.isEmpty(): Boolean = this.none()
  * Returns `true` if the flow is not empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>.isNotEmpty(): Boolean = this.any()
 
@@ -110,12 +128,10 @@ suspend inline fun <T> Flow<T>.isNotEmpty(): Boolean = this.any()
  * The operation is _terminal_.
  *
  * @see isNotNullEmpty
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>?.isNullOrEmpty(): Boolean {
-  contract {
-    returns(false) implies (this@isNullOrEmpty != null)
-  }
-
+  contract { returns(false) implies (this@isNullOrEmpty != null) }
   return this == null || this.isEmpty()
 }
 
@@ -125,12 +141,10 @@ suspend inline fun <T> Flow<T>?.isNullOrEmpty(): Boolean {
  * The operation is _terminal_.
  *
  * @see isNullOrEmpty
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>?.isNotNullEmpty(): Boolean {
-  contract {
-    returns(true) implies (this@isNotNullEmpty != null)
-  }
-
+  contract { returns(true) implies (this@isNotNullEmpty != null) }
   return this?.isNotEmpty() == true
 }
 
@@ -138,6 +152,8 @@ suspend inline fun <T> Flow<T>?.isNotNullEmpty(): Boolean {
  * Call the given [action] when this flow is not null and not empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>?.onNotNullEmpty(action: (Flow<T>) -> Unit): Flow<T>? {
   contract {
@@ -154,6 +170,8 @@ suspend inline fun <T> Flow<T>?.onNotNullEmpty(action: (Flow<T>) -> Unit): Flow<
  * Call the given [action] when this flow is not empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>.onNotEmpty(action: (Flow<T>) -> Unit): Flow<T> {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -167,6 +185,8 @@ suspend inline fun <T> Flow<T>.onNotEmpty(action: (Flow<T>) -> Unit): Flow<T> {
  * Call the given [action] when this flow is null or empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>?.onNullOrEmpty(action: (Flow<T>?) -> Unit): Flow<T>? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -178,26 +198,36 @@ suspend inline fun <T> Flow<T>?.onNullOrEmpty(action: (Flow<T>?) -> Unit): Flow<
 
 /**
  * Returns this [Flow] if it's not `null` and the empty flow otherwise.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Flow<T>?.orEmpty() = this ?: emptyFlow()
 
 /**
  * Returns `true` if at least one element matches the given [predicate].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend fun <T> Flow<T>.contains(predicate: suspend (T) -> Boolean): Boolean = firstOrNull(predicate) != null
 
 /**
  * Returns `true` if at least one element matches the given [predicate].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend fun <T> Flow<T>.has(predicate: suspend (T) -> Boolean): Boolean = firstOrNull(predicate) != null
 
 /**
  * Returns `true` if at least one element equals to the given [element].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend fun <T> Flow<T>.contains(element: T): Boolean = contains { it == element }
 
 /**
  * Returns a flow containing only distinct elements emitted.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> Flow<T>.distinct(): Flow<T> = flow {
   val set = mutableSetOf<T>()
@@ -206,6 +236,8 @@ fun <T> Flow<T>.distinct(): Flow<T> = flow {
 
 /**
  * Returns a flow containing only elements having distinct keys returned by the given [selector] function.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T, K> Flow<T>.distinctBy(crossinline selector: (T) -> K): Flow<T> = flow {
   val keySet = mutableSetOf<K>()

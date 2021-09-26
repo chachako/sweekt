@@ -13,5 +13,7 @@ actual typealias Locale = JavaLocale
 
 /**
  * Returns the default locale of the platform.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 actual inline fun defaultLocale(): Locale = Locale.getDefault()

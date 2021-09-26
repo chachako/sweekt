@@ -12,6 +12,8 @@ import kotlin.contracts.contract
  * Returns the number of elements in the sequence.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline val <T> Sequence<T>.size: Int get() = this.count()
 
@@ -19,6 +21,8 @@ inline val <T> Sequence<T>.size: Int get() = this.count()
  * Returns `true` if the sequence is empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>.isEmpty(): Boolean = this.none()
 
@@ -26,6 +30,8 @@ inline fun <T> Sequence<T>.isEmpty(): Boolean = this.none()
  * Returns `true` if the sequence is not empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>.isNotEmpty(): Boolean = this.any()
 
@@ -35,6 +41,7 @@ inline fun <T> Sequence<T>.isNotEmpty(): Boolean = this.any()
  * The operation is _terminal_.
  *
  * @see isNotNullEmpty
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>?.isNullOrEmpty(): Boolean {
   contract {
@@ -50,6 +57,7 @@ inline fun <T> Sequence<T>?.isNullOrEmpty(): Boolean {
  * The operation is _terminal_.
  *
  * @see isNullOrEmpty
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>?.isNotNullEmpty(): Boolean {
   contract {
@@ -63,6 +71,8 @@ inline fun <T> Sequence<T>?.isNotNullEmpty(): Boolean {
  * Call the given [action] when this sequence is not null and not empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>?.onNotNullEmpty(action: (Sequence<T>) -> Unit): Sequence<T>? {
   contract {
@@ -79,6 +89,8 @@ inline fun <T> Sequence<T>?.onNotNullEmpty(action: (Sequence<T>) -> Unit): Seque
  * Call the given [action] when this sequence is not empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>.onNotEmpty(action: (Sequence<T>) -> Unit): Sequence<T> {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -92,6 +104,8 @@ inline fun <T> Sequence<T>.onNotEmpty(action: (Sequence<T>) -> Unit): Sequence<T
  * Call the given [action] when this sequence is null or empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>?.onNullOrEmpty(action: (Sequence<T>?) -> Unit): Sequence<T>? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -105,6 +119,8 @@ inline fun <T> Sequence<T>?.onNullOrEmpty(action: (Sequence<T>?) -> Unit): Seque
  * Call the given [action] when this sequence is empty.
  *
  * The operation is _terminal_.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>.onEmpty(action: (Sequence<T>) -> Unit): Sequence<T> {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -116,6 +132,8 @@ inline fun <T> Sequence<T>.onEmpty(action: (Sequence<T>) -> Unit): Sequence<T> {
 
 /**
  * Returns itself if this [Sequence] is not empty, otherwise null.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>?.takeIfNotEmpty(): Sequence<T>? {
   contract {
@@ -126,50 +144,70 @@ inline fun <T> Sequence<T>?.takeIfNotEmpty(): Sequence<T>? {
 
 /**
  * Returns itself if this [Sequence] is empty, otherwise null.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>.takeIfEmpty(): Sequence<T>? = if (isEmpty()) this else null
 
 /**
  * Returns `true` if this sequence starts with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> Sequence<T>.startsWith(slice: Iterable<T>) = this.take(slice.size) == slice.asSequence()
 
 /**
  * Returns `true` if this sequence ends with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> Sequence<T>.endsWith(slice: Iterable<T>) = this.toList().takeLast(slice.size) == slice.asList()
 
 /**
  * Returns `true` if this sequence starts with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> Sequence<T>.startsWith(slice: Sequence<T>) = this.take(slice.size) == slice.asSequence()
 
 /**
  * Returns `true` if this sequence ends with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> Sequence<T>.endsWith(slice: Sequence<T>) = this.toList().takeLast(slice.size) == slice.toList()
 
 /**
  * Returns `true` if this sequence starts with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> Sequence<T>.startsWith(vararg slice: T) = this.take(slice.size) == slice.asSequence()
 
 /**
  * Returns `true` if this sequence ends with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> Sequence<T>.endsWith(vararg slice: T) = this.toList().takeLast(slice.size) == slice.asList()
 
 /**
  * Returns `true` if at least one element matches the given [predicate].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>.contains(predicate: (T) -> Boolean): Boolean = any(predicate)
 
 /**
  * Returns `true` if at least one element matches the given [predicate].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>.has(predicate: (T) -> Boolean): Boolean = any(predicate)
 
 /**
  * Converts [Sequence] to [Array].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <reified T> Sequence<T>.toArray(): Array<T> = this.toList().toTypedArray()

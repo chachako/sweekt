@@ -18,6 +18,8 @@ inline fun <R> safetyValue(trying: () -> R, catching: () -> R): R = run({ catchi
 
 /**
  * Return the value safely, if the process calling [trying] throws an exception, return the `null`.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 @Deprecated(
   "Deprecated function name, use `runOrNull` instead.",
@@ -28,6 +30,8 @@ inline fun <R> safetyValue(trying: () -> R): R? = runOrNull(trying)
 
 /**
  * If the given [predicate] is `true`, throw [throwable].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun throwIf(predicate: Boolean, throwable: () -> Throwable) {
   contract {
@@ -39,6 +43,8 @@ inline fun throwIf(predicate: Boolean, throwable: () -> Throwable) {
 
 /**
  * If the given [value] is `null`, throw [throwable].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun throwIfNull(value: Any?, throwable: () -> Throwable) {
   contract {
@@ -50,6 +56,8 @@ inline fun throwIfNull(value: Any?, throwable: () -> Throwable) {
 
 /**
  * If the given [value] is not `null`, throw [throwable].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun throwIfNotNull(value: Any?, throwable: () -> Throwable) {
   contract {

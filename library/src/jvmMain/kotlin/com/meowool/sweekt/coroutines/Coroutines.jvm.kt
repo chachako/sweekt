@@ -23,11 +23,13 @@ import kotlinx.coroutines.withContext
  *
  * @see CoroutineScope.launch for more details
  * @see Dispatchers.IO
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun CoroutineScope.launchIO(
   start: CoroutineStart = CoroutineStart.DEFAULT,
   action: suspend CoroutineScope.() -> Unit
-) = launch(Dispatchers.IO, start, action)
+): Job = launch(Dispatchers.IO, start, action)
 
 /**
  * Creates a coroutine and returns its future result as an implementation of [Deferred].
@@ -39,6 +41,8 @@ fun CoroutineScope.launchIO(
  *
  * @see CoroutineScope.async for more details
  * @see Dispatchers.IO
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> CoroutineScope.asyncIO(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -54,6 +58,7 @@ fun <T> CoroutineScope.asyncIO(
  * operations.
  *
  * @see withContext for more details
+ * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> withIOContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.IO, block)

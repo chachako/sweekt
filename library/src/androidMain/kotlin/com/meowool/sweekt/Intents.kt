@@ -16,6 +16,8 @@ import java.io.Serializable
  *
  * @param arguments the arguments to be put into the result intent.
  * @param configuration configure the result intent.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent(
   vararg arguments: Pair<String, *>,
@@ -30,6 +32,8 @@ inline fun Intent(
  * @param action the action of intent.
  * @param arguments the arguments to be put into the result intent.
  * @param configuration configure the result intent.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent(
   action: String,
@@ -44,6 +48,8 @@ inline fun Intent(
  *
  * @param arguments the arguments to be put into the result intent.
  * @param configuration configure the result intent.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <reified A : Activity> Context.activityIntent(
   vararg arguments: Pair<String, *>,
@@ -57,6 +63,8 @@ inline fun <reified A : Activity> Context.activityIntent(
  *
  * @param arguments the arguments to be put into the result intent.
  * @param configuration configure the result intent.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <reified A : Activity> Fragment.activityIntent(
   vararg arguments: Pair<String, *>,
@@ -65,6 +73,8 @@ inline fun <reified A : Activity> Fragment.activityIntent(
 
 /**
  * Put the [arguments] name and value to this [Intent].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Intent.put(vararg arguments: Pair<String, *>): Intent = apply {
   arguments.onEmpty { return@apply }.forEach {
@@ -104,6 +114,7 @@ fun Intent.put(vararg arguments: Pair<String, *>): Intent = apply {
  * Add the [Intent.FLAG_ACTIVITY_CLEAR_TASK] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.clearTask(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) }
 
@@ -111,6 +122,7 @@ inline fun Intent.clearTask(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_CL
  * Add the [Intent.FLAG_ACTIVITY_CLEAR_TOP] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.clearTop(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) }
 
@@ -118,6 +130,7 @@ inline fun Intent.clearTop(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_CLE
  * Add the [Intent.FLAG_ACTIVITY_NEW_DOCUMENT] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.newDocument(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT) }
 
@@ -125,6 +138,7 @@ inline fun Intent.newDocument(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_
  * Add the [Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.excludeFromRecents(): Intent =
   apply { addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS) }
@@ -133,6 +147,7 @@ inline fun Intent.excludeFromRecents(): Intent =
  * Add the [Intent.FLAG_ACTIVITY_MULTIPLE_TASK] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.multipleTask(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK) }
 
@@ -140,6 +155,7 @@ inline fun Intent.multipleTask(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY
  * Add the [Intent.FLAG_ACTIVITY_NEW_TASK] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.newTask(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) }
 
@@ -147,6 +163,7 @@ inline fun Intent.newTask(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_NEW_
  * Add the [Intent.FLAG_ACTIVITY_NO_ANIMATION] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.noAnimation(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION) }
 
@@ -154,6 +171,7 @@ inline fun Intent.noAnimation(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_
  * Add the [Intent.FLAG_ACTIVITY_NO_HISTORY] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.noHistory(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY) }
 
@@ -161,5 +179,6 @@ inline fun Intent.noHistory(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_NO
  * Add the [Intent.FLAG_ACTIVITY_SINGLE_TOP] flag to the [Intent].
  *
  * @return the same intent with the flag applied.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun Intent.singleTop(): Intent = apply { addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP) }

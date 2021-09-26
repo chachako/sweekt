@@ -63,6 +63,8 @@ interface Hosting<T> {
  * Record all hosting instances so that they can be taken away at any times.
  *
  * Note that this stack is only used to access or store hosting objects, not the [Hosting.value].
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 object HostingStack {
   private val instances = mutableMapOf<Any, Hosting<*>>()
@@ -107,6 +109,8 @@ object HostingStack {
 
 /**
  * Creates an empty [Hosting] to host the value at some point in the future.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> hosting(key: Any? = null): Hosting<T> = HostingImpl<T>().also { instance ->
   key?.let { HostingStack.record(it, instance) }
@@ -122,6 +126,7 @@ fun <T> hosting(key: Any? = null): Hosting<T> = HostingImpl<T>().also { instance
  * and more details.
  *
  * @param key if the key exists, the hosting instance will be recorded in the stack to find them at any time.
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun <T> hosting(
   key: Any? = null,

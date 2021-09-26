@@ -13,5 +13,7 @@ inline val <T : Any> T.kotlinClass: KClass<T> get() = javaClass.kotlin
 
 /**
  * Returns the class name of this object instance.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline val Any.className: String get() = javaClass.name

@@ -85,7 +85,7 @@ expect object DefaultDataSizeUnits : DataSizeUnits
  * 9223372036854775807:     9.2 EB    8.0 EiB   (Long.MAX_VALUE)
  * ```
  *
- * [Original source](https://stackoverflow.com/a/3758880)
+ * [Initial source](https://stackoverflow.com/a/3758880)
  * [For more details](https://en.wikipedia.org/wiki/Binary_prefix)
  *
  * @param precision the precision of result size.
@@ -96,6 +96,7 @@ expect object DefaultDataSizeUnits : DataSizeUnits
  * @param useSI to see [DataSizeUnits.useSI].
  *
  * @see DataSizeUnits
+ * @author 凛 (https://github.com/RinOrz)
  */
 expect fun Long.toReadableSize(
   precision: Int = 2,
@@ -117,6 +118,7 @@ expect fun Long.toReadableSize(
  * @param useSI to see [DataSizeUnits.useSI].
  *
  * @see DataSizeUnits
+ * @author 凛 (https://github.com/RinOrz)
  */
 expect fun Number.toReadableSize(
   precision: Int = 2,

@@ -36,7 +36,16 @@ commonTarget {
   }
 }
 
+jvmTarget {
+  configureTestRunTask {
+    useJUnitPlatform()
+  }
+}
+
 androidTarget {
+  main.dependsOn(jvmMainSourceSet)
+  test.dependsOn(jvmTestSourceSet)
+
   main.dependencies {
     api(Libs.AndroidX.Core.Ktx)
     compileOnlyOf(
@@ -45,11 +54,5 @@ androidTarget {
       Libs.AndroidX.Activity.Ktx,
       Libs.AndroidX.Fragment.Ktx,
     )
-  }
-}
-
-jvmTarget {
-  configureTestRunTask {
-    useJUnitPlatform()
   }
 }

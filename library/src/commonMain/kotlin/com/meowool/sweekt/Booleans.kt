@@ -92,6 +92,7 @@ inline fun <R> Boolean.ifFalse(block: () -> R): R? = if (!this) block() else nul
  * Select the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <R> Boolean?.select(yes: R, no: R): R = if (this == true) yes else no
 
@@ -99,6 +100,7 @@ inline fun <R> Boolean?.select(yes: R, no: R): R = if (this == true) yes else no
  * Selects the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <R> Boolean.select(yes: R, no: R): R = if (this) yes else no
 
@@ -106,6 +108,7 @@ inline fun <R> Boolean.select(yes: R, no: R): R = if (this) yes else no
  * Select the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <R> Boolean?.select(yes: () -> R, no: () -> R): R = if (this == true) yes() else no()
 
@@ -113,5 +116,6 @@ inline fun <R> Boolean?.select(yes: () -> R, no: () -> R): R = if (this == true)
  * Selects the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
+ * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <R> Boolean.select(yes: () -> R, no: () -> R): R = if (this) yes() else no()

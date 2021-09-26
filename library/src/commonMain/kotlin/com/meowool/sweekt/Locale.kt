@@ -11,5 +11,7 @@ expect class Locale
 
 /**
  * Returns the default locale of the platform.
+ *
+ * @author 凛 (https://github.com/RinOrz)
  */
 expect inline fun defaultLocale(): Locale

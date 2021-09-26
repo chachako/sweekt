@@ -573,6 +573,8 @@ sealed class Permission(@PublishedApi internal val value: List<String>) {
    *
    * The callback [invoke] will contain the granted or denied permissions, depending on different
    * request parameters.
+   *
+   * @author 凛 (https://github.com/RinOrz)
    */
   fun interface Callback {
     operator fun invoke(permissions: Set<String>)
@@ -583,6 +585,7 @@ sealed class Permission(@PublishedApi internal val value: List<String>) {
  * Returns or create a permission instance according to the given [permission] information.
  *
  * @see Manifest.permission
+ * @author 凛 (https://github.com/RinOrz)
  */
 fun Permission(permission: String): Permission.Single = when (permission) {
   ACTIVITY_RECOGNITION -> ActivityRecognition
