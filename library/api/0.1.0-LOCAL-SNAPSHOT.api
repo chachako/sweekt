@@ -477,6 +477,20 @@ package com.meowool.sweekt.coroutines {
 
 package com.meowool.sweekt.datetime {
 
+  public final class CommonsKt {
+    method public static inline int getCurrentHour();
+    method public static inline int getCurrentMinute();
+    method public static inline int getCurrentMonth();
+    method public static inline int getCurrentSecond();
+    method public static inline int getCurrentYear();
+    method public static inline long getNowMilliseconds();
+    method public static inline int getTodayOfMonth();
+    method public static inline java.time.DayOfWeek getTodayOfWeek();
+    method public static inline int getTodayOfYear();
+    method public static inline long toEpochMillis(CharSequence, String pattern, optional java.util.Locale locale);
+    method public static inline long toEpochMillis(CharSequence, optional java.time.format.DateTimeFormatter formatter);
+  }
+
   public final class DurationsKt {
     method public static inline long getDays(int);
     method public static inline long getDays(long);
@@ -544,20 +558,6 @@ package com.meowool.sweekt.datetime {
     method public static kotlinx.datetime.LocalDateTime toDateTime(CharSequence, java.time.format.DateTimeFormatter formatter, kotlinx.datetime.TimeZone zone);
   }
 
-  public final class PrimitivesKt {
-    method public static inline int getCurrentHour();
-    method public static inline int getCurrentMinute();
-    method public static inline int getCurrentMonth();
-    method public static inline int getCurrentSecond();
-    method public static inline int getCurrentYear();
-    method public static inline long getNowMilliseconds();
-    method public static inline int getTodayOfMonth();
-    method public static inline java.time.DayOfWeek getTodayOfWeek();
-    method public static inline int getTodayOfYear();
-    method public static inline long toEpochMillis(CharSequence, String pattern, optional java.util.Locale locale);
-    method public static inline long toEpochMillis(CharSequence, optional java.time.format.DateTimeFormatter formatter);
-  }
-
   public final class TimeZonesKt {
     method public static inline kotlinx.datetime.TimeZone system(kotlinx.datetime.TimeZone.Companion);
   }
@@ -615,17 +615,17 @@ package com.meowool.sweekt.dimension {
 package com.meowool.sweekt.iteration {
 
   public final class ConvertsKt {
-    method public static <T> java.util.Collection<T> asCollection(Iterable<? extends T>);
-    method public static <T> java.util.List<T> asList(Iterable<? extends T>);
+    method public static inline <T> java.util.Collection<T> asCollection(Iterable<? extends T>);
+    method public static inline <T> java.util.List<T> asList(Iterable<? extends T>);
     method public static <T> java.util.List<T> asList(java.util.Collection<? extends T>);
-    method public static <T> java.util.List<T> asMutableList(Iterable<? extends T>);
+    method public static inline <T> java.util.List<T> asMutableList(Iterable<? extends T>);
     method public static <T> java.util.List<T> asMutableList(java.util.Collection<? extends T>);
     method public static <T> java.util.List<T> asMutableList(java.util.List<? extends T>);
-    method public static <K, V> java.util.Map<K,V> asMutableMap(java.util.Map<K,? extends V>);
-    method public static <T> java.util.Set<T> asMutableSet(Iterable<? extends T>);
-    method public static <T> java.util.Set<T> asMutableSet(java.util.Collection<? extends T>);
-    method public static <T> java.util.Set<T> asSet(Iterable<? extends T>);
-    method public static <T> java.util.Set<T> asSet(java.util.Collection<? extends T>);
+    method public static inline <K, V> java.util.Map<K,V> asMutableMap(java.util.Map<K,? extends V>);
+    method public static inline <T> java.util.Set<T> asMutableSet(Iterable<? extends T>);
+    method public static inline <T> java.util.Set<T> asMutableSet(java.util.Collection<? extends T>);
+    method public static inline <T> java.util.Set<T> asSet(Iterable<? extends T>);
+    method public static inline <T> java.util.Set<T> asSet(java.util.Collection<? extends T>);
   }
 
   public final class IterableKt {
