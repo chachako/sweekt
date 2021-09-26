@@ -8,6 +8,7 @@ import com.meowool.sweekt.iteration.size
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
+import kotlin.jvm.JvmName
 
 /**
  * Returns `true` if the array is not empty.
@@ -104,11 +105,13 @@ fun <T> Array<T>.endsWith(slice: Sequence<T>) = this.takeLast(slice.size) == sli
 /**
  * Returns `true` if this array starts with given [slice].
  */
+@JvmName("startsWithArray")
 fun <T> Array<T>.startsWith(slice: Array<out T>) = this.take(slice.size) == slice.toList()
 
 /**
  * Returns `true` if this array ends with given [slice].
  */
+@JvmName("endsWithArray")
 fun <T> Array<T>.endsWith(slice: Array<out T>) = this.takeLast(slice.size) == slice.toList()
 
 /**
@@ -168,6 +171,7 @@ fun <T> Array<T>.dropPrefix(vararg prefix: T): List<T> = let {
  * If this array starts with the given [prefix], returns a list copy of this array with the prefix removed.
  * Otherwise, returns new copy list.
  */
+@JvmName("dropPrefixArray")
 fun <T> Array<T>.dropPrefix(prefix: Array<out T>): List<T> = let {
   if (startsWith(prefix)) dropFirst(prefix.size) else it.toList()
 }
@@ -200,6 +204,7 @@ fun <T> Array<T>.dropSuffix(vararg suffix: T): List<T> = let {
  * If this array ends with the given [suffix], returns a list copy of this array with the suffix removed.
  * Otherwise, returns new copy list.
  */
+@JvmName("dropSuffixArray")
 fun <T> Array<T>.dropSuffix(suffix: Array<out T>): List<T> = let {
   if (endsWith(suffix)) dropLast(suffix.size) else it.toList()
 }

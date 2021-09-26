@@ -4,6 +4,7 @@ package com.meowool.sweekt
 
 import com.meowool.sweekt.coroutines.onNotNullEmpty
 import kotlin.contracts.contract
+import kotlin.jvm.JvmName
 
 /**
  * Returns the size of this [CharSequence]
@@ -94,6 +95,7 @@ expect inline fun CharSequence.replaceLastChar(transform: (Char) -> Char): Strin
  * @param transform the function that takes the last character and returns the result of the transform applied to
  *   the character.
  */
+@JvmName("replaceLastCharWithCharSequence")
 @OverloadResolutionByLambdaReturnType
 expect inline fun CharSequence.replaceLastChar(transform: (Char) -> CharSequence): String
 

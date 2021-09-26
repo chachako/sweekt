@@ -3,6 +3,7 @@
 package com.meowool.sweekt.iteration
 
 import kotlin.contracts.contract
+import kotlin.jvm.JvmName
 
 
 /**
@@ -36,7 +37,7 @@ inline fun <K, V, R> Map<out K, V>.flatMapNotNull(transform: (Map.Entry<K, V>) -
  *
  * @see Map.flatMap
  */
-@kotlin.jvm.JvmName("flatMapNotNullSequence")
+@JvmName("flatMapNotNullSequence")
 @OverloadResolutionByLambdaReturnType
 inline fun <K, V, R> Map<out K, V>.flatMapNotNull(transform: (Map.Entry<K, V>) -> Sequence<R>?): List<R> {
   return flatMapNotNullTo(ArrayList(), transform)
@@ -65,7 +66,7 @@ inline fun <K, V, R, C : MutableCollection<in R>> Map<out K, V>.flatMapNotNullTo
  *
  * @see Map.flatMapTo
  */
-@kotlin.jvm.JvmName("flatMapNotNullSequenceTo")
+@JvmName("flatMapNotNullSequenceTo")
 @OverloadResolutionByLambdaReturnType
 inline fun <K, V, R, C : MutableCollection<in R>> Map<out K, V>.flatMapNotNullTo(
   destination: C,

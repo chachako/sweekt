@@ -1,5 +1,7 @@
 package com.meowool.sweekt.iteration
 
+import kotlin.jvm.JvmName
+
 /**
  * If this list starts with the given [prefix], then removes the prefix and returns list itself.
  */
@@ -17,6 +19,7 @@ fun <T, I : MutableList<T>> I.removePrefix(vararg prefix: T): I = apply {
 /**
  * If this list starts with the given [prefix], then removes the prefix and returns list itself.
  */
+@JvmName("removePrefixArray")
 fun <T, I : MutableList<T>> I.removePrefix(prefix: Array<out T>): I = apply {
   if (startsWith(prefix)) removeFirst(prefix.size)
 }
@@ -45,6 +48,7 @@ fun <T, I : MutableList<T>> I.removeSuffix(vararg suffix: T): I = apply {
 /**
  * If this list ends with the given [suffix], then removes the suffix and returns list itself.
  */
+@JvmName("removeSuffixArray")
 fun <T, I : MutableList<T>> I.removeSuffix(suffix: Array<out T>): I = apply {
   if (endsWith(suffix)) removeLast(suffix.size)
 }
@@ -83,6 +87,7 @@ fun <T, I : MutableList<T>> I.insertAt(index: Int, vararg elements: T): I = appl
 /**
  * Inserts the given all [elements] at the [index] of the [Iterable] object and returns a new [MutableList].
  */
+@JvmName("insertArrayAt")
 fun <T, I : MutableList<T>> I.insertAt(index: Int, elements: Array<out T>): I =
   apply { addAll(index, elements.toList()) }
 
@@ -105,6 +110,7 @@ fun <T, I : MutableList<T>> I.insertFirst(vararg elements: T): I = apply { addAl
 /**
  * Inserts the given all [elements] at the first of this list object and returns a new [MutableList].
  */
+@JvmName("insertFirstArray")
 fun <T, I : MutableList<T>> I.insertFirst(elements: Array<out T>): I = apply { addAll(0, elements.toList()) }
 
 /**
@@ -131,6 +137,7 @@ fun <T, I : MutableList<T>> I.insertLast(vararg elements: T): I = apply { addAll
  *
  * @see MutableCollection.append
  */
+@JvmName("insertLastArray")
 fun <T, I : MutableList<T>> I.insertLast(elements: Array<out T>): I = apply { addAll(elements) }
 
 /**
