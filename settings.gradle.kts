@@ -24,6 +24,7 @@ buildscript {
 }
 
 gradleToolkit {
+  rootProject.buildscript { repositories { mavenCentral() }}
   useMeowoolSpec()
   allprojects {
     optIn("com.meowool.sweekt.InternalSweektApi")
@@ -34,7 +35,7 @@ gradleToolkit {
   publications {
     data {
       val baseVersion = "0.1.0"
-      version = "$baseVersion-LOCAL-SNAPSHOT"
+      version = "$baseVersion-SNAPSHOT"
       // Used to publish non-local versions of artifacts in CI environment
       versionInCI = "$baseVersion-SNAPSHOT"
 
@@ -54,3 +55,7 @@ gradleToolkit {
 }
 
 importProjects(rootDir)
+
+// Only set in the CI environment, waiting the issue to be fixed:
+// https://youtrack.jetbrains.com/issue/KT-48291
+if (isCiEnvironment) extra["kotlin.mpp.enableGranularSourceSetsMetadata"] = true

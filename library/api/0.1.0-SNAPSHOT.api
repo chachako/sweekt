@@ -1,0 +1,1080 @@
+// Signature format: 4.0
+package com.meowool.sweekt {
+
+  public final class ActivitiesKt {
+    method public static inline android.view.ViewGroup? findWindowRootLayout(android.app.Activity);
+    method public static inline android.view.ViewGroup getWindowRootLayout(android.app.Activity);
+    method public static inline <reified A extends android.app.Activity> void start(android.content.Context, kotlin.Pair<? extends java.lang.String,?> arguments, optional kotlin.jvm.functions.Function1<? super android.content.Intent,? extends kotlin.Unit> configIntent);
+    method public static inline <reified A extends android.app.Activity> void start(androidx.fragment.app.Fragment, kotlin.Pair<? extends java.lang.String,?> arguments, optional kotlin.jvm.functions.Function1<? super android.content.Intent,? extends kotlin.Unit> configIntent);
+  }
+
+  public interface ActivityHolder {
+    method public android.app.Activity obtainActivity();
+  }
+
+  public final class BooleansKt {
+    method public static inline <R> R? ifFalse(Boolean?, kotlin.jvm.functions.Function0<? extends R> block);
+    method public static inline <R> R? ifFalse(boolean, kotlin.jvm.functions.Function0<? extends R> block);
+    method public static inline <R> R? ifTrue(Boolean?, kotlin.jvm.functions.Function0<? extends R> block);
+    method public static inline <R> R? ifTrue(boolean, kotlin.jvm.functions.Function0<? extends R> block);
+    method public static inline <R> R! select(Boolean?, R? yes, R? no);
+    method public static inline <R> R! select(boolean, R? yes, R? no);
+    method public static inline <R> R! select(Boolean?, kotlin.jvm.functions.Function0<? extends R> yes, kotlin.jvm.functions.Function0<? extends R> no);
+    method public static inline <R> R! select(boolean, kotlin.jvm.functions.Function0<? extends R> yes, kotlin.jvm.functions.Function0<? extends R> no);
+  }
+
+  public final class CharSequencesKt {
+    method public static inline void forEachSplit(CharSequence, char delimiter, optional int offset, kotlin.jvm.functions.Function1<? super java.lang.String,kotlin.Unit> action);
+    method public static inline void forEachSplitBy(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate, optional int offset, kotlin.jvm.functions.Function1<? super java.lang.String,kotlin.Unit> action);
+    method public static inline void forEachSplitIndexedBy(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate, optional int offset, kotlin.jvm.functions.Function2<? super java.lang.Integer,? super java.lang.String,kotlin.Unit> action);
+    method public static inline int getSize(CharSequence);
+    method public static boolean isChinese(CharSequence?);
+    method public static boolean isContainsChinese(CharSequence?, optional boolean ignorePunctuation);
+    method public static boolean isContainsEnglish(CharSequence?, optional boolean ignorePunctuation);
+    method public static boolean isDigits(CharSequence?);
+    method public static boolean isEnglish(CharSequence?, optional boolean allowPunctuation);
+    method public static inline infix <C extends java.lang.CharSequence> C or(C?, C another);
+    method public static String remove(CharSequence, int index);
+    method public static CharSequence removeBlanks(CharSequence);
+    method public static inline String removeFirst(CharSequence);
+    method public static inline String removeLast(CharSequence);
+    method public static String removeLineBreaks(CharSequence);
+    method public static inline String replaceLastChar(CharSequence, char newLast);
+    method public static inline String replaceLastChar(CharSequence, CharSequence newLast);
+    method public static java.util.List<java.lang.String> split(CharSequence, char delimiter, int offset);
+    method public static inline java.util.List<java.lang.String> splitBy(CharSequence, optional int offset, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate);
+    method public static <C extends java.util.Collection<java.lang.CharSequence>> C splitTo(CharSequence, C destination, char delimiter, optional int offset);
+    method public static inline <C extends java.util.Collection<java.lang.CharSequence>> C splitTo(CharSequence, C destination, optional int offset, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate);
+    method public static inline String substring(CharSequence, optional int startIndex, optional int endIndex);
+    method public static String substringAfter(CharSequence, int index, optional CharSequence noIndexValue);
+    method public static String substringAfter(CharSequence, char delimiter, optional CharSequence missingDelimiterValue);
+    method public static String substringAfter(CharSequence, String delimiter, optional CharSequence missingDelimiterValue);
+    method public static String substringAfterLast(CharSequence, char delimiter, optional CharSequence missingDelimiterValue);
+    method public static String substringAfterLast(CharSequence, String delimiter, optional CharSequence missingDelimiterValue);
+    method public static String substringBefore(CharSequence, int index, optional CharSequence noIndexValue);
+    method public static String substringBefore(CharSequence, char delimiter, optional CharSequence missingDelimiterValue);
+    method public static String substringBefore(CharSequence, String delimiter, optional CharSequence missingDelimiterValue);
+    method public static String substringBeforeLast(CharSequence, char delimiter, optional CharSequence missingDelimiterValue);
+    method public static String substringBeforeLast(CharSequence, String delimiter, optional CharSequence missingDelimiterValue);
+    method public static inline <C extends java.lang.CharSequence> C? takeIfEmpty(C);
+    method public static inline <C extends java.lang.CharSequence> C? takeIfNotEmpty(C?);
+  }
+
+  public final class CharSequences_jvmKt {
+    method public static String firstCharLowercase(CharSequence, java.util.Locale locale);
+    method public static String firstCharTitlecase(CharSequence, java.util.Locale locale);
+    method public static String firstCharUppercase(CharSequence, java.util.Locale locale);
+    method public static String lastCharLowercase(CharSequence, java.util.Locale locale);
+    method public static String lastCharUppercase(CharSequence, java.util.Locale locale);
+    method @kotlin.OverloadResolutionByLambdaReturnType public static inline String replaceLastCharToChar(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Character> transform);
+    method @kotlin.OverloadResolutionByLambdaReturnType public static inline String replaceLastCharToCharSequence(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,? extends java.lang.CharSequence> transform);
+  }
+
+  public final class CharsKt {
+    method public static inline boolean isChinese(char);
+    method public static boolean isEnglish(char);
+    method public static inline boolean isEnglishNotPunctuation(char);
+    method public static boolean isEnglishPunctuation(char);
+    method public static boolean isPunctuation(char);
+  }
+
+  public final class Chars_jvmKt {
+    method public static inline boolean isChineseNotPunctuation(char);
+    method public static boolean isChinesePunctuation(char);
+    method public static java.lang.Character.UnicodeBlock toUnicodeBlock(char);
+    method public static inline java.lang.Character.UnicodeBlock? toUnicodeBlockOrNull(char);
+    method public static inline java.lang.Character.UnicodeScript toUnicodeScript(char);
+  }
+
+  public final class Classes_jvmKt {
+    method public static inline String getClassName(Object);
+    method public static inline <T> kotlin.reflect.KClass<T> getKotlinClass(T);
+  }
+
+  public interface ContextHolder {
+    method public android.content.Context obtainContext();
+  }
+
+  public final class ContextsKt {
+    method public static android.app.Activity asActivity(android.content.Context);
+    method public static android.app.Activity? asActivityOrNull(android.content.Context);
+    method public static inline android.view.Window? findWindow(android.content.Context);
+    method public static inline android.view.ViewGroup? findWindowRootLayout(android.content.Context);
+    method public static inline android.view.Window getWindow(android.content.Context);
+    method public static inline android.view.ViewGroup getWindowRootLayout(android.content.Context);
+  }
+
+  public interface DataSizeUnits {
+    method public String getExbi();
+    method public String getGibi();
+    method public String getKibi();
+    method public String getMebi();
+    method public String getPebi();
+    method public String getTebi();
+    method public boolean getUseSI();
+    method public void setUseSI(boolean useSI);
+    property public abstract String exbi;
+    property public abstract String gibi;
+    property public abstract String kibi;
+    property public abstract String mebi;
+    property public abstract String pebi;
+    property public abstract String tebi;
+    property public abstract boolean useSI;
+  }
+
+  public final class DefaultDataSizeUnits implements com.meowool.sweekt.DataSizeUnits {
+    method public String getExbi();
+    method public String getGibi();
+    method public String getKibi();
+    method public String getMebi();
+    method public String getPebi();
+    method public String getTebi();
+    method public boolean getUseSI();
+    method public void setUseSI(boolean useSI);
+    property public String exbi;
+    property public String gibi;
+    property public String kibi;
+    property public String mebi;
+    property public String pebi;
+    property public String tebi;
+    property public boolean useSI;
+    field public static final com.meowool.sweekt.DefaultDataSizeUnits INSTANCE;
+  }
+
+  public final class ExceptionsKt {
+    method @Deprecated public static inline <R> R! safetyValue(kotlin.jvm.functions.Function0<? extends R> trying, kotlin.jvm.functions.Function0<? extends R> catching);
+    method @Deprecated public static inline <R> R? safetyValue(kotlin.jvm.functions.Function0<? extends R> trying);
+    method public static inline void throwIf(boolean predicate, kotlin.jvm.functions.Function0<? extends java.lang.Throwable> throwable);
+    method public static inline void throwIfNotNull(Object? value, kotlin.jvm.functions.Function0<? extends java.lang.Throwable> throwable);
+    method public static inline void throwIfNull(Object? value, kotlin.jvm.functions.Function0<? extends java.lang.Throwable> throwable);
+  }
+
+  public interface Hosting<T> {
+    method public T! getOrHost(kotlin.jvm.functions.Function0<? extends T> defaultValue);
+    method public T? getOrNull();
+    method public T! getValue();
+    method public operator T! getValue(Object? thisRef, kotlin.reflect.KProperty<?> property);
+    method public void invalidate();
+    method public boolean isHosting();
+    method public void setValue(T! value);
+    method public operator void setValue(Object? thisRef, kotlin.reflect.KProperty<?> property, T? value);
+    property public abstract T! value;
+  }
+
+  public final class HostingKt {
+    method public static <T> com.meowool.sweekt.Hosting<T> hosting(optional Object? key);
+    method public static <T> com.meowool.sweekt.Hosting<T> hosting(optional Object? key, optional Object? lock, kotlin.jvm.functions.Function0<? extends T> initializer);
+  }
+
+  public final class HostingStack {
+    method public com.meowool.sweekt.Hosting<?>? find(Object key);
+    method public operator com.meowool.sweekt.Hosting<?> get(Object key);
+    method public operator com.meowool.sweekt.Hosting<?>? minus(Object key);
+    method public void record(Object key, com.meowool.sweekt.Hosting<?> instance);
+    method public com.meowool.sweekt.Hosting<?>? remove(Object key);
+    method public <T> com.meowool.sweekt.Hosting<T> take(Object key);
+    field public static final com.meowool.sweekt.HostingStack INSTANCE;
+  }
+
+  public final class Hosting_jvmKt {
+  }
+
+  @kotlin.jvm.JvmInline public final class IntPair {
+    ctor public IntPair(long packedValue);
+    method public operator int component1();
+    method public operator int component2();
+    method public long copy(optional int first, optional int second);
+    method public int getFirst();
+    method public int getSecond();
+    property public final int first;
+    property public final int second;
+  }
+
+  public final class IntentsKt {
+    method public static inline android.content.Intent Intent(kotlin.Pair<java.lang.String,?>![] arguments, optional kotlin.jvm.functions.Function1<? super android.content.Intent,kotlin.Unit> configuration);
+    method public static inline android.content.Intent Intent(String action, kotlin.Pair<java.lang.String,?>![] arguments, optional kotlin.jvm.functions.Function1<? super android.content.Intent,kotlin.Unit> configuration);
+    method public static inline <reified A extends android.app.Activity> android.content.Intent! activityIntent(android.content.Context, kotlin.Pair<? extends java.lang.String,?> arguments, optional kotlin.jvm.functions.Function1<? super android.content.Intent,? extends kotlin.Unit> configuration);
+    method public static inline <reified A extends android.app.Activity> android.content.Intent! activityIntent(androidx.fragment.app.Fragment, kotlin.Pair<? extends java.lang.String,?> arguments, optional kotlin.jvm.functions.Function1<? super android.content.Intent,? extends kotlin.Unit> configuration);
+    method public static inline android.content.Intent clearTask(android.content.Intent);
+    method public static inline android.content.Intent clearTop(android.content.Intent);
+    method public static inline android.content.Intent excludeFromRecents(android.content.Intent);
+    method public static inline android.content.Intent multipleTask(android.content.Intent);
+    method public static inline android.content.Intent newDocument(android.content.Intent);
+    method public static inline android.content.Intent newTask(android.content.Intent);
+    method public static inline android.content.Intent noAnimation(android.content.Intent);
+    method public static inline android.content.Intent noHistory(android.content.Intent);
+    method public static android.content.Intent put(android.content.Intent, kotlin.Pair<java.lang.String,?>... arguments);
+    method public static inline android.content.Intent singleTop(android.content.Intent);
+  }
+
+  @kotlin.RequiresOptIn(level=kotlin.RequiresOptIn.Level, message="This is an internal com.meowool.sweekt API that should not be used from outside.") public @interface InternalSweektApi {
+  }
+
+  public final class JvmDescriptorsKt {
+    method public static boolean isJvmArrayTypeDescriptor(CharSequence);
+    method public static inline boolean isJvmPrimitiveType(CharSequence);
+    method public static boolean isJvmPrimitiveTypeDescriptor(CharSequence);
+    method public static boolean isJvmPrimitiveTypeDescriptor(char);
+    method public static boolean isJvmPrimitiveTypeName(CharSequence);
+    method public static boolean isJvmTypeDescriptor(CharSequence);
+    method public static String toJvmPackageName(CharSequence);
+    method public static String toJvmQualifiedTypeName(CharSequence, optional boolean canonical, optional char separator);
+    method public static String toJvmQualifiedTypeName(CharSequence, optional boolean canonical, String separator);
+    method public static String toJvmTypeDescriptor(CharSequence, optional char separator);
+    method public static String toJvmTypeDescriptor(CharSequence, String separator);
+    method public static String toJvmTypeSimpleName(CharSequence);
+  }
+
+  public final class Locale_jvmKt {
+    method public static inline java.util.Locale defaultLocale();
+  }
+
+  public final class MathsKt {
+    method public static float lerp(float start, float stop, float fraction);
+    method public static int lerp(int start, int stop, float fraction);
+    method public static long lerp(long start, long stop, float fraction);
+    method public static String toHexString(int);
+    method public static float toRadians(float);
+    method public static double toRadians(double);
+  }
+
+  public final class NumbersKt {
+    method public static inline int addFlag(int, int mask);
+    method public static inline long addFlag(long, long mask);
+    method public static inline short addFlag(short, short mask);
+    method public static inline byte addFlag(byte, byte mask);
+    method public static inline int addFlag(int, int mask);
+    method public static inline long addFlag(long, long mask);
+    method public static inline short addFlag(short, short mask);
+    method public static inline byte addFlag(byte, byte mask);
+    method public static inline float asFloat(Number);
+    method public static inline int asInt(Number);
+    method public static inline long asLong(Number);
+    method public static inline boolean hasFlag(int, int mask);
+    method public static inline boolean hasFlag(long, long mask);
+    method public static inline boolean hasFlag(short, short mask);
+    method public static inline boolean hasFlag(byte, byte mask);
+    method public static inline boolean hasFlag(int, int mask);
+    method public static inline boolean hasFlag(long, long mask);
+    method public static inline boolean hasFlag(short, short mask);
+    method public static inline boolean hasFlag(byte, byte mask);
+    method public static long packFloats(float val1, float val2);
+    method public static long packInts(int val1, int val2);
+    method public static inline int removeFlag(int, int mask);
+    method public static inline long removeFlag(long, long mask);
+    method public static inline short removeFlag(short, short mask);
+    method public static inline byte removeFlag(byte, byte mask);
+    method public static inline int removeFlag(int, int mask);
+    method public static inline long removeFlag(long, long mask);
+    method public static inline short removeFlag(short, short mask);
+    method public static inline byte removeFlag(byte, byte mask);
+    method public static float unpackFloat1(long value);
+    method public static float unpackFloat2(long value);
+    method public static int unpackInt1(long value);
+    method public static int unpackInt2(long value);
+  }
+
+  public final class PairsKt {
+    method public static long IntPair(int first, int second);
+    method public static infix long to(int, int that);
+    method public static java.util.List<java.lang.Integer> toList(long);
+  }
+
+  public final class ScopeFunctionsKt {
+    method public static inline <T, R> T! also(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,kotlin.Unit> catching, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> block);
+    method public static inline <T> T? alsoOrNull(T?, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> block);
+    method public static inline <T, R> T! apply(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,kotlin.Unit> catching, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> block);
+    method public static inline <T> T? applyOrNull(T?, kotlin.jvm.functions.Function1<? super T,kotlin.Unit> block);
+    method public static inline <T> T! ifNull(T?, kotlin.jvm.functions.Function0<? extends T> another);
+    method public static inline <T, R> R! let(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function1<? super T,? extends R> block);
+    method public static inline <T, R> R? letOrNull(T?, kotlin.jvm.functions.Function1<? super T,? extends R> block);
+    method public static inline <T> T! onNull(T?, kotlin.jvm.functions.Function0<? extends T> action);
+    method public static inline <R> R! run(kotlin.jvm.functions.Function1<? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function0<? extends R> block);
+    method public static inline <T, R> R! run(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function1<? super T,? extends R> block);
+    method public static inline <R> R? runOrNull(kotlin.jvm.functions.Function0<? extends R> block);
+    method public static inline <T, R> R? runOrNull(T?, kotlin.jvm.functions.Function1<? super T,? extends R> block);
+    method public static inline <T> T? takeIfNot(T?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T> T? takeTryIf(T?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T> T? takeTryIfNot(T?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T> T? takeTryUnless(T?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+  }
+
+  public final class Sizes_jvmKt {
+    method public static String toReadableSize(long, int precision, String? prefix, String? suffix, String? separator, com.meowool.sweekt.DataSizeUnits units, boolean useSI);
+    method public static String toReadableSize(Number, int precision, String? prefix, String? suffix, String? separator, com.meowool.sweekt.DataSizeUnits units, boolean useSI);
+  }
+
+  public final class StringBuildersKt {
+    method public static inline StringBuilder removeFirst(StringBuilder);
+    method public static inline StringBuilder removeLast(StringBuilder);
+    method public static inline StringBuilder removeRange(StringBuilder, optional int startIndex, optional int endIndex);
+  }
+
+  public final class StringsKt {
+    method public static inline String String(Object? any);
+    method public static inline infix String or(String?, String another);
+    method public static String removeBlanks(String);
+    method public static String removeLineBreaks(String);
+    method public static inline String? takeIfEmpty(String);
+    method public static inline String? takeIfNotEmpty(String?);
+  }
+
+  public final class Systems_jvmKt {
+    method public static boolean isAndroidSystem();
+    method public static boolean isLinuxSystem();
+    method public static boolean isMacSystem();
+    method public static boolean isWindowsSystem();
+  }
+
+  public final class TypesKt {
+    method @kotlin.jvm.Throws(exceptionClasses=ClassCastException::class) public static inline <reified T> T! cast(Object?);
+    method public static inline <reified T> T! castOrNull(Object?);
+    method public static inline <reified T> boolean equalsClass(Object);
+    method public static inline <reified T extends java.lang.Object, R> R! ifType(Object?, kotlin.jvm.functions.Function1<? super T,? extends R> action);
+    method public static inline boolean isNotNull(Object?);
+    method public static inline boolean isNull(Object?);
+    method public static inline <reified T> T! safeCast(Object?);
+    method public static inline <reified T> T! withType(Object?, kotlin.jvm.functions.Function1<? super T,? extends kotlin.Unit> action);
+  }
+
+  public final class Types_jvmKt {
+    method public static inline infix boolean equalsClass(Object, String className);
+    method public static inline infix boolean equalsClass(Object, Class<?> javaClass);
+    method public static inline infix boolean equalsClass(Object, kotlin.reflect.KClass<?> KClass);
+    method public static inline <reified T> boolean equalsClass(Object);
+  }
+
+  public final class WindowsKt {
+    method public static inline android.view.ViewGroup? findRootLayout(android.view.Window);
+    method public static android.view.ViewGroup getRootLayout(android.view.Window);
+  }
+
+}
+
+package com.meowool.sweekt.array {
+
+  public final class ArraysKt {
+    method public static inline <T> boolean contains(T![], kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T> java.util.List<T> dropFirst(T![]);
+    method public static inline <T> java.util.List<T> dropFirst(T![], int n);
+    method public static inline <T> java.util.List<T> dropLast(T![]);
+    method public static <T> java.util.List<T> dropPrefix(T![], T? prefix);
+    method public static <T> java.util.List<T> dropPrefix(T![], T?... prefix);
+    method public static <T> java.util.List<T> dropPrefix(T![], Iterable<? extends T> prefix);
+    method public static <T> java.util.List<T> dropPrefixArray(T![], T![] prefix);
+    method public static <T> java.util.List<T> dropSuffix(T![], T? suffix);
+    method public static <T> java.util.List<T> dropSuffix(T![], T?... suffix);
+    method public static <T> java.util.List<T> dropSuffix(T![], Iterable<? extends T> suffix);
+    method public static <T> java.util.List<T> dropSuffixArray(T![], T![] suffix);
+    method public static <T> boolean endsWith(T![], Iterable<? extends T> slice);
+    method public static <T> boolean endsWith(T![], kotlin.sequences.Sequence<? extends T> slice);
+    method public static <T> boolean endsWith(T![], T?... slice);
+    method public static <T> boolean endsWithArray(T![], T![] slice);
+    method public static inline <T> boolean has(T![], kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T> boolean isNotNullEmpty(T![]?);
+    method public static inline <T> T![] onEmpty(T![], kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
+    method public static inline <T> T![] onNotEmpty(T![], kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
+    method public static inline <T> T![]? onNotNullEmpty(T![]?, kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
+    method public static inline <T> T![]? onNullOrEmpty(T![]?, kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
+    method public static <T> boolean startsWith(T![], Iterable<? extends T> slice);
+    method public static <T> boolean startsWith(T![], kotlin.sequences.Sequence<? extends T> slice);
+    method public static <T> boolean startsWith(T![], T?... slice);
+    method public static <T> boolean startsWithArray(T![], T![] slice);
+    method public static inline <T> T![]? takeIfEmpty(T![]);
+    method public static inline <T> T![]? takeIfNotEmpty(T![]?);
+  }
+
+  public final class ByteArrayBuilder {
+    ctor public ByteArrayBuilder();
+    ctor public ByteArrayBuilder(byte[] content);
+    ctor public ByteArrayBuilder(int capacity);
+    method public com.meowool.sweekt.array.ByteArrayBuilder append(byte[] value);
+    method public com.meowool.sweekt.array.ByteArrayBuilder append(byte value);
+    method public byte[] ensureCapacity(optional int minimumCapacity);
+    method public operator byte get(int index);
+    method public int getSize();
+    method public operator kotlin.collections.ByteIterator iterator();
+    method public com.meowool.sweekt.array.ByteArrayBuilder reverse();
+    method public operator void set(int index, byte value);
+    method public byte[] toByteArray(optional int trimSize);
+    property public final int size;
+    field public static final int DefaultCapacity = 10; // 0xa
+    field public static final int MaxArraySize = 2147483639; // 0x7ffffff7
+  }
+
+  public final class ByteArrayBuildersKt {
+    method public static inline byte[] buildByteArray(kotlin.jvm.functions.Function1<? super com.meowool.sweekt.array.ByteArrayBuilder,kotlin.Unit> builderAction);
+    method public static inline byte[] buildByteArray(int capacity, kotlin.jvm.functions.Function1<? super com.meowool.sweekt.array.ByteArrayBuilder,kotlin.Unit> builderAction);
+  }
+
+  public final class ByteArray_internalKt {
+  }
+
+  public final class ByteArraysKt {
+    method public static byte[] add(byte[], int index, byte value);
+    method public static inline byte[] add(byte[], byte value);
+    method public static byte[] addAll(byte[], int index, byte[] values);
+    method public static inline byte[] addAll(byte[], byte... values);
+    method public static inline byte[] addFirst(byte[], byte value);
+    method public static inline byte[] addFirstAll(byte[], byte[] values);
+    method public static byte[] remove(byte[], int index);
+    method public static byte[] remove(byte[], int... indices);
+    method public static byte[] removeRange(byte[], optional int startIndex, optional int endIndex);
+    method public static inline boolean startsWith(byte[], byte[] prefix, optional int offset);
+    method public static inline byte[] subarray(byte[], optional int startIndex, optional int endIndex);
+    method public static inline byte[] write(byte[], byte[] bytes, optional int offset, optional int byteCount, optional kotlin.jvm.functions.Function1<? super java.lang.Byte,java.lang.Boolean> filter);
+    method public static inline byte[] write(byte[], byte byte, optional int offset);
+  }
+
+}
+
+package com.meowool.sweekt.coroutines {
+
+  public final class CoroutinesKt {
+    method public static <T> kotlinx.coroutines.Deferred<T> asyncDefault(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block);
+    method public static <T> kotlinx.coroutines.Deferred<T> asyncUI(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block);
+    method public static kotlinx.coroutines.Job launchDefault(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
+    method public static kotlinx.coroutines.Job launchUI(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
+    method public static suspend inline <T> Object? withDefaultContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
+    method public static suspend inline <T> Object? withUiContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
+  }
+
+  public final class Coroutines_jvmKt {
+    method public static <T> kotlinx.coroutines.Deferred<T> asyncIO(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block);
+    method public static kotlinx.coroutines.Job launchIO(kotlinx.coroutines.CoroutineScope, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
+    method public static suspend inline <T> Object? withIOContext(kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block, kotlin.coroutines.Continuation<? super T> p);
+  }
+
+  public final class FlowsKt {
+    method public static suspend <T> Object? all(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function2<? super T,? super kotlin.coroutines.Continuation<? super java.lang.Boolean>,?> predicate, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend <T> Object? any(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend <T> Object? any(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function2<? super T,? super kotlin.coroutines.Continuation<? super java.lang.Boolean>,?> predicate, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend <T> Object? contains(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function2<? super T,? super kotlin.coroutines.Continuation<? super java.lang.Boolean>,?> predicate, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend <T> Object? contains(kotlinx.coroutines.flow.Flow<? extends T>, T? element, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static <T> kotlinx.coroutines.flow.Flow<T> distinct(kotlinx.coroutines.flow.Flow<? extends T>);
+    method public static inline <T, K> kotlinx.coroutines.flow.Flow<T> distinctBy(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function1<? super T,? extends K> selector);
+    method public static inline <T> kotlinx.coroutines.flow.Flow<T> flowOnDefault(kotlinx.coroutines.flow.Flow<? extends T>);
+    method public static inline <T> kotlinx.coroutines.flow.Flow<T> flowOnUI(kotlinx.coroutines.flow.Flow<? extends T>);
+    method public static suspend <T> Object? has(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function2<? super T,? super kotlin.coroutines.Continuation<? super java.lang.Boolean>,?> predicate, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend inline <T> Object? isEmpty(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend inline <T> Object? isNotEmpty(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend inline <T> Object? isNotNullEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend inline <T> Object? isNullOrEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend inline <T> Object? none(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend <T> Object? none(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function2<? super T,? super kotlin.coroutines.Continuation<? super java.lang.Boolean>,?> predicate, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend inline <T> Object? onNotEmpty(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function1<? super kotlinx.coroutines.flow.Flow<? extends T>,kotlin.Unit> action, kotlin.coroutines.Continuation<? super kotlinx.coroutines.flow.Flow<? extends T>> p);
+    method public static suspend inline <T> Object? onNotNullEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.jvm.functions.Function1<? super kotlinx.coroutines.flow.Flow<? extends T>,kotlin.Unit> action, kotlin.coroutines.Continuation<? super kotlinx.coroutines.flow.Flow<? extends T>> p);
+    method public static suspend inline <T> Object? onNullOrEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.jvm.functions.Function1<? super kotlinx.coroutines.flow.Flow<? extends T>,kotlin.Unit> action, kotlin.coroutines.Continuation<? super kotlinx.coroutines.flow.Flow<? extends T>> p);
+    method public static inline <T> kotlinx.coroutines.flow.Flow<T> orEmpty(kotlinx.coroutines.flow.Flow<? extends T>?);
+    method public static suspend inline <T> Object? size(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Integer> p);
+  }
+
+  public final class Flows_jvmKt {
+    method public static inline <T> kotlinx.coroutines.flow.Flow<T> flowOnIO(kotlinx.coroutines.flow.Flow<? extends T>);
+  }
+
+}
+
+package com.meowool.sweekt.datetime {
+
+  public final class CommonsKt {
+    method public static inline int getCurrentHour();
+    method public static inline int getCurrentMinute();
+    method public static inline int getCurrentMonth();
+    method public static inline int getCurrentSecond();
+    method public static inline int getCurrentYear();
+    method public static long getNowMilliseconds();
+    method public static inline int getTodayOfMonth();
+    method public static inline java.time.DayOfWeek getTodayOfWeek();
+    method public static inline int getTodayOfYear();
+    method public static inline long toEpochMillis(CharSequence, String pattern, optional java.util.Locale locale);
+    method public static inline long toEpochMillis(CharSequence, optional java.time.format.DateTimeFormatter formatter);
+  }
+
+  public final class Commons_jvmKt {
+  }
+
+  public final class DurationsKt {
+    method public static inline long getDays(int);
+    method public static inline long getDays(long);
+    method public static inline long getDays(double);
+    method public static inline long getHours(int);
+    method public static inline long getHours(long);
+    method public static inline long getHours(double);
+    method public static inline long getMicros(int);
+    method public static inline long getMicros(long);
+    method public static inline long getMicros(double);
+    method public static inline long getMillis(int);
+    method public static inline long getMillis(long);
+    method public static inline long getMillis(double);
+    method public static inline long getMinutes(int);
+    method public static inline long getMinutes(long);
+    method public static inline long getMinutes(double);
+    method public static inline long getNanos(int);
+    method public static inline long getNanos(long);
+    method public static inline long getNanos(double);
+    method public static inline long getSeconds(int);
+    method public static inline long getSeconds(long);
+    method public static inline long getSeconds(double);
+  }
+
+  public final class Formatters_jvmKt {
+  }
+
+  public final class InstantsKt {
+    method public static inline kotlinx.datetime.Instant asMilliInstant(long);
+    method public static inline kotlinx.datetime.Instant asSecondInstant(long, long nanoAdjustment);
+    method public static inline String format(kotlinx.datetime.Instant, optional java.util.Locale locale);
+    method public static inline String format(kotlinx.datetime.Instant, String pattern, optional java.util.Locale locale);
+    method public static inline String formatInstant(optional kotlinx.datetime.Instant instant, optional java.util.Locale locale);
+    method public static inline String formatInstant(String pattern, optional kotlinx.datetime.Instant instant, optional java.util.Locale locale);
+    method public static inline long getEpochMillis(kotlinx.datetime.Instant);
+    method public static inline kotlinx.datetime.Instant getNowInstant();
+    method public static boolean inRange(kotlinx.datetime.Instant, kotlinx.datetime.Instant start, kotlinx.datetime.Instant end);
+    method public static boolean inRange(kotlinx.datetime.Instant, kotlinx.datetime.LocalDateTime start, kotlinx.datetime.LocalDateTime end);
+    method public static inline boolean inRange(kotlinx.datetime.Instant, String startTime, String endTime);
+    method public static inline boolean isCurrentMonth(kotlinx.datetime.Instant, optional kotlinx.datetime.TimeZone zone);
+    method public static inline boolean isCurrentYear(kotlinx.datetime.Instant, optional kotlinx.datetime.TimeZone zone);
+    method public static inline boolean isToday(kotlinx.datetime.Instant, optional kotlinx.datetime.TimeZone zone);
+    method public static inline kotlinx.datetime.LocalDateTime toDateTime(kotlinx.datetime.Instant, optional kotlinx.datetime.TimeZone zone);
+    method public static inline kotlinx.datetime.Instant toInstant(CharSequence, String pattern, optional java.util.Locale locale, optional kotlinx.datetime.TimeZone zone);
+    method public static inline kotlinx.datetime.Instant toInstant(CharSequence, optional java.time.format.DateTimeFormatter formatter, optional kotlinx.datetime.TimeZone zone);
+  }
+
+  public final class LocalDateTimesKt {
+    method public static inline String formatDateTime(optional kotlinx.datetime.LocalDateTime dateTime, optional java.util.Locale locale);
+    method public static inline String formatDateTime(String pattern, optional kotlinx.datetime.LocalDateTime dateTime, optional java.util.Locale locale);
+    method public static inline long getEpochMillis(kotlinx.datetime.LocalDateTime);
+    method public static inline kotlinx.datetime.LocalDateTime getNowDateTime();
+    method public static boolean inRange(kotlinx.datetime.LocalDateTime, kotlinx.datetime.LocalDateTime start, kotlinx.datetime.LocalDateTime end);
+    method public static boolean inRange(kotlinx.datetime.LocalDateTime, kotlinx.datetime.Instant start, kotlinx.datetime.Instant end);
+    method public static inline boolean inRange(kotlinx.datetime.LocalDateTime, String startTime, String endTime);
+    method public static boolean isCurrentMonth(kotlinx.datetime.LocalDateTime);
+    method public static inline boolean isCurrentYear(kotlinx.datetime.LocalDateTime);
+    method public static boolean isToday(kotlinx.datetime.LocalDateTime);
+  }
+
+  public final class LocalDateTimes_jvmKt {
+    method public static String format(kotlinx.datetime.LocalDateTime, java.util.Locale locale);
+    method public static String format(kotlinx.datetime.LocalDateTime, String pattern, java.util.Locale locale);
+    method public static kotlinx.datetime.LocalDateTime toDateTime(CharSequence, String pattern, java.util.Locale locale, kotlinx.datetime.TimeZone zone);
+    method public static kotlinx.datetime.LocalDateTime toDateTime(CharSequence, java.time.format.DateTimeFormatter formatter, kotlinx.datetime.TimeZone zone);
+  }
+
+  public final class TimeZonesKt {
+    method public static inline kotlinx.datetime.TimeZone system(kotlinx.datetime.TimeZone.Companion);
+  }
+
+}
+
+package com.meowool.sweekt.dimension {
+
+  public final class DoubleDpsKt {
+    method public static double dpDouble(double, android.content.Context context);
+    method public static float dpFloat(double, android.content.Context context);
+    method public static int dpInt(double, android.content.Context context);
+    method public static long dpLong(double, android.content.Context context);
+    method public static double getDpDouble(double);
+    method public static float getDpFloat(double);
+    method public static int getDpInt(double);
+    method public static long getDpLong(double);
+  }
+
+  public final class FloatDpsKt {
+    method public static double dpDouble(float, android.content.Context context);
+    method public static float dpFloat(float, android.content.Context context);
+    method public static int dpInt(float, android.content.Context context);
+    method public static long dpLong(float, android.content.Context context);
+    method public static double getDpDouble(float);
+    method public static float getDpFloat(float);
+    method public static int getDpInt(float);
+    method public static long getDpLong(float);
+  }
+
+  public final class IntDpsKt {
+    method public static double dpDouble(int, android.content.Context context);
+    method public static float dpFloat(int, android.content.Context context);
+    method public static int dpInt(int, android.content.Context context);
+    method public static long dpLong(int, android.content.Context context);
+    method public static double getDpDouble(int);
+    method public static float getDpFloat(int);
+    method public static int getDpInt(int);
+    method public static long getDpLong(int);
+  }
+
+  public final class LongDpsKt {
+    method public static double dpDouble(long, android.content.Context context);
+    method public static float dpFloat(long, android.content.Context context);
+    method public static int dpInt(long, android.content.Context context);
+    method public static long dpLong(long, android.content.Context context);
+    method public static double getDpDouble(long);
+    method public static float getDpFloat(long);
+    method public static int getDpInt(long);
+    method public static long getDpLong(long);
+  }
+
+}
+
+package com.meowool.sweekt.iteration {
+
+  public final class ConvertsKt {
+    method public static inline <T> java.util.Collection<T> asCollection(Iterable<? extends T>);
+    method public static inline <T> java.util.List<T> asList(Iterable<? extends T>);
+    method public static <T> java.util.List<T> asList(java.util.Collection<? extends T>);
+    method public static inline <T> java.util.List<T> asMutableList(Iterable<? extends T>);
+    method public static <T> java.util.List<T> asMutableList(java.util.Collection<? extends T>);
+    method public static <T> java.util.List<T> asMutableList(java.util.List<? extends T>);
+    method public static inline <K, V> java.util.Map<K,V> asMutableMap(java.util.Map<K,? extends V>);
+    method public static inline <T> java.util.Set<T> asMutableSet(Iterable<? extends T>);
+    method public static inline <T> java.util.Set<T> asMutableSet(java.util.Collection<? extends T>);
+    method public static inline <T> java.util.Set<T> asSet(Iterable<? extends T>);
+    method public static inline <T> java.util.Set<T> asSet(java.util.Collection<? extends T>);
+  }
+
+  public final class IterableKt {
+    method public static inline <T> boolean contains(Iterable<? extends T>, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T> java.util.List<T> dropFirst(Iterable<? extends T>);
+    method public static inline <T> java.util.List<T> dropFirst(Iterable<? extends T>, int n);
+    method public static <T> boolean endsWith(Iterable<? extends T>, T? slice);
+    method public static <T> boolean endsWith(Iterable<? extends T>, Iterable<? extends T> slice);
+    method public static <T> boolean endsWith(Iterable<? extends T>, kotlin.sequences.Sequence<? extends T> slice);
+    method public static <T> boolean endsWith(Iterable<? extends T>, T?... slice);
+    method public static inline <T> int getSize(Iterable<? extends T>);
+    method public static inline <T> boolean has(Iterable<? extends T>, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isEmpty(I);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isNotEmpty(I);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isNotNullEmpty(I?);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isNullOrEmpty(I?);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> I onEmpty(I, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> I onNotEmpty(I, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> I? onNotNullEmpty(I?, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> I? onNullOrEmpty(I?, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
+    method public static <T> boolean startsWith(Iterable<? extends T>, T? slice);
+    method public static <T> boolean startsWith(Iterable<? extends T>, Iterable<? extends T> slice);
+    method public static <T> boolean startsWith(Iterable<? extends T>, kotlin.sequences.Sequence<? extends T> slice);
+    method public static <T> boolean startsWith(Iterable<? extends T>, T?... slice);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> I? takeIfEmpty(I);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> I? takeIfNotEmpty(I?);
+    method public static inline <reified T> T![]! toArray(Iterable<? extends T>);
+  }
+
+  public final class ListsKt {
+    method public static inline <T> java.util.List<T> dropLast(java.util.List<? extends T>);
+    method public static <T> java.util.List<T> dropPrefix(java.util.List<? extends T>, T? prefix);
+    method public static <T> java.util.List<T> dropPrefix(java.util.List<? extends T>, T?... prefix);
+    method public static <T> java.util.List<T> dropPrefix(java.util.List<? extends T>, Iterable<? extends T> prefix);
+    method public static <T> java.util.List<T> dropPrefixArray(java.util.List<? extends T>, T![] prefix);
+    method public static <T> java.util.List<T> dropSuffix(java.util.List<? extends T>, T? suffix);
+    method public static <T> java.util.List<T> dropSuffix(java.util.List<? extends T>, T?... suffix);
+    method public static <T> java.util.List<T> dropSuffix(java.util.List<? extends T>, Iterable<? extends T> suffix);
+    method public static <T> java.util.List<T> dropSuffixArray(java.util.List<? extends T>, T![] suffix);
+  }
+
+  public final class MapsKt {
+    method public static inline <K, V, R> java.util.List<R> flatMapNotNull(java.util.Map<? extends K,? extends V>, kotlin.jvm.functions.Function1<? super java.util.Map.Entry<? extends K,? extends V>,? extends java.lang.Iterable<? extends R>> transform);
+    method @kotlin.OverloadResolutionByLambdaReturnType public static inline <K, V, R> java.util.List<R> flatMapNotNullSequence(java.util.Map<? extends K,? extends V>, kotlin.jvm.functions.Function1<? super java.util.Map.Entry<? extends K,? extends V>,? extends kotlin.sequences.Sequence<? extends R>> transform);
+    method @kotlin.OverloadResolutionByLambdaReturnType public static inline <K, V, R, C extends java.util.Collection<? super R>> C flatMapNotNullSequenceTo(java.util.Map<? extends K,? extends V>, C destination, kotlin.jvm.functions.Function1<? super java.util.Map.Entry<? extends K,? extends V>,? extends kotlin.sequences.Sequence<? extends R>> transform);
+    method public static inline <K, V, R, C extends java.util.Collection<? super R>> C flatMapNotNullTo(java.util.Map<? extends K,? extends V>, C destination, kotlin.jvm.functions.Function1<? super java.util.Map.Entry<? extends K,? extends V>,? extends java.lang.Iterable<? extends R>> transform);
+    method public static <K, V, A extends java.lang.Appendable> A joinTo(java.util.Map<K,? extends V>, A buffer, optional CharSequence infix, optional CharSequence separator, optional CharSequence prefix, optional CharSequence postfix, optional int limit, optional CharSequence truncated, optional kotlin.jvm.functions.Function2<? super K,? super V,? extends java.lang.CharSequence>? transform);
+    method public static <K, V> String joinToString(java.util.Map<K,? extends V>, optional CharSequence separator, optional CharSequence infix, optional CharSequence prefix, optional CharSequence postfix, optional int limit, optional CharSequence truncated, optional kotlin.jvm.functions.Function2<? super K,? super V,? extends java.lang.CharSequence>? transform);
+    method public static inline <K, V, M extends java.util.Map<? extends K, ? extends V>> M? takeIfEmpty(M);
+    method public static inline <K, V, M extends java.util.Map<? extends K, ? extends V>> M? takeIfNotEmpty(M?);
+  }
+
+  public final class MutableCollectionsKt {
+    method public static <T, S extends java.util.Collection<T>> S append(S, T? element);
+    method public static <T, S extends java.util.Collection<T>> S append(S, T?... elements);
+    method public static <T, S extends java.util.Collection<T>> S append(S, Iterable<? extends T> elements);
+    method public static <T, S extends java.util.Collection<T>> S appendArray(S, T![] elements);
+    method public static <T> boolean replaceAll(java.util.Collection<? super T>, Iterable<? extends T> newElements);
+    method public static <T> boolean replaceAll(java.util.Collection<? super T>, kotlin.sequences.Sequence<? extends T> newElements);
+    method public static <T> boolean replaceAll(java.util.Collection<? super T>, T?... newElements);
+    method public static <T> boolean replaceAllArray(java.util.Collection<? super T>, T![] newElements);
+  }
+
+  public final class MutableListsKt {
+    method public static <T, I extends java.util.List<T>> I insertArrayAt(I, int index, T![] elements);
+    method public static <T, I extends java.util.List<T>> I insertAt(I, int index, T? element);
+    method public static <T, I extends java.util.List<T>> I insertAt(I, int index, T?... elements);
+    method public static <T, I extends java.util.List<T>> I insertAt(I, int index, Iterable<? extends T> elements);
+    method public static <T, I extends java.util.List<T>> I insertFirst(I, T? element);
+    method public static <T, I extends java.util.List<T>> I insertFirst(I, T?... elements);
+    method public static <T, I extends java.util.List<T>> I insertFirst(I, Iterable<? extends T> elements);
+    method public static <T, I extends java.util.List<T>> I insertFirstArray(I, T![] elements);
+    method public static <T, I extends java.util.List<T>> I insertLast(I, T? element);
+    method public static <T, I extends java.util.List<T>> I insertLast(I, T?... elements);
+    method public static <T, I extends java.util.List<T>> java.util.List<T> insertLast(I, Iterable<? extends T> elements);
+    method public static <T, I extends java.util.List<T>> I insertLastArray(I, T![] elements);
+    method public static <T, I extends java.util.List<T>> I removeFirst(I, int n);
+    method public static <T, I extends java.util.List<T>> I removeLast(I, int n);
+    method public static <T, I extends java.util.List<T>> I removePrefix(I, T? prefix);
+    method public static <T, I extends java.util.List<T>> I removePrefix(I, T?... prefix);
+    method public static <T, I extends java.util.List<T>> I removePrefix(I, Iterable<? extends T> prefix);
+    method public static <T, I extends java.util.List<T>> I removePrefixArray(I, T![] prefix);
+    method public static <T, I extends java.util.List<T>> I removeSuffix(I, T? suffix);
+    method public static <T, I extends java.util.List<T>> I removeSuffix(I, T?... suffix);
+    method public static <T, I extends java.util.List<T>> I removeSuffix(I, Iterable<? extends T> suffix);
+    method public static <T, I extends java.util.List<T>> I removeSuffixArray(I, T![] suffix);
+  }
+
+  public final class SequencesKt {
+    method public static inline <T> boolean contains(kotlin.sequences.Sequence<? extends T>, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static <T> boolean endsWith(kotlin.sequences.Sequence<? extends T>, Iterable<? extends T> slice);
+    method public static <T> boolean endsWith(kotlin.sequences.Sequence<? extends T>, kotlin.sequences.Sequence<? extends T> slice);
+    method public static <T> boolean endsWith(kotlin.sequences.Sequence<? extends T>, T?... slice);
+    method public static inline <T> int getSize(kotlin.sequences.Sequence<? extends T>);
+    method public static inline <T> boolean has(kotlin.sequences.Sequence<? extends T>, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T> boolean isEmpty(kotlin.sequences.Sequence<? extends T>);
+    method public static inline <T> boolean isNotEmpty(kotlin.sequences.Sequence<? extends T>);
+    method public static inline <T> boolean isNotNullEmpty(kotlin.sequences.Sequence<? extends T>?);
+    method public static inline <T> boolean isNullOrEmpty(kotlin.sequences.Sequence<? extends T>?);
+    method public static inline <T> kotlin.sequences.Sequence<T> onEmpty(kotlin.sequences.Sequence<? extends T>, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
+    method public static inline <T> kotlin.sequences.Sequence<T> onNotEmpty(kotlin.sequences.Sequence<? extends T>, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
+    method public static inline <T> kotlin.sequences.Sequence<T>? onNotNullEmpty(kotlin.sequences.Sequence<? extends T>?, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
+    method public static inline <T> kotlin.sequences.Sequence<T>? onNullOrEmpty(kotlin.sequences.Sequence<? extends T>?, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
+    method public static <T> boolean startsWith(kotlin.sequences.Sequence<? extends T>, Iterable<? extends T> slice);
+    method public static <T> boolean startsWith(kotlin.sequences.Sequence<? extends T>, kotlin.sequences.Sequence<? extends T> slice);
+    method public static <T> boolean startsWith(kotlin.sequences.Sequence<? extends T>, T?... slice);
+    method public static inline <T> kotlin.sequences.Sequence<T>? takeIfEmpty(kotlin.sequences.Sequence<? extends T>);
+    method public static inline <T> kotlin.sequences.Sequence<T>? takeIfNotEmpty(kotlin.sequences.Sequence<? extends T>?);
+    method public static inline <reified T> T![]! toArray(kotlin.sequences.Sequence<? extends T>);
+  }
+
+}
+
+package com.meowool.sweekt.lifecycle {
+
+  public final class LiveDataKt {
+    method public static inline operator <T> T? getValue(androidx.lifecycle.LiveData<T>, Object? thisObj, kotlin.reflect.KProperty<?> property);
+    method public static inline <T> androidx.lifecycle.LiveData<T> liveDataOf(T? value);
+    method public static inline <T> androidx.lifecycle.MutableLiveData<T> mutableLiveDataOf(T? value);
+    method public static inline operator <T> void setValue(androidx.lifecycle.MutableLiveData<T>, Object? thisObj, kotlin.reflect.KProperty<?> property, T? value);
+  }
+
+  public final class ViewModelKt {
+    method public static <T> kotlinx.coroutines.Deferred<T> asyncDefault(androidx.lifecycle.ViewModel, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block);
+    method public static <T> kotlinx.coroutines.Deferred<T> asyncIO(androidx.lifecycle.ViewModel, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block);
+    method public static <T> kotlinx.coroutines.Deferred<T> asyncUI(androidx.lifecycle.ViewModel, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super T>,?> block);
+    method public static kotlinx.coroutines.Job launch(androidx.lifecycle.ViewModel, optional kotlin.coroutines.CoroutineContext context, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
+    method public static kotlinx.coroutines.Job launchDefault(androidx.lifecycle.ViewModel, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
+    method public static kotlinx.coroutines.Job launchIO(androidx.lifecycle.ViewModel, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
+    method public static kotlinx.coroutines.Job launchUI(androidx.lifecycle.ViewModel, optional kotlinx.coroutines.CoroutineStart start, kotlin.jvm.functions.Function2<? super kotlinx.coroutines.CoroutineScope,? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> action);
+  }
+
+}
+
+package com.meowool.sweekt.permission {
+
+  public abstract sealed class Permission {
+  }
+
+  @RequiresApi(android.os.Build.VERSION_CODES.Q) public static final class Permission.ActivityRecognition extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.ActivityRecognition INSTANCE;
+  }
+
+  public static final class Permission.AddVoicemail extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.AddVoicemail INSTANCE;
+  }
+
+  public static final class Permission.Calendar extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.Calendar INSTANCE;
+  }
+
+  public static final class Permission.Calendar.Read extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Calendar.Read INSTANCE;
+  }
+
+  public static final class Permission.Calendar.Write extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Calendar.Write INSTANCE;
+  }
+
+  public static final class Permission.CallLog extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.CallLog INSTANCE;
+  }
+
+  public static final class Permission.CallLog.Read extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.CallLog.Read INSTANCE;
+  }
+
+  public static final class Permission.CallLog.Write extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.CallLog.Write INSTANCE;
+  }
+
+  public static fun interface Permission.Callback {
+    method public operator void invoke(java.util.Set<java.lang.String> permissions);
+  }
+
+  public static final class Permission.Camera extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Camera INSTANCE;
+  }
+
+  public static final class Permission.Contacts extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.Contacts INSTANCE;
+  }
+
+  public static final class Permission.Contacts.Read extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Contacts.Read INSTANCE;
+  }
+
+  public static final class Permission.Contacts.Write extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Contacts.Write INSTANCE;
+  }
+
+  @RequiresApi(android.os.Build.VERSION_CODES.R) public static final class Permission.FullStorage extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.FullStorage INSTANCE;
+  }
+
+  public static final class Permission.GetAccounts extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.GetAccounts INSTANCE;
+  }
+
+  public static final class Permission.Location extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.Location INSTANCE;
+  }
+
+  @RequiresApi(android.os.Build.VERSION_CODES.Q) public static final class Permission.Location.AccessBackground extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Location.AccessBackground INSTANCE;
+  }
+
+  public static final class Permission.Location.AccessCoarse extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Location.AccessCoarse INSTANCE;
+  }
+
+  public static final class Permission.Location.AccessFine extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Location.AccessFine INSTANCE;
+  }
+
+  @RequiresApi(android.os.Build.VERSION_CODES.Q) public static final class Permission.Location.AccessMedia extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Location.AccessMedia INSTANCE;
+  }
+
+  public static final class Permission.Microphone extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Microphone INSTANCE;
+  }
+
+  @RequiresApi(31) public static final class Permission.NearbyDevices extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.NearbyDevices INSTANCE;
+  }
+
+  @RequiresApi(31) public static final class Permission.NearbyDevices.BluetoothConnect extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.NearbyDevices.BluetoothConnect INSTANCE;
+  }
+
+  @RequiresApi(31) public static final class Permission.NearbyDevices.BluetoothScan extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.NearbyDevices.BluetoothScan INSTANCE;
+  }
+
+  public static final class Permission.Phone extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.Phone INSTANCE;
+  }
+
+  @RequiresApi(android.os.Build.VERSION_CODES.O) public static final class Permission.Phone.AnswerCalls extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Phone.AnswerCalls INSTANCE;
+  }
+
+  public static final class Permission.Phone.Call extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Phone.Call INSTANCE;
+  }
+
+  @RequiresApi(android.os.Build.VERSION_CODES.O) public static final class Permission.Phone.ReadNumber extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Phone.ReadNumber INSTANCE;
+  }
+
+  public static final class Permission.Phone.ReadState extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Phone.ReadState INSTANCE;
+  }
+
+  @Deprecated public static final class Permission.ProcessOutgoingCalls extends com.meowool.sweekt.permission.Permission.Single {
+    field @Deprecated public static final com.meowool.sweekt.permission.Permission.ProcessOutgoingCalls INSTANCE;
+  }
+
+  public static final class Permission.ReceiveMMS extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.ReceiveMMS INSTANCE;
+  }
+
+  public static final class Permission.ReceiveWapPush extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.ReceiveWapPush INSTANCE;
+  }
+
+  public static final class Permission.SMS extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.SMS INSTANCE;
+  }
+
+  public static final class Permission.SMS.Read extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.SMS.Read INSTANCE;
+  }
+
+  public static final class Permission.SMS.Receive extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.SMS.Receive INSTANCE;
+  }
+
+  public static final class Permission.SMS.Send extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.SMS.Send INSTANCE;
+  }
+
+  public static final class Permission.Sensors extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Sensors INSTANCE;
+  }
+
+  public static class Permission.Single extends com.meowool.sweekt.permission.Permission {
+    ctor public Permission.Single(String value);
+  }
+
+  public static final class Permission.Storage extends com.meowool.sweekt.permission.Permission {
+    field public static final com.meowool.sweekt.permission.Permission.Storage INSTANCE;
+  }
+
+  @RequiresApi(android.os.Build.VERSION_CODES.R) public static final class Permission.Storage.ManageExternal extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Storage.ManageExternal INSTANCE;
+  }
+
+  public static final class Permission.Storage.ReadExternal extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Storage.ReadExternal INSTANCE;
+  }
+
+  public static final class Permission.Storage.WriteExternal extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.Storage.WriteExternal INSTANCE;
+  }
+
+  public static final class Permission.UseSIP extends com.meowool.sweekt.permission.Permission.Single {
+    field public static final com.meowool.sweekt.permission.Permission.UseSIP INSTANCE;
+  }
+
+  @com.meowool.sweekt.InternalSweektApi public final class PermissionCompatActivity extends android.app.Activity {
+    ctor public PermissionCompatActivity();
+  }
+
+  public final class PermissionCompatActivityKt {
+  }
+
+  public final class PermissionKt {
+    method public static com.meowool.sweekt.permission.Permission.Single Permission(String permission);
+  }
+
+  public final class ProcessingsKt {
+    method public static java.util.Map<com.meowool.sweekt.permission.Permission.Single,java.lang.Boolean> getPermissionStatus(android.content.Context, com.meowool.sweekt.permission.Permission... permissions);
+    method public static boolean isGrantedPermissions(android.content.Context, com.meowool.sweekt.permission.Permission... permissions);
+    method public static void requestPermissions(android.content.Context, com.meowool.sweekt.permission.Permission![] permissions, optional com.meowool.sweekt.permission.Permission.Callback granted, optional com.meowool.sweekt.permission.Permission.Callback denied);
+    method public static inline void runWithPermissions(android.content.Context, com.meowool.sweekt.permission.Permission![] permissions, kotlin.jvm.functions.Function0<kotlin.Unit> action);
+  }
+
+}
+
+package com.meowool.sweekt.pm {
+
+  public final class PackageManager {
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.pm.PackageManager, String packageName);
+    method public static android.content.pm.Signature![] getSignatures(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.Signature![] getSignatures(android.content.Context, String packageName);
+    method public static long getVersionCodeCompat(android.content.pm.PackageInfo);
+    method public static boolean isInstalled(android.content.pm.PackageInfo);
+    method public static inline boolean isPackageInstalled(android.content.Context, String packageName);
+    method public static boolean isPackageInstalled(android.content.pm.PackageManager, String packageName);
+    method public static kotlin.Unit? launchPackage(android.content.Context, String packageName);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.pm.PackageManager, String apkPath, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.Context, String apkPath, optional int flags);
+    method public static android.content.pm.PackageInfo? resolvePackageArchive(android.content.pm.PackageManager, String archivePath, optional int flags);
+    method public static inline android.content.pm.PackageInfo? resolvePackageArchive(android.content.Context, String archivePath, optional int flags);
+    method public static void uninstallPackage(android.content.Context, String packageName);
+  }
+
+  public final class PackageManager {
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.pm.PackageManager, String packageName);
+    method public static android.content.pm.Signature![] getSignatures(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.Signature![] getSignatures(android.content.Context, String packageName);
+    method public static long getVersionCodeCompat(android.content.pm.PackageInfo);
+    method public static boolean isInstalled(android.content.pm.PackageInfo);
+    method public static inline boolean isPackageInstalled(android.content.Context, String packageName);
+    method public static boolean isPackageInstalled(android.content.pm.PackageManager, String packageName);
+    method public static kotlin.Unit? launchPackage(android.content.Context, String packageName);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.pm.PackageManager, String apkPath, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.Context, String apkPath, optional int flags);
+    method public static android.content.pm.PackageInfo? resolvePackageArchive(android.content.pm.PackageManager, String archivePath, optional int flags);
+    method public static inline android.content.pm.PackageInfo? resolvePackageArchive(android.content.Context, String archivePath, optional int flags);
+    method public static void uninstallPackage(android.content.Context, String packageName);
+  }
+
+  public final class PackageManager {
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.pm.PackageManager, String packageName);
+    method public static android.content.pm.Signature![] getSignatures(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.Signature![] getSignatures(android.content.Context, String packageName);
+    method public static long getVersionCodeCompat(android.content.pm.PackageInfo);
+    method public static boolean isInstalled(android.content.pm.PackageInfo);
+    method public static inline boolean isPackageInstalled(android.content.Context, String packageName);
+    method public static boolean isPackageInstalled(android.content.pm.PackageManager, String packageName);
+    method public static kotlin.Unit? launchPackage(android.content.Context, String packageName);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.pm.PackageManager, String apkPath, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.Context, String apkPath, optional int flags);
+    method public static android.content.pm.PackageInfo? resolvePackageArchive(android.content.pm.PackageManager, String archivePath, optional int flags);
+    method public static inline android.content.pm.PackageInfo? resolvePackageArchive(android.content.Context, String archivePath, optional int flags);
+    method public static void uninstallPackage(android.content.Context, String packageName);
+  }
+
+  public final class PackageManager {
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.pm.PackageManager, String packageName);
+    method public static android.content.pm.Signature![] getSignatures(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.Signature![] getSignatures(android.content.Context, String packageName);
+    method public static long getVersionCodeCompat(android.content.pm.PackageInfo);
+    method public static boolean isInstalled(android.content.pm.PackageInfo);
+    method public static inline boolean isPackageInstalled(android.content.Context, String packageName);
+    method public static boolean isPackageInstalled(android.content.pm.PackageManager, String packageName);
+    method public static kotlin.Unit? launchPackage(android.content.Context, String packageName);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.pm.PackageManager, String apkPath, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.Context, String apkPath, optional int flags);
+    method public static android.content.pm.PackageInfo? resolvePackageArchive(android.content.pm.PackageManager, String archivePath, optional int flags);
+    method public static inline android.content.pm.PackageInfo? resolvePackageArchive(android.content.Context, String archivePath, optional int flags);
+    method public static void uninstallPackage(android.content.Context, String packageName);
+  }
+
+  public final class PackageManager {
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.pm.PackageManager, String packageName);
+    method public static android.content.pm.Signature![] getSignatures(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.Signature![] getSignatures(android.content.Context, String packageName);
+    method public static long getVersionCodeCompat(android.content.pm.PackageInfo);
+    method public static boolean isInstalled(android.content.pm.PackageInfo);
+    method public static inline boolean isPackageInstalled(android.content.Context, String packageName);
+    method public static boolean isPackageInstalled(android.content.pm.PackageManager, String packageName);
+    method public static kotlin.Unit? launchPackage(android.content.Context, String packageName);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.pm.PackageManager, String apkPath, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.Context, String apkPath, optional int flags);
+    method public static android.content.pm.PackageInfo? resolvePackageArchive(android.content.pm.PackageManager, String archivePath, optional int flags);
+    method public static inline android.content.pm.PackageInfo? resolvePackageArchive(android.content.Context, String archivePath, optional int flags);
+    method public static void uninstallPackage(android.content.Context, String packageName);
+  }
+
+  public final class PackageManager {
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo getApplicationInfo(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.Context, String packageName, optional int flags);
+    method public static inline android.content.pm.PackageInfo getPackageInfo(android.content.pm.PackageManager, String packageName);
+    method public static android.content.pm.Signature![] getSignatures(android.content.pm.PackageManager, String packageName);
+    method public static inline android.content.pm.Signature![] getSignatures(android.content.Context, String packageName);
+    method public static long getVersionCodeCompat(android.content.pm.PackageInfo);
+    method public static boolean isInstalled(android.content.pm.PackageInfo);
+    method public static inline boolean isPackageInstalled(android.content.Context, String packageName);
+    method public static boolean isPackageInstalled(android.content.pm.PackageManager, String packageName);
+    method public static kotlin.Unit? launchPackage(android.content.Context, String packageName);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.pm.PackageManager, String apkPath, optional int flags);
+    method public static inline android.content.pm.ApplicationInfo? resolveApk(android.content.Context, String apkPath, optional int flags);
+    method public static android.content.pm.PackageInfo? resolvePackageArchive(android.content.pm.PackageManager, String archivePath, optional int flags);
+    method public static inline android.content.pm.PackageInfo? resolvePackageArchive(android.content.Context, String archivePath, optional int flags);
+    method public static void uninstallPackage(android.content.Context, String packageName);
+  }
+
+}
+
