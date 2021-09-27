@@ -13,9 +13,9 @@ import kotlinx.datetime.number
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-val nowMilliseconds: Long get() = run(
-  catching = { System.currentTimeMillis() }
-) { nowInstant.toEpochMilliseconds() }
+val nowMilliseconds: Long get() = run(catching = { nowCompatMilliseconds }) {
+  nowInstant.toEpochMilliseconds()
+}
 
 /**
  * Returns current year's number, such as `2021/03/01` is `2021`.
@@ -96,3 +96,5 @@ inline fun CharSequence.toEpochMillis(
 inline fun CharSequence.toEpochMillis(
   formatter: DateTimeFormatter = ISO_ZONED_DATE_TIME_FORMATTER,
 ): Long = toInstant(formatter).epochMillis
+
+internal expect val nowCompatMilliseconds: Long
