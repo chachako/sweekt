@@ -4,8 +4,8 @@ package com.meowool.sweekt.datetime
 
 import com.meowool.sweekt.Locale
 import com.meowool.sweekt.defaultLocale
+import com.meowool.sweekt.run
 import kotlinx.datetime.DayOfWeek
-import kotlinx.datetime.Instant
 import kotlinx.datetime.number
 
 /**
@@ -13,7 +13,9 @@ import kotlinx.datetime.number
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline val nowMilliseconds: Long get() = nowInstant.toEpochMilliseconds()
+val nowMilliseconds: Long get() = run(
+  catching = { System.currentTimeMillis() }
+) { nowInstant.toEpochMilliseconds() }
 
 /**
  * Returns current year's number, such as `2021/03/01` is `2021`.
