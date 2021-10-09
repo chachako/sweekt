@@ -35,7 +35,7 @@ gradleToolkit {
   publications {
     data {
       val baseVersion = "0.1.0"
-      version = "$baseVersion-SNAPSHOT"
+      version = "$baseVersion-LOCAL"
       // Used to publish non-local versions of artifacts in CI environment
       versionInCI = "$baseVersion-SNAPSHOT"
 
@@ -43,7 +43,7 @@ gradleToolkit {
       artifactId = "sweekt"
       groupId = "com.meowool.toolkit"
       description = "A common toolkit (utils) built to help you further reduce Kotlin boilerplate code and improve development efficiency."
-      url = "https://github.com/meowool-toolkit/sweekt/"
+      url = "https://github.com/meowool-toolkit/${rootProject.name}"
       vcs = "$url.git"
       developer {
         id = "rin"

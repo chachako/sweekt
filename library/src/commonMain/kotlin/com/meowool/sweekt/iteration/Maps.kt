@@ -96,19 +96,19 @@ inline fun <K, V, R, C : MutableCollection<in R>> Map<out K, V>.flatMapNotNullTo
  *
  * For example:
  * ```
- * mapOf("one" to true, "two" to 2).joinToString(StringBuilder(), infix = " -> ")
+ * mapOf("one" to true, "two" to 2).joinTo(StringBuilder(), infix = " -> ", prefix = "[ ", postfix = " ]")
  * ----
- * { one -> true, two -> 2 }
+ * [ one -> true, two -> 2 ]
  * ```
  *
  * @author 凛 (https://github.com/RinOrz)
  */
 fun <K, V, A : Appendable> Map<K, V>.joinTo(
   buffer: A,
-  infix: CharSequence = ": ",
   separator: CharSequence = ", ",
-  prefix: CharSequence = "{ ",
-  postfix: CharSequence = " }",
+  infix: CharSequence = ": ",
+  prefix: CharSequence = "",
+  postfix: CharSequence = "",
   limit: Int = -1,
   truncated: CharSequence = "...",
   transform: ((K, V) -> CharSequence)? = null
@@ -137,16 +137,16 @@ fun <K, V, A : Appendable> Map<K, V>.joinTo(
  * ```
  * mapOf("one" to true, "two" to 2).joinToString()
  * ----
- * { one: true, two: 2 }
+ * one: true, two: 2
  * ```
  *
  * @author 凛 (https://github.com/RinOrz)
  */
 fun <K, V> Map<K, V>.joinToString(
   separator: CharSequence = ", ",
-  infix: CharSequence = ": ",
-  prefix: CharSequence = "{ ",
-  postfix: CharSequence = " }",
+  infix: CharSequence = "=",
+  prefix: CharSequence = "",
+  postfix: CharSequence = "",
   limit: Int = -1,
   truncated: CharSequence = "...",
   transform: ((K, V) -> CharSequence)? = null
