@@ -270,6 +270,22 @@ inline fun <T> T.takeTryIfNot(predicate: (T) -> Boolean): T? = takeTryUnless(pre
 inline fun <T> T.takeIfNot(predicate: (T) -> Boolean): T? = takeUnless(predicate)
 
 /**
+ * If the result of the [predicate] is `null`, returns `this` value, otherwise returns `null`.
+ *
+ * @see kotlin.takeIf
+ * @author 凛 (https://github.com/RinOrz)
+ */
+inline fun <T> T.takeIfNull(predicate: (T) -> Any?): T? = takeIf { predicate(it) == null }
+
+/**
+ * If the result of the [predicate] is not `null`, returns `this` value, otherwise returns `null`.
+ *
+ * @see kotlin.takeIf
+ * @author 凛 (https://github.com/RinOrz)
+ */
+inline fun <T> T.takeIfNotNull(predicate: (T) -> Any?): T? = takeIfNot { predicate(it) == null }
+
+/**
  * If this [T] is not null then this is returned, otherwise [another] is executed and its result is returned.
  *
  * @author 凛 (https://github.com/RinOrz)
