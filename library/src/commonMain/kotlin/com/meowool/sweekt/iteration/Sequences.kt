@@ -6,6 +6,7 @@ package com.meowool.sweekt.iteration
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
+import kotlin.jvm.JvmName
 
 
 /**
@@ -59,6 +60,7 @@ inline fun <T> Sequence<T>?.isNullOrEmpty(): Boolean {
  * @see isNullOrEmpty
  * @author 凛 (https://github.com/RinOrz)
  */
+@JvmName("isNotNullNotEmpty")
 inline fun <T> Sequence<T>?.isNotEmpty(): Boolean {
   contract {
     returns(true) implies (this@isNotEmpty != null)
@@ -74,6 +76,7 @@ inline fun <T> Sequence<T>?.isNotEmpty(): Boolean {
  *
  * @author 凛 (https://github.com/RinOrz)
  */
+@JvmName("onNotNullNotEmpty")
 inline fun <T> Sequence<T>?.onNotEmpty(action: (Sequence<T>) -> Unit): Sequence<T>? {
   contract {
     returnsNotNull() implies (this@onNotEmpty != null)

@@ -3,6 +3,7 @@
 package com.meowool.sweekt
 
 import kotlin.contracts.contract
+import kotlin.jvm.JvmName
 
 /**
  * Converts [any] to [String].
@@ -53,6 +54,7 @@ inline fun String?.ifNullOrEmpty(defaultValue: () -> String): String =
  * Returns this string if it's `null` or empty, or the result of calling [defaultValue] function if the string is not
  * `null` and not empty.
  */
+@JvmName("ifNotNullNotEmpty")
 inline fun String?.ifNotEmpty(defaultValue: () -> String): String? =
   if (isNotEmpty()) defaultValue() else this
 

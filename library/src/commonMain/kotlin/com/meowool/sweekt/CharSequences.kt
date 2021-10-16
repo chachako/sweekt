@@ -35,6 +35,7 @@ inline fun CharSequence?.ifNullOrEmpty(defaultValue: () -> CharSequence): CharSe
  * Returns this char sequence if it's `null` or empty, or the result of calling [defaultValue] function if the char
  * sequence is not `null` and not empty.
  */
+@JvmName("ifNotNullNotEmpty")
 inline fun CharSequence?.ifNotEmpty(defaultValue: () -> CharSequence): CharSequence? =
   if (isNotEmpty()) defaultValue() else this
 

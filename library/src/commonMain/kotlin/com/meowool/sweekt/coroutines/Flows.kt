@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.jvm.JvmName
 
 /**
  * Switch the operation upstream of the stream to the main thread.
@@ -141,6 +142,7 @@ suspend inline fun <T> Flow<T>?.isNullOrEmpty(): Boolean {
  * @see isNullOrEmpty
  * @author 凛 (https://github.com/RinOrz)
  */
+@JvmName("isNotNullNotEmpty")
 suspend inline fun <T> Flow<T>?.isNotEmpty(): Boolean {
   contract { returns(true) implies (this@isNotEmpty != null) }
   return this?.isNotEmpty() == true
@@ -153,6 +155,7 @@ suspend inline fun <T> Flow<T>?.isNotEmpty(): Boolean {
  *
  * @author 凛 (https://github.com/RinOrz)
  */
+@JvmName("onNotNullNotEmpty")
 suspend inline fun <T> Flow<T>?.onNotEmpty(action: (Flow<T>) -> Unit): Flow<T>? {
   contract {
     returnsNotNull() implies (this@onNotEmpty != null)

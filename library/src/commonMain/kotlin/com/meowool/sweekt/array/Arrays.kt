@@ -27,6 +27,7 @@ inline fun <T> Array<T>?.isNotEmpty(): Boolean {
  *
  * @author 凛 (https://github.com/RinOrz)
  */
+@JvmName("onNotNullNotEmpty")
 inline fun <T> Array<T>?.onNotEmpty(action: (Array<T>) -> Unit): Array<T>? {
   contract {
     returnsNotNull() implies (this@onNotEmpty != null)

@@ -6,6 +6,7 @@ package com.meowool.sweekt.iteration
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
+import kotlin.jvm.JvmName
 
 /**
  * Returns the number of elements in the iterable.
@@ -40,6 +41,7 @@ inline fun <T, I : Iterable<T>> I.isNotEmpty(): Boolean = this.any()
  *
  * @author 凛 (https://github.com/RinOrz)
  */
+@JvmName("isNotNullNotEmpty")
 inline fun <T, I : Iterable<T>> I?.isNotEmpty(): Boolean {
   contract {
     returns(true) implies (this@isNotEmpty != null)
@@ -52,6 +54,7 @@ inline fun <T, I : Iterable<T>> I?.isNotEmpty(): Boolean {
  *
  * @author 凛 (https://github.com/RinOrz)
  */
+@JvmName("onNotNullNotEmpty")
 inline fun <T, I : Iterable<T>> I?.onNotEmpty(action: (I) -> Unit): I? {
   contract {
     returnsNotNull() implies (this@onNotEmpty != null)
