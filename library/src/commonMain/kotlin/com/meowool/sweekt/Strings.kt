@@ -38,6 +38,31 @@ inline fun String?.takeIfNotEmpty(): String? {
 inline fun String.takeIfEmpty(): String? = if (isEmpty()) this else null
 
 /**
+ * Returns `true` if this string is not `null` and not empty.
+ */
+inline fun String?.isNotEmpty(): Boolean = this != null && length > 0
+
+/**
+ * Returns this string if it's not `null` and not empty, or the result of calling [defaultValue] function if the
+ * string is `null` or empty.
+ */
+inline fun String?.ifNullOrEmpty(defaultValue: () -> String): String =
+  if (isNullOrEmpty()) defaultValue() else this
+
+/**
+ * Returns this string if it's `null` or empty, or the result of calling [defaultValue] function if the string is not
+ * `null` and not empty.
+ */
+inline fun String?.ifNotEmpty(defaultValue: () -> String): String? =
+  if (isNotEmpty()) defaultValue() else this
+
+/**
+ * Returns this string if it's empty, or the result of calling [defaultValue] function if the string is not empty.
+ */
+inline fun String.ifNotEmpty(defaultValue: () -> String): String =
+  if (isNotEmpty()) defaultValue() else this
+
+/**
  * Returns the string without blanks.
  *
  * @author 凛 (https://github.com/RinOrz)

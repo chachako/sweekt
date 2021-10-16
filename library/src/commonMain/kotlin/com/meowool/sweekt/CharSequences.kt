@@ -2,7 +2,6 @@
 
 package com.meowool.sweekt
 
-import com.meowool.sweekt.coroutines.onNotNullEmpty
 import kotlin.contracts.contract
 import kotlin.jvm.JvmName
 
@@ -19,6 +18,32 @@ inline val CharSequence.size: Int get() = length
  * @author 凛 (https://github.com/RinOrz)
  */
 inline infix fun <C: CharSequence> C?.or(another: C): C = if (isNullOrEmpty()) another else this
+
+/**
+ * Returns `true` if this char sequence is not `null` and not empty.
+ */
+inline fun CharSequence?.isNotEmpty(): Boolean = this != null && length > 0
+
+/**
+ * Returns this char sequence if it's not `null` and not empty, or the result of calling [defaultValue] function if
+ * the char sequence is `null` or empty.
+ */
+inline fun CharSequence?.ifNullOrEmpty(defaultValue: () -> CharSequence): CharSequence =
+  if (isNullOrEmpty()) defaultValue() else this
+
+/**
+ * Returns this char sequence if it's `null` or empty, or the result of calling [defaultValue] function if the char
+ * sequence is not `null` and not empty.
+ */
+inline fun CharSequence?.ifNotEmpty(defaultValue: () -> CharSequence): CharSequence? =
+  if (isNotEmpty()) defaultValue() else this
+
+/**
+ * Returns this char sequence if it's empty, or the result of calling [defaultValue] function if the char sequence
+ * is not empty.
+ */
+inline fun CharSequence.ifNotEmpty(defaultValue: () -> CharSequence): CharSequence =
+  if (isNotEmpty()) defaultValue() else this
 
 /**
  * Returns itself if this char sequence is not empty, otherwise null.
