@@ -36,15 +36,15 @@ inline fun <T, I : Iterable<T>> I?.isNullOrEmpty(): Boolean = this == null || th
 inline fun <T, I : Iterable<T>> I.isNotEmpty(): Boolean = this.any()
 
 /**
- * Returns `true` if the iterable instance is not null and not empty.
+ * Returns `true` if the iterable instance is not `null` and not empty.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun <T, I : Iterable<T>> I?.isNotNullEmpty(): Boolean {
+inline fun <T, I : Iterable<T>> I?.isNotEmpty(): Boolean {
   contract {
-    returns(true) implies (this@isNotNullEmpty != null)
+    returns(true) implies (this@isNotEmpty != null)
   }
-  return this != null && this.isNotEmpty()
+  return this != null && this.any()
 }
 
 /**
@@ -52,12 +52,12 @@ inline fun <T, I : Iterable<T>> I?.isNotNullEmpty(): Boolean {
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun <T, I : Iterable<T>> I?.onNotNullEmpty(action: (I) -> Unit): I? {
+inline fun <T, I : Iterable<T>> I?.onNotEmpty(action: (I) -> Unit): I? {
   contract {
-    returnsNotNull() implies (this@onNotNullEmpty != null)
+    returnsNotNull() implies (this@onNotEmpty != null)
     callsInPlace(action, InvocationKind.AT_MOST_ONCE)
   }
-  if (this.isNotNullEmpty()) {
+  if (this.isNotEmpty()) {
     action(this)
   }
   return this

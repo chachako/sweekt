@@ -40,7 +40,7 @@ inline fun <T> Sequence<T>.isNotEmpty(): Boolean = this.any()
  *
  * The operation is _terminal_.
  *
- * @see isNotNullEmpty
+ * @see isNotEmpty
  * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Sequence<T>?.isNullOrEmpty(): Boolean {
@@ -52,34 +52,34 @@ inline fun <T> Sequence<T>?.isNullOrEmpty(): Boolean {
 }
 
 /**
- * Returns `true` if this nullable sequence is either null or empty.
+ * Returns `true` if this nullable sequence is either not `null` or not empty.
  *
  * The operation is _terminal_.
  *
  * @see isNullOrEmpty
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun <T> Sequence<T>?.isNotNullEmpty(): Boolean {
+inline fun <T> Sequence<T>?.isNotEmpty(): Boolean {
   contract {
-    returns(true) implies (this@isNotNullEmpty != null)
+    returns(true) implies (this@isNotEmpty != null)
   }
 
   return this?.isNotEmpty() == true
 }
 
 /**
- * Call the given [action] when this sequence is not null and not empty.
+ * Call the given [action] when this sequence is not `null` and not empty.
  *
  * The operation is _terminal_.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun <T> Sequence<T>?.onNotNullEmpty(action: (Sequence<T>) -> Unit): Sequence<T>? {
+inline fun <T> Sequence<T>?.onNotEmpty(action: (Sequence<T>) -> Unit): Sequence<T>? {
   contract {
-    returnsNotNull() implies (this@onNotNullEmpty != null)
+    returnsNotNull() implies (this@onNotEmpty != null)
     callsInPlace(action, InvocationKind.AT_MOST_ONCE)
   }
-  if (this.isNotNullEmpty()) {
+  if (this.isNotEmpty()) {
     action(this)
   }
   return this

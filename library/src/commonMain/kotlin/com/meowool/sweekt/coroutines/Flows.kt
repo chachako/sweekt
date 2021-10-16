@@ -10,11 +10,9 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.coroutines.cancellation.CancellationException
-import kotlin.experimental.ExperimentalTypeInference
 
 /**
  * Switch the operation upstream of the stream to the main thread.
@@ -127,7 +125,7 @@ suspend inline fun <T> Flow<T>.isNotEmpty(): Boolean = this.any()
  *
  * The operation is _terminal_.
  *
- * @see isNotNullEmpty
+ * @see isNotEmpty
  * @author 凛 (https://github.com/RinOrz)
  */
 suspend inline fun <T> Flow<T>?.isNullOrEmpty(): Boolean {
@@ -136,31 +134,31 @@ suspend inline fun <T> Flow<T>?.isNullOrEmpty(): Boolean {
 }
 
 /**
- * Returns `true` if this nullable flow is either null or empty.
+ * Returns `true` if this nullable flow is either not `null` or not empty.
  *
  * The operation is _terminal_.
  *
  * @see isNullOrEmpty
  * @author 凛 (https://github.com/RinOrz)
  */
-suspend inline fun <T> Flow<T>?.isNotNullEmpty(): Boolean {
-  contract { returns(true) implies (this@isNotNullEmpty != null) }
+suspend inline fun <T> Flow<T>?.isNotEmpty(): Boolean {
+  contract { returns(true) implies (this@isNotEmpty != null) }
   return this?.isNotEmpty() == true
 }
 
 /**
- * Call the given [action] when this flow is not null and not empty.
+ * Call the given [action] when this flow is not `null` and not empty.
  *
  * The operation is _terminal_.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-suspend inline fun <T> Flow<T>?.onNotNullEmpty(action: (Flow<T>) -> Unit): Flow<T>? {
+suspend inline fun <T> Flow<T>?.onNotEmpty(action: (Flow<T>) -> Unit): Flow<T>? {
   contract {
-    returnsNotNull() implies (this@onNotNullEmpty != null)
+    returnsNotNull() implies (this@onNotEmpty != null)
     callsInPlace(action, InvocationKind.AT_MOST_ONCE)
   }
-  if (this.isNotNullEmpty()) {
+  if (this.isNotEmpty()) {
     action(this)
   }
   return this

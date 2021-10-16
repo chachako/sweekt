@@ -11,28 +11,28 @@ import kotlin.contracts.contract
 import kotlin.jvm.JvmName
 
 /**
- * Returns `true` if the array is not empty.
+ * Returns `true` if the array is not `null` and not empty.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun <T> Array<T>?.isNotNullEmpty(): Boolean {
+inline fun <T> Array<T>?.isNotEmpty(): Boolean {
   contract {
-    returns(true) implies (this@isNotNullEmpty != null)
+    returns(true) implies (this@isNotEmpty != null)
   }
-  return this != null && this.isNotEmpty()
+  return this != null && size > 0
 }
 
 /**
- * Call the given [action] when this array is not null and not empty.
+ * Call the given [action] when this array is not `null` and not empty.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun <T> Array<T>?.onNotNullEmpty(action: (Array<T>) -> Unit): Array<T>? {
+inline fun <T> Array<T>?.onNotEmpty(action: (Array<T>) -> Unit): Array<T>? {
   contract {
-    returnsNotNull() implies (this@onNotNullEmpty != null)
+    returnsNotNull() implies (this@onNotEmpty != null)
     callsInPlace(action, InvocationKind.AT_MOST_ONCE)
   }
-  if (this.isNotNullEmpty()) {
+  if (this.isNotEmpty()) {
     action(this)
   }
   return this
