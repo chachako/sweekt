@@ -22,7 +22,10 @@ inline infix fun <C: CharSequence> C?.or(another: C): C = if (isNullOrEmpty()) a
 /**
  * Returns `true` if this char sequence is not `null` and not empty.
  */
-inline fun CharSequence?.isNotEmpty(): Boolean = this != null && length > 0
+inline fun CharSequence?.isNotEmpty(): Boolean {
+  contract { returns(true) implies (this@isNotEmpty != null) }
+  return this != null && length > 0
+}
 
 /**
  * Returns this char sequence if it's not `null` and not empty, or the result of calling [defaultValue] function if
@@ -36,15 +39,15 @@ inline fun CharSequence?.ifNullOrEmpty(defaultValue: () -> CharSequence): CharSe
  * sequence is not `null` and not empty.
  */
 @JvmName("ifNotNullNotEmpty")
-inline fun CharSequence?.ifNotEmpty(defaultValue: () -> CharSequence): CharSequence? =
-  if (isNotEmpty()) defaultValue() else this
+inline fun CharSequence?.ifNotEmpty(defaultValue: (CharSequence) -> CharSequence): CharSequence? =
+  if (isNotEmpty()) defaultValue(this) else this
 
 /**
  * Returns this char sequence if it's empty, or the result of calling [defaultValue] function if the char sequence
  * is not empty.
  */
-inline fun CharSequence.ifNotEmpty(defaultValue: () -> CharSequence): CharSequence =
-  if (isNotEmpty()) defaultValue() else this
+inline fun CharSequence.ifNotEmpty(defaultValue: (CharSequence) -> CharSequence): CharSequence =
+  if (isNotEmpty()) defaultValue(this) else this
 
 /**
  * Returns itself if this char sequence is not empty, otherwise null.

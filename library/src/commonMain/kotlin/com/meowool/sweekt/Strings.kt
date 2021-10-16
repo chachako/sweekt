@@ -41,7 +41,10 @@ inline fun String.takeIfEmpty(): String? = if (isEmpty()) this else null
 /**
  * Returns `true` if this string is not `null` and not empty.
  */
-inline fun String?.isNotEmpty(): Boolean = this != null && length > 0
+inline fun String?.isNotEmpty(): Boolean {
+  contract { returns(true) implies (this@isNotEmpty != null) }
+  return this != null && length > 0
+}
 
 /**
  * Returns this string if it's not `null` and not empty, or the result of calling [defaultValue] function if the
@@ -55,14 +58,14 @@ inline fun String?.ifNullOrEmpty(defaultValue: () -> String): String =
  * `null` and not empty.
  */
 @JvmName("ifNotNullNotEmpty")
-inline fun String?.ifNotEmpty(defaultValue: () -> String): String? =
-  if (isNotEmpty()) defaultValue() else this
+inline fun String?.ifNotEmpty(defaultValue: (String) -> String): String? =
+  if (isNotEmpty()) defaultValue(this) else this
 
 /**
  * Returns this string if it's empty, or the result of calling [defaultValue] function if the string is not empty.
  */
-inline fun String.ifNotEmpty(defaultValue: () -> String): String =
-  if (isNotEmpty()) defaultValue() else this
+inline fun String.ifNotEmpty(defaultValue: (String) -> String): String =
+  if (isNotEmpty()) defaultValue(this) else this
 
 /**
  * Returns the string without blanks.
