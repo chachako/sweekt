@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-  implementation("com.meowool.toolkit:sweekt:1.24-SNAPSHOT")
+  implementation("com.meowool.toolkit:sweekt:0.1.0-SNAPSHOT")
 }
 ```
 
