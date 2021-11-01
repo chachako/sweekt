@@ -19,17 +19,21 @@ inline fun ByteArray.write(
   offset: Int = 0,
   byteCount: Int = bytes.size,
   filter: (Byte) -> Boolean = { true },
-): ByteArray = apply {
-  require(offset in 0..this.size) { "offset: $offset, total size: $size" }
-  require(byteCount <= bytes.size) {
-    "byteCount `$byteCount` cannot be greater than the total size of given the bytes."
-  }
+): ByteArray = checkWriteParams(bytes, offset, byteCount).apply {
   var readIndex = 0
   var writeIndex = offset
   val writeCount = offset + byteCount
   while(writeIndex < writeCount) {
     val byte = bytes[readIndex++]
     if (filter(byte)) this[writeIndex++] = byte
+  }
+}
+
+@PublishedApi
+internal fun ByteArray.checkWriteParams(bytes: ByteArray, offset: Int, byteCount: Int): ByteArray = apply {
+  require(offset in 0..this.size) { "offset: $offset, total size: $size" }
+  require(byteCount <= bytes.size) {
+    "The 'byteCount' `$byteCount` cannot be greater than the total size of given the 'bytes'."
   }
 }
 
@@ -64,22 +68,18 @@ inline fun ByteArray.subarray(startIndex: Int = 0, endIndex: Int = this.size): B
   else this.copyOfRange(startIndex, endIndex)
 
 /**
- * Returns true if the beginning of this array with the given [prefix].
+ * Returns `true` if the beginning of this array with the given [prefix].
  *
  * @param prefix the prefix to be looking.
- * @param offset the offset as the starting index of the looking.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun ByteArray.startsWith(vararg prefix: Byte, offset: Int = 0): Boolean {
-  require(offset >= 0) { "offset < 0" }
-  if (this.contentEquals(prefix)) return false
-  if (prefix.size + offset > this.size) return false
-  return prefix.indices.all {
-    val expect = prefix[it + offset]
-    val actual = this[it + offset]
-    expect == actual
+fun ByteArray.startsWith(vararg prefix: Byte): Boolean {
+  if (this.size < prefix.size) return false
+   prefix.forEachIndexed { index, expected ->
+    if (expected != this[index]) return false
   }
+  return true
 }
 
 /**
