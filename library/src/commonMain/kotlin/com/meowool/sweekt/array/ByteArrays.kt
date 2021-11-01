@@ -56,7 +56,7 @@ inline fun ByteArray.write(byte: Byte, offset: Int = 0): ByteArray = apply {
  * Returns the subarray of this array starting from the [startIndex] and ending right
  * before the [endIndex].
  *
- * For example, `arrayOf(a, b, c, d).subarray(0, 2)` is `arrayOf(a, b, c)`.
+ * For example, `arrayOf(a, b, c, d).subarray(0, 2)` is `arrayOf(a, b)`.
  *
  * @param startIndex the start index (inclusive).
  * @param endIndex the end index (exclusive).
