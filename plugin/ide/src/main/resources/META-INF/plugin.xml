@@ -1,0 +1,19 @@
+<idea-plugin>
+    <id>com.meowool.ide.sweekt</id>
+    <name>Sweekt</name>
+    <vendor email="rinorz666@gmail.com" url="https://github.com/RinOrz/sweekt">RinOrz (凛)</vendor>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <irGenerationExtension implementation="com.meowool.sweekt.lazyinit.LazyInitGeneration"/>
+        <syntheticResolveExtension
+            implementation="com.meowool.sweekt.info.InfoClassSynthetic"/>
+        <storageComponentContainerContributor
+            implementation="com.meowool.sweekt.SweektComponentRegistrar$StorageComponent"/>
+    </extensions>
+
+</idea-plugin>

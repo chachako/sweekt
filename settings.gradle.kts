@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 rootProject.name = "sweekt"
 
 pluginManagement {
@@ -20,6 +22,15 @@ buildscript {
       force("com.android.tools.build:gradle:4.2.1")
       cacheChangingModulesFor(0, TimeUnit.SECONDS)
     }
+  }
+}
+
+dependencyMapper {
+  libraries {
+    map("com.github.tschuchortdev:kotlin-compile-testing" to "KotlinCompileTesting")
+  }
+  plugins {
+    map("com.github.gmazzo.buildconfig" to "BuildConfig")
   }
 }
 

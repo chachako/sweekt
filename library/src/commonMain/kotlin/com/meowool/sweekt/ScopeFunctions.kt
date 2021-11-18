@@ -296,11 +296,23 @@ inline fun <T> T?.ifNull(another: () -> T): T {
 }
 
 /**
- * When this [T] is `null`, calls the given [action], otherwise it does nothing and returns to itself.
+ * If this [T] value is `null`, executes the given [action], and then returns to itself, otherwise, if this value is
+ * empty, returns to itself directly.
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-inline fun <T> T?.onNull(action: () -> T): T {
+inline fun <T> T?.onNull(action: () -> T): T? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
-  return this ?: action()
+  return this.also { if (it == null) action() }
+}
+
+/**
+ * If this [T] value is not `null`, executes the given [action], and then returns to itself, otherwise, if this value
+ * is empty, returns to itself directly.
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+inline fun <T> T?.onNotNull(action: () -> T): T? {
+  contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
+  return this.also { if (it != null) action() }
 }

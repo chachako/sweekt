@@ -129,7 +129,23 @@ inline fun <T, I : Iterable<T>> I.takeIfEmpty(): I? = if (isEmpty()) this else n
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun <T> Iterable<T>.startsWith(slice: T) = this.first() == slice
+@JvmName("nullableIterableStartsWith")
+fun <T> Iterable<T>?.startsWith(slice: T): Boolean = this?.first() == slice
+
+/**
+ * Returns `true` if this iterable starts with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+fun <T> Iterable<T>.startsWith(slice: T): Boolean = this.first() == slice
+
+/**
+ * Returns `true` if this iterable ends with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+@JvmName("nullableIterableEndsWith")
+fun <T> Iterable<T>?.endsWith(slice: T) = this?.last() == slice
 
 /**
  * Returns `true` if this iterable ends with given [slice].
@@ -143,6 +159,14 @@ fun <T> Iterable<T>.endsWith(slice: T) = this.last() == slice
  *
  * @author 凛 (https://github.com/RinOrz)
  */
+@JvmName("nullableIterableStartsWith")
+fun <T> Iterable<T>?.startsWith(slice: Iterable<T>) = this?.take(slice.size) == slice.asList()
+
+/**
+ * Returns `true` if this iterable starts with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
 fun <T> Iterable<T>.startsWith(slice: Iterable<T>) = this.take(slice.size) == slice.asList()
 
 /**
@@ -150,7 +174,23 @@ fun <T> Iterable<T>.startsWith(slice: Iterable<T>) = this.take(slice.size) == sl
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun <T> Iterable<T>.endsWith(slice: Iterable<T>) = this.toList().takeLast(slice.size) == slice.asList()
+@JvmName("nullableIterableEndsWith")
+fun <T> Iterable<T>?.endsWith(slice: Iterable<T>) = this?.asList()?.takeLast(slice.size) == slice.asList()
+
+/**
+ * Returns `true` if this iterable ends with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+fun <T> Iterable<T>.endsWith(slice: Iterable<T>) = this.asList().takeLast(slice.size) == slice.asList()
+
+/**
+ * Returns `true` if this iterable starts with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+@JvmName("nullableIterableStartsWith")
+fun <T> Iterable<T>?.startsWith(slice: Sequence<T>) = this?.take(slice.size) == slice.toList()
 
 /**
  * Returns `true` if this iterable starts with given [slice].
@@ -164,7 +204,23 @@ fun <T> Iterable<T>.startsWith(slice: Sequence<T>) = this.take(slice.size) == sl
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun <T> Iterable<T>.endsWith(slice: Sequence<T>) = this.toList().takeLast(slice.size) == slice.toList()
+@JvmName("nullableIterableEndsWith")
+fun <T> Iterable<T>?.endsWith(slice: Sequence<T>) = this?.asList()?.takeLast(slice.size) == slice.toList()
+
+/**
+ * Returns `true` if this iterable ends with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+fun <T> Iterable<T>.endsWith(slice: Sequence<T>) = this.asList().takeLast(slice.size) == slice.toList()
+
+/**
+ * Returns `true` if this iterable starts with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+@JvmName("nullableIterableStartsWith")
+fun <T> Iterable<T>?.startsWith(vararg slice: T) = this?.take(slice.size) == slice.toList()
 
 /**
  * Returns `true` if this iterable starts with given [slice].
@@ -178,7 +234,23 @@ fun <T> Iterable<T>.startsWith(vararg slice: T) = this.take(slice.size) == slice
  *
  * @author 凛 (https://github.com/RinOrz)
  */
-fun <T> Iterable<T>.endsWith(vararg slice: T) = this.toList().takeLast(slice.size) == slice.toList()
+@JvmName("nullableIterableEndsWith")
+fun <T> Iterable<T>?.endsWith(vararg slice: T) = this?.asList()?.takeLast(slice.size) == slice.toList()
+
+/**
+ * Returns `true` if this iterable ends with given [slice].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+fun <T> Iterable<T>.endsWith(vararg slice: T) = this.asList().takeLast(slice.size) == slice.toList()
+
+/**
+ * Returns `true` if at least one element matches the given [predicate].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+@JvmName("nullableIterableContains")
+inline fun <T> Iterable<T>?.contains(predicate: (T) -> Boolean): Boolean = this != null && any(predicate)
 
 /**
  * Returns `true` if at least one element matches the given [predicate].
@@ -186,6 +258,14 @@ fun <T> Iterable<T>.endsWith(vararg slice: T) = this.toList().takeLast(slice.siz
  * @author 凛 (https://github.com/RinOrz)
  */
 inline fun <T> Iterable<T>.contains(predicate: (T) -> Boolean): Boolean = any(predicate)
+
+/**
+ * Returns `true` if at least one element matches the given [predicate].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+@JvmName("nullableIterableHas")
+inline fun <T> Iterable<T>?.has(predicate: (T) -> Boolean): Boolean = this != null && any(predicate)
 
 /**
  * Returns `true` if at least one element matches the given [predicate].

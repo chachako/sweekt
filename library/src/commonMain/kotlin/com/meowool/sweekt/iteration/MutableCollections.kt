@@ -32,6 +32,13 @@ fun <T, S: MutableCollection<T>> S.append(elements: Array<out T>): S = apply { a
 fun <T, S: MutableCollection<T>> S.append(elements: Iterable<T>): S = apply { addAll(elements) }
 
 /**
+ * Appends the given all [elements] at the end of this set object and returns a new [MutableCollection].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+fun <T, S: MutableCollection<T>> S.append(elements: Sequence<T>): S = apply { addAll(elements) }
+
+/**
  * Replaces all elements in this collection with the given [newElements].
  *
  * @return a collection that has been replaced with new elements.

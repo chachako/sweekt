@@ -9,6 +9,7 @@ import kotlin.reflect.KProperty
  *
  * @author 凛 (https://github.com/RinOrz)
  */
+@Deprecated("Use `@LazyInit var foo = ???` instead.", ReplaceWith("@LazyInit"))
 interface Hosting<T> {
 
   /**
@@ -99,11 +100,13 @@ object HostingStack {
   /**
    * Removes the instance corresponding to given [key] in this stack.
    */
+  @Deprecated("Use `resetLazyValue(lazyValue)` instead.", ReplaceWith("resetLazyValue(...)"))
   fun remove(key: Any) = instances.remove(key)
 
   /**
    * Removes the instance corresponding to given [key] in this stack.
    */
+  @Deprecated("Use `resetLazyValue(lazyProperty)` instead.", ReplaceWith("resetLazyValue(...)"))
   operator fun minus(key: Any) = instances.remove(key)
 }
 
@@ -112,6 +115,7 @@ object HostingStack {
  *
  * @author 凛 (https://github.com/RinOrz)
  */
+@Deprecated("Use `@LazyInit var foo = ???` instead.", ReplaceWith("@LazyInit"))
 fun <T> hosting(key: Any? = null): Hosting<T> = HostingImpl<T>().also { instance ->
   key?.let { HostingStack.record(it, instance) }
 }
@@ -128,6 +132,7 @@ fun <T> hosting(key: Any? = null): Hosting<T> = HostingImpl<T>().also { instance
  * @param key if the key exists, the hosting instance will be recorded in the stack to find them at any time.
  * @author 凛 (https://github.com/RinOrz)
  */
+@Deprecated("Use `@LazyInit var foo = ???` instead.", ReplaceWith("@LazyInit"))
 fun <T> hosting(
   key: Any? = null,
   lock: Any? = null,

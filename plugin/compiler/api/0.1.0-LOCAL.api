@@ -1,0 +1,222 @@
+// Signature format: 4.0
+package com.meowool.sweekt {
+
+  public abstract class AbstractErrors {
+    ctor public AbstractErrors();
+    method public final org.jetbrains.kotlin.diagnostics.rendering.DiagnosticFactoryToRendererMap getRenderers();
+    method public final void initFactory(com.meowool.sweekt.AbstractErrors.Messages messages);
+    method public final org.jetbrains.kotlin.diagnostics.DiagnosticFactory0<org.jetbrains.kotlin.com.intellij.psi.PsiElement> renderError(String message);
+    method public final <A> org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<org.jetbrains.kotlin.com.intellij.psi.PsiElement,A> renderError(String message, org.jetbrains.kotlin.diagnostics.rendering.DiagnosticParameterRenderer<? super A> renderer);
+    method public final <A, B> org.jetbrains.kotlin.diagnostics.DiagnosticFactory2<org.jetbrains.kotlin.com.intellij.psi.PsiElement,A,B> renderError(String message, org.jetbrains.kotlin.diagnostics.rendering.DiagnosticParameterRenderer<? super A> rendererA, org.jetbrains.kotlin.diagnostics.rendering.DiagnosticParameterRenderer<? super B> rendererB);
+    method public final org.jetbrains.kotlin.diagnostics.DiagnosticFactory0<org.jetbrains.kotlin.com.intellij.psi.PsiElement> renderWarn(String message);
+    method public final <A> org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<org.jetbrains.kotlin.com.intellij.psi.PsiElement,A> renderWarn(String message, org.jetbrains.kotlin.diagnostics.rendering.DiagnosticParameterRenderer<? super A> renderer);
+    method public final <A, B> org.jetbrains.kotlin.diagnostics.DiagnosticFactory2<org.jetbrains.kotlin.com.intellij.psi.PsiElement,A,B> renderWarn(String message, org.jetbrains.kotlin.diagnostics.rendering.DiagnosticParameterRenderer<? super A> rendererA, org.jetbrains.kotlin.diagnostics.rendering.DiagnosticParameterRenderer<? super B> rendererB);
+    method public final void setRenderers(org.jetbrains.kotlin.diagnostics.rendering.DiagnosticFactoryToRendererMap renderers);
+    property public final org.jetbrains.kotlin.diagnostics.rendering.DiagnosticFactoryToRendererMap renderers;
+  }
+
+  public abstract static class AbstractErrors.Messages implements org.jetbrains.kotlin.diagnostics.rendering.DefaultErrorMessages.Extension {
+    ctor public AbstractErrors.Messages(org.jetbrains.kotlin.diagnostics.rendering.DiagnosticFactoryToRendererMap renderers);
+    method public org.jetbrains.kotlin.diagnostics.rendering.DiagnosticFactoryToRendererMap getMap();
+  }
+
+  public final class AbstractIrTransformerKt {
+    method public static Boolean? getAnnotationBooleanOrNull(org.jetbrains.kotlin.ir.expressions.IrConstructorCall, String name);
+  }
+
+  public final class FinalFieldTransformer extends org.jetbrains.kotlin.ir.util.DeepCopyIrTreeWithSymbols {
+    ctor public FinalFieldTransformer(java.util.Set<? extends org.jetbrains.kotlin.ir.declarations.IrProperty> finalProperties, org.jetbrains.kotlin.ir.util.SymbolRemapper symbolRemapper, org.jetbrains.kotlin.ir.util.TypeRemapper typeRemapper, optional org.jetbrains.kotlin.ir.util.SymbolRenamer symbolRenamer);
+  }
+
+  @com.google.auto.service.AutoService(CommandLineProcessor::class) public final class SweektCommandLineProcessor implements org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor {
+    ctor public SweektCommandLineProcessor();
+    method public String getPluginId();
+    method public java.util.Collection<org.jetbrains.kotlin.compiler.plugin.AbstractCliOption> getPluginOptions();
+    method public void processOption(org.jetbrains.kotlin.compiler.plugin.AbstractCliOption option, String value, org.jetbrains.kotlin.config.CompilerConfiguration configuration);
+    property public String pluginId;
+    property public java.util.Collection<org.jetbrains.kotlin.compiler.plugin.AbstractCliOption> pluginOptions;
+  }
+
+  @com.google.auto.service.AutoService(ComponentRegistrar::class) public final class SweektComponentRegistrar implements org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar {
+    ctor public SweektComponentRegistrar();
+    method public void registerProjectComponents(org.jetbrains.kotlin.com.intellij.mock.MockProject project, org.jetbrains.kotlin.config.CompilerConfiguration configuration);
+  }
+
+  public static final class SweektComponentRegistrar.StorageComponent implements org.jetbrains.kotlin.extensions.StorageComponentContainerContributor {
+    ctor public SweektComponentRegistrar.StorageComponent();
+    method public void registerModuleComponents(org.jetbrains.kotlin.container.StorageComponentContainer container, org.jetbrains.kotlin.platform.TargetPlatform platform, org.jetbrains.kotlin.descriptors.ModuleDescriptor moduleDescriptor);
+  }
+
+  public final class SweektConfigurationKeys {
+    method public org.jetbrains.kotlin.config.CompilerConfigurationKey<java.lang.Boolean> isLogging();
+    property public final org.jetbrains.kotlin.config.CompilerConfigurationKey<java.lang.Boolean> isLogging;
+    field public static final com.meowool.sweekt.SweektConfigurationKeys INSTANCE;
+  }
+
+  public final class SweektNames {
+    method public error.NonExistentClass! fqNameFor(String cname);
+    method public error.NonExistentClass! getContentEquals();
+    method public error.NonExistentClass! getFullInfoSynthetic();
+    method public error.NonExistentClass! getInfo();
+    method public error.NonExistentClass! getInfoInvisible();
+    method public error.NonExistentClass! getInfoSynthetic();
+    method public error.NonExistentClass! getJvmField();
+    method public error.NonExistentClass! getLazyInit();
+    method public error.NonExistentClass! getResetLazyValue();
+    method public error.NonExistentClass! getResetLazyValues();
+    method public error.NonExistentClass! root();
+    property public final error.NonExistentClass! ContentEquals;
+    property public final error.NonExistentClass! FullInfoSynthetic;
+    property public final error.NonExistentClass! Info;
+    property public final error.NonExistentClass! InfoInvisible;
+    property public final error.NonExistentClass! InfoSynthetic;
+    property public final error.NonExistentClass! JvmField;
+    property public final error.NonExistentClass! LazyInit;
+    property public final error.NonExistentClass! resetLazyValue;
+    property public final error.NonExistentClass! resetLazyValues;
+    field public static final com.meowool.sweekt.SweektNames INSTANCE;
+    field public static final String Root = "com.meowool.sweekt";
+  }
+
+  public final class SweektSyntheticDeclarationOrigin extends org.jetbrains.kotlin.ir.declarations.IrDeclarationOriginImpl {
+    field public static final com.meowool.sweekt.SweektSyntheticDeclarationOrigin INSTANCE;
+  }
+
+}
+
+package com.meowool.sweekt.info {
+
+  public final class Info {
+    ctor public Info(Object annotationData);
+    method public boolean getCallSuperEquals();
+    method public boolean getCallSuperHashCode();
+    method public boolean getGenerateComponentN();
+    method public boolean getGenerateCopy();
+    method public boolean getGenerateEquals();
+    method public boolean getGenerateHashCode();
+    method public boolean getGenerateToString();
+    method public boolean getJoinBodyProperties();
+    method public boolean getJoinPrimaryProperties();
+    method public boolean getJoinPrivateProperties();
+    property public final boolean callSuperEquals;
+    property public final boolean callSuperHashCode;
+    property public final boolean generateComponentN;
+    property public final boolean generateCopy;
+    property public final boolean generateEquals;
+    property public final boolean generateHashCode;
+    property public final boolean generateToString;
+    property public final boolean joinBodyProperties;
+    property public final boolean joinPrimaryProperties;
+    property public final boolean joinPrivateProperties;
+  }
+
+  public final class InfoAnnotationsKt {
+  }
+
+  public final class InfoCallChecker implements org.jetbrains.kotlin.resolve.calls.checkers.CallChecker {
+    method public void check(org.jetbrains.kotlin.resolve.calls.model.ResolvedCall<?> resolvedCall, org.jetbrains.kotlin.com.intellij.psi.PsiElement reportOn, org.jetbrains.kotlin.resolve.calls.checkers.CallCheckerContext context);
+    field public static final com.meowool.sweekt.info.InfoCallChecker INSTANCE;
+  }
+
+  public final class InfoClassChecker implements org.jetbrains.kotlin.resolve.checkers.DeclarationChecker {
+    method public void check(org.jetbrains.kotlin.psi.KtDeclaration declaration, org.jetbrains.kotlin.descriptors.DeclarationDescriptor descriptor, org.jetbrains.kotlin.resolve.checkers.DeclarationCheckerContext context);
+    field public static final com.meowool.sweekt.info.InfoClassChecker INSTANCE;
+  }
+
+  public final class InfoClassDescriptorResolver {
+    method public org.jetbrains.kotlin.descriptors.impl.SimpleFunctionDescriptorImpl createComponentFunctionDescriptor(org.jetbrains.kotlin.descriptors.ClassDescriptor classDescriptor, org.jetbrains.kotlin.descriptors.ValueDescriptor value, org.jetbrains.kotlin.name.Name componentName);
+    method public org.jetbrains.kotlin.name.Name createComponentName(int index);
+    method public org.jetbrains.kotlin.descriptors.SimpleFunctionDescriptor createCopyFunctionDescriptor(org.jetbrains.kotlin.descriptors.ClassDescriptor classDescriptor, java.util.Collection<? extends org.jetbrains.kotlin.descriptors.VariableDescriptor> parametersOrProperties);
+    method public java.util.List<org.jetbrains.kotlin.descriptors.PropertyDescriptor> getComponentProperties(java.util.List<? extends org.jetbrains.kotlin.descriptors.VariableDescriptor> allVariables);
+    method public org.jetbrains.kotlin.name.Name getCopyFunctionName();
+    method public java.util.List<org.jetbrains.kotlin.descriptors.VariableDescriptor> getCopyProperties(java.util.List<? extends org.jetbrains.kotlin.descriptors.VariableDescriptor> allVariables);
+    method public com.meowool.sweekt.info.Info? getInfo(org.jetbrains.kotlin.descriptors.ClassDescriptor descriptor);
+    method public java.util.List<org.jetbrains.kotlin.descriptors.VariableDescriptor> getInfoVariables(org.jetbrains.kotlin.psi.KtClassOrObject psi, org.jetbrains.kotlin.descriptors.ClassDescriptor descriptor, com.meowool.sweekt.info.Info info, org.jetbrains.kotlin.resolve.BindingContext bindingContext);
+    method public org.jetbrains.kotlin.psi.KtClassOrObject getPsi(org.jetbrains.kotlin.descriptors.ClassDescriptor classDescriptor);
+    method public boolean isComponentLike(org.jetbrains.kotlin.name.Name name);
+    method public boolean isComponentLike(String name);
+    property public final org.jetbrains.kotlin.name.Name CopyFunctionName;
+    field public static final com.meowool.sweekt.info.InfoClassDescriptorResolver INSTANCE;
+  }
+
+  public final class InfoClassGeneration implements org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension {
+    ctor public InfoClassGeneration(org.jetbrains.kotlin.config.CompilerConfiguration configuration);
+    method public void generate(org.jetbrains.kotlin.ir.declarations.IrModuleFragment moduleFragment, org.jetbrains.kotlin.backend.common.extensions.IrPluginContext pluginContext);
+    method public org.jetbrains.kotlin.config.CompilerConfiguration getConfiguration();
+    property public final org.jetbrains.kotlin.config.CompilerConfiguration configuration;
+  }
+
+  public final class InfoClassSynthetic implements org.jetbrains.kotlin.resolve.extensions.SyntheticResolveExtension {
+    ctor public InfoClassSynthetic();
+    method public void addSyntheticSupertypes(org.jetbrains.kotlin.descriptors.ClassDescriptor thisDescriptor, java.util.List<org.jetbrains.kotlin.types.KotlinType> supertypes);
+    method public void generateSyntheticMethods(org.jetbrains.kotlin.descriptors.ClassDescriptor thisDescriptor, org.jetbrains.kotlin.name.Name name, org.jetbrains.kotlin.resolve.BindingContext bindingContext, java.util.List<? extends org.jetbrains.kotlin.descriptors.SimpleFunctionDescriptor> fromSupertypes, java.util.Collection<org.jetbrains.kotlin.descriptors.SimpleFunctionDescriptor> result);
+    method public java.util.List<org.jetbrains.kotlin.name.Name> getSyntheticFunctionNames(org.jetbrains.kotlin.descriptors.ClassDescriptor thisDescriptor);
+  }
+
+  public final class InfoErrors extends com.meowool.sweekt.AbstractErrors {
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory0<org.jetbrains.kotlin.com.intellij.psi.PsiElement> ComponentRequiredOperator;
+    field public static final com.meowool.sweekt.info.InfoErrors INSTANCE;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory0<org.jetbrains.kotlin.com.intellij.psi.PsiElement> NeedPrimaryConstructor;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<org.jetbrains.kotlin.com.intellij.psi.PsiElement,java.lang.String> NotAllowedOverrideSynthetic;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<org.jetbrains.kotlin.com.intellij.psi.PsiElement,java.lang.String> PropertyAndParamNameConflict;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<org.jetbrains.kotlin.com.intellij.psi.PsiElement,java.lang.String> UnsupportedSpecialClass;
+  }
+
+  @com.google.auto.service.AutoService(DefaultErrorMessages.Extension::class) public static final class InfoErrors.Messages extends com.meowool.sweekt.AbstractErrors.Messages {
+    ctor public InfoErrors.Messages();
+  }
+
+  public final class InfoFunctionChecker implements org.jetbrains.kotlin.resolve.checkers.DeclarationChecker {
+    method public void check(org.jetbrains.kotlin.psi.KtDeclaration declaration, org.jetbrains.kotlin.descriptors.DeclarationDescriptor descriptor, org.jetbrains.kotlin.resolve.checkers.DeclarationCheckerContext context);
+    field public static final com.meowool.sweekt.info.InfoFunctionChecker INSTANCE;
+  }
+
+  public final class InfoInvisible {
+    ctor public InfoInvisible(Object annotationData);
+    method public boolean getGenerateComponentN();
+    method public boolean getGenerateCopy();
+    method public boolean getGenerateEquals();
+    method public boolean getGenerateHashCode();
+    method public boolean getGenerateToString();
+    property public final boolean generateComponentN;
+    property public final boolean generateCopy;
+    property public final boolean generateEquals;
+    property public final boolean generateHashCode;
+    property public final boolean generateToString;
+  }
+
+}
+
+package com.meowool.sweekt.lazyinit {
+
+  public final class LazyInitChecker implements org.jetbrains.kotlin.resolve.checkers.DeclarationChecker {
+    method public void check(org.jetbrains.kotlin.psi.KtDeclaration declaration, org.jetbrains.kotlin.descriptors.DeclarationDescriptor descriptor, org.jetbrains.kotlin.resolve.checkers.DeclarationCheckerContext context);
+    field public static final com.meowool.sweekt.lazyinit.LazyInitChecker INSTANCE;
+  }
+
+  public final class LazyInitErrors extends com.meowool.sweekt.AbstractErrors {
+    field public static final com.meowool.sweekt.lazyinit.LazyInitErrors INSTANCE;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory2<org.jetbrains.kotlin.com.intellij.psi.PsiElement,org.jetbrains.kotlin.descriptors.Named,org.jetbrains.kotlin.com.intellij.psi.PsiElement> NotAllowedGetter;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<org.jetbrains.kotlin.com.intellij.psi.PsiElement,org.jetbrains.kotlin.descriptors.Named> NotAllowedJvmField;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<org.jetbrains.kotlin.com.intellij.psi.PsiElement,org.jetbrains.kotlin.descriptors.Named> RequiredInitializer;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory0<org.jetbrains.kotlin.com.intellij.psi.PsiElement> ResetArgumentRequiredMarkedProperty;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory0<org.jetbrains.kotlin.com.intellij.psi.PsiElement> ResetReceiverRequiredMarkedProperty;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory0<org.jetbrains.kotlin.com.intellij.psi.PsiElement> ResetRequiredAtLeastOneArgument;
+  }
+
+  @com.google.auto.service.AutoService(DefaultErrorMessages.Extension::class) public static final class LazyInitErrors.Messages extends com.meowool.sweekt.AbstractErrors.Messages {
+    ctor public LazyInitErrors.Messages();
+  }
+
+  public final class LazyInitGeneration implements org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension {
+    ctor public LazyInitGeneration(org.jetbrains.kotlin.config.CompilerConfiguration configuration);
+    method public void generate(org.jetbrains.kotlin.ir.declarations.IrModuleFragment moduleFragment, org.jetbrains.kotlin.backend.common.extensions.IrPluginContext pluginContext);
+  }
+
+  public final class ResetValueChecker implements org.jetbrains.kotlin.resolve.calls.checkers.CallChecker {
+    method public void check(org.jetbrains.kotlin.resolve.calls.model.ResolvedCall<?> resolvedCall, org.jetbrains.kotlin.com.intellij.psi.PsiElement reportOn, org.jetbrains.kotlin.resolve.calls.checkers.CallCheckerContext context);
+    field public static final com.meowool.sweekt.lazyinit.ResetValueChecker INSTANCE;
+  }
+
+}
+
