@@ -1,0 +1,28 @@
+name: Verify IDE compatibility
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      # Cache Plugin Verifier IDEs
+      - name: Setup Plugin Verifier IDEs Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
+          key: plugin-verifier-${{ hashFiles('build/listProductsReleases.txt') }}
+
+      # Run Verify Plugin task and IntelliJ Plugin Verifier tool
+      - name: Run Plugin Verification tasks
+        run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}

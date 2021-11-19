@@ -22,48 +22,32 @@
 
 import com.meowool.sweekt.firstCharTitlecase
 
-plugins {
-  kotlin
-  id(Plugins.Intellij)
-  id("com.github.johnrengelman.shadow")
-}
+plugins { kotlin; id(Plugins.Intellij) }
+
+publication.destinations = mutableSetOf()
+
+dependencies.implementationProject(Projects.Plugin.Compiler.Hosted)
 
 intellij {
   pluginName.set(rootProject.name.firstCharTitlecase())
   updateSinceUntilBuild.set(false)
-  plugins.add("Kotlin")
   version.set(findPropertyOrEnv("intellij.version").toString())
+  plugins.set(listOf("com.intellij.gradle", "org.jetbrains.kotlin"))
 }
-
-dependencies.implementationProject(Projects.Plugin.Compiler)
 
 tasks {
   publishPlugin {
     findPropertyOrEnv("intellij.plugin.token")?.toString()?.let(token::set)
   }
-  shadowJar {
-    minimize {
-      // Don't minimize compiler
-      exclude(project(Projects.Plugin.Compiler))
-    }
-    dependencies {
-      exclude(dependency(Libs.Kotlin.Stdlib.Jdk8))
-    }
-    // Don't use the embedded Kotlin Compiler APIs, redirect them to use the Intellij internal
-    relocate("org.jetbrains.kotlin.com.intellij", "com.intellij")
-  }
-  // Replace the output jar with output of 'shadowJar' task
-  jar {
-    archiveBaseName.set("${rootProject.name}-$name")
-    dependsOn(shadowJar)
-    doLast {
-      val originJar = archiveFile.get().asFile
-      val shadowJar = shadowJar.get().archiveFile.get().asFile
-      shadowJar.copyTo(originJar, overwrite = true)
-      shadowJar.delete()
-    }
-  }
   patchPluginXml {
+    sinceBuild.set(findPropertyOrEnv("intellij.since.build").toString())
+    // Don't restrict the new version of Intellij-IEDA
+    untilBuild.set(provider { null })
+    version.set(provider {
+      publication.data.version
+        .removeSuffix("-LOCAL")
+        .removeSuffix("-SNAPSHOT")
+    })
     pluginDescription.set(
       """
         Provide corresponding IDE capabilities for <a href="https://github.com/RinOrz/sweekt">Sweekt</a> runtime.
@@ -79,9 +63,5 @@ tasks {
         Initialize the intellij-idea plugin of <a href="https://github.com/RinOrz/sweekt">Sweekt</a>.
       """.trimIndent()
     )
-    version.set(provider { publication.data.versionInCI })
-    sinceBuild.set(findPropertyOrEnv("intellij.since.build").toString())
-    // Don't restrict the new version of Intellij-IEDA
-    untilBuild.set(provider { null })
   }
 }

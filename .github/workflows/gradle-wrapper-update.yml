@@ -20,10 +20,3 @@ jobs:
         with:
           labels: versions, gradle-wrapper
           reviewers: RinOrz
-
-      - name: Run new gradle wrapper
-        uses: gradle/gradle-build-action@v1
-        with:
-          gradle-version: wrapper
-        
-        

@@ -18,17 +18,32 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-package com.meowool.sweekt.info
+@file:Suppress("SpellCheckingInspection")
 
-import org.jetbrains.kotlin.com.intellij.psi.PsiElement
-import org.jetbrains.kotlin.resolve.calls.checkers.CallChecker
-import org.jetbrains.kotlin.resolve.calls.checkers.CallCheckerContext
-import org.jetbrains.kotlin.resolve.calls.model.ResolvedCall
+plugins {
+  kotlin; `kotlin-kapt`
+  id(Plugins.BuildConfig)
+}
 
-/**
- * @author 凛 (https://github.com/RinOrz)
- */
-object InfoCallChecker : CallChecker {
-  override fun check(resolvedCall: ResolvedCall<*>, reportOn: PsiElement, context: CallCheckerContext) {
-  }
+publication.data.artifactId = "sweekt-compiler-hosted"
+
+buildConfig {
+  val compilerId = findPropertyOrEnv("compiler.id")!!.toString()
+  packageName(compilerId)
+  buildConfigField("String", "CompilerId", "\"$compilerId\"")
+  useKotlinOutput { internalVisibility = true }
+}
+
+dependencies {
+  implementationProject(Projects.Library)
+  kapt(Libs.Google.Auto.Service)
+  compileOnlyOf(
+    Libs.Kotlin.Compiler,
+    Libs.Google.Auto.Service.Annotations
+  )
+  testImplementationOf(
+    Libs.Kotlin.Compiler,
+    Libs.KotlinCompileTesting,
+    Libs.Kotest.Runner.Junit5.Jvm
+  )
 }

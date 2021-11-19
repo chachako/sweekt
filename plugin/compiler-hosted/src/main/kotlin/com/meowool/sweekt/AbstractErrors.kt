@@ -20,7 +20,7 @@
  */
 package com.meowool.sweekt
 
-import org.jetbrains.kotlin.com.intellij.psi.PsiElement
+import com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.diagnostics.DiagnosticFactory0
 import org.jetbrains.kotlin.diagnostics.DiagnosticFactory1
 import org.jetbrains.kotlin.diagnostics.DiagnosticFactory2

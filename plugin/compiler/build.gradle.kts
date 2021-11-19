@@ -21,28 +21,34 @@
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
-  kotlin; `kotlin-kapt`
-  id(Plugins.BuildConfig)
+  kotlin;
+  id("com.github.johnrengelman.shadow")
 }
 
 publication.data.artifactId = "sweekt-compiler"
 
-buildConfig {
-  buildConfigField("String", "CompilerId", "\"${findPropertyOrEnv("compiler.id")}\"")
-  useKotlinOutput { internalVisibility = true }
-}
+dependencies.compileOnlyProject(Projects.Plugin.Compiler.Hosted)
 
-dependencies {
-  compileOnlyOf(Libs.Kotlin.Compiler.Embeddable)
-  implementationOf(
-    Libs.Kotlin.Reflect,
-    Libs.Google.Auto.Service.Annotations,
-    project(Projects.Library)
-  )
-  testImplementationOf(
-    Libs.KotlinCompileTesting,
-    Libs.Kotlin.Compiler.Embeddable,
-    Libs.Kotest.Runner.Junit5.Jvm
-  )
-  kapt(Libs.Google.Auto.Service)
+tasks {
+  shadowJar {
+    configurations = listOf(project.configurations.compileClasspath.get())
+    dependencies {
+      exclude(Libs.Kotlin.Stdlib.Jdk7)
+      exclude(Libs.Kotlin.Stdlib.Jdk8)
+      exclude(project(Projects.Library))
+    }
+    // Don't use the embedded Kotlin Compiler APIs, redirect them to use the Intellij internal
+    relocate("com.intellij", "org.jetbrains.kotlin.com.intellij")
+  }
+  // Replace the standard jar with the one built by 'shadowJar' in both api and runtime variants
+  configurations {
+    apiElements.get().outgoing {
+      artifacts.clear()
+      artifact(shadowJar.flatMap { it.archiveFile })
+    }
+    runtimeElements.get().outgoing {
+      artifacts.clear()
+      artifact(shadowJar.flatMap { it.archiveFile })
+    }
+  }
 }

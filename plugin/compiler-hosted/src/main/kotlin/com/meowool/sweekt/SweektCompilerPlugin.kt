@@ -28,9 +28,9 @@ import com.meowool.sweekt.info.InfoFunctionChecker
 import com.meowool.sweekt.lazyinit.LazyInitChecker
 import com.meowool.sweekt.lazyinit.LazyInitGeneration
 import com.meowool.sweekt.lazyinit.ResetValueChecker
-import com.meowool.toolkit.compiler.BuildConfig
+import com.meowool.sweekt.compiler.BuildConfig
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
-import org.jetbrains.kotlin.com.intellij.mock.MockProject
+import com.intellij.mock.MockProject
 import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
 import org.jetbrains.kotlin.compiler.plugin.CliOption
 import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor

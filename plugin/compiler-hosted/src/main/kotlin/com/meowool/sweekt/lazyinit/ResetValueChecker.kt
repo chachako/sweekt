@@ -24,7 +24,7 @@ import com.meowool.sweekt.SweektNames.LazyInit
 import com.meowool.sweekt.SweektNames.resetLazyValue
 import com.meowool.sweekt.SweektNames.resetLazyValues
 import com.meowool.sweekt.castOrNull
-import org.jetbrains.kotlin.com.intellij.psi.PsiElement
+import com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.diagnostics.Diagnostic
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.resolve.BindingTrace
