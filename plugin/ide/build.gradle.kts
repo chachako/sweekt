@@ -26,13 +26,16 @@ plugins { kotlin; id(Plugins.Intellij) }
 
 publication.destinations = mutableSetOf()
 
-dependencies.implementationProject(Projects.Plugin.Compiler.Hosted)
+dependencies{
+  compileOnly(Libs.Kotlin.Compiler)
+  implementationProject(Projects.Plugin.Compiler.Hosted)
+}
 
 intellij {
   pluginName.set(rootProject.name.firstCharTitlecase())
   updateSinceUntilBuild.set(false)
   version.set(findPropertyOrEnv("intellij.version").toString())
-  plugins.set(listOf("com.intellij.gradle", "org.jetbrains.kotlin"))
+  plugins.set(listOf("Gradle", "Kotlin"))
 }
 
 tasks {
