@@ -5,7 +5,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     env:
-      intellij.plugin.token: ${{ secrets.intellijPluginToken }}
+      intellij.plugin.token: ${{ secrets.INTELLIJPLUGINTOKEN }}
 
     steps:
       - uses: actions/checkout@v2
