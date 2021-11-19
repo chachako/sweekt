@@ -26,8 +26,11 @@ plugins {
 }
 
 publication {
-  pluginClass = "${data.groupId}.SweektGradlePlugin"
-  data.artifactId = "sweekt-gradle"
+  data {
+    artifactId = "sweekt-gradle"
+    pluginId = "com.meowool.sweekt"
+  }
+  pluginClass = "${data.pluginId}.SweektGradlePlugin"
 }
 
 buildConfig {
