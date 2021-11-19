@@ -21,7 +21,7 @@
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
-  kotlin;
+  kotlin
   id("com.github.johnrengelman.shadow")
 }
 

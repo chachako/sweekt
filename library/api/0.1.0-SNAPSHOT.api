@@ -28,11 +28,15 @@ package com.meowool.sweekt {
     method public static inline void forEachSplitBy(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate, optional int offset, kotlin.jvm.functions.Function1<? super java.lang.String,kotlin.Unit> action);
     method public static inline void forEachSplitIndexedBy(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate, optional int offset, kotlin.jvm.functions.Function2<? super java.lang.Integer,? super java.lang.String,kotlin.Unit> action);
     method public static inline int getSize(CharSequence);
+    method public static inline CharSequence ifNotEmpty(CharSequence, kotlin.jvm.functions.Function1<? super java.lang.CharSequence,? extends java.lang.CharSequence> defaultValue);
+    method public static inline CharSequence? ifNotNullNotEmpty(CharSequence?, kotlin.jvm.functions.Function1<? super java.lang.CharSequence,? extends java.lang.CharSequence> defaultValue);
+    method public static inline CharSequence ifNullOrEmpty(CharSequence?, kotlin.jvm.functions.Function0<? extends java.lang.CharSequence> defaultValue);
     method public static boolean isChinese(CharSequence?);
     method public static boolean isContainsChinese(CharSequence?, optional boolean ignorePunctuation);
     method public static boolean isContainsEnglish(CharSequence?, optional boolean ignorePunctuation);
     method public static boolean isDigits(CharSequence?);
     method public static boolean isEnglish(CharSequence?, optional boolean allowPunctuation);
+    method public static inline boolean isNotEmpty(CharSequence?);
     method public static inline infix <C extends java.lang.CharSequence> C or(C?, C another);
     method public static String remove(CharSequence, int index);
     method public static CharSequence removeBlanks(CharSequence);
@@ -149,34 +153,76 @@ package com.meowool.sweekt {
     method public static inline void throwIfNull(Object? value, kotlin.jvm.functions.Function0<? extends java.lang.Throwable> throwable);
   }
 
-  public interface Hosting<T> {
-    method public T! getOrHost(kotlin.jvm.functions.Function0<? extends T> defaultValue);
-    method public T? getOrNull();
-    method public T! getValue();
-    method public operator T! getValue(Object? thisRef, kotlin.reflect.KProperty<?> property);
-    method public void invalidate();
-    method public boolean isHosting();
-    method public void setValue(T! value);
-    method public operator void setValue(Object? thisRef, kotlin.reflect.KProperty<?> property, T? value);
+  @Deprecated public interface Hosting<T> {
+    method @Deprecated public T! getOrHost(kotlin.jvm.functions.Function0<? extends T> defaultValue);
+    method @Deprecated public T? getOrNull();
+    method @Deprecated public T! getValue();
+    method @Deprecated public operator T! getValue(Object? thisRef, kotlin.reflect.KProperty<?> property);
+    method @Deprecated public void invalidate();
+    method @Deprecated public boolean isHosting();
+    method @Deprecated public void setValue(T! value);
+    method @Deprecated public operator void setValue(Object? thisRef, kotlin.reflect.KProperty<?> property, T? value);
     property public abstract T! value;
   }
 
   public final class HostingKt {
-    method public static <T> com.meowool.sweekt.Hosting<T> hosting(optional Object? key);
-    method public static <T> com.meowool.sweekt.Hosting<T> hosting(optional Object? key, optional Object? lock, kotlin.jvm.functions.Function0<? extends T> initializer);
+    method @Deprecated public static <T> com.meowool.sweekt.Hosting<T> hosting(optional Object? key);
+    method @Deprecated public static <T> com.meowool.sweekt.Hosting<T> hosting(optional Object? key, optional Object? lock, kotlin.jvm.functions.Function0<? extends T> initializer);
   }
 
   public final class HostingStack {
     method public com.meowool.sweekt.Hosting<?>? find(Object key);
     method public operator com.meowool.sweekt.Hosting<?> get(Object key);
-    method public operator com.meowool.sweekt.Hosting<?>? minus(Object key);
+    method @Deprecated public operator com.meowool.sweekt.Hosting<?>? minus(Object key);
     method public void record(Object key, com.meowool.sweekt.Hosting<?> instance);
-    method public com.meowool.sweekt.Hosting<?>? remove(Object key);
+    method @Deprecated public com.meowool.sweekt.Hosting<?>? remove(Object key);
     method public <T> com.meowool.sweekt.Hosting<T> take(Object key);
     field public static final com.meowool.sweekt.HostingStack INSTANCE;
   }
 
   public final class Hosting_jvmKt {
+  }
+
+  @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention) @kotlin.annotation.Target(allowedTargets=kotlin.annotation.AnnotationTarget) public @interface Info {
+    method public abstract boolean callSuperEquals();
+    method public abstract boolean callSuperHashCode();
+    method public abstract boolean generateComponentN();
+    method public abstract boolean generateCopy();
+    method public abstract boolean generateEquals();
+    method public abstract boolean generateHashCode();
+    method public abstract boolean generateToString();
+    method public abstract boolean joinBodyProperties();
+    method public abstract boolean joinPrimaryProperties();
+    method public abstract boolean joinPrivateProperties();
+    property public abstract boolean callSuperEquals;
+    property public abstract boolean callSuperHashCode;
+    property public abstract boolean generateComponentN;
+    property public abstract boolean generateCopy;
+    property public abstract boolean generateEquals;
+    property public abstract boolean generateHashCode;
+    property public abstract boolean generateToString;
+    property public abstract boolean joinBodyProperties;
+    property public abstract boolean joinPrimaryProperties;
+    property public abstract boolean joinPrivateProperties;
+  }
+
+  @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention) @kotlin.annotation.Target(allowedTargets=kotlin.annotation.AnnotationTarget) public static @interface Info.Invisible {
+    method public abstract boolean generateComponentN();
+    method public abstract boolean generateCopy();
+    method public abstract boolean generateEquals();
+    method public abstract boolean generateHashCode();
+    method public abstract boolean generateToString();
+    property public abstract boolean generateComponentN;
+    property public abstract boolean generateCopy;
+    property public abstract boolean generateEquals;
+    property public abstract boolean generateHashCode;
+    property public abstract boolean generateToString;
+  }
+
+  @com.meowool.sweekt.InternalSweektCompilerApi public static interface Info.Synthetic {
+    method public default boolean infoEquals(Object? other);
+    method public default int infoHashCode();
+    method public default String infoToString();
   }
 
   @kotlin.jvm.JvmInline public final class IntPair {
@@ -207,7 +253,13 @@ package com.meowool.sweekt {
     method public static inline android.content.Intent singleTop(android.content.Intent);
   }
 
-  @kotlin.RequiresOptIn(level=kotlin.RequiresOptIn.Level, message="This is an internal com.meowool.sweekt API that should not be used from outside.") public @interface InternalSweektApi {
+  public final class InternalKt {
+  }
+
+  @kotlin.RequiresOptIn(level=kotlin.RequiresOptIn.Level, message="This is an internal \'com.meowool.sweekt\' API that should not be used from outside.") public @interface InternalSweektApi {
+  }
+
+  @kotlin.RequiresOptIn(level=kotlin.RequiresOptIn.Level, message="This is an internal compiler API of \'com.meowool.sweekt\' that should not be used from outside.") public @interface InternalSweektCompilerApi {
   }
 
   public final class JvmDescriptorsKt {
@@ -225,6 +277,14 @@ package com.meowool.sweekt {
     method public static String toJvmTypeSimpleName(CharSequence);
   }
 
+  @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention) @kotlin.annotation.Target(allowedTargets=kotlin.annotation.AnnotationTarget) public @interface LazyInit {
+  }
+
+  public final class LazyInitKt {
+    method public static void resetLazyValue(Object);
+    method public static void resetLazyValues(java.lang.Object... lazyProperties);
+  }
+
   public final class Locale_jvmKt {
     method public static inline java.util.Locale defaultLocale();
   }
@@ -233,7 +293,10 @@ package com.meowool.sweekt {
     method public static float lerp(float start, float stop, float fraction);
     method public static int lerp(int start, int stop, float fraction);
     method public static long lerp(long start, long stop, float fraction);
+    method public static String toHexString(byte);
     method public static String toHexString(int);
+    method public static String toHexString(long);
+    method public static String toHexString(byte[]);
     method public static float toRadians(float);
     method public static double toRadians(double);
   }
@@ -288,12 +351,15 @@ package com.meowool.sweekt {
     method public static inline <T> T! ifNull(T?, kotlin.jvm.functions.Function0<? extends T> another);
     method public static inline <T, R> R! let(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function1<? super T,? extends R> block);
     method public static inline <T, R> R? letOrNull(T?, kotlin.jvm.functions.Function1<? super T,? extends R> block);
-    method public static inline <T> T! onNull(T?, kotlin.jvm.functions.Function0<? extends T> action);
+    method public static inline <T> T? onNotNull(T?, kotlin.jvm.functions.Function0<? extends T> action);
+    method public static inline <T> T? onNull(T?, kotlin.jvm.functions.Function0<? extends T> action);
     method public static inline <R> R! run(kotlin.jvm.functions.Function1<? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function0<? extends R> block);
     method public static inline <T, R> R! run(T?, kotlin.jvm.functions.Function2<? super T,? super java.lang.Throwable,? extends R> catching, kotlin.jvm.functions.Function1<? super T,? extends R> block);
     method public static inline <R> R? runOrNull(kotlin.jvm.functions.Function0<? extends R> block);
     method public static inline <T, R> R? runOrNull(T?, kotlin.jvm.functions.Function1<? super T,? extends R> block);
     method public static inline <T> T? takeIfNot(T?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static inline <T> T? takeIfNotNull(T?, kotlin.jvm.functions.Function1<? super T,?> predicate);
+    method public static inline <T> T? takeIfNull(T?, kotlin.jvm.functions.Function1<? super T,?> predicate);
     method public static inline <T> T? takeTryIf(T?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
     method public static inline <T> T? takeTryIfNot(T?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
     method public static inline <T> T? takeTryUnless(T?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
@@ -312,6 +378,10 @@ package com.meowool.sweekt {
 
   public final class StringsKt {
     method public static inline String String(Object? any);
+    method public static inline String ifNotEmpty(String, kotlin.jvm.functions.Function1<? super java.lang.String,java.lang.String> defaultValue);
+    method public static inline String? ifNotNullNotEmpty(String?, kotlin.jvm.functions.Function1<? super java.lang.String,java.lang.String> defaultValue);
+    method public static inline String ifNullOrEmpty(String?, kotlin.jvm.functions.Function0<java.lang.String> defaultValue);
+    method public static inline boolean isNotEmpty(String?);
     method public static inline infix String or(String?, String another);
     method public static String removeBlanks(String);
     method public static String removeLineBreaks(String);
@@ -371,10 +441,10 @@ package com.meowool.sweekt.array {
     method public static <T> boolean endsWith(T![], T?... slice);
     method public static <T> boolean endsWithArray(T![], T![] slice);
     method public static inline <T> boolean has(T![], kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
-    method public static inline <T> boolean isNotNullEmpty(T![]?);
+    method public static inline <T> boolean isNotEmpty(T![]?);
     method public static inline <T> T![] onEmpty(T![], kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
     method public static inline <T> T![] onNotEmpty(T![], kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
-    method public static inline <T> T![]? onNotNullEmpty(T![]?, kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
+    method public static inline <T> T![]? onNotNullNotEmpty(T![]?, kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
     method public static inline <T> T![]? onNullOrEmpty(T![]?, kotlin.jvm.functions.Function1<? super T[],kotlin.Unit> action);
     method public static <T> boolean startsWith(T![], Iterable<? extends T> slice);
     method public static <T> boolean startsWith(T![], kotlin.sequences.Sequence<? extends T> slice);
@@ -420,7 +490,7 @@ package com.meowool.sweekt.array {
     method public static byte[] remove(byte[], int index);
     method public static byte[] remove(byte[], int... indices);
     method public static byte[] removeRange(byte[], optional int startIndex, optional int endIndex);
-    method public static inline boolean startsWith(byte[], byte[] prefix, optional int offset);
+    method public static boolean startsWith(byte[], byte... prefix);
     method public static inline byte[] subarray(byte[], optional int startIndex, optional int endIndex);
     method public static inline byte[] write(byte[], byte[] bytes, optional int offset, optional int byteCount, optional kotlin.jvm.functions.Function1<? super java.lang.Byte,java.lang.Boolean> filter);
     method public static inline byte[] write(byte[], byte byte, optional int offset);
@@ -458,12 +528,12 @@ package com.meowool.sweekt.coroutines {
     method public static suspend <T> Object? has(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function2<? super T,? super kotlin.coroutines.Continuation<? super java.lang.Boolean>,?> predicate, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
     method public static suspend inline <T> Object? isEmpty(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
     method public static suspend inline <T> Object? isNotEmpty(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
-    method public static suspend inline <T> Object? isNotNullEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
+    method public static suspend inline <T> Object? isNotNullNotEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
     method public static suspend inline <T> Object? isNullOrEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
     method public static suspend inline <T> Object? none(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
     method public static suspend <T> Object? none(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function2<? super T,? super kotlin.coroutines.Continuation<? super java.lang.Boolean>,?> predicate, kotlin.coroutines.Continuation<? super java.lang.Boolean> p);
     method public static suspend inline <T> Object? onNotEmpty(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.jvm.functions.Function1<? super kotlinx.coroutines.flow.Flow<? extends T>,kotlin.Unit> action, kotlin.coroutines.Continuation<? super kotlinx.coroutines.flow.Flow<? extends T>> p);
-    method public static suspend inline <T> Object? onNotNullEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.jvm.functions.Function1<? super kotlinx.coroutines.flow.Flow<? extends T>,kotlin.Unit> action, kotlin.coroutines.Continuation<? super kotlinx.coroutines.flow.Flow<? extends T>> p);
+    method public static suspend inline <T> Object? onNotNullNotEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.jvm.functions.Function1<? super kotlinx.coroutines.flow.Flow<? extends T>,kotlin.Unit> action, kotlin.coroutines.Continuation<? super kotlinx.coroutines.flow.Flow<? extends T>> p);
     method public static suspend inline <T> Object? onNullOrEmpty(kotlinx.coroutines.flow.Flow<? extends T>?, kotlin.jvm.functions.Function1<? super kotlinx.coroutines.flow.Flow<? extends T>,kotlin.Unit> action, kotlin.coroutines.Continuation<? super kotlinx.coroutines.flow.Flow<? extends T>> p);
     method public static inline <T> kotlinx.coroutines.flow.Flow<T> orEmpty(kotlinx.coroutines.flow.Flow<? extends T>?);
     method public static suspend inline <T> Object? size(kotlinx.coroutines.flow.Flow<? extends T>, kotlin.coroutines.Continuation<? super java.lang.Integer> p);
@@ -643,11 +713,21 @@ package com.meowool.sweekt.iteration {
     method public static inline <T> boolean has(Iterable<? extends T>, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
     method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isEmpty(I);
     method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isNotEmpty(I);
-    method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isNotNullEmpty(I?);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isNotNullNotEmpty(I?);
     method public static inline <T, I extends java.lang.Iterable<? extends T>> boolean isNullOrEmpty(I?);
+    method public static inline <T> boolean nullableIterableContains(Iterable<? extends T>?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static <T> boolean nullableIterableEndsWith(Iterable<? extends T>?, T? slice);
+    method public static <T> boolean nullableIterableEndsWith(Iterable<? extends T>?, Iterable<? extends T> slice);
+    method public static <T> boolean nullableIterableEndsWith(Iterable<? extends T>?, kotlin.sequences.Sequence<? extends T> slice);
+    method public static <T> boolean nullableIterableEndsWith(Iterable<? extends T>?, T?... slice);
+    method public static inline <T> boolean nullableIterableHas(Iterable<? extends T>?, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
+    method public static <T> boolean nullableIterableStartsWith(Iterable<? extends T>?, T? slice);
+    method public static <T> boolean nullableIterableStartsWith(Iterable<? extends T>?, Iterable<? extends T> slice);
+    method public static <T> boolean nullableIterableStartsWith(Iterable<? extends T>?, kotlin.sequences.Sequence<? extends T> slice);
+    method public static <T> boolean nullableIterableStartsWith(Iterable<? extends T>?, T?... slice);
     method public static inline <T, I extends java.lang.Iterable<? extends T>> I onEmpty(I, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
     method public static inline <T, I extends java.lang.Iterable<? extends T>> I onNotEmpty(I, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
-    method public static inline <T, I extends java.lang.Iterable<? extends T>> I? onNotNullEmpty(I?, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
+    method public static inline <T, I extends java.lang.Iterable<? extends T>> I? onNotNullNotEmpty(I?, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
     method public static inline <T, I extends java.lang.Iterable<? extends T>> I? onNullOrEmpty(I?, kotlin.jvm.functions.Function1<? super I,kotlin.Unit> action);
     method public static <T> boolean startsWith(Iterable<? extends T>, T? slice);
     method public static <T> boolean startsWith(Iterable<? extends T>, Iterable<? extends T> slice);
@@ -675,7 +755,7 @@ package com.meowool.sweekt.iteration {
     method @kotlin.OverloadResolutionByLambdaReturnType public static inline <K, V, R> java.util.List<R> flatMapNotNullSequence(java.util.Map<? extends K,? extends V>, kotlin.jvm.functions.Function1<? super java.util.Map.Entry<? extends K,? extends V>,? extends kotlin.sequences.Sequence<? extends R>> transform);
     method @kotlin.OverloadResolutionByLambdaReturnType public static inline <K, V, R, C extends java.util.Collection<? super R>> C flatMapNotNullSequenceTo(java.util.Map<? extends K,? extends V>, C destination, kotlin.jvm.functions.Function1<? super java.util.Map.Entry<? extends K,? extends V>,? extends kotlin.sequences.Sequence<? extends R>> transform);
     method public static inline <K, V, R, C extends java.util.Collection<? super R>> C flatMapNotNullTo(java.util.Map<? extends K,? extends V>, C destination, kotlin.jvm.functions.Function1<? super java.util.Map.Entry<? extends K,? extends V>,? extends java.lang.Iterable<? extends R>> transform);
-    method public static <K, V, A extends java.lang.Appendable> A joinTo(java.util.Map<K,? extends V>, A buffer, optional CharSequence infix, optional CharSequence separator, optional CharSequence prefix, optional CharSequence postfix, optional int limit, optional CharSequence truncated, optional kotlin.jvm.functions.Function2<? super K,? super V,? extends java.lang.CharSequence>? transform);
+    method public static <K, V, A extends java.lang.Appendable> A joinTo(java.util.Map<K,? extends V>, A buffer, optional CharSequence separator, optional CharSequence infix, optional CharSequence prefix, optional CharSequence postfix, optional int limit, optional CharSequence truncated, optional kotlin.jvm.functions.Function2<? super K,? super V,? extends java.lang.CharSequence>? transform);
     method public static <K, V> String joinToString(java.util.Map<K,? extends V>, optional CharSequence separator, optional CharSequence infix, optional CharSequence prefix, optional CharSequence postfix, optional int limit, optional CharSequence truncated, optional kotlin.jvm.functions.Function2<? super K,? super V,? extends java.lang.CharSequence>? transform);
     method public static inline <K, V, M extends java.util.Map<? extends K, ? extends V>> M? takeIfEmpty(M);
     method public static inline <K, V, M extends java.util.Map<? extends K, ? extends V>> M? takeIfNotEmpty(M?);
@@ -685,6 +765,7 @@ package com.meowool.sweekt.iteration {
     method public static <T, S extends java.util.Collection<T>> S append(S, T? element);
     method public static <T, S extends java.util.Collection<T>> S append(S, T?... elements);
     method public static <T, S extends java.util.Collection<T>> S append(S, Iterable<? extends T> elements);
+    method public static <T, S extends java.util.Collection<T>> S append(S, kotlin.sequences.Sequence<? extends T> elements);
     method public static <T, S extends java.util.Collection<T>> S appendArray(S, T![] elements);
     method public static <T> boolean replaceAll(java.util.Collection<? super T>, Iterable<? extends T> newElements);
     method public static <T> boolean replaceAll(java.util.Collection<? super T>, kotlin.sequences.Sequence<? extends T> newElements);
@@ -726,11 +807,11 @@ package com.meowool.sweekt.iteration {
     method public static inline <T> boolean has(kotlin.sequences.Sequence<? extends T>, kotlin.jvm.functions.Function1<? super T,java.lang.Boolean> predicate);
     method public static inline <T> boolean isEmpty(kotlin.sequences.Sequence<? extends T>);
     method public static inline <T> boolean isNotEmpty(kotlin.sequences.Sequence<? extends T>);
-    method public static inline <T> boolean isNotNullEmpty(kotlin.sequences.Sequence<? extends T>?);
+    method public static inline <T> boolean isNotNullNotEmpty(kotlin.sequences.Sequence<? extends T>?);
     method public static inline <T> boolean isNullOrEmpty(kotlin.sequences.Sequence<? extends T>?);
     method public static inline <T> kotlin.sequences.Sequence<T> onEmpty(kotlin.sequences.Sequence<? extends T>, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
     method public static inline <T> kotlin.sequences.Sequence<T> onNotEmpty(kotlin.sequences.Sequence<? extends T>, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
-    method public static inline <T> kotlin.sequences.Sequence<T>? onNotNullEmpty(kotlin.sequences.Sequence<? extends T>?, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
+    method public static inline <T> kotlin.sequences.Sequence<T>? onNotNullNotEmpty(kotlin.sequences.Sequence<? extends T>?, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
     method public static inline <T> kotlin.sequences.Sequence<T>? onNullOrEmpty(kotlin.sequences.Sequence<? extends T>?, kotlin.jvm.functions.Function1<? super kotlin.sequences.Sequence<? extends T>,kotlin.Unit> action);
     method public static <T> boolean startsWith(kotlin.sequences.Sequence<? extends T>, Iterable<? extends T> slice);
     method public static <T> boolean startsWith(kotlin.sequences.Sequence<? extends T>, kotlin.sequences.Sequence<? extends T> slice);

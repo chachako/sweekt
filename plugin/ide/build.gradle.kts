@@ -24,7 +24,7 @@ import com.meowool.sweekt.firstCharTitlecase
 
 plugins { kotlin; id(Plugins.Intellij) }
 
-publication.destinations = mutableSetOf()
+publication.enabled = false
 
 dependencies{
   compileOnly(Libs.Kotlin.Compiler)
@@ -35,7 +35,7 @@ intellij {
   pluginName.set(rootProject.name.firstCharTitlecase())
   updateSinceUntilBuild.set(false)
   version.set(findPropertyOrEnv("intellij.version").toString())
-  plugins.set(listOf("Gradle", "Kotlin"))
+  plugins.set(listOf("com.intellij.gradle", "org.jetbrains.kotlin"))
 }
 
 tasks {
