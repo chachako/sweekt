@@ -31,7 +31,7 @@ publication {
     .removeSuffix("-SNAPSHOT")
 }
 
-dependencies{
+dependencies {
   compileOnly(Libs.Kotlin.Compiler)
   implementationProject(Projects.Plugin.Compiler.Hosted)
 }
@@ -45,7 +45,9 @@ intellij {
 
 tasks {
   publishPlugin {
-    findPropertyOrEnv("intellij.plugin.token")?.toString()?.let(token::set)
+    token.set(provider {
+      findPropertyOrEnv("intellij.plugin.token")!!.toString()
+    })
   }
   patchPluginXml {
     sinceBuild.set(findPropertyOrEnv("intellij.since.build").toString())

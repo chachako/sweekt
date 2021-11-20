@@ -2,10 +2,10 @@ name: Publish IDE plugin
 on: [workflow_dispatch]
 
 jobs:
-  verify:
+  publishing:
     runs-on: ubuntu-latest
     env:
-      intellij.plugin.token: ${{ secrets.INTELLIJPLUGINTOKEN }}
+      intellij.plugin.token: ${{ secrets.intellijPluginToken }}
 
     steps:
       - uses: actions/checkout@v2
