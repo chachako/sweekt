@@ -20,10 +20,7 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
-plugins {
-  `kotlin-dsl`
-  id(Plugins.BuildConfig)
-}
+plugins { `kotlin-dsl` }
 
 publication {
   data {
@@ -31,17 +28,6 @@ publication {
     pluginId = "com.meowool.sweekt"
   }
   pluginClass = "${data.pluginId}.SweektGradlePlugin"
-}
-
-buildConfig {
-  with(publication.data) {
-    buildConfigField("String", "Version", "\"$version\"")
-    buildConfigField("String", "GroupId", "\"$groupId\"")
-    buildConfigField("String", "CompilerId", "\"${findPropertyOrEnv("compiler.id")}\"")
-    // The compiler plugin id has different suffix.
-    buildConfigField("String", "CompilerArtifactId", "\"${artifactId.replace("-gradle", "-compiler")}\"")
-    useKotlinOutput { internalVisibility = true }
-  }
 }
 
 dependencies {

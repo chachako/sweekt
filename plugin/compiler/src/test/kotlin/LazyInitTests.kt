@@ -19,6 +19,7 @@
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
 import com.meowool.sweekt.cast
+import com.tschuchort.compiletesting.KotlinCompilation
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldHaveSize
@@ -215,5 +216,14 @@ class LazyInitTests : StringSpec({
     ) {
       classOf("B") { method("test") }
     }
+  }
+  "abstract class are supported" {
+    compile(
+      """
+        abstract class A {
+          @LazyInit var b: Int = 200
+        }
+      """
+    ) { exitCode shouldBe KotlinCompilation.ExitCode.OK }
   }
 })

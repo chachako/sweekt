@@ -20,30 +20,16 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
-plugins {
-  kotlin; `kotlin-kapt`
-  id(Plugins.BuildConfig)
-}
+plugins { kotlin; `kotlin-kapt` }
 
 publication.data.artifactId = "sweekt-compiler-hosted"
 
-buildConfig {
-  val compilerId = findPropertyOrEnv("compiler.id")!!.toString()
-  packageName(compilerId)
-  buildConfigField("String", "CompilerId", "\"$compilerId\"")
-  useKotlinOutput { internalVisibility = true }
-}
-
 dependencies {
-  implementationProject(Projects.Library)
-  kapt(Libs.Google.Auto.Service)
   compileOnlyOf(
     Libs.Kotlin.Compiler,
+    Libs.Kotlin.Stdlib.Common,
     Libs.Google.Auto.Service.Annotations
   )
-  testImplementationOf(
-    Libs.Kotlin.Compiler,
-    Libs.KotlinCompileTesting,
-    Libs.Kotest.Runner.Junit5.Jvm
-  )
+  kapt(Libs.Google.Auto.Service)
+  implementationProject(Projects.Library)
 }

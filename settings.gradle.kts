@@ -35,7 +35,6 @@ dependencyMapper {
 }
 
 gradleToolkit {
-  rootProject.buildscript { repositories { mavenCentral() }}
   useMeowoolSpec()
   allprojects {
     optIn("com.meowool.sweekt.InternalSweektApi")

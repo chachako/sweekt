@@ -20,21 +20,28 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
-plugins {
-  kotlin
-  id("com.github.johnrengelman.shadow")
-}
+plugins { kotlin; id("com.github.johnrengelman.shadow") }
 
 publication.data.artifactId = "sweekt-compiler"
 
-dependencies.compileOnlyProject(Projects.Plugin.Compiler.Hosted)
+dependencies{
+  compileOnlyProject(Projects.Plugin.Compiler.Hosted)
+
+  testImplementationOf(
+    project(Projects.Library),
+    Libs.KotlinCompileTesting,
+    Libs.Kotlin.Stdlib.Common,
+    Libs.Kotlin.Compiler.Embeddable,
+    Libs.Kotest.Runner.Junit5.Jvm,
+  )
+  testRuntimeOnly(Libs.Kotlin.Compiler)
+  testCompileOnlyProject(Projects.Plugin.Compiler.Hosted)
+}
 
 tasks {
   shadowJar {
     configurations = listOf(project.configurations.compileClasspath.get())
     dependencies {
-      exclude(Libs.Kotlin.Stdlib.Jdk7)
-      exclude(Libs.Kotlin.Stdlib.Jdk8)
       exclude(project(Projects.Library))
     }
     // Don't use the embedded Kotlin Compiler APIs, redirect them to use the Intellij internal
@@ -42,13 +49,17 @@ tasks {
   }
   // Replace the standard jar with the one built by 'shadowJar' in both api and runtime variants
   configurations {
-    apiElements.get().outgoing {
+    fun NamedDomainObjectProvider<Configuration>.replaceShadowJar() = get().outgoing {
       artifacts.clear()
       artifact(shadowJar.flatMap { it.archiveFile })
     }
-    runtimeElements.get().outgoing {
-      artifacts.clear()
-      artifact(shadowJar.flatMap { it.archiveFile })
-    }
+    apiElements.replaceShadowJar()
+    runtimeElements.replaceShadowJar()
+  }
+  // Add the jar built by 'shadowJar' to classpath
+  test {
+    useJUnitPlatform()
+    dependsOn(shadowJar)
+    classpath += shadowJar.get().outputs.files
   }
 }
