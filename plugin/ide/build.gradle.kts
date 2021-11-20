@@ -24,7 +24,12 @@ import com.meowool.sweekt.firstCharTitlecase
 
 plugins { kotlin; id(Plugins.Intellij) }
 
-publication.enabled = false
+publication {
+  enabled = false
+  data.version = data.version
+    .removeSuffix("-LOCAL")
+    .removeSuffix("-SNAPSHOT")
+}
 
 dependencies{
   compileOnly(Libs.Kotlin.Compiler)
@@ -46,11 +51,7 @@ tasks {
     sinceBuild.set(findPropertyOrEnv("intellij.since.build").toString())
     // Don't restrict the new version of Intellij-IEDA
     untilBuild.set(provider { null })
-    version.set(provider {
-      publication.data.version
-        .removeSuffix("-LOCAL")
-        .removeSuffix("-SNAPSHOT")
-    })
+    version.set(provider { publication.data.version })
     pluginDescription.set(
       """
         Provide corresponding IDE capabilities for <a href="https://github.com/RinOrz/sweekt">Sweekt</a> runtime.

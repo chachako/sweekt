@@ -2,7 +2,11 @@ name: Verify IDE compatibility
 on:
   push:
     branches: [main]
+    paths:
+      - plugin/ide
   pull_request:
+    paths:
+      - plugin/ide
 
 
 jobs:

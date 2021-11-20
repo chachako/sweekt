@@ -10,7 +10,6 @@
     <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
-        <irGenerationExtension implementation="com.meowool.sweekt.lazyinit.LazyInitGeneration"/>
         <syntheticResolveExtension
             implementation="com.meowool.sweekt.info.InfoClassSynthetic"/>
         <storageComponentContainerContributor
