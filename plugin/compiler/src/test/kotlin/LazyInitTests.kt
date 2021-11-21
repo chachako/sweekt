@@ -223,6 +223,34 @@ class LazyInitTests : StringSpec({
         abstract class A {
           @LazyInit var b: Int = 200
         }
+        abstract class AppAppearance {
+          abstract val isLight: Boolean
+
+          abstract val elevation: Int
+
+          abstract val windowBorderColor: Long
+
+          abstract val textColor: Long
+
+          abstract val surfaceColor: Long
+
+          abstract val backgroundColor: Long
+
+          abstract val titleBarColors: Pair<Long, Long>
+
+          abstract val searchBarColor: Long
+
+          open val titleBarHeight: Int = 28
+
+          open val windowBorderSize: Double = 0.5
+
+          @LazyInit
+          val windowBorder: Int = 12
+
+          val shapes get() = titleBarHeight
+
+          companion object
+        }
       """
     ) { exitCode shouldBe KotlinCompilation.ExitCode.OK }
   }
