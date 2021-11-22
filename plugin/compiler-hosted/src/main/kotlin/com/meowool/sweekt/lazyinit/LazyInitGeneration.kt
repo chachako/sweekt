@@ -27,6 +27,7 @@ import com.meowool.sweekt.SweektNames.LazyInit
 import com.meowool.sweekt.SweektNames.resetLazyValue
 import com.meowool.sweekt.SweektNames.resetLazyValues
 import com.meowool.sweekt.SweektSyntheticDeclarationOrigin
+import com.meowool.sweekt.FinalFieldTransformer
 import com.meowool.sweekt.cast
 import com.meowool.sweekt.castOrNull
 import org.jetbrains.kotlin.backend.common.deepCopyWithVariables
@@ -60,11 +61,14 @@ import org.jetbrains.kotlin.ir.expressions.IrGetValue
 import org.jetbrains.kotlin.ir.expressions.IrVararg
 import org.jetbrains.kotlin.ir.expressions.impl.IrGetObjectValueImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrGetValueImpl
-import org.jetbrains.kotlin.ir.interpreter.isAccessToObject
+import org.jetbrains.kotlin.ir.util.DeepCopySymbolRemapper
+import org.jetbrains.kotlin.ir.util.DeepCopyTypeRemapper
 import org.jetbrains.kotlin.ir.util.SYNTHETIC_OFFSET
 import org.jetbrains.kotlin.ir.util.dump
 import org.jetbrains.kotlin.ir.util.hasAnnotation
+import org.jetbrains.kotlin.ir.util.patchDeclarationParents
 import org.jetbrains.kotlin.ir.util.render
+import org.jetbrains.kotlin.ir.visitors.acceptVoid
 import org.jetbrains.kotlin.ir.visitors.transformChildrenVoid
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
@@ -76,12 +80,13 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
   override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
     val finalProperties = mutableSetOf<IrProperty>()
     moduleFragment.transformChildrenVoid(Transformer(pluginContext, finalProperties))
-
-//    val symbolRemapper = DeepCopySymbolRemapper()
-//    val typeRemapper = DeepCopyTypeRemapper(symbolRemapper)
-//    moduleFragment.acceptVoid(symbolRemapper)
-//    moduleFragment.transformChildren(FinalFieldTransformer(finalProperties, symbolRemapper, typeRemapper), null)
-//    moduleFragment.patchDeclarationParents()
+    if (finalProperties.isNotEmpty()) {
+      val symbolRemapper = DeepCopySymbolRemapper()
+      val typeRemapper = DeepCopyTypeRemapper(symbolRemapper)
+      moduleFragment.acceptVoid(symbolRemapper)
+      moduleFragment.transformChildren(FinalFieldTransformer(finalProperties, symbolRemapper, typeRemapper), null)
+      moduleFragment.patchDeclarationParents()
+    }
   }
 
   private inner class Transformer(

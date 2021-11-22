@@ -79,6 +79,7 @@ import org.jetbrains.kotlin.ir.util.IrMessageLogger
 import org.jetbrains.kotlin.ir.util.functions
 import org.jetbrains.kotlin.ir.util.isAnnotationClass
 import org.jetbrains.kotlin.ir.util.isInterface
+import org.jetbrains.kotlin.ir.util.isObject
 import org.jetbrains.kotlin.ir.util.isPrimitiveArray
 import org.jetbrains.kotlin.ir.util.parentClassOrNull
 import org.jetbrains.kotlin.name.Name
@@ -177,6 +178,13 @@ internal abstract class AbstractIrTransformer(
     operator fun IrBranch.unaryPlus() {
       irWhen.branches.add(this)
     }
+  }
+
+  fun IrGetValue.isAccessToObject(): Boolean {
+    val owner = this.symbol.owner
+    val expectedClass = this.type.classOrNull?.owner
+    if (expectedClass == null || !expectedClass.isObject) return false
+    return owner.origin == IrDeclarationOrigin.INSTANCE_RECEIVER || owner.name.asString() == "<this>"
   }
 
   fun IrBuilderWithScope.irWhen(
