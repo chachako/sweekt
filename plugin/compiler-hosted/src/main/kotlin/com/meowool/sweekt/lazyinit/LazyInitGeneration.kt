@@ -121,8 +121,10 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
         getter.origin = SweektSyntheticDeclarationOrigin
         getter.body = getter.buildIr {
           irBlockBody {
-            +irEquals(irGetProperty(getter, isInitValue), irTrue())
-            +irReturn(irGetField(getter, declaration))
+            val value = irTemporary(irType = getter.returnType).apply { parent = getter }
+            +irSetField(getter, declaration, irGet(value))
+            +irSetProperty(getter, isInitValue, irTrue())
+            +irGet(value)
           }
 //          irReturnExprBody(
 //            irWhen(declaration.type) {
