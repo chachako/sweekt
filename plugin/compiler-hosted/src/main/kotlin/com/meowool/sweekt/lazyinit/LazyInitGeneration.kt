@@ -72,7 +72,7 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
  * @author 凛 (https://github.com/RinOrz)
  */
 @OptIn(ObsoleteDescriptorBasedAPI::class)
-class LazyInitGenerationx(private val configuration: CompilerConfiguration) : IrGenerationExtension {
+class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrGenerationExtension {
   override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
     val finalProperties = mutableSetOf<IrProperty>()
     moduleFragment.transformChildrenVoid(Transformer(pluginContext, finalProperties))
