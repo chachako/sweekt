@@ -29,11 +29,13 @@ import com.meowool.sweekt.SweektNames.resetLazyValues
 import com.meowool.sweekt.SweektSyntheticDeclarationOrigin
 import com.meowool.sweekt.cast
 import com.meowool.sweekt.castOrNull
+import org.jetbrains.kotlin.backend.common.deepCopyWithVariables
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.descriptors.DescriptorVisibilities
+import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.IrStatement
 import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
 import org.jetbrains.kotlin.ir.builders.IrBuilderWithScope
@@ -49,13 +51,20 @@ import org.jetbrains.kotlin.ir.builders.irGet
 import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.builders.irTemporary
 import org.jetbrains.kotlin.ir.builders.irTrue
+import org.jetbrains.kotlin.ir.declarations.IrFunction
 import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
 import org.jetbrains.kotlin.ir.declarations.IrProperty
 import org.jetbrains.kotlin.ir.expressions.IrCall
 import org.jetbrains.kotlin.ir.expressions.IrExpression
+import org.jetbrains.kotlin.ir.expressions.IrGetValue
 import org.jetbrains.kotlin.ir.expressions.IrVararg
+import org.jetbrains.kotlin.ir.expressions.impl.IrGetObjectValueImpl
+import org.jetbrains.kotlin.ir.expressions.impl.IrGetValueImpl
+import org.jetbrains.kotlin.ir.interpreter.isAccessToObject
+import org.jetbrains.kotlin.ir.util.SYNTHETIC_OFFSET
 import org.jetbrains.kotlin.ir.util.dump
 import org.jetbrains.kotlin.ir.util.hasAnnotation
+import org.jetbrains.kotlin.ir.util.render
 import org.jetbrains.kotlin.ir.visitors.transformChildrenVoid
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
@@ -63,7 +72,7 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
  * @author 凛 (https://github.com/RinOrz)
  */
 @OptIn(ObsoleteDescriptorBasedAPI::class)
-class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrGenerationExtension {
+class LazyInitGenerationx(private val configuration: CompilerConfiguration) : IrGenerationExtension {
   override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
     val finalProperties = mutableSetOf<IrProperty>()
     moduleFragment.transformChildrenVoid(Transformer(pluginContext, finalProperties))
@@ -120,28 +129,25 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       declaration.getOrAddGetter().also { getter ->
         getter.origin = SweektSyntheticDeclarationOrigin
         getter.body = getter.buildIr {
-          irBlockBody {
-            val value = irTemporary(irType = getter.returnType).apply { parent = getter }
-            +irSetField(getter, declaration, irGet(value))
-            +irSetProperty(getter, isInitValue, irTrue())
-            +irGet(value)
-          }
-//          irReturnExprBody(
-//            irWhen(declaration.type) {
-//              +irBranch(
-//                irEquals(irGetProperty(getter, isInitValue), irTrue()),
-//                irGetField(getter, declaration)
-//              )
-//              +irElseBranch(
-//                irBlock {
-//                  val value = irTemporary(field.initializer!!.expression).apply { parent = getter }
-//                  +irSetField(getter, declaration, irGet(value))
-//                  +irSetProperty(getter, isInitValue, irTrue())
-//                  +irGet(value)
-//                }
-//              )
-//            }
-//          )
+          irReturnExprBody(
+            irWhen(declaration.type) {
+              +irBranch(
+                irEquals(irGetProperty(getter, isInitValue), irTrue()),
+                irGetField(getter, declaration)
+              )
+              +irElseBranch(
+                irBlock {
+                  val value = irTemporary(field.initializer!!.expression).apply {
+                    parent = getter
+                    transformCopiedDispatchReceiver(getter)
+                  }
+                  +irSetField(getter, declaration, irGet(value))
+                  +irSetProperty(getter, isInitValue, irTrue())
+                  +irGet(value)
+                }
+              )
+            }
+          )
         }
       }
 
@@ -185,5 +191,14 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       }
       return result
     }
+
+    private fun IrElement.transformCopiedDispatchReceiver(parent: IrFunction) = transformChildrenVoid(
+      object : AbstractIrTransformer(pluginContext, configuration) {
+        override fun visitGetValue(expression: IrGetValue): IrExpression = when {
+          expression.isAccessToObject() -> IrGetValueImpl(startOffset, endOffset, parent.thisReceiver!!.symbol)
+          else -> super.visitGetValue(expression)
+        }
+      }
+    )
   }
 }
