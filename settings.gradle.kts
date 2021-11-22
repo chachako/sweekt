@@ -20,6 +20,9 @@ buildscript {
     // Check for updates every build
     resolutionStrategy {
       force("com.android.tools.build:gradle:4.2.1")
+      eachDependency {
+        if (requested.group == "org.jetbrains.kotlin") useVersion("1.5.31")
+      }
       cacheChangingModulesFor(0, TimeUnit.SECONDS)
     }
   }
@@ -40,6 +43,14 @@ gradleToolkit {
     optIn("com.meowool.sweekt.InternalSweektApi")
     dokka(DokkaFormat.Html) {
       outputDirectory.set(rootDir.resolve("docs/apis"))
+    }
+    configurations.all {
+      // Check for updates every build
+      resolutionStrategy {
+        eachDependency {
+          if (requested.group == "org.jetbrains.kotlin") useVersion("1.5.31")
+        }
+      }
     }
   }
   publications {
