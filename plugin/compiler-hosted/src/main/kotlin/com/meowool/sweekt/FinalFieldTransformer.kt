@@ -87,5 +87,4 @@ class FinalFieldTransformer(
       transformAnnotations(declaration)
       initializer = declaration.initializer?.transform()
     } else super.visitField(declaration)
-
 }
