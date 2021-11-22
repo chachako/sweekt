@@ -181,6 +181,13 @@ internal abstract class AbstractIrTransformer(
     }
   }
 
+  fun IrGetValue.isAccessToObject(): Boolean {
+    val owner = this.symbol.owner
+    val expectedClass = this.type.classOrNull?.owner
+    if (expectedClass == null || !expectedClass.isObject) return false
+    return owner.origin == IrDeclarationOrigin.INSTANCE_RECEIVER || owner.name.asString() == "<this>"
+  }
+
   fun IrBuilderWithScope.irWhen(
     type: IrType = context.irBuiltIns.unitType,
     block: BranchBuilder.() -> Unit
