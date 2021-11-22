@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -549,13 +549,13 @@ class InfoClassGeneration(val configuration: CompilerConfiguration) : IrGenerati
 
       /** '31 * result' */
       private fun IrBuilderWithScope.shiftHashCode(result: IrVariable): IrExpression =
-        irCallOp(irBuiltIns.intTimesSymbol, irBuiltIns.intType, irInt(31), irGet(result))
+        irCallOp(intTimesSymbol, irBuiltIns.intType, irInt(31), irGet(result))
 
       /** shiftedResult + propertyHashCode  */
       private fun IrBuilderWithScope.plusHashCode(
         shiftedResult: IrExpression,
         propertyHashCode: IrExpression
-      ): IrExpression = irCallOp(irBuiltIns.intPlusSymbol, irBuiltIns.intType, shiftedResult, propertyHashCode)
+      ): IrExpression = irCallOp(intPlusSymbol, irBuiltIns.intType, shiftedResult, propertyHashCode)
 
       private fun IrBuilderWithScope.callPropertyHashCode(
         dispatch: IrFunction,

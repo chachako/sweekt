@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -21,6 +21,7 @@
 package com.meowool.sweekt
 
 import com.google.auto.service.AutoService
+import com.intellij.mock.MockProject
 import com.meowool.sweekt.info.InfoClassChecker
 import com.meowool.sweekt.info.InfoClassGeneration
 import com.meowool.sweekt.info.InfoClassSynthetic
@@ -28,9 +29,8 @@ import com.meowool.sweekt.info.InfoFunctionChecker
 import com.meowool.sweekt.lazyinit.LazyInitChecker
 import com.meowool.sweekt.lazyinit.LazyInitGeneration
 import com.meowool.sweekt.lazyinit.ResetValueChecker
-import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
-import com.intellij.mock.MockProject
 import com.meowool.toolkit.compiler_hosted.BuildConfig
+import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
 import org.jetbrains.kotlin.compiler.plugin.CliOption
 import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor

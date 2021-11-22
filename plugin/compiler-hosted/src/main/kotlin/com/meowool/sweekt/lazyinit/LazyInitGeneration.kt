@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -23,13 +23,12 @@
 package com.meowool.sweekt.lazyinit
 
 import com.meowool.sweekt.AbstractIrTransformer
-import com.meowool.sweekt.FinalFieldTransformer
 import com.meowool.sweekt.SweektNames.LazyInit
 import com.meowool.sweekt.SweektNames.resetLazyValue
 import com.meowool.sweekt.SweektNames.resetLazyValues
+import com.meowool.sweekt.SweektSyntheticDeclarationOrigin
 import com.meowool.sweekt.cast
 import com.meowool.sweekt.castOrNull
-import com.meowool.sweekt.ifNull
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.config.CompilerConfiguration
@@ -47,17 +46,13 @@ import org.jetbrains.kotlin.ir.builders.irFalse
 import org.jetbrains.kotlin.ir.builders.irGet
 import org.jetbrains.kotlin.ir.builders.irTemporary
 import org.jetbrains.kotlin.ir.builders.irTrue
-import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin
 import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
 import org.jetbrains.kotlin.ir.declarations.IrProperty
 import org.jetbrains.kotlin.ir.expressions.IrCall
 import org.jetbrains.kotlin.ir.expressions.IrExpression
 import org.jetbrains.kotlin.ir.expressions.IrVararg
-import org.jetbrains.kotlin.ir.util.DeepCopySymbolRemapper
-import org.jetbrains.kotlin.ir.util.DeepCopyTypeRemapper
+import org.jetbrains.kotlin.ir.util.dump
 import org.jetbrains.kotlin.ir.util.hasAnnotation
-import org.jetbrains.kotlin.ir.util.patchDeclarationParents
-import org.jetbrains.kotlin.ir.visitors.acceptVoid
 import org.jetbrains.kotlin.ir.visitors.transformChildrenVoid
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
@@ -70,11 +65,11 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
     val finalProperties = mutableSetOf<IrProperty>()
     moduleFragment.transformChildrenVoid(Transformer(pluginContext, finalProperties))
 
-    val symbolRemapper = DeepCopySymbolRemapper()
-    val typeRemapper = DeepCopyTypeRemapper(symbolRemapper)
-    moduleFragment.acceptVoid(symbolRemapper)
-    moduleFragment.transformChildren(FinalFieldTransformer(finalProperties, symbolRemapper, typeRemapper), null)
-    moduleFragment.patchDeclarationParents()
+//    val symbolRemapper = DeepCopySymbolRemapper()
+//    val typeRemapper = DeepCopyTypeRemapper(symbolRemapper)
+//    moduleFragment.acceptVoid(symbolRemapper)
+//    moduleFragment.transformChildren(FinalFieldTransformer(finalProperties, symbolRemapper, typeRemapper), null)
+//    moduleFragment.patchDeclarationParents()
   }
 
   private inner class Transformer(
@@ -99,49 +94,51 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       }
 
     override fun visitPropertyNew(declaration: IrProperty): IrStatement {
-      if (declaration.hasAnnotation(LazyInit)) {
-        val field = declaration.backingField!!
-
-        // val -> var
-        if (declaration.isVar.not() || field.isFinal) {
-          finalProperties.add(declaration)
-        }
-
-        // var _isInit$name = false
-        val isInitValue = declaration.getOrAddIsInitProperty(declaration.name.asString())
-
-        // get() = when {
-        //   _isInit$xxx && xxx == null -> field
-        //   else -> ???.also {
-        //     field = it
-        //     _isInit$xxx = true
-        //   }
-        // }
-        declaration.getter.ifNull { declaration.createGetter() }.also { getter ->
-          getter.origin = IrDeclarationOrigin.DEFINED
-          getter.body = getter.buildIr {
-            irReturnExprBody(
-              irWhen(declaration.type) {
-                +irBranch(
-                  irEquals(irGetProperty(getter, isInitValue), irTrue()),
-                  irGetField(getter, declaration)
-                )
-                +irElseBranch(
-                  irBlock {
-                    val value = irTemporary(field.initializer!!.expression)
-                    +irSetField(getter, declaration, irGet(value))
-                    +irSetProperty(getter, isInitValue, irTrue())
-                    +irGet(value)
-                  }
-                )
-              }
-            )
-          }
-        }
-
-        field.initializer = null
+      fun default() = super.visitPropertyNew(declaration)
+      if (declaration.isFakeOverride || declaration.hasAnnotation(LazyInit).not()) return default()
+      val field = declaration.backingField ?: return default().apply {
+        declaration.reportWarn("Property marked @LazyInit, but backingField is `null`: " + declaration.dump())
       }
-      return super.visitPropertyNew(declaration)
+
+      // val -> var
+      if (declaration.isVar.not() || field.isFinal) {
+        finalProperties.add(declaration)
+      }
+
+      // var _isInit$name = false
+      val isInitValue = declaration.getOrAddIsInitProperty(declaration.name.asString())
+
+      // get() = when {
+      //   _isInit$xxx && xxx == null -> field
+      //   else -> ???.also {
+      //     field = it
+      //     _isInit$xxx = true
+      //   }
+      // }
+      declaration.getOrAddGetter().also { getter ->
+        getter.origin = SweektSyntheticDeclarationOrigin
+        getter.body = getter.buildIr {
+          irReturnExprBody(
+            irWhen(declaration.type) {
+              +irBranch(
+                irEquals(irGetProperty(getter, isInitValue), irTrue()),
+                irGetField(getter, declaration)
+              )
+              +irElseBranch(
+                irBlock {
+                  val value = irTemporary(field.initializer!!.expression).apply { parent = getter }
+                  +irSetField(getter, declaration, irGet(value))
+                  +irSetProperty(getter, isInitValue, irTrue())
+                  +irGet(value)
+                }
+              )
+            }
+          )
+        }
+      }
+
+      field.initializer = null
+      return default()
     }
 
     override fun visitCall(expression: IrCall): IrExpression {

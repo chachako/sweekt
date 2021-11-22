@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -40,7 +40,7 @@ class FinalFieldTransformer(
   private val symbolRenamer: SymbolRenamer = SymbolRenamer.DEFAULT
 ) : DeepCopyIrTreeWithSymbols(symbolRemapper, typeRemapper) {
 
-  override fun visitProperty(declaration: IrProperty): IrProperty =
+  override fun visitProperty(declaration: IrProperty): IrProperty = if (finalProperties.contains(declaration))
     declaration.factory.createProperty(
       declaration.startOffset, declaration.endOffset,
       mapDeclarationOrigin(declaration.origin),
@@ -48,7 +48,7 @@ class FinalFieldTransformer(
       declaration.name,
       declaration.visibility,
       declaration.modality,
-      isVar = if (finalProperties.contains(declaration)) true else declaration.isVar,
+      isVar = true,
       isConst = declaration.isConst,
       isLateinit = declaration.isLateinit,
       isDelegated = declaration.isDelegated,
@@ -70,20 +70,22 @@ class FinalFieldTransformer(
       this.overriddenSymbols = declaration.overriddenSymbols.map {
         symbolRemapper.getReferencedProperty(it)
       }
-    }
+    } else super.visitProperty(declaration)
 
-  override fun visitField(declaration: IrField): IrField = declaration.factory.createField(
-    declaration.startOffset, declaration.endOffset,
-    mapDeclarationOrigin(declaration.origin),
-    symbolRemapper.getDeclaredField(declaration.symbol),
-    declaration.symbol.owner.name,
-    declaration.type.remapType(),
-    declaration.visibility,
-    isFinal = if (finalProperties.any { it.backingField == declaration }) false else declaration.isFinal,
-    isExternal = declaration.isExternal,
-    isStatic = declaration.isStatic,
-  ).apply {
-    transformAnnotations(declaration)
-    initializer = declaration.initializer?.transform()
-  }
+  override fun visitField(declaration: IrField): IrField = if (finalProperties.any { it.backingField == declaration })
+    declaration.factory.createField(
+      declaration.startOffset, declaration.endOffset,
+      mapDeclarationOrigin(declaration.origin),
+      symbolRemapper.getDeclaredField(declaration.symbol),
+      symbolRenamer.getFieldName(declaration.symbol),
+      declaration.type.remapType(),
+      declaration.visibility,
+      isFinal = false,
+      isExternal = declaration.isExternal,
+      isStatic = declaration.isStatic,
+    ).apply {
+      transformAnnotations(declaration)
+      initializer = declaration.initializer?.transform()
+    } else super.visitField(declaration)
+
 }

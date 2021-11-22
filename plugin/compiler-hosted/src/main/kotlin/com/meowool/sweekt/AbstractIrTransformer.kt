@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -28,9 +28,12 @@ import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.ir.copyTo
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
 import org.jetbrains.kotlin.config.CompilerConfiguration
+import org.jetbrains.kotlin.ir.IrBuiltIns
+import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
 import org.jetbrains.kotlin.ir.builders.IrBuilderWithScope
 import org.jetbrains.kotlin.ir.builders.IrGeneratorContext
+import org.jetbrains.kotlin.ir.builders.IrGeneratorContextInterface
 import org.jetbrains.kotlin.ir.builders.Scope
 import org.jetbrains.kotlin.ir.builders.declarations.IrFunctionBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.IrPropertyBuilder
@@ -50,6 +53,7 @@ import org.jetbrains.kotlin.ir.declarations.IrDeclarationContainer
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationParent
 import org.jetbrains.kotlin.ir.declarations.IrField
+import org.jetbrains.kotlin.ir.declarations.IrFile
 import org.jetbrains.kotlin.ir.declarations.IrFunction
 import org.jetbrains.kotlin.ir.declarations.IrProperty
 import org.jetbrains.kotlin.ir.declarations.IrSimpleFunction
@@ -80,6 +84,9 @@ import org.jetbrains.kotlin.ir.util.isInterface
 import org.jetbrains.kotlin.ir.util.isPrimitiveArray
 import org.jetbrains.kotlin.ir.util.parentClassOrNull
 import org.jetbrains.kotlin.name.Name
+import org.jetbrains.kotlin.util.OperatorNameConventions
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.full.declaredMembers
 
 /**
  * @author 凛 (https://github.com/RinOrz)
@@ -110,25 +117,38 @@ internal abstract class AbstractIrTransformer(
     if (configuration.get(SweektConfigurationKeys.isLogging, false))
       messenger.report(IrMessageLogger.Severity.INFO, logging().toString(), null)
   }
+
+  fun IrElement.reportWarn(logging: Any, file: IrFile = currentFile) =
+    messenger.report(IrMessageLogger.Severity.WARNING, logging.toString(), this.toMessageLocation(file))
+
+  private fun IrElement.toMessageLocation(file: IrFile): IrMessageLogger.Location {
+    val source = file.fileEntry.getSourceRangeInfo(startOffset, endOffset)
+    return IrMessageLogger.Location(source.filePath, source.startLineNumber, source.startColumnNumber)
+    //    return CompilerMessageLocationWithRange.create(
+    //      path = source.filePath,
+    //      lineStart = source.startLineNumber + 1,
+    //      lineEnd = source.endLineNumber + 1,
+    //      columnStart = source.startColumnNumber + 1,
+    //      columnEnd = source.endColumnNumber + 1,
+    //      lineContent = File(source.filePath).readLines()[source.startLineNumber]
+    //    )
+  }
 //
 //  fun log(element: IrElement, logging: Any, file: IrFile = currentIrFile) =
 //    messenger.report(IrMessageLogger.Severity.INFO, logging.toString(), element.toMessageLocation(file))
 //
 //  fun error(element: IrElement, logging: Any, file: IrFile = currentIrFile) =
 //    messenger.report(IrMessageLogger.Severity.ERROR, logging.toString(), element.toMessageLocation(file))
-//
-//  private fun IrElement.toMessageLocation(file: IrFile): IrMessageLogger.Location {
-//    val source = file.fileEntry.getSourceRangeInfo(startOffset, endOffset)
-//    return IrMessageLogger.Location(source.filePath, source.startLineNumber, source.startColumnNumber)
-// //    return CompilerMessageLocationWithRange.create(
-// //      path = source.filePath,
-// //      lineStart = source.startLineNumber + 1,
-// //      lineEnd = source.endLineNumber + 1,
-// //      columnStart = source.startColumnNumber + 1,
-// //      columnEnd = source.endColumnNumber + 1,
-// //      lineContent = File(source.filePath).readLines()[source.startLineNumber]
-// //    )
-//  }
+
+  // Compatible 1.5.31
+  val intPlusSymbol: IrSimpleFunctionSymbol
+    get() = irBuiltIns.intClass.functions.single {
+      it.owner.name == OperatorNameConventions.PLUS && it.owner.valueParameters[0].type == irBuiltIns.intType
+    }
+  val intTimesSymbol: IrSimpleFunctionSymbol
+    get() = irBuiltIns.intClass.functions.single {
+      it.owner.name == OperatorNameConventions.TIMES && it.owner.valueParameters[0].type == irBuiltIns.intType
+    }
 
   val IrTypeParameter.erasedUpperBound: IrClass
     get() {
@@ -235,6 +255,10 @@ internal abstract class AbstractIrTransformer(
     }
   }
 
+  fun IrProperty.getOrAddGetter(): IrSimpleFunction = getter.ifNull {
+    createGetter().also { getter = it }
+  }
+
   inline fun IrProperty.createGetter(builder: IrFunctionBuilder.() -> Unit = {}): IrSimpleFunction =
     irFactory.buildFun {
       parentClassOrNull
@@ -249,7 +273,6 @@ internal abstract class AbstractIrTransformer(
       getter.body = getter.buildIr {
         irExprBody(irReturn(irGetProperty(getter.dispatchReceiverParameter?.let(::irGet), this@createGetter)))
       }
-      this@createGetter.getter = getter
     }
 
   inline fun IrProperty.createSetter(builder: IrFunctionBuilder.() -> Unit = {}): IrSimpleFunction =
@@ -274,7 +297,6 @@ internal abstract class AbstractIrTransformer(
           )
         )
       }
-      this@createSetter.setter = setter
     }
 
   val IrProperty.isPrimaryConstructorParameter: Boolean

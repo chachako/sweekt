@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-
+ *
  * In addition, if you modified the project, you must include the Meowool
  * organization URL in your code file: https://github.com/meowool
  *
@@ -20,11 +20,11 @@
  */
 package com.meowool.sweekt.lazyinit
 
+import com.intellij.psi.PsiElement
 import com.meowool.sweekt.SweektNames.LazyInit
 import com.meowool.sweekt.SweektNames.resetLazyValue
 import com.meowool.sweekt.SweektNames.resetLazyValues
 import com.meowool.sweekt.castOrNull
-import com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.diagnostics.Diagnostic
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.resolve.BindingTrace
