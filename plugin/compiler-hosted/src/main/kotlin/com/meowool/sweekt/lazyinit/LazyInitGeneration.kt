@@ -31,12 +31,14 @@ import com.meowool.sweekt.cast
 import com.meowool.sweekt.castOrNull
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
+import org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.descriptors.DescriptorVisibilities
 import org.jetbrains.kotlin.ir.IrStatement
 import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
 import org.jetbrains.kotlin.ir.builders.IrBuilderWithScope
 import org.jetbrains.kotlin.ir.builders.irBlock
+import org.jetbrains.kotlin.ir.builders.irBlockBody
 import org.jetbrains.kotlin.ir.builders.irBoolean
 import org.jetbrains.kotlin.ir.builders.irBranch
 import org.jetbrains.kotlin.ir.builders.irComposite
@@ -44,6 +46,7 @@ import org.jetbrains.kotlin.ir.builders.irElseBranch
 import org.jetbrains.kotlin.ir.builders.irEquals
 import org.jetbrains.kotlin.ir.builders.irFalse
 import org.jetbrains.kotlin.ir.builders.irGet
+import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.builders.irTemporary
 import org.jetbrains.kotlin.ir.builders.irTrue
 import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
@@ -99,7 +102,6 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       val field = declaration.backingField ?: return default().apply {
         declaration.reportWarn("Property marked @LazyInit, but backingField is `null`: " + declaration.dump())
       }
-
       // val -> var
       if (declaration.isVar.not() || field.isFinal) {
         finalProperties.add(declaration)
@@ -118,22 +120,26 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       declaration.getOrAddGetter().also { getter ->
         getter.origin = SweektSyntheticDeclarationOrigin
         getter.body = getter.buildIr {
-          irReturnExprBody(
-            irWhen(declaration.type) {
-              +irBranch(
-                irEquals(irGetProperty(getter, isInitValue), irTrue()),
-                irGetField(getter, declaration)
-              )
-              +irElseBranch(
-                irBlock {
-                  val value = irTemporary(field.initializer!!.expression).apply { parent = getter }
-                  +irSetField(getter, declaration, irGet(value))
-                  +irSetProperty(getter, isInitValue, irTrue())
-                  +irGet(value)
-                }
-              )
-            }
-          )
+          irBlockBody {
+            +irEquals(irGetProperty(getter, isInitValue), irTrue())
+            +irReturn(irGetField(getter, declaration))
+          }
+//          irReturnExprBody(
+//            irWhen(declaration.type) {
+//              +irBranch(
+//                irEquals(irGetProperty(getter, isInitValue), irTrue()),
+//                irGetField(getter, declaration)
+//              )
+//              +irElseBranch(
+//                irBlock {
+//                  val value = irTemporary(field.initializer!!.expression).apply { parent = getter }
+//                  +irSetField(getter, declaration, irGet(value))
+//                  +irSetProperty(getter, isInitValue, irTrue())
+//                  +irGet(value)
+//                }
+//              )
+//            }
+//          )
         }
       }
 
