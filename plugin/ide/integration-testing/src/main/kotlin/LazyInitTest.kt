@@ -7,3 +7,10 @@ class LazyInitTest {
         a.resetLazyValue()
     }
 }
+
+abstract class LeakingLazyInitTest {
+    abstract val x: Int
+
+    @LazyInit
+    val f = x
+}

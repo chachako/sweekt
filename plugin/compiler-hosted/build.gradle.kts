@@ -20,7 +20,10 @@
  */
 @file:Suppress("SpellCheckingInspection")
 
-plugins { kotlin; `kotlin-kapt` }
+plugins {
+  kotlin
+  id("com.google.devtools.ksp")
+}
 
 publication.data.artifactId = "sweekt-compiler-hosted"
 
@@ -30,6 +33,6 @@ dependencies {
     Libs.Kotlin.Stdlib.Common,
     Libs.Google.Auto.Service.Annotations
   )
-  kapt(Libs.Google.Auto.Service)
+  ksp(Libs.Google.Auto.Service)
   implementationProject(Projects.Library)
 }
