@@ -29,16 +29,4 @@ class LeakingSuppressor : InspectionSuppressor {
 
   override fun getSuppressActions(element: PsiElement?, toolId: String): Array<SuppressQuickFix> =
     SuppressQuickFix.EMPTY_ARRAY
-
-//  private fun PsiElement.isLazyInitPropertyScope() {
-//    this.context
-//    var parent: PsiElement? = this
-//
-//
-//    return CachedValuesManager.getCachedValue(this) {
-//      CachedValueProvider.Result.create(
-//
-//      )
-//    }
-//  }
 }
