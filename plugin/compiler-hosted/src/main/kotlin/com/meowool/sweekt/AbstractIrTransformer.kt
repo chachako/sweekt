@@ -28,13 +28,12 @@ import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.ir.copyTo
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
 import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.ir.IrBuiltIns
 import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
 import org.jetbrains.kotlin.ir.builders.IrBuilderWithScope
 import org.jetbrains.kotlin.ir.builders.IrGeneratorContext
-import org.jetbrains.kotlin.ir.builders.IrGeneratorContextInterface
 import org.jetbrains.kotlin.ir.builders.Scope
+import org.jetbrains.kotlin.ir.builders.declarations.IrFieldBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.IrFunctionBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.IrPropertyBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.addValueParameter
@@ -81,12 +80,11 @@ import org.jetbrains.kotlin.ir.util.IrMessageLogger
 import org.jetbrains.kotlin.ir.util.functions
 import org.jetbrains.kotlin.ir.util.isAnnotationClass
 import org.jetbrains.kotlin.ir.util.isInterface
+import org.jetbrains.kotlin.ir.util.isObject
 import org.jetbrains.kotlin.ir.util.isPrimitiveArray
 import org.jetbrains.kotlin.ir.util.parentClassOrNull
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.util.OperatorNameConventions
-import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.full.declaredMembers
 
 /**
  * @author 凛 (https://github.com/RinOrz)
@@ -435,6 +433,45 @@ internal abstract class AbstractIrTransformer(
   }
 
   fun IrType.isBoxedOrPrimitiveArray() = this.isArray() || this.isPrimitiveArray()
+
+  fun IrGetValue.isAccessThisClass(): Boolean {
+    val target = this.symbol.owner as? IrValueParameter ?: return false
+    val expectedClass = this.type.classOrNull?.owner
+    if (expectedClass == null || expectedClass.isObject) return false
+    return target.origin == IrDeclarationOrigin.INSTANCE_RECEIVER || target.name.asString() == "<this>"
+  }
+
+  fun IrField.copy(builder: IrFieldBuilder.() -> Unit = {}) = let { old ->
+    irFactory.buildField {
+      name = old.name
+      updateFrom(old)
+      builder()
+    }.apply {
+      parent = old.parent
+      annotations = old.annotations
+      metadata = old.metadata
+      correspondingPropertySymbol = old.correspondingPropertySymbol
+      initializer = old.initializer
+    }
+  }
+
+  fun IrProperty.copy(builder: IrPropertyBuilder.() -> Unit = {}) = let { old ->
+    irFactory.buildProperty {
+      name = old.name
+      modality = old.modality
+      updateFrom(old)
+      builder()
+    }.apply {
+      parent = old.parent
+      annotations = old.annotations
+      metadata = old.metadata
+      attributeOwnerId = old.attributeOwnerId
+      overriddenSymbols = old.overriddenSymbols
+      getter = old.getter?.also { it.correspondingPropertySymbol = symbol }
+      setter = old.setter?.also { it.correspondingPropertySymbol = symbol }
+      backingField = old.backingField?.also { it.correspondingPropertySymbol = symbol }
+    }
+  }
 }
 
 fun IrConstructorCall.getAnnotationBooleanOrNull(name: String): Boolean? {

@@ -217,37 +217,17 @@ class LazyInitTests : StringSpec({
       classOf("B") { method("test") }
     }
   }
-  "abstract class are supported" {
+  "allow other properties to be called in initializer" {
     compile(
       """
-        abstract class A {
+        class A {
           @LazyInit var b: Int = 200
         }
         abstract class AppAppearance {
-          abstract val isLight: Boolean
-
           abstract val elevation: Int
 
-          abstract val windowBorderColor: Long
-
-          abstract val textColor: Long
-
-          abstract val surfaceColor: Long
-
-          abstract val backgroundColor: Long
-
-          abstract val titleBarColors: Pair<Long, Long>
-
-          abstract val searchBarColor: Long
-
-          open val titleBarHeight: Int = 28
-
-          open val windowBorderSize: Double = 0.5
-
           @LazyInit
-          val windowBorder: Int = 12
-
-          val shapes get() = titleBarHeight
+          val windowBorder = mutableListOf(elevation, A().b, 3)
 
           companion object
         }
