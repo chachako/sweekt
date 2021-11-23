@@ -9,6 +9,12 @@
     <depends>com.intellij.gradle</depends>
     <depends>org.jetbrains.kotlin</depends>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.inspectionSuppressor
+            language="kotlin"
+            implementationClass="com.meowool.sweekt.LeakingSuppressor"/>
+    </extensions>
+
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
         <syntheticResolveExtension
             implementation="com.meowool.sweekt.info.InfoClassSynthetic"/>
