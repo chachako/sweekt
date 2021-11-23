@@ -27,21 +27,16 @@ import com.meowool.sweekt.SweektNames.LazyInit
 import com.meowool.sweekt.SweektNames.resetLazyValue
 import com.meowool.sweekt.SweektNames.resetLazyValues
 import com.meowool.sweekt.SweektSyntheticDeclarationOrigin
-import com.meowool.sweekt.FinalFieldTransformer
 import com.meowool.sweekt.cast
 import com.meowool.sweekt.castOrNull
-import org.jetbrains.kotlin.backend.common.deepCopyWithVariables
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
-import org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.descriptors.DescriptorVisibilities
-import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.IrStatement
 import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
 import org.jetbrains.kotlin.ir.builders.IrBuilderWithScope
 import org.jetbrains.kotlin.ir.builders.irBlock
-import org.jetbrains.kotlin.ir.builders.irBlockBody
 import org.jetbrains.kotlin.ir.builders.irBoolean
 import org.jetbrains.kotlin.ir.builders.irBranch
 import org.jetbrains.kotlin.ir.builders.irComposite
@@ -49,9 +44,9 @@ import org.jetbrains.kotlin.ir.builders.irElseBranch
 import org.jetbrains.kotlin.ir.builders.irEquals
 import org.jetbrains.kotlin.ir.builders.irFalse
 import org.jetbrains.kotlin.ir.builders.irGet
-import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.builders.irTemporary
 import org.jetbrains.kotlin.ir.builders.irTrue
+import org.jetbrains.kotlin.ir.declarations.IrField
 import org.jetbrains.kotlin.ir.declarations.IrFunction
 import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
 import org.jetbrains.kotlin.ir.declarations.IrProperty
@@ -59,16 +54,8 @@ import org.jetbrains.kotlin.ir.expressions.IrCall
 import org.jetbrains.kotlin.ir.expressions.IrExpression
 import org.jetbrains.kotlin.ir.expressions.IrGetValue
 import org.jetbrains.kotlin.ir.expressions.IrVararg
-import org.jetbrains.kotlin.ir.expressions.impl.IrGetObjectValueImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrGetValueImpl
-import org.jetbrains.kotlin.ir.util.DeepCopySymbolRemapper
-import org.jetbrains.kotlin.ir.util.DeepCopyTypeRemapper
-import org.jetbrains.kotlin.ir.util.SYNTHETIC_OFFSET
-import org.jetbrains.kotlin.ir.util.dump
 import org.jetbrains.kotlin.ir.util.hasAnnotation
-import org.jetbrains.kotlin.ir.util.patchDeclarationParents
-import org.jetbrains.kotlin.ir.util.render
-import org.jetbrains.kotlin.ir.visitors.acceptVoid
 import org.jetbrains.kotlin.ir.visitors.transformChildrenVoid
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
@@ -78,21 +65,10 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 @OptIn(ObsoleteDescriptorBasedAPI::class)
 class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrGenerationExtension {
   override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
-    val finalProperties = mutableSetOf<IrProperty>()
-    moduleFragment.transformChildrenVoid(Transformer(pluginContext, finalProperties))
-    if (finalProperties.isNotEmpty()) {
-      val symbolRemapper = DeepCopySymbolRemapper()
-      val typeRemapper = DeepCopyTypeRemapper(symbolRemapper)
-      moduleFragment.acceptVoid(symbolRemapper)
-      moduleFragment.transformChildren(FinalFieldTransformer(finalProperties, symbolRemapper, typeRemapper), null)
-      moduleFragment.patchDeclarationParents()
-    }
+    moduleFragment.transformChildrenVoid(Transformer(pluginContext))
   }
 
-  private inner class Transformer(
-    context: IrPluginContext,
-    private val finalProperties: MutableSet<IrProperty>
-  ) : AbstractIrTransformer(context, configuration) {
+  private inner class Transformer(context: IrPluginContext) : AbstractIrTransformer(context, configuration) {
     private val propertiesOfIsInit = mutableMapOf<String, IrProperty>()
 
     /**
@@ -111,18 +87,21 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       }
 
     override fun visitPropertyNew(declaration: IrProperty): IrStatement {
-      fun default() = super.visitPropertyNew(declaration)
-      if (declaration.isFakeOverride || declaration.hasAnnotation(LazyInit).not()) return default()
-      val field = declaration.backingField ?: return default().apply {
-        declaration.reportWarn("Property marked @LazyInit, but backingField is `null`: " + declaration.dump())
-      }
+      var property = super.visitPropertyNew(declaration) as IrProperty
+
+      if (property.isFakeOverride || property.hasAnnotation(LazyInit).not()) return property
+
       // val -> var
-      if (declaration.isVar.not() || field.isFinal) {
-        finalProperties.add(declaration)
+      if (declaration.isVar.not() || property.backingField?.isFinal == true) {
+        // The lazy init property does not need copy getter and setter
+        property = property.copy { isVar = true }
+        property.backingField = property.backingField?.transform(this, null).castOrNull()
       }
 
+      val field = property.backingField ?: return property
+
       // var _isInit$name = false
-      val isInitValue = declaration.getOrAddIsInitProperty(declaration.name.asString())
+      val isInitValue = property.getOrAddIsInitProperty(property.name.asString())
 
       // get() = when {
       //   _isInit$xxx && xxx == null -> field
@@ -131,22 +110,21 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       //     _isInit$xxx = true
       //   }
       // }
-      declaration.getOrAddGetter().also { getter ->
+      property.getOrAddGetter().also { getter ->
         getter.origin = SweektSyntheticDeclarationOrigin
         getter.body = getter.buildIr {
           irReturnExprBody(
-            irWhen(declaration.type) {
+            irWhen(property.type) {
               +irBranch(
                 irEquals(irGetProperty(getter, isInitValue), irTrue()),
-                irGetField(getter, declaration)
+                irGetField(getter, property)
               )
               +irElseBranch(
                 irBlock {
-                  val value = irTemporary(field.initializer!!.expression).apply {
+                  val value = irTemporary(field.initializer!!.expression.transformGetOfThisClass(getter)).apply {
                     parent = getter
-                    transformCopiedDispatchReceiver(getter)
                   }
-                  +irSetField(getter, declaration, irGet(value))
+                  +irSetField(getter, property, irGet(value))
                   +irSetProperty(getter, isInitValue, irTrue())
                   +irGet(value)
                 }
@@ -157,7 +135,16 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       }
 
       field.initializer = null
-      return default()
+      return property
+    }
+
+    override fun visitFieldNew(declaration: IrField): IrStatement {
+      val old = super.visitFieldNew(declaration) as IrField
+      val isIncorrectFinal = declaration.isFinal && declaration.correspondingPropertySymbol?.owner?.isVar == true
+      return when {
+        isIncorrectFinal -> old.copy { isFinal = false }
+        else -> old
+      }
     }
 
     override fun visitCall(expression: IrCall): IrExpression {
@@ -197,13 +184,13 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
       return result
     }
 
-    private fun IrElement.transformCopiedDispatchReceiver(parent: IrFunction) = transformChildrenVoid(
+    private fun IrExpression.transformGetOfThisClass(function: IrFunction) = transform(
       object : AbstractIrTransformer(pluginContext, configuration) {
         override fun visitGetValue(expression: IrGetValue): IrExpression = when {
-          expression.isAccessToObject() -> IrGetValueImpl(startOffset, endOffset, parent.thisReceiver!!.symbol)
+          expression.isAccessThisClass() -> IrGetValueImpl(startOffset, endOffset, function.thisReceiver!!.symbol)
           else -> super.visitGetValue(expression)
         }
-      }
+      }, null
     )
   }
 }

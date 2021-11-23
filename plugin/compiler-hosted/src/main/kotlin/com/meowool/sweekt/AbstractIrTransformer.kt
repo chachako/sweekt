@@ -33,6 +33,7 @@ import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
 import org.jetbrains.kotlin.ir.builders.IrBuilderWithScope
 import org.jetbrains.kotlin.ir.builders.IrGeneratorContext
 import org.jetbrains.kotlin.ir.builders.Scope
+import org.jetbrains.kotlin.ir.builders.declarations.IrFieldBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.IrFunctionBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.IrPropertyBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.addValueParameter
@@ -439,6 +440,45 @@ internal abstract class AbstractIrTransformer(
   }
 
   fun IrType.isBoxedOrPrimitiveArray() = this.isArray() || this.isPrimitiveArray()
+
+  fun IrGetValue.isAccessThisClass(): Boolean {
+    val target = this.symbol.owner as? IrValueParameter ?: return false
+    val expectedClass = this.type.classOrNull?.owner
+    if (expectedClass == null || expectedClass.isObject) return false
+    return target.origin == IrDeclarationOrigin.INSTANCE_RECEIVER || target.name.asString() == "<this>"
+  }
+
+  fun IrField.copy(builder: IrFieldBuilder.() -> Unit = {}) = let { old ->
+    irFactory.buildField {
+      name = old.name
+      updateFrom(old)
+      builder()
+    }.apply {
+      parent = old.parent
+      annotations = old.annotations
+      metadata = old.metadata
+      correspondingPropertySymbol = old.correspondingPropertySymbol
+      initializer = old.initializer
+    }
+  }
+
+  fun IrProperty.copy(builder: IrPropertyBuilder.() -> Unit = {}) = let { old ->
+    irFactory.buildProperty {
+      name = old.name
+      modality = old.modality
+      updateFrom(old)
+      builder()
+    }.apply {
+      parent = old.parent
+      annotations = old.annotations
+      metadata = old.metadata
+      attributeOwnerId = old.attributeOwnerId
+      overriddenSymbols = old.overriddenSymbols
+      getter = old.getter?.also { it.correspondingPropertySymbol = symbol }
+      setter = old.setter?.also { it.correspondingPropertySymbol = symbol }
+      backingField = old.backingField?.also { it.correspondingPropertySymbol = symbol }
+    }
+  }
 }
 
 fun IrConstructorCall.getAnnotationBooleanOrNull(name: String): Boolean? {
