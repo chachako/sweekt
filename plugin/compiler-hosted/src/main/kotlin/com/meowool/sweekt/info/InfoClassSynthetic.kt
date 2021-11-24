@@ -103,8 +103,9 @@ class InfoClassSynthetic : SyntheticResolveExtension {
     getInfo(thisDescriptor) ?: return
     val syntheticClass = thisDescriptor.module.findClassAcrossModuleDependencies(
       ClassId(SweektNames.root(), InfoSynthetic, false)
+    ) ?: error(
+      "Can't locate class '$Root.$InfoSynthetic', please make sure you have added the dependency of sweekt's runtime."
     )
-      ?: error("Can't locate class '$Root.$InfoSynthetic', please make sure you have added the dependency of sweekt's runtime.")
     supertypes += simpleNotNullType(Annotations.EMPTY, syntheticClass, emptyList())
   }
 }

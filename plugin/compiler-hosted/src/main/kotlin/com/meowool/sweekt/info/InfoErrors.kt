@@ -51,7 +51,12 @@ object InfoErrors : AbstractErrors() {
   )
 
   @JvmField val NotAllowedOverrideSynthetic = renderError(
-    "It is not allowed to manually override the method ''{0}'', this is a stub synthetic method specific to info class.",
+    "It is not allowed to manually override the method ''{0}'', this is a stub synthetic method specific to @Info class.",
+    Renderers.STRING
+  )
+
+  @JvmField val SuperInfoTypes = renderError(
+    "It is found super types ({0}) marked with @Info, so this declaration must be marked with @Info.",
     Renderers.STRING
   )
 
