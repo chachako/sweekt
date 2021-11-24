@@ -20,6 +20,7 @@
  */
 package com.meowool.sweekt.info
 
+import com.meowool.sweekt.Info
 import com.meowool.sweekt.SweektNames
 import com.meowool.sweekt.SweektNames.InfoSynthetic
 import com.meowool.sweekt.SweektNames.Root
@@ -87,14 +88,12 @@ class InfoClassSynthetic : SyntheticResolveExtension {
       name == CopyFunctionName -> {
         val copyFunction = createCopyFunctionDescriptor(thisDescriptor, getCopyProperties(variables))
         // Do not re-synthesize the same function that has been manually declared
-        if (functions.none { func ->
+        val generatedCopy = functions.any { func ->
           func.name == copyFunction.name.asString() && func.valueParameters.map {
             bindingContext[BindingContext.TYPE, it.typeReference]
           } == copyFunction.valueParameters.map { it.type }
         }
-        ) {
-          result += copyFunction
-        }
+        if (generatedCopy.not()) result += copyFunction
       }
     }
   }

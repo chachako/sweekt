@@ -12,3 +12,12 @@ class InfoClassTest {
         val abc: Int = component2()
     }
 }
+
+private interface Interface {
+    val a: Boolean
+}
+
+@Info
+class InfoClassOverridesTest(
+    override val a: Boolean
+) : Interface

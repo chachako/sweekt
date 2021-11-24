@@ -65,6 +65,11 @@ internal fun Result.objectOf(className: String, block: ClassBlock.() -> Unit = {
     ClassBlock(it.getDeclaredField("INSTANCE").get(null), it).apply(block)
   }
 
+internal fun Result.interfaceOf(className: String, block: ClassBlock.() -> Unit = {}) =
+  classLoader.loadClass("$Root.$className").let {
+    ClassBlock(null, it).apply(block)
+  }
+
 internal class ClassBlock(val instance: Any?, val javaClass: Class<*> = instance!!.javaClass) {
   private val fields = mutableMapOf<String, Field>()
   private val methods = mutableMapOf<String, Method>()
