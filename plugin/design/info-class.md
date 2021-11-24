@@ -4,7 +4,7 @@
 
 
 
-#### data class
+### data class
 
 通过 **data class** 生成的 `equals, hashCode, toString, copy, componentN ` 方法具有以下缺点：
 
@@ -12,6 +12,7 @@
 - 无法细分控制哪些是属性是不需要参与 `equals, hashCode, toString, copy, componentN` 的生成的
 - 数组类型的属性完全失去生成的 `equals` 作用，因为根本没有进行正确的判断，需要完全手动复写一次 `equals` 方法
 - 数据类不能与 **inner class** 一起声明
+- 数据类不能是抽象的，既不能是 **abstract class** / **interface**
 - 数据类是 **final** 的，既不能被继承
 
 > 很多时候让我很抓狂的点在于一旦出现任何达不到需求的因素就需要完全重写整个方法，容易出错不说，还常常要写一堆样板代码（屎山）！！！
@@ -150,4 +151,89 @@ fun copy(
 > - ❶  在 IDE 与编译器检查文件树时会自动为注解了 @Info 的类继承一个 **Info.Synthetic** 接口，接口里面包含 `infoEquals, infoHashCode, infoToString` 的占坑方法，这些占坑方法会在编译时自动实现
 > - ❷  按照类中声明的属性的顺序创建 **componentN** 函数
 > - ❸   按照类中声明的属性的顺序创建 **copy** 函数，参数列表的开头会包含主构造函数中声明的属性，即使主构造函数中的属性注解了 **@Info.Invisible**，因为他们需要用于创建对象
+
+
+
+
+
+### Interface & Abstract
+
+```Kotlin
+interface Price {
+  val amount: Int
+}
+
+@Info
+interface Coffee {
+  val name: String
+  abstract val origin: String
+  override var amount: Int
+}
+
+@Info(joinPrivateProperties = true)
+class CoffeeImpl(override val name: String) : Coffee {
+  override val origin = "UNKNOWN"
+  override var amount = -1
+  
+  private var isSold: Boolean = false
+  private lateinit var holder: String
+}
+```
+
+
+
+#### 幕后生成代码（伪反编译）：
+
+```Kotlin
+interface Price {
+  val amount: Int
+}
+
+@Info(joinValProperties = true)
+interface Coffee {
+  val name: String
+  abstract val origin: String
+  override var amount: Int
+  
+  @JvmSynthetic
+  fun copy(
+    name: String = this.name, 
+    origin: String = this.origin, 
+    amount: String = this.amount, 
+  )
+}
+
+@Info(joinPrivateProperties = true)
+class CoffeeImpl(override val name: String) : Coffee {
+  override val origin = "UNKNOWN"
+  override var amount = -1
+  
+  private var isSold: Boolean = false
+  private lateinit var holder: String
+  
+  @JvmSynthetic
+  override fun copy(
+    name: String = this.name, 
+    origin: String = this.origin, 
+    amount: String = this.amount, 
+  ) = CoffeeImpl(name).also {
+    it.origin = origin
+    it.amount = amount
+  }
+  
+  @JvmSynthetic
+  fun copy(
+    name: String = this.name, 
+    origin: String = this.origin, 
+    amount: String = this.amount, 
+    isSold: Boolean = this.isSold, 
+    holder: String = this.holder, 
+  ) = CoffeeImpl(name).also {
+    it.origin = origin
+    it.amount = amount
+    it.isSold = isSold
+    it.holder = holder
+  }
+}
+```
 

@@ -44,6 +44,7 @@ import org.jetbrains.kotlin.resolve.BindingContext
 import org.jetbrains.kotlin.resolve.DescriptorToSourceUtils.descriptorToDeclaration
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.secondaryConstructors
+import org.jetbrains.kotlin.resolve.findOriginalTopMostOverriddenDescriptors
 
 /**
  * @author 凛 (https://github.com/RinOrz)
@@ -119,7 +120,7 @@ object InfoClassDescriptorResolver {
     Annotations.EMPTY,
     componentName,
     CallableMemberDescriptor.Kind.DECLARATION,
-    value.source
+    value.findOriginalTopMostOverriddenDescriptors().firstOrNull()?.source ?: value.source
   ).apply {
     isOperator = true
     initialize(

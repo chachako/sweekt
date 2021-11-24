@@ -23,6 +23,7 @@ package com.meowool.sweekt.info
 import com.meowool.sweekt.SweektNames.Info
 import com.meowool.sweekt.castOrNull
 import com.meowool.sweekt.ifNull
+import com.meowool.sweekt.iteration.contains
 import org.jetbrains.kotlin.descriptors.ClassDescriptor
 import org.jetbrains.kotlin.descriptors.DeclarationDescriptor
 import org.jetbrains.kotlin.lexer.KtModifierKeywordToken
@@ -32,6 +33,7 @@ import org.jetbrains.kotlin.psi.KtClassOrObject
 import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.psi.KtPrimaryConstructor
 import org.jetbrains.kotlin.psi.KtSecondaryConstructor
+import org.jetbrains.kotlin.resolve.BindingContext
 import org.jetbrains.kotlin.resolve.BindingTrace
 import org.jetbrains.kotlin.resolve.annotations.argumentValue
 import org.jetbrains.kotlin.resolve.checkers.DeclarationChecker
@@ -56,6 +58,24 @@ object InfoClassChecker : DeclarationChecker {
       )
       return
     }
+
+    // TODO FIR
+//    if (!descriptor.annotations.hasAnnotation(Info)) {
+//      val superInfoClasses = declaration.superTypeListEntries.mapNotNull { entry ->
+//        context.trace.bindingContext.get(BindingContext.TYPE, entry.typeReference)
+//          ?.constructor
+//          ?.declarationDescriptor
+//          ?.takeIf { it.annotations.hasAnnotation(Info) }
+//      }
+//      if (superInfoClasses.isNotEmpty()) context.trace.report(
+//        InfoErrors.SuperInfoTypes.on(
+//          declaration.nameIdentifier ?: declaration,
+//          superInfoClasses.joinToString { "'${it.name.asString()}'" }
+//        )
+//      )
+//      return
+//    }
+
     declaration.checkSpecialModifier(context.trace, KtTokens.ANNOTATION_KEYWORD) ?: return
     declaration.checkSpecialModifier(context.trace, KtTokens.ENUM_KEYWORD) ?: return
     declaration.checkSpecialModifier(context.trace, KtTokens.DATA_KEYWORD) ?: return

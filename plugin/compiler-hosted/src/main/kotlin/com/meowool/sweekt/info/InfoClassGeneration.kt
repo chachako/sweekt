@@ -111,7 +111,7 @@ class InfoClassGeneration(val configuration: CompilerConfiguration) : IrGenerati
       val info = irClass.getAnnotation(Info)?.let(::Info) ?: return
       val properties = irClass.collectProperties(info)
       val functions = irClass.functions
-      val constructorEntry = irClass.primaryConstructor ?: irClass.constructors.single()
+      val constructorEntry = irClass.primaryConstructor ?: irClass.constructors.singleOrNull() ?: return
 
       // override fun copy(...): ?
       if (info.generateCopy) collectCopyParameters(constructorEntry, properties).also { copyParameters ->

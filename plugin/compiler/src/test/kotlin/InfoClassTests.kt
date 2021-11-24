@@ -49,6 +49,22 @@ class InfoClassTests : StringSpec({
         "This is not allowed in the class marked with `@Info(generateCopy = true)`"
     }
   }
+  // TODO FIR
+//  "supertype marked info" {
+//    compile(
+//      """
+//        @Info
+//        interface Foo {
+//          val baz: String
+//        }
+//
+//        class FooImpl : Foo
+//      """
+//    ) { line ->
+//      messages shouldContain "(${line(6)}, 7): It is found super types ('Foo') marked with @Info, " +
+//        "so this declaration must be marked with @Info."
+//    }
+//  }
   "must have a primary constructor when multi-constructors are declared" {
     compile(
       """
@@ -371,6 +387,22 @@ class InfoClassTests : StringSpec({
     ) { line ->
       messages shouldContain "(${line(23)}, 16): " +
         "Destructuring declaration initializer of type Baz must have a 'component1()' function"
+    }
+  }
+  "test override properties" {
+    compile(
+      """
+        interface A {
+          val a: Int
+        }
+
+        @Info
+        class B(
+          override val a: Int,
+        ) : A
+      """
+    ) { line ->
+      messages shouldNotContain "(${line(7)}, 3): 'component1' overrides nothing"
     }
   }
 })
