@@ -47,9 +47,7 @@ annotation class LazyInit
  * @author 凛 (https://github.com/RinOrz)
  */
 @Suppress("unused")
-fun Any.resetLazyValue() {
-  throw UnsupportedOperationException("Implemented by compiler plugin")
-}
+fun Any.resetLazyValue(): Unit = compilerImplementation()
 
 /**
  * Resets all given [lazyProperties]. In other words, these values of lazy properties will be reset to the initial
@@ -81,6 +79,4 @@ fun Any.resetLazyValue() {
  * @author 凛 (https://github.com/RinOrz)
  */
 @Suppress("UNUSED_PARAMETER")
-fun resetLazyValues(vararg lazyProperties: Any) {
-  throw UnsupportedOperationException("Implemented by compiler plugin")
-}
+fun resetLazyValues(vararg lazyProperties: Any): Unit = compilerImplementation()

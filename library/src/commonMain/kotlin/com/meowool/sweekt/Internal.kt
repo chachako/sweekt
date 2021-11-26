@@ -24,4 +24,7 @@ annotation class InternalSweektApi
 )
 annotation class InternalSweektCompilerApi
 
-internal fun compilerImplementation(): Nothing = throw UnsupportedOperationException("Implemented by compiler plugin")
+internal fun compilerImplementation(): Nothing = throw UnsupportedOperationException(
+  "Implemented by sweekt compiler plugin, " +
+    "please make sure you have applied the plugin of https://github.com/RinOrz/sweekt."
+)
