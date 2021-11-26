@@ -75,7 +75,6 @@ annotation class SuspendSetter
 @Suppress("UNUSED_PARAMETER")
 fun <R> suspendGetter(block: suspend () -> R): R = compilerImplementation()
 
-
 /**
  * Runs a 'suspend' setter block.
  *
