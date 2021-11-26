@@ -49,7 +49,7 @@ annotation class SuspendGetter
 annotation class SuspendSetter
 
 /**
- * Runs a 'suspend' block and returns the result.
+ * Runs a 'suspend' getter block and returns the result.
  *
  * Note that this will give the property getter the same behavior as the suspend function:
  * ```
@@ -77,7 +77,7 @@ fun <R> suspendGetter(block: suspend () -> R): R = compilerImplementation()
 
 
 /**
- * Runs a 'suspend' block and returns the result.
+ * Runs a 'suspend' setter block.
  *
  * Note that this will give the property setter the same behavior as the suspend function:
  * ```
