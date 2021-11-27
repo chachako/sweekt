@@ -36,7 +36,7 @@ inline fun <R> safetyValue(trying: () -> R): R? = runOrNull(trying)
 inline fun throwIf(predicate: Boolean, throwable: () -> Throwable) {
   contract {
     callsInPlace(throwable, InvocationKind.AT_MOST_ONCE)
-    returns() implies (!predicate)
+    returns() implies !predicate
   }
   if (predicate) throw throwable()
 }
