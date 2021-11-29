@@ -80,3 +80,27 @@ fun String.removeBlanks(): String = filterNot { it.isWhitespace() }
  * @author 凛 (https://github.com/RinOrz)
  */
 fun String.removeLineBreaks(): String = replace("\n", "").replace("\r", "").replace("\r\n", "")
+
+/**
+ * Starting from [offset], splits this char sequence into [destination] with [delimiter].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+@JvmName("splitToStrings")
+fun <C: MutableCollection<String>> CharSequence.splitTo(
+  destination: C,
+  delimiter: Char,
+  offset: Int = 0
+): C = splitTo(destination, offset) { it == delimiter }
+
+/**
+ * Starting from [offset], splits this string into [destination] by [predicate].
+ *
+ * @author 凛 (https://github.com/RinOrz)
+ */
+@JvmName("splitToStrings")
+inline fun <C: MutableCollection<String>> CharSequence.splitTo(
+  destination: C,
+  offset: Int = 0,
+  predicate: (Char) -> Boolean
+):C = destination.apply { forEachSplitBy(predicate, offset, ::add) }
