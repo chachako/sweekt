@@ -5,15 +5,18 @@ import com.intellij.codeInspection.SuppressQuickFix
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
+import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.psi.util.PsiTreeUtil.getParentOfType
 import org.jetbrains.kotlin.idea.KotlinLanguage
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.KtNamedDeclaration
+import org.jetbrains.kotlin.psi.KtProperty
 
 /**
  * ```
  * abstract class Example {
  *   abstract val foo: String
- *   val bar = wrap(foo)
+ *   @LazyInit val bar = wrap(foo)
  *                  ^^^ Accessing non-final property 'foo' in constructor
  * }
  * ```
@@ -22,9 +25,8 @@ import org.jetbrains.kotlin.psi.KtNamedDeclaration
  */
 class LeakingSuppressor : InspectionSuppressor {
   override fun isSuppressedFor(element: PsiElement, toolId: String): Boolean {
-    return toolId == "LeakingThis" &&
-      element.language == KotlinLanguage.INSTANCE &&
-      element.parent.let { it is KtNamedDeclaration && it.isLazyInitProperty() }
+    if (element.language != KotlinLanguage.INSTANCE && toolId != "LeakingThis") return false
+    return getParentOfType(element, KtProperty::class.java)?.isLazyInitProperty() == true
   }
 
   override fun getSuppressActions(element: PsiElement?, toolId: String): Array<SuppressQuickFix> =
