@@ -30,12 +30,14 @@ import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
+import org.jetbrains.kotlin.ir.UNDEFINED_OFFSET
 import org.jetbrains.kotlin.ir.builders.IrBuilderWithScope
 import org.jetbrains.kotlin.ir.builders.IrGeneratorContext
 import org.jetbrains.kotlin.ir.builders.Scope
 import org.jetbrains.kotlin.ir.builders.declarations.IrFieldBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.IrFunctionBuilder
 import org.jetbrains.kotlin.ir.builders.declarations.IrPropertyBuilder
+import org.jetbrains.kotlin.ir.builders.declarations.addDefaultGetter
 import org.jetbrains.kotlin.ir.builders.declarations.addValueParameter
 import org.jetbrains.kotlin.ir.builders.declarations.buildField
 import org.jetbrains.kotlin.ir.builders.declarations.buildFun
@@ -48,6 +50,7 @@ import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.builders.irSet
 import org.jetbrains.kotlin.ir.builders.irSetField
 import org.jetbrains.kotlin.ir.declarations.IrClass
+import org.jetbrains.kotlin.ir.declarations.IrDeclaration
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationContainer
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationParent
@@ -66,8 +69,11 @@ import org.jetbrains.kotlin.ir.expressions.IrConstructorCall
 import org.jetbrains.kotlin.ir.expressions.IrExpression
 import org.jetbrains.kotlin.ir.expressions.IrGetField
 import org.jetbrains.kotlin.ir.expressions.IrGetValue
+import org.jetbrains.kotlin.ir.expressions.IrReturn
 import org.jetbrains.kotlin.ir.expressions.IrStatementOrigin
 import org.jetbrains.kotlin.ir.expressions.IrWhen
+import org.jetbrains.kotlin.ir.expressions.getTypeArgument
+import org.jetbrains.kotlin.ir.expressions.impl.IrCallImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrWhenImpl
 import org.jetbrains.kotlin.ir.symbols.IrClassSymbol
 import org.jetbrains.kotlin.ir.symbols.IrSimpleFunctionSymbol
@@ -76,6 +82,7 @@ import org.jetbrains.kotlin.ir.types.classOrNull
 import org.jetbrains.kotlin.ir.types.classifierOrNull
 import org.jetbrains.kotlin.ir.types.getClass
 import org.jetbrains.kotlin.ir.types.isArray
+import org.jetbrains.kotlin.ir.util.DeepCopyIrTreeWithSymbols
 import org.jetbrains.kotlin.ir.util.IrMessageLogger
 import org.jetbrains.kotlin.ir.util.functions
 import org.jetbrains.kotlin.ir.util.isAnnotationClass
@@ -83,6 +90,8 @@ import org.jetbrains.kotlin.ir.util.isInterface
 import org.jetbrains.kotlin.ir.util.isObject
 import org.jetbrains.kotlin.ir.util.isPrimitiveArray
 import org.jetbrains.kotlin.ir.util.parentClassOrNull
+import org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid
+import org.jetbrains.kotlin.ir.visitors.transformChildrenVoid
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.util.OperatorNameConventions
 
@@ -98,18 +107,6 @@ internal abstract class AbstractIrTransformer(
   val irBuiltIns get() = pluginContext.irBuiltIns
 
   private val messenger = pluginContext.createDiagnosticReporter("Sweekt.${this.javaClass.simpleName}")
-//  private val joinedDeclarations = mutableMapOf<IrDeclarationContainer, MutableList<IrDeclaration>>()
-//
-//  private fun IrDeclaration.joinTo(container: IrDeclarationContainer) =
-//    joinedDeclarations.getOrPut(container) { mutableListOf() }.add(this)
-//
-//  override fun visitFileNew(declaration: IrFile): IrFile = super.visitFileNew(declaration).apply {
-//    joinedDeclarations[declaration]?.let { declarations += it }
-//  }
-//
-//  override fun visitClassNew(declaration: IrClass): IrStatement = super.visitClassNew(declaration).apply {
-//    joinedDeclarations[declaration]?.let { declaration.declarations += it }
-//  }
 
   inline fun log(logging: () -> Any) {
     if (configuration.get(SweektConfigurationKeys.isLogging, false))
@@ -266,17 +263,19 @@ internal abstract class AbstractIrTransformer(
 
   inline fun IrProperty.createGetter(builder: IrFunctionBuilder.() -> Unit = {}): IrSimpleFunction =
     irFactory.buildFun {
-      parentClassOrNull
       name = Name.special("<get-${this@createGetter.name}>")
       origin = IrDeclarationOrigin.DEFAULT_PROPERTY_ACCESSOR
       returnType = type
+      getter?.let(::updateFrom)
       builder()
     }.also { getter ->
       getter.parent = this@createGetter.parent
       getter.correspondingPropertySymbol = this@createGetter.symbol
       getter.dispatchReceiverParameter = getter.thisReceiver
-      getter.body = getter.buildIr {
-        irExprBody(irReturn(irGetProperty(getter.dispatchReceiverParameter?.let(::irGet), this@createGetter)))
+      if (backingField != null) {
+        getter.body = getter.buildIr(UNDEFINED_OFFSET, UNDEFINED_OFFSET) {
+          irReturnExprBody(irGetField(getter.dispatchReceiverParameter?.let(::irGet), this@createGetter))
+        }
       }
     }
 
@@ -285,22 +284,17 @@ internal abstract class AbstractIrTransformer(
       name = Name.special("<set-${this@createSetter.name}>")
       origin = IrDeclarationOrigin.DEFAULT_PROPERTY_ACCESSOR
       returnType = pluginContext.irBuiltIns.unitType
+      setter?.let(::updateFrom)
       builder()
     }.also { setter ->
       setter.parent = this@createSetter.parent
       setter.correspondingPropertySymbol = this@createSetter.symbol
       setter.dispatchReceiverParameter = setter.thisReceiver
-      val valueParam = setter.addValueParameter("value", type)
-      setter.body = setter.buildIr {
-        irExprBody(
-          irReturn(
-            irSetProperty(
-              setter.dispatchReceiverParameter?.let(::irGet),
-              this@createSetter,
-              irGet(valueParam)
-            )
-          )
-        )
+      val valueParam = setter.addValueParameter(Name.special("<set-?>"), type)
+      if (backingField != null) {
+        setter.body = setter.buildIr(UNDEFINED_OFFSET, UNDEFINED_OFFSET) {
+          irExprBody(irSetField(setter.dispatchReceiverParameter?.let(::irGet), this@createSetter, irGet(valueParam)))
+        }
       }
     }
 
@@ -314,6 +308,8 @@ internal abstract class AbstractIrTransformer(
     get() = superTypes.mapNotNull { it.classifierOrNull.castOrNull<IrClassSymbol>()?.owner }
       .filterNot { it.isInterface || it.isAnnotationClass }
       .singleOrNull()
+
+  val IrDeclaration.parentContainer: IrDeclarationContainer get() = parent.cast()
 
   inline fun IrClass.findOverridenFunctionSymbols(predicate: (IrFunction) -> Boolean): List<IrSimpleFunctionSymbol> =
     findOverridenFunctions(predicate).map { it.symbol }
@@ -477,6 +473,77 @@ internal abstract class AbstractIrTransformer(
       getter = old.getter?.also { it.correspondingPropertySymbol = symbol }
       setter = old.setter?.also { it.correspondingPropertySymbol = symbol }
       backingField = old.backingField?.also { it.correspondingPropertySymbol = symbol }
+    }
+  }
+
+  fun IrFunction.copy(builder: IrFunctionBuilder.() -> Unit = {}) = let { old ->
+    this.castOrNull<IrSimpleFunction>()?.copy(builder) ?: irFactory.buildFun {
+      name = old.name
+      originalDeclaration = old
+      updateFrom(old)
+      builder()
+    }.apply {
+      parent = old.parent
+      annotations = old.annotations
+      metadata = old.metadata
+      returnType = old.returnType
+      dispatchReceiverParameter = old.dispatchReceiverParameter
+      extensionReceiverParameter = old.extensionReceiverParameter
+      valueParameters = old.valueParameters
+      body = old.body
+    }
+  }
+
+  fun IrSimpleFunction.copy(builder: IrFunctionBuilder.() -> Unit = {}) = let { old ->
+    irFactory.buildFun {
+      name = old.name
+      originalDeclaration = old
+      updateFrom(old)
+      builder()
+    }.apply {
+      parent = old.parent
+      annotations = old.annotations
+      metadata = old.metadata
+      attributeOwnerId = old.attributeOwnerId
+      overriddenSymbols = old.overriddenSymbols
+      correspondingPropertySymbol = old.correspondingPropertySymbol
+      returnType = old.returnType
+      dispatchReceiverParameter = old.dispatchReceiverParameter
+      extensionReceiverParameter = old.extensionReceiverParameter
+      valueParameters = old.valueParameters
+      body = old.body
+    }
+  }
+
+  fun IrCall.copy(
+    startOffset: Int = this.startOffset,
+    endOffset: Int = this.endOffset,
+    type: IrType = this.type,
+    symbol: IrSimpleFunctionSymbol = this.symbol,
+    typeArgumentsCount: Int = this.typeArgumentsCount,
+    valueArgumentsCount: Int = this.valueArgumentsCount,
+    origin: IrStatementOrigin? = this.origin,
+    superQualifierSymbol: IrClassSymbol? = this.superQualifierSymbol,
+  ) = let { old ->
+    IrCallImpl(
+      startOffset,
+      endOffset,
+      type,
+      symbol,
+      typeArgumentsCount,
+      valueArgumentsCount,
+      origin,
+      superQualifierSymbol
+    ).apply {
+      attributeOwnerId = old.attributeOwnerId
+      dispatchReceiver = old.dispatchReceiver
+      extensionReceiver = old.extensionReceiver
+      for (i in 0 until old.valueArgumentsCount) {
+        putValueArgument(i, old.getValueArgument(i))
+      }
+      for (i in 0 until old.typeArgumentsCount) {
+        putTypeArgument(i, old.getTypeArgument(i))
+      }
     }
   }
 }
