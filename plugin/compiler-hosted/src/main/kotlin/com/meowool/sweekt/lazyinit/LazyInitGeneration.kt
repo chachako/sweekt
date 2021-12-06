@@ -190,7 +190,8 @@ class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrG
           expression.isAccessThisClass() -> IrGetValueImpl(startOffset, endOffset, function.thisReceiver!!.symbol)
           else -> super.visitGetValue(expression)
         }
-      }, null
+      },
+      null
     )
   }
 }

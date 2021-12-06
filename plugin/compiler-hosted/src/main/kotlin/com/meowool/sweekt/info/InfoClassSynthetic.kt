@@ -20,7 +20,6 @@
  */
 package com.meowool.sweekt.info
 
-import com.meowool.sweekt.Info
 import com.meowool.sweekt.SweektNames
 import com.meowool.sweekt.SweektNames.InfoSynthetic
 import com.meowool.sweekt.SweektNames.Root

@@ -24,10 +24,6 @@ package com.meowool.sweekt {
     method public static Boolean? getAnnotationBooleanOrNull(org.jetbrains.kotlin.ir.expressions.IrConstructorCall, String name);
   }
 
-  public final class FinalFieldTransformer extends org.jetbrains.kotlin.ir.util.DeepCopyIrTreeWithSymbols {
-    ctor public FinalFieldTransformer(java.util.Set<? extends org.jetbrains.kotlin.ir.declarations.IrProperty> finalProperties, org.jetbrains.kotlin.ir.util.SymbolRemapper symbolRemapper, org.jetbrains.kotlin.ir.util.TypeRemapper typeRemapper, optional org.jetbrains.kotlin.ir.util.SymbolRenamer symbolRenamer);
-  }
-
   @com.google.auto.service.AutoService(CommandLineProcessor::class) public final class SweektCommandLineProcessor implements org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor {
     ctor public SweektCommandLineProcessor();
     method public String getPluginId();
@@ -62,8 +58,13 @@ package com.meowool.sweekt {
     method public error.NonExistentClass! getInfoSynthetic();
     method public error.NonExistentClass! getJvmField();
     method public error.NonExistentClass! getLazyInit();
+    method public error.NonExistentClass! getRealSuspendGetter();
+    method public error.NonExistentClass! getRealSuspendSetter();
     method public error.NonExistentClass! getResetLazyValue();
     method public error.NonExistentClass! getResetLazyValues();
+    method public error.NonExistentClass! getSuspend();
+    method public error.NonExistentClass! getSuspendGetter();
+    method public error.NonExistentClass! getSuspendSetter();
     method public error.NonExistentClass! root();
     property public final error.NonExistentClass! ContentEquals;
     property public final error.NonExistentClass! FullInfoSynthetic;
@@ -72,8 +73,13 @@ package com.meowool.sweekt {
     property public final error.NonExistentClass! InfoSynthetic;
     property public final error.NonExistentClass! JvmField;
     property public final error.NonExistentClass! LazyInit;
+    property public final error.NonExistentClass! Suspend;
+    property public final error.NonExistentClass! realSuspendGetter;
+    property public final error.NonExistentClass! realSuspendSetter;
     property public final error.NonExistentClass! resetLazyValue;
     property public final error.NonExistentClass! resetLazyValues;
+    property public final error.NonExistentClass! suspendGetter;
+    property public final error.NonExistentClass! suspendSetter;
     field public static final com.meowool.sweekt.SweektNames INSTANCE;
     field public static final String Root = "com.meowool.sweekt";
   }
@@ -154,6 +160,7 @@ package com.meowool.sweekt.info {
     field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory0<com.intellij.psi.PsiElement> NeedPrimaryConstructor;
     field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<com.intellij.psi.PsiElement,java.lang.String> NotAllowedOverrideSynthetic;
     field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<com.intellij.psi.PsiElement,java.lang.String> PropertyAndParamNameConflict;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<com.intellij.psi.PsiElement,java.lang.String> SuperInfoTypes;
     field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<com.intellij.psi.PsiElement,java.lang.String> UnsupportedSpecialClass;
   }
 
@@ -211,6 +218,35 @@ package com.meowool.sweekt.lazyinit {
   public final class ResetValueChecker implements org.jetbrains.kotlin.resolve.calls.checkers.CallChecker {
     method public void check(org.jetbrains.kotlin.resolve.calls.model.ResolvedCall<?> resolvedCall, com.intellij.psi.PsiElement reportOn, org.jetbrains.kotlin.resolve.calls.checkers.CallCheckerContext context);
     field public static final com.meowool.sweekt.lazyinit.ResetValueChecker INSTANCE;
+  }
+
+}
+
+package com.meowool.sweekt.suspend {
+
+  public final class SuspendPropertyCallChecker implements org.jetbrains.kotlin.resolve.calls.checkers.CallChecker {
+    method public void check(org.jetbrains.kotlin.resolve.calls.model.ResolvedCall<?> resolvedCall, com.intellij.psi.PsiElement reportOn, org.jetbrains.kotlin.resolve.calls.checkers.CallCheckerContext context);
+    field public static final com.meowool.sweekt.suspend.SuspendPropertyCallChecker INSTANCE;
+  }
+
+  public final class SuspendPropertyChecker implements org.jetbrains.kotlin.resolve.checkers.DeclarationChecker {
+    method public void check(org.jetbrains.kotlin.psi.KtDeclaration declaration, org.jetbrains.kotlin.descriptors.DeclarationDescriptor descriptor, org.jetbrains.kotlin.resolve.checkers.DeclarationCheckerContext context);
+    field public static final com.meowool.sweekt.suspend.SuspendPropertyChecker INSTANCE;
+  }
+
+  public final class SuspendPropertyErrors extends com.meowool.sweekt.AbstractErrors {
+    field public static final com.meowool.sweekt.suspend.SuspendPropertyErrors INSTANCE;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<com.intellij.psi.PsiElement,org.jetbrains.kotlin.descriptors.Named> RequiredSuspendGetter;
+    field public static final org.jetbrains.kotlin.diagnostics.DiagnosticFactory1<com.intellij.psi.PsiElement,org.jetbrains.kotlin.descriptors.Named> RequiredSuspendSetter;
+  }
+
+  @com.google.auto.service.AutoService(DefaultErrorMessages.Extension::class) public static final class SuspendPropertyErrors.Messages extends com.meowool.sweekt.AbstractErrors.Messages {
+    ctor public SuspendPropertyErrors.Messages();
+  }
+
+  public final class SuspendPropertyGeneration implements org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension {
+    ctor public SuspendPropertyGeneration(org.jetbrains.kotlin.config.CompilerConfiguration configuration);
+    method public void generate(org.jetbrains.kotlin.ir.declarations.IrModuleFragment moduleFragment, org.jetbrains.kotlin.backend.common.extensions.IrPluginContext pluginContext);
   }
 
 }

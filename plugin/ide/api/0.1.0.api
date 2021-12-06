@@ -1,1 +1,14 @@
 // Signature format: 4.0
+package com.meowool.sweekt {
+
+  public final class LeakingSuppressor implements com.intellij.codeInspection.InspectionSuppressor {
+    ctor public LeakingSuppressor();
+    method public com.intellij.codeInspection.SuppressQuickFix![] getSuppressActions(com.intellij.psi.PsiElement? element, String toolId);
+    method public boolean isSuppressedFor(com.intellij.psi.PsiElement element, String toolId);
+  }
+
+  public final class UtilsKt {
+  }
+
+}
+

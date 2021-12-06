@@ -263,18 +263,17 @@ package com.meowool.sweekt {
   }
 
   public final class JvmDescriptorsKt {
-    method public static boolean isJvmArrayTypeDescriptor(CharSequence);
-    method public static inline boolean isJvmPrimitiveType(CharSequence);
-    method public static boolean isJvmPrimitiveTypeDescriptor(CharSequence);
+    method public static boolean isJvmArrayTypeDescriptor(CharSequence?);
+    method public static inline boolean isJvmPrimitiveType(CharSequence?);
+    method public static boolean isJvmPrimitiveTypeDescriptor(CharSequence?);
     method public static boolean isJvmPrimitiveTypeDescriptor(char);
-    method public static boolean isJvmPrimitiveTypeName(CharSequence);
-    method public static boolean isJvmTypeDescriptor(CharSequence);
-    method public static String toJvmPackageName(CharSequence);
-    method public static String toJvmQualifiedTypeName(CharSequence, optional boolean canonical, optional char separator);
-    method public static String toJvmQualifiedTypeName(CharSequence, optional boolean canonical, String separator);
+    method public static boolean isJvmPrimitiveTypeName(CharSequence?);
+    method public static boolean isJvmTypeDescriptor(CharSequence?);
+    method public static String toJvmPackageName(CharSequence?);
+    method public static String toJvmQualifiedTypeName(CharSequence?, optional boolean canonical, optional Object separator);
     method public static String toJvmTypeDescriptor(CharSequence, optional char separator);
-    method public static String toJvmTypeDescriptor(CharSequence, String separator);
-    method public static String toJvmTypeSimpleName(CharSequence);
+    method public static String toJvmTypeDescriptor(CharSequence?, String separator);
+    method public static String toJvmTypeSimpleName(CharSequence?);
   }
 
   @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention) @kotlin.annotation.Target(allowedTargets=kotlin.annotation.AnnotationTarget) public @interface LazyInit {
@@ -385,8 +384,18 @@ package com.meowool.sweekt {
     method public static inline infix String or(String?, String another);
     method public static String removeBlanks(String);
     method public static String removeLineBreaks(String);
+    method public static <C extends java.util.Collection<java.lang.String>> C splitToStrings(CharSequence, C destination, char delimiter, optional int offset);
+    method public static inline <C extends java.util.Collection<java.lang.String>> C splitToStrings(CharSequence, C destination, optional int offset, kotlin.jvm.functions.Function1<? super java.lang.Character,java.lang.Boolean> predicate);
     method public static inline String? takeIfEmpty(String);
     method public static inline String? takeIfNotEmpty(String?);
+  }
+
+  @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention) @kotlin.annotation.Target(allowedTargets=kotlin.annotation.AnnotationTarget) public @interface Suspend {
+  }
+
+  public final class SuspendPropertyKt {
+    method public static <R> R! suspendGetter(kotlin.jvm.functions.Function1<? super kotlin.coroutines.Continuation<? super R>,?> block);
+    method public static inline void suspendSetter(kotlin.jvm.functions.Function1<? super kotlin.coroutines.Continuation<? super kotlin.Unit>,?> block);
   }
 
   public final class Systems_jvmKt {
@@ -412,6 +421,9 @@ package com.meowool.sweekt {
     method public static inline infix boolean equalsClass(Object, Class<?> javaClass);
     method public static inline infix boolean equalsClass(Object, kotlin.reflect.KClass<?> KClass);
     method public static inline <reified T> boolean equalsClass(Object);
+  }
+
+  public final class UnionTypesKt {
   }
 
   public final class WindowsKt {

@@ -30,6 +30,7 @@ commonTarget {
   }
   test.dependencies {
     implementationOf(
+      Libs.KotlinX.Datetime,
       Libs.Kotest.Runner.Junit5.Jvm,
       Libs.Kotest.Assertions.KotlinX.Time,
     )
