@@ -29,6 +29,9 @@ import com.meowool.sweekt.info.InfoFunctionChecker
 import com.meowool.sweekt.lazyinit.LazyInitChecker
 import com.meowool.sweekt.lazyinit.LazyInitGeneration
 import com.meowool.sweekt.lazyinit.ResetValueChecker
+import com.meowool.sweekt.suspend.SuspendPropertyCallChecker
+import com.meowool.sweekt.suspend.SuspendPropertyChecker
+import com.meowool.sweekt.suspend.SuspendPropertyGeneration
 import com.meowool.toolkit.compiler_hosted.BuildConfig
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
@@ -74,6 +77,8 @@ class SweektComponentRegistrar : ComponentRegistrar {
   override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
     IrGenerationExtension.registerExtension(project, LazyInitGeneration(configuration))
 
+    IrGenerationExtension.registerExtension(project, SuspendPropertyGeneration(configuration))
+
     IrGenerationExtension.registerExtension(project, InfoClassGeneration(configuration))
     SyntheticResolveExtension.registerExtension(project, InfoClassSynthetic())
 
@@ -88,8 +93,11 @@ class SweektComponentRegistrar : ComponentRegistrar {
       container: StorageComponentContainer,
       platform: TargetPlatform,
       moduleDescriptor: ModuleDescriptor
-    ) = arrayOf(InfoClassChecker, InfoFunctionChecker, LazyInitChecker, ResetValueChecker)
-      .forEach(container::useInstance)
+    ) = arrayOf(
+      InfoClassChecker, InfoFunctionChecker,
+      LazyInitChecker, ResetValueChecker,
+      SuspendPropertyChecker, SuspendPropertyCallChecker
+    ).forEach(container::useInstance)
   }
 }
 

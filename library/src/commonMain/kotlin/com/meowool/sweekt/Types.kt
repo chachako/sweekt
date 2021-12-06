@@ -39,7 +39,7 @@ inline fun <reified T> Any?.cast(): T {
   contract {
     returns() implies (this@cast is T)
   }
-  return this as T
+  return this as? T ?: throw ClassCastException("$this cannot be cast to ${T::class}")
 }
 
 /**

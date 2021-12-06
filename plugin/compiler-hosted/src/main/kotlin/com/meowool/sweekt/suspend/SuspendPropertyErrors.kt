@@ -18,41 +18,31 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-androidLib()
+package com.meowool.sweekt.suspend
 
-commonTarget {
-  main.dependencies {
-    apiOf(
-      Libs.Kotlin.Stdlib.Common,
-      Libs.KotlinX.Coroutines.Core,
-    )
-    compileOnly(Libs.KotlinX.Datetime)
-  }
-  test.dependencies {
-    implementationOf(
-      Libs.Kotest.Runner.Junit5.Jvm,
-      Libs.Kotest.Assertions.KotlinX.Time,
-    )
-  }
-}
+import com.google.auto.service.AutoService
+import com.meowool.sweekt.AbstractErrors
+import org.jetbrains.kotlin.diagnostics.rendering.DefaultErrorMessages
+import org.jetbrains.kotlin.diagnostics.rendering.Renderers
 
-jvmTarget {
-  configureTestRunTask {
-    useJUnitPlatform()
-  }
-}
+/**
+ * @author 凛 (https://github.com/RinOrz)
+ */
+object SuspendPropertyErrors : AbstractErrors() {
+  @JvmField val RequiredSuspendGetter = renderError(
+    "@Suspend Property ''{0}'' getter must return `suspendGetter`.",
+    Renderers.NAME
+  )
 
-androidTarget {
-  main.dependsOn(jvmMainSourceSet)
-  test.dependsOn(jvmTestSourceSet)
+  @JvmField val RequiredSuspendSetter = renderError(
+    "@Suspend Property ''{0}'' setter must be call `suspendSetter`.",
+    Renderers.NAME
+  )
 
-  main.dependencies {
-    api(Libs.AndroidX.Core.Ktx)
-    compileOnlyOf(
-      Libs.AndroidX.Lifecycle.ViewModel,
-      Libs.AndroidX.Lifecycle.Livedata,
-      Libs.AndroidX.Activity.Ktx,
-      Libs.AndroidX.Fragment.Ktx,
-    )
+  @AutoService(DefaultErrorMessages.Extension::class)
+  class Messages : AbstractErrors.Messages(renderers)
+
+  init {
+    initFactory(Messages())
   }
 }

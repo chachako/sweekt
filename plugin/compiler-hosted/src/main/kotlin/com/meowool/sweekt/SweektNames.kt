@@ -37,6 +37,12 @@ object SweektNames {
   val resetLazyValue = fqNameFor("resetLazyValue")
   val resetLazyValues = fqNameFor("resetLazyValues")
 
+  val Suspend = fqNameFor("Suspend")
+  val suspendGetter = fqNameFor("suspendGetter")
+  val suspendSetter = fqNameFor("suspendSetter")
+  val realSuspendGetter = fqNameFor("-\$suspendGetter")
+  val realSuspendSetter = fqNameFor("-\$suspendSetter")
+
   val Info = fqNameFor("Info")
   val InfoInvisible = fqNameFor("Info.Invisible")
   val InfoSynthetic = FqName("Info.Synthetic")

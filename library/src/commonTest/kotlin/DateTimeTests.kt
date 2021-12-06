@@ -2,6 +2,10 @@ import com.meowool.sweekt.datetime.nowDateTime
 import com.meowool.sweekt.datetime.nowInstant
 import com.meowool.sweekt.datetime.toDateTime
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.kotlinx.datetime.shouldBeAfter
+import io.kotest.matchers.kotlinx.datetime.shouldHaveSameDayAs
+import io.kotest.matchers.kotlinx.datetime.shouldHaveSameMonthAs
+import io.kotest.matchers.kotlinx.datetime.shouldHaveSameYearAs
 import io.kotest.matchers.shouldBe
 
 /**
@@ -15,7 +19,7 @@ class DateTimeTests : StringSpec({
 
   "effective instant time" {
     val instantTime = instant.toDateTime()
-    instant.shouldBeAfter()
+    nowInstant shouldBeAfter instant
     dateTime shouldHaveSameYearAs instantTime
     dateTime shouldHaveSameMonthAs instantTime
     dateTime shouldHaveSameDayAs instantTime

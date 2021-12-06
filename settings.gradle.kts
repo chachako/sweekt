@@ -15,16 +15,6 @@ plugins {
   id("com.meowool.gradle.toolkit") version "0.1.0-SNAPSHOT"
 }
 
-buildscript {
-  configurations.all {
-    // Check for updates every build
-    resolutionStrategy {
-      force("com.android.tools.build:gradle:4.2.1")
-      cacheChangingModulesFor(0, TimeUnit.SECONDS)
-    }
-  }
-}
-
 dependencyMapper {
   libraries {
     map("com.github.tschuchortdev:kotlin-compile-testing" to "KotlinCompileTesting")

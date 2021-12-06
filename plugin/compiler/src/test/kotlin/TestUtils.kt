@@ -18,7 +18,7 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("MemberVisibilityCanBePrivate", "NestedLambdaShadowedImplicitParameter")
+@file:Suppress("MemberVisibilityCanBePrivate", "NestedLambdaShadowedImplicitParameter", "HasPlatformType")
 
 import com.meowool.sweekt.SweektCommandLineProcessor
 import com.meowool.sweekt.SweektComponentRegistrar
@@ -28,15 +28,21 @@ import com.tschuchort.compiletesting.KotlinCompilation
 import com.tschuchort.compiletesting.KotlinCompilation.Result
 import com.tschuchort.compiletesting.PluginOption
 import com.tschuchort.compiletesting.SourceFile
+import io.kotest.core.config.configuration
 import org.intellij.lang.annotations.Language
+import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
+import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import java.util.concurrent.atomic.AtomicInteger
 
-private var sourcesId = AtomicInteger()
+private val sourcesId = AtomicInteger()
 
 internal fun compile(
   @Language("kotlin") vararg sources: String,
+  compilerPlugins: List<ComponentRegistrar> = listOf(SweektComponentRegistrar()),
+  commandLineProcessors: List<CommandLineProcessor> = listOf(SweektCommandLineProcessor()),
+  pluginOptions: List<PluginOption> = listOf(PluginOption(BuildConfig.CompilerId, "isLogging", "true")),
   block: Result.(lineCalculator: (Int) -> Int) -> Unit = { }
 ): Result = KotlinCompilation().also {
   it.sources = sources.map { content ->
@@ -45,10 +51,10 @@ internal fun compile(
       "package $Root\n\n" + content.trimIndent()
     )
   }
-  it.compilerPlugins = listOf(SweektComponentRegistrar())
-  it.commandLineProcessors = listOf(SweektCommandLineProcessor())
-  it.pluginOptions = listOf(PluginOption(BuildConfig.CompilerId, "isLogging", "true"))
-  it.kotlincArguments = listOf("-Xjvm-default=compatibility")
+  it.compilerPlugins = compilerPlugins
+  it.commandLineProcessors = commandLineProcessors
+  it.pluginOptions = pluginOptions
+  it.kotlincArguments = listOf("-Xjvm-default=compatibility", "-jvm-target=11")
   it.inheritClassPath = true
   it.verbose = false
   it.useIR = true

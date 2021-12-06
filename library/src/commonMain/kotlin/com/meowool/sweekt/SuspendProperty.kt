@@ -1,3 +1,5 @@
+@file:Suppress("FunctionName")
+
 package com.meowool.sweekt
 
 /**
@@ -6,47 +8,31 @@ package com.meowool.sweekt
  * This means that the marked property can only be got in suspend context:
  * ```
  * @SuspendGetter
- * val greeting: String
+ * var greeting: String
  *   get() = suspendGetter { ... }
- *
- * fun a() = print(greeting)
- *                 ^^^^^^^^ ERROR: Property is only allowed to be got in the suspend context.
- *
- * suspend fun b() = print(greeting) // OK
- * ```
- *
- * @see suspendGetter
- * @author 凛 (https://github.com/RinOrz)
- */
-@Target(AnnotationTarget.PROPERTY)
-@Retention(AnnotationRetention.SOURCE)
-annotation class SuspendGetter
-
-/**
- * Represents that the setter of the property is suspended.
- *
- * This means that the marked property can only be changed value in suspend context：
- * ```
- * @SuspendGetter
- * var greeting: String = "Hello sweekt"
  *   set(value) = suspendSetter { ... }
  *
  * fun a() {
  *   greeting = "Hello world"
- *   ^^^^^^^^^^ ERROR: Property is only allowed to be changed value in the suspend context.
+ *   ^^^^^^^^ ERROR: Property is only allowed to be changed value in the suspend context.
+ *
+ *   print(greeting)
+ *         ^^^^^^^^ ERROR: Property is only allowed to be got in the suspend context.
  * }
  *
  * suspend fun b() {
+ *   print(greeting) // OK
  *   greeting = "Hello world" // OK
  * }
  * ```
  *
  * @see suspendGetter
+ * @see suspendSetter
  * @author 凛 (https://github.com/RinOrz)
  */
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.SOURCE)
-annotation class SuspendSetter
+annotation class Suspend
 
 /**
  * Runs a 'suspend' getter block and returns the result.
@@ -69,7 +55,7 @@ annotation class SuspendSetter
  * }
  * ```
  *
- * @see SuspendGetter
+ * @see Suspend
  * @author 凛 (https://github.com/RinOrz)
  */
 @Suppress("UNUSED_PARAMETER")
@@ -101,8 +87,21 @@ fun <R> suspendGetter(block: suspend () -> R): R = compilerImplementation()
  * print(setValue(100)) // 100
  * ```
  *
- * @see SuspendSetter
+ * @see Suspend
  * @author 凛 (https://github.com/RinOrz)
  */
 @Suppress("UNUSED_PARAMETER")
-fun suspendSetter(block: suspend () -> Unit): Unit = compilerImplementation()
+inline fun suspendSetter(crossinline block: suspend () -> Unit): Unit = compilerImplementation()
+
+
+/////////////////////////////////////////////////////////////////////////////
+////                            Internal APIs                            ////
+/////////////////////////////////////////////////////////////////////////////
+
+@InternalSweektCompilerApi
+@Deprecated("@InternalSweektCompilerApi", level = DeprecationLevel.HIDDEN)
+suspend inline fun <R> `-$suspendGetter`(crossinline block: suspend () -> R): R = block()
+
+@InternalSweektCompilerApi
+@Deprecated("@InternalSweektCompilerApi", level = DeprecationLevel.HIDDEN)
+suspend inline fun `-$suspendSetter`(crossinline block: suspend () -> Unit): Unit = block()
