@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 /**
  * The abstract interface of activity or its holder, in order to get activity sometimes.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 interface ActivityHolder {
   /**
@@ -27,7 +27,7 @@ interface ActivityHolder {
  * @see Context.window
  * @see Window.rootLayout
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline val Activity.windowRootLayout: ViewGroup get() = window.rootLayout
 
@@ -37,7 +37,7 @@ inline val Activity.windowRootLayout: ViewGroup get() = window.rootLayout
  * @see Context.findWindow
  * @see Window.rootLayout
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Activity.findWindowRootLayout(): ViewGroup? = window.findRootLayout()
 
@@ -49,7 +49,7 @@ inline fun Activity.findWindowRootLayout(): ViewGroup? = window.findRootLayout()
  *
  * @see activityIntent
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <reified A : Activity> Context.start(
   vararg arguments: Pair<String, *>,
@@ -64,7 +64,7 @@ inline fun <reified A : Activity> Context.start(
  *
  * @see activityIntent
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <reified A : Activity> Fragment.start(
   vararg arguments: Pair<String, *>,

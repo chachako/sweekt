@@ -20,7 +20,7 @@ private const val JavaArraySymbol = "[]"
  * Z = false
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 private fun CharSequence?.isExactJvmTypeDescriptor(): Boolean = this.isNotEmpty()
   && this.first() == DescriptorPrefix
@@ -34,7 +34,7 @@ private fun CharSequence?.isExactJvmTypeDescriptor(): Boolean = this.isNotEmpty(
  * @see CharSequence.isJvmPrimitiveTypeDescriptor
  * @see CharSequence.isJvmPrimitiveTypeName
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence?.isJvmPrimitiveType(): Boolean = isJvmPrimitiveTypeDescriptor() || isJvmPrimitiveTypeName()
 
@@ -49,7 +49,7 @@ inline fun CharSequence?.isJvmPrimitiveType(): Boolean = isJvmPrimitiveTypeDescr
  * int = false
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isJvmPrimitiveTypeDescriptor(): Boolean {
   if (this.isNullOrEmpty()) return false
@@ -70,7 +70,7 @@ fun CharSequence?.isJvmPrimitiveTypeDescriptor(): Boolean {
 /**
  * Returns `true` if this [Char] conforms to the primitive type descriptor of the JVM.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Char.isJvmPrimitiveTypeDescriptor(): Boolean = when (this) {
   'I', 'Z', 'C', 'D', 'F', 'J', 'S', 'B', 'V' -> true
@@ -86,7 +86,7 @@ fun Char.isJvmPrimitiveTypeDescriptor(): Boolean = when (this) {
  * I = false
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isJvmPrimitiveTypeName(): Boolean = this.isNotEmpty() && when (this) {
   "int", "boolean", "char", "double", "float", "long", "short", "byte", "void" -> true
@@ -105,7 +105,7 @@ fun CharSequence?.isJvmPrimitiveTypeName(): Boolean = this.isNotEmpty() && when 
  * [Ljava.lang.String = false
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isJvmArrayTypeDescriptor(): Boolean {
   if (this.isNullOrEmpty()) return false
@@ -132,7 +132,7 @@ fun CharSequence?.isJvmArrayTypeDescriptor(): Boolean {
  * ```
  *
  * @see CharSequence.isJvmPrimitiveTypeDescriptor
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isJvmTypeDescriptor(): Boolean =
   isJvmPrimitiveTypeDescriptor() || isJvmArrayTypeDescriptor() || isExactJvmTypeDescriptor()
@@ -150,7 +150,7 @@ fun CharSequence?.isJvmTypeDescriptor(): Boolean =
  * ```
  *
  * @param separator The separator of the type descriptor after conversion
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.toJvmTypeDescriptor(separator: Char = DescriptorSeparator): String =
   toJvmTypeDescriptor(separator.toString())
@@ -171,7 +171,7 @@ fun CharSequence.toJvmTypeDescriptor(separator: Char = DescriptorSeparator): Str
  *
  * @return Returns the JVM descriptor, if this [CharSequence] is `null` or empty, returns empty string.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.toJvmTypeDescriptor(separator: String): String {
   if (this.isNullOrEmpty()) return ""
@@ -242,7 +242,7 @@ fun CharSequence?.toJvmTypeDescriptor(separator: String): String {
  *
  * @return Returns the JVM qualified name, if this [CharSequence] is `null` or empty, returns empty string.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.toJvmQualifiedTypeName(
   canonical: Boolean = false,
@@ -263,7 +263,7 @@ fun CharSequence?.toJvmQualifiedTypeName(
   }
 
   if (canonical) {
-    qualified = qualified.replace(InnerClassSeparator.toString(), separator)
+    qualified = qualified.removeSuffix(DescriptorSuffix).replace(InnerClassSeparator.toString(), separator)
 
     // If it starts with `[`, we need to change it to `[]`
     while (qualified.startsWith(ArrayDescriptorPrefix)) {
@@ -272,6 +272,9 @@ fun CharSequence?.toJvmQualifiedTypeName(
       )
       arraySymbols += JavaArraySymbol
     }
+  } else if (qualified.first() == DescriptorPrefix && qualified.last() == DescriptorSuffix) {
+    // Only when it starts with `L`, we remove `;`, otherwise it may be a `[Lfoo/bar;` (array descriptor need them)
+    qualified = qualified.substring(1, qualified.lastIndex)
   }
 
   return run {
@@ -304,7 +307,7 @@ fun CharSequence?.toJvmQualifiedTypeName(
  * ```
  *
  * @return Returns the JVM package name, if this [CharSequence] is `null` or empty, returns empty string.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.toJvmTypeSimpleName(): String =
   this.toJvmQualifiedTypeName(canonical = true).substringAfterLast(TypeSeparator)
@@ -319,7 +322,7 @@ fun CharSequence?.toJvmTypeSimpleName(): String =
  * ```
  *
  * @return Returns the JVM package name, if this [CharSequence] is `null` or empty, returns empty string.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.toJvmPackageName(): String {
   if (this.isNullOrEmpty()) return ""

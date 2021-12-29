@@ -90,7 +90,7 @@ import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.util.OperatorNameConventions
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @OptIn(ObsoleteDescriptorBasedAPI::class)
 internal abstract class AbstractIrTransformer(

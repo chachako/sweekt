@@ -27,7 +27,7 @@ import org.jetbrains.kotlin.ir.expressions.IrConstructorCall
 import org.jetbrains.kotlin.resolve.annotations.argumentValue
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class Info(annotationData: Any) {
   val generateCopy = annotationData.getBooleanArgument("generateCopy") ?: true
@@ -45,7 +45,7 @@ class Info(annotationData: Any) {
 }
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class InfoInvisible(annotationData: Any) {
   val generateCopy = annotationData.getBooleanArgument("generateCopy") ?: false
@@ -56,7 +56,7 @@ class InfoInvisible(annotationData: Any) {
 }
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 private fun Any.getBooleanArgument(name: String): Boolean? = when (this) {
   is AnnotationDescriptor -> argumentValue(name)?.value?.castOrNull<Boolean>()

@@ -11,7 +11,7 @@ import android.view.Window
 /**
  * The abstract interface of context or its holder, in order to get context sometimes.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 interface ContextHolder {
   /**
@@ -24,7 +24,7 @@ interface ContextHolder {
  * Returns [Activity] if this context is an activity, otherwise throw the [TypeCastException].
  *
  * @see Context.asActivityOrNull
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Context.asActivity(): Activity = asActivityOrNull()
   ?: throw TypeCastException("Cannot use a context instance of type ${this.javaClass.name} as an activity.")
@@ -33,7 +33,7 @@ fun Context.asActivity(): Activity = asActivityOrNull()
  * Returns [Activity] if this context is an activity, otherwise returns `null`.
  *
  * @see Context.asActivity
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Context.asActivityOrNull(): Activity? = this.castOrNull()
   ?: this.castOrNull<ContextWrapper>()?.baseContext?.asActivityOrNull()
@@ -44,7 +44,7 @@ fun Context.asActivityOrNull(): Activity? = this.castOrNull()
  * Get the window from this context.
  *
  * @see Context.findWindow
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline val Context.window: Window get() = this.asActivityOrNull()?.window
   ?: error("Cannot find window from the context of a non-activity instance, accident happened on `${this.javaClass.name}`.")
@@ -53,7 +53,7 @@ inline val Context.window: Window get() = this.asActivityOrNull()?.window
  * Find the window from this context and return, if not found, returns `null`.
  *
  * @see Context.window
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Context.findWindow(): Window? = this.asActivityOrNull()?.window
 
@@ -62,7 +62,7 @@ inline fun Context.findWindow(): Window? = this.asActivityOrNull()?.window
  *
  * @see Context.window
  * @see Window.rootLayout
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline val Context.windowRootLayout: ViewGroup get() = window.rootLayout
 
@@ -71,6 +71,6 @@ inline val Context.windowRootLayout: ViewGroup get() = window.rootLayout
  *
  * @see Context.findWindow
  * @see Window.rootLayout
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Context.findWindowRootLayout(): ViewGroup? = findWindow()?.rootLayout

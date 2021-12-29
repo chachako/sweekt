@@ -52,7 +52,7 @@ import org.jetbrains.kotlin.types.typeUtil.supertypes
 /**
  * [Copied](https://github.com/JetBrains/kotlin/blob/1.6.20/compiler/frontend/src/org/jetbrains/kotlin/resolve/calls/checkers/coroutineCallChecker.kt)
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 object SuspendPropertyCallChecker : CallChecker {
   override fun check(resolvedCall: ResolvedCall<*>, reportOn: PsiElement, context: CallCheckerContext) {

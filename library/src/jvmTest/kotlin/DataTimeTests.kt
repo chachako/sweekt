@@ -24,7 +24,7 @@ import java.time.Month
 /**
  * Tests for DataTimes.kt
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class DataTimeTests : StringSpec({
   val instant = nowInstant

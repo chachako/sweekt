@@ -56,7 +56,7 @@ import org.jetbrains.kotlin.ir.visitors.transformChildrenVoid
 import org.jetbrains.kotlin.name.Name
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @OptIn(ObsoleteDescriptorBasedAPI::class)
 class SuspendPropertyGeneration(private val configuration: CompilerConfiguration) : IrGenerationExtension {

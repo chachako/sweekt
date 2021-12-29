@@ -7,7 +7,7 @@ package com.meowool.sweekt
  *
  * The terms and units used in this class are based on [Binary Prefix](https://en.wikipedia.org/wiki/Binary_prefix)
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 interface DataSizeUnits {
   /**
@@ -96,7 +96,7 @@ expect object DefaultDataSizeUnits : DataSizeUnits
  * @param useSI to see [DataSizeUnits.useSI].
  *
  * @see DataSizeUnits
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun Long.toReadableSize(
   precision: Int = 2,
@@ -118,7 +118,7 @@ expect fun Long.toReadableSize(
  * @param useSI to see [DataSizeUnits.useSI].
  *
  * @see DataSizeUnits
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun Number.toReadableSize(
   precision: Int = 2,

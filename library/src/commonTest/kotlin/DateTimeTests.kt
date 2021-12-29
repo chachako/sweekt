@@ -11,7 +11,7 @@ import io.kotest.matchers.shouldBe
 /**
  * Tests for /datetime
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class DateTimeTests : StringSpec({
   val instant = nowInstant

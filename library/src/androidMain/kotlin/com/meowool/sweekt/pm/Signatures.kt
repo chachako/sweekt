@@ -14,7 +14,7 @@ import android.os.Build
  * Returns the signature array of this package manager.
  *
  * @param packageName the name of the package that needs to get signatures.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Suppress("DEPRECATION")
 @SuppressLint("PackageManagerGetSignatures")
@@ -41,7 +41,7 @@ fun PackageManager.getSignatures(packageName: String): Array<Signature> = when {
  *
  * @see Context.getPackageManager for more details
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Context.getSignatures(packageName: String): Array<Signature> =
   this.packageManager.getSignatures(packageName)

@@ -8,14 +8,14 @@ import kotlin.jvm.JvmName
 /**
  * Returns the size of this [CharSequence]
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline val CharSequence.size: Int get() = length
 
 /**
  * Returns this char sequence if it's not null and not empty, otherwise returns the [another].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline infix fun <C: CharSequence> C?.or(another: C): C = if (isNullOrEmpty()) another else this
 
@@ -52,7 +52,7 @@ inline fun CharSequence.ifNotEmpty(defaultValue: (CharSequence) -> CharSequence)
 /**
  * Returns itself if this char sequence is not empty, otherwise null.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <C: CharSequence> C?.takeIfNotEmpty(): C? {
   contract {
@@ -64,21 +64,21 @@ inline fun <C: CharSequence> C?.takeIfNotEmpty(): C? {
 /**
  * Returns itself if this char sequence is empty, otherwise null.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <C: CharSequence> C.takeIfEmpty(): C? = if (isEmpty()) this else null
 
 /**
  * Returns the char sequence without blanks.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.removeBlanks(): CharSequence = filterNot { it.isWhitespace() }
 
 /**
  * Returns the char sequence without line breaks.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.removeLineBreaks(): String = this.toString().replace("\n", "").replace("\r", "").replace("\r\n", "")
 
@@ -86,7 +86,7 @@ fun CharSequence.removeLineBreaks(): String = this.toString().replace("\n", "").
  * Converts first character of this char sequence to title case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.titlecase
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun CharSequence.firstCharTitlecase(locale: Locale = defaultLocale()): String
 
@@ -94,7 +94,7 @@ expect fun CharSequence.firstCharTitlecase(locale: Locale = defaultLocale()): St
  * Converts first character of this char sequence to upper case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.uppercase
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun CharSequence.firstCharUppercase(locale: Locale = defaultLocale()): String
 
@@ -102,7 +102,7 @@ expect fun CharSequence.firstCharUppercase(locale: Locale = defaultLocale()): St
  * Converts first character of this char sequence to lower case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.lowercase
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun CharSequence.firstCharLowercase(locale: Locale = defaultLocale()): String
 
@@ -110,7 +110,7 @@ expect fun CharSequence.firstCharLowercase(locale: Locale = defaultLocale()): St
  * Converts last character of this char sequence to upper case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.uppercase
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun CharSequence.lastCharUppercase(locale: Locale = defaultLocale()): String
 
@@ -118,7 +118,7 @@ expect fun CharSequence.lastCharUppercase(locale: Locale = defaultLocale()): Str
  * Converts last character of this char sequence to lower case using Unicode mapping rules of the specified [locale].
  *
  * @see Char.lowercase
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun CharSequence.lastCharLowercase(locale: Locale = defaultLocale()): String
 
@@ -129,7 +129,7 @@ expect fun CharSequence.lastCharLowercase(locale: Locale = defaultLocale()): Str
  * @param transform the function that takes the last character and returns the result of the transform applied to
  *   the character.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @OverloadResolutionByLambdaReturnType
 expect inline fun CharSequence.replaceLastChar(transform: (Char) -> Char): String
@@ -141,7 +141,7 @@ expect inline fun CharSequence.replaceLastChar(transform: (Char) -> Char): Strin
  * @param transform the function that takes the last character and returns the result of the transform applied to
  *   the character.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("replaceLastCharWithCharSequence")
 @OverloadResolutionByLambdaReturnType
@@ -151,7 +151,7 @@ expect inline fun CharSequence.replaceLastChar(transform: (Char) -> CharSequence
  * Returns a copy of this char sequence having its last character replaced with the specified [newLast],
  * or the original char sequence if it's empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.replaceLastChar(newLast: Char): String = replaceLastChar { newLast }
 
@@ -159,14 +159,14 @@ inline fun CharSequence.replaceLastChar(newLast: Char): String = replaceLastChar
  * Returns a copy of this char sequence having its last character replaced with the specified [newLast],
  * or the original char sequence if it's empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.replaceLastChar(newLast: CharSequence): String = replaceLastChar { newLast }
 
 /**
  * Returns `true` if all contents of this char sequence is digit.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isDigits(): Boolean {
   contract { returns(true) implies (this@isDigits != null) }
@@ -177,7 +177,7 @@ fun CharSequence?.isDigits(): Boolean {
 /**
  * Returns `true` if all contents of this char sequence is Chinese.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isChinese(): Boolean {
   contract { returns(true) implies (this@isChinese != null) }
@@ -189,7 +189,7 @@ fun CharSequence?.isChinese(): Boolean {
  * Returns `true` if the content of this char sequence contains Chinese.
  *
  * @param ignorePunctuation if the value is `true`, do not check Chinese punctuation
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isContainsChinese(ignorePunctuation: Boolean = false): Boolean {
   contract { returns(true) implies (this@isContainsChinese != null) }
@@ -203,7 +203,7 @@ fun CharSequence?.isContainsChinese(ignorePunctuation: Boolean = false): Boolean
  * Returns `true` if all contents of this char sequence is Chinese.
  *
  * @param allowPunctuation if the value is `false`, any punctuation in the char sequence is not allowed.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isEnglish(allowPunctuation: Boolean = true): Boolean {
   contract { returns(true) implies (this@isEnglish != null) }
@@ -217,7 +217,7 @@ fun CharSequence?.isEnglish(allowPunctuation: Boolean = true): Boolean {
  * Returns `true` if the content of this char sequence contains Chinese.
  *
  * @param ignorePunctuation if the value is `true`, do not check Chinese punctuation
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence?.isContainsEnglish(ignorePunctuation: Boolean = false): Boolean {
   contract { returns(true) implies (this@isContainsEnglish != null) }
@@ -233,7 +233,7 @@ fun CharSequence?.isContainsEnglish(ignorePunctuation: Boolean = false): Boolean
  * If the char sequence does not have the given [index], returns [noIndexValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringBefore(index: Int, noIndexValue: CharSequence = this): String {
   return if (index in 0..length) substring(0, index) else noIndexValue.toString()
@@ -245,7 +245,7 @@ fun CharSequence.substringBefore(index: Int, noIndexValue: CharSequence = this):
  * If the char sequence does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringBefore(delimiter: Char, missingDelimiterValue: CharSequence = this): String {
   val index = indexOf(delimiter)
@@ -258,7 +258,7 @@ fun CharSequence.substringBefore(delimiter: Char, missingDelimiterValue: CharSeq
  * If the char sequence does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringBefore(
   delimiter: String,
@@ -274,7 +274,7 @@ fun CharSequence.substringBefore(
  * If the char sequence does not have the given [index], returns [noIndexValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringAfter(index: Int, noIndexValue: CharSequence = this): String {
   return if (index in 0..length) substring(index + 1, length) else noIndexValue.toString()
@@ -286,7 +286,7 @@ fun CharSequence.substringAfter(index: Int, noIndexValue: CharSequence = this): 
  * If the char sequence does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringAfter(delimiter: Char, missingDelimiterValue: CharSequence = this): String {
   val index = indexOf(delimiter)
@@ -299,7 +299,7 @@ fun CharSequence.substringAfter(delimiter: Char, missingDelimiterValue: CharSequ
  * If the char sequence does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringAfter(delimiter: String, missingDelimiterValue: CharSequence = this): String {
   val index = indexOf(delimiter)
@@ -312,7 +312,7 @@ fun CharSequence.substringAfter(delimiter: String, missingDelimiterValue: CharSe
  * If the char sequence does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringBeforeLast(delimiter: Char, missingDelimiterValue: CharSequence = this): String {
   val index = lastIndexOf(delimiter)
@@ -325,7 +325,7 @@ fun CharSequence.substringBeforeLast(delimiter: Char, missingDelimiterValue: Cha
  * If the char sequence does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringBeforeLast(
   delimiter: String,
@@ -341,7 +341,7 @@ fun CharSequence.substringBeforeLast(
  * If the char sequence does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringAfterLast(delimiter: Char, missingDelimiterValue: CharSequence = this): String {
   val index = lastIndexOf(delimiter)
@@ -354,7 +354,7 @@ fun CharSequence.substringAfterLast(delimiter: Char, missingDelimiterValue: Char
  * If the char sequence does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original
  * char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.substringAfterLast(
   delimiter: String,
@@ -368,7 +368,7 @@ fun CharSequence.substringAfterLast(
  * Remove the corresponding character from this char sequence according to the given [index] and returns
  * new char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.remove(index: Int): String = buildString(length) {
   append(substringBefore(index))
@@ -378,32 +378,49 @@ fun CharSequence.remove(index: Int): String = buildString(length) {
 /**
  * Remove the first character from this char sequence and returns new char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.removeFirst(): String = substringAfter(0)
 
 /**
  * Remove the last character from this char sequence and returns new char sequence.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.removeLast(): String = substringBefore(lastIndex)
 
 /**
- * Returns a substring of chars from a range of this char sequence starting at the [startIndex] and ending right before the [endIndex].
+ * Returns a substring of chars from a range of this char sequence starting at the [startIndex] and ending right before
+ * the [endIndex].
  *
  * @param startIndex the start index (inclusive).
  * @param endIndex the end index (exclusive). If not specified, the length of the char sequence is used.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.substring(startIndex: Int = 0, endIndex: Int = length): String =
   subSequence(startIndex, endIndex).toString()
 
 /**
+ * If this char sequence starts with the given [prefix], returns a copy of this char sequence
+ * with the prefix removed. Otherwise, returns this char sequence.
+ *
+ * @author 凛 (RinOrz)
+ */
+fun CharSequence.removePrefix(prefix: Char): CharSequence = if (first() == prefix) substring(1) else this
+
+/**
+ * If this char sequence ends with the given [suffix], returns a copy of this char sequence
+ * with the suffix removed. Otherwise, returns this char sequence.
+ *
+ * @author 凛 (RinOrz)
+ */
+fun CharSequence.removeSuffix(suffix: Char): CharSequence = if (last() == suffix) substring(0, lastIndex) else this
+
+/**
  * Starting from [offset], splits this char sequence with [delimiter].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CharSequence.split(delimiter: Char, offset: Int): List<String> =
   splitBy(offset) { it == delimiter }
@@ -411,7 +428,7 @@ fun CharSequence.split(delimiter: Char, offset: Int): List<String> =
 /**
  * Starting from [offset], splits this char sequence by [predicate].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.splitBy(offset: Int = 0, predicate: (Char) -> Boolean): List<String> =
   ArrayList<String>(this.length).apply { forEachSplitBy(predicate, offset, ::add) }
@@ -419,7 +436,7 @@ inline fun CharSequence.splitBy(offset: Int = 0, predicate: (Char) -> Boolean): 
 /**
  * Starting from [offset], splits this char sequence into [destination] with [delimiter].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <C: MutableCollection<CharSequence>> CharSequence.splitTo(
   destination: C,
@@ -430,7 +447,7 @@ fun <C: MutableCollection<CharSequence>> CharSequence.splitTo(
 /**
  * Starting from [offset], splits this char sequence into [destination] by [predicate].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <C: MutableCollection<CharSequence>> CharSequence.splitTo(
   destination: C,
@@ -442,7 +459,7 @@ inline fun <C: MutableCollection<CharSequence>> CharSequence.splitTo(
  * Starting from [offset], splits this char sequence with [delimiter] and call the given [action] for each segment
  * after splitting.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.forEachSplit(
   delimiter: Char,
@@ -454,7 +471,7 @@ inline fun CharSequence.forEachSplit(
  * Starting from [offset], splits this char sequence by [predicate] and call the given [action] for each segment
  * after splitting.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.forEachSplitBy(
   predicate: (Char) -> Boolean,
@@ -467,7 +484,7 @@ inline fun CharSequence.forEachSplitBy(
  * after splitting.
  *
  * @param action the action called for each segment after splitting, receives segment and segment index parameters.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun CharSequence.forEachSplitIndexedBy(
   predicate: (Char) -> Boolean,

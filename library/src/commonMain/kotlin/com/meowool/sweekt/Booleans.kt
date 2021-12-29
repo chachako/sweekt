@@ -21,7 +21,7 @@ import kotlin.contracts.contract
  * isSucceed.ifTrue { result() } ?: retry()
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> Boolean?.ifTrue(block: () -> R): R? {
   contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
@@ -43,7 +43,7 @@ inline fun <R> Boolean?.ifTrue(block: () -> R): R? {
  * isFailed.ifTrue { retry() } ?: result()
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> Boolean?.ifFalse(block: () -> R): R? {
   contract { callsInPlace(block, InvocationKind.AT_MOST_ONCE) }
@@ -65,7 +65,7 @@ inline fun <R> Boolean?.ifFalse(block: () -> R): R? {
  * isSucceed.ifTrue { result() } ?: retry()
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> Boolean.ifTrue(block: () -> R): R? = if (this) block() else null
 
@@ -84,7 +84,7 @@ inline fun <R> Boolean.ifTrue(block: () -> R): R? = if (this) block() else null
  * isFailed.ifTrue { retry() } ?: result()
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> Boolean.ifFalse(block: () -> R): R? = if (!this) block() else null
 
@@ -92,7 +92,7 @@ inline fun <R> Boolean.ifFalse(block: () -> R): R? = if (!this) block() else nul
  * Select the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> Boolean?.select(yes: R, no: R): R = if (this == true) yes else no
 
@@ -100,7 +100,7 @@ inline fun <R> Boolean?.select(yes: R, no: R): R = if (this == true) yes else no
  * Selects the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> Boolean.select(yes: R, no: R): R = if (this) yes else no
 
@@ -108,7 +108,7 @@ inline fun <R> Boolean.select(yes: R, no: R): R = if (this) yes else no
  * Select the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> Boolean?.select(yes: () -> R, no: () -> R): R = if (this == true) yes() else no()
 
@@ -116,6 +116,6 @@ inline fun <R> Boolean?.select(yes: () -> R, no: () -> R): R = if (this == true)
  * Selects the given value based on this boolean value.
  *
  * @return if this boolean is `true`, returns the [yes] value, otherwise returns the [no] value.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> Boolean.select(yes: () -> R, no: () -> R): R = if (this) yes() else no()

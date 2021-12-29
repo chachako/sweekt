@@ -29,7 +29,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class LazyInitTests : StringSpec({
   "property marked @JvmField not allowed" {

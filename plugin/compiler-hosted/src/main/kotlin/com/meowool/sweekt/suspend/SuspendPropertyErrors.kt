@@ -26,7 +26,7 @@ import org.jetbrains.kotlin.diagnostics.rendering.DefaultErrorMessages
 import org.jetbrains.kotlin.diagnostics.rendering.Renderers
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 object SuspendPropertyErrors : AbstractErrors() {
   @JvmField val RequiredSuspendGetter = renderError(

@@ -36,7 +36,7 @@ import org.jetbrains.kotlin.psi.KtProperty
  * }
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class LeakingSuppressor : InspectionSuppressor {
   override fun isSuppressedFor(element: PsiElement, toolId: String): Boolean {

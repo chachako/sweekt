@@ -9,7 +9,7 @@ import com.meowool.sweekt.InternalSweektApi
 /**
  * Bridge to communicate with permission requests
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @InternalSweektApi
 class PermissionCompatActivity : Activity() {

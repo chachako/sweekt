@@ -1,20 +1,19 @@
 package com.meowool.toolkit.sample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.meowool.toolkit.library.Greeting
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 fun greet(): String {
-    return Greeting().greeting()
+  return "Hello, World!"
 }
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
-    }
+    val tv: TextView = findViewById(R.id.text_view)
+    tv.text = greet()
+  }
 }

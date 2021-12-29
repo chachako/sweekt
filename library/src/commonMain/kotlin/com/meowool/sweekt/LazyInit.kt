@@ -20,7 +20,7 @@ package com.meowool.sweekt
  * // }
  * ```
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.SOURCE)
@@ -44,7 +44,7 @@ annotation class LazyInit
  * ```
  *
  * @receiver Property with [LazyInit] annotation.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Suppress("unused")
 fun Any.resetLazyValue(): Unit = compilerImplementation()
@@ -76,7 +76,7 @@ fun Any.resetLazyValue(): Unit = compilerImplementation()
  * ```
  *
  * @param lazyProperties Properties with [LazyInit] annotation.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Suppress("UNUSED_PARAMETER")
 fun resetLazyValues(vararg lazyProperties: Any): Unit = compilerImplementation()

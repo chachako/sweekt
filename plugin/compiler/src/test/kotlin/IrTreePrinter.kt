@@ -32,7 +32,7 @@ import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor as KotlinCompil
 import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar as KotlinCompilerPluginComponentRegistrar
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class IrTreePrinter : StringSpec({
   "suspend print" {
@@ -76,7 +76,7 @@ class IrTreePrinter : StringSpec({
 }) {
 
   /**
-   * @author 凛 (https://github.com/RinOrz)
+   * @author 凛 (RinOrz)
    */
   class CommandLineProcessor : KotlinCompilerPluginCommandLineProcessor {
     override val pluginId: String = IrTreePrinter::class.java.name
@@ -84,7 +84,7 @@ class IrTreePrinter : StringSpec({
   }
 
   /**
-   * @author 凛 (https://github.com/RinOrz)
+   * @author 凛 (RinOrz)
    */
   class ComponentRegistrar : KotlinCompilerPluginComponentRegistrar {
     override fun registerProjectComponents(

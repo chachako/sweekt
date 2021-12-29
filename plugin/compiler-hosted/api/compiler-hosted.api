@@ -1,0 +1,211 @@
+public abstract class com/meowool/sweekt/AbstractErrors {
+	public fun <init> ()V
+	public final fun getRenderers ()Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticFactoryToRendererMap;
+	public final fun initFactory (Lcom/meowool/sweekt/AbstractErrors$Messages;)V
+	public final fun renderError (Ljava/lang/String;)Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory0;
+	public final fun renderError (Ljava/lang/String;Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticParameterRenderer;)Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+	public final fun renderError (Ljava/lang/String;Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticParameterRenderer;Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticParameterRenderer;)Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory2;
+	public final fun renderWarn (Ljava/lang/String;)Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory0;
+	public final fun renderWarn (Ljava/lang/String;Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticParameterRenderer;)Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+	public final fun renderWarn (Ljava/lang/String;Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticParameterRenderer;Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticParameterRenderer;)Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory2;
+	public final fun setRenderers (Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticFactoryToRendererMap;)V
+}
+
+public abstract class com/meowool/sweekt/AbstractErrors$Messages : org/jetbrains/kotlin/diagnostics/rendering/DefaultErrorMessages$Extension {
+	public fun <init> (Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticFactoryToRendererMap;)V
+	public fun getMap ()Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticFactoryToRendererMap;
+}
+
+public final class com/meowool/sweekt/AbstractIrTransformerKt {
+	public static final fun getAnnotationBooleanOrNull (Lorg/jetbrains/kotlin/ir/expressions/IrConstructorCall;Ljava/lang/String;)Ljava/lang/Boolean;
+}
+
+public final class com/meowool/sweekt/SweektCommandLineProcessor : org/jetbrains/kotlin/compiler/plugin/CommandLineProcessor {
+	public fun <init> ()V
+	public fun appendList (Lorg/jetbrains/kotlin/config/CompilerConfiguration;Lorg/jetbrains/kotlin/config/CompilerConfigurationKey;Ljava/lang/Object;)V
+	public fun appendList (Lorg/jetbrains/kotlin/config/CompilerConfiguration;Lorg/jetbrains/kotlin/config/CompilerConfigurationKey;Ljava/util/List;)V
+	public fun applyOptionsFrom (Lorg/jetbrains/kotlin/config/CompilerConfiguration;Ljava/util/Map;Ljava/util/Collection;)V
+	public fun getPluginId ()Ljava/lang/String;
+	public fun getPluginOptions ()Ljava/util/Collection;
+	public fun processOption (Lorg/jetbrains/kotlin/compiler/plugin/AbstractCliOption;Ljava/lang/String;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+	public fun processOption (Lorg/jetbrains/kotlin/compiler/plugin/CliOption;Ljava/lang/String;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+}
+
+public final class com/meowool/sweekt/SweektComponentRegistrar : org/jetbrains/kotlin/compiler/plugin/ComponentRegistrar {
+	public fun <init> ()V
+	public fun registerProjectComponents (Lcom/intellij/mock/MockProject;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+}
+
+public final class com/meowool/sweekt/SweektComponentRegistrar$StorageComponent : org/jetbrains/kotlin/extensions/StorageComponentContainerContributor {
+	public fun <init> ()V
+	public fun registerModuleComponents (Lorg/jetbrains/kotlin/container/StorageComponentContainer;Lorg/jetbrains/kotlin/platform/TargetPlatform;Lorg/jetbrains/kotlin/descriptors/ModuleDescriptor;)V
+}
+
+public final class com/meowool/sweekt/SweektConfigurationKeys {
+	public static final field INSTANCE Lcom/meowool/sweekt/SweektConfigurationKeys;
+	public final fun isLogging ()Lorg/jetbrains/kotlin/config/CompilerConfigurationKey;
+}
+
+public final class com/meowool/sweekt/SweektNames {
+	public static final field INSTANCE Lcom/meowool/sweekt/SweektNames;
+	public static final field Root Ljava/lang/String;
+	public final fun fqNameFor (Ljava/lang/String;)Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getContentEquals ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getFullInfoSynthetic ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getInfo ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getInfoInvisible ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getInfoSynthetic ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getJvmField ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getLazyInit ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getRealSuspendGetter ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getRealSuspendSetter ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getResetLazyValue ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getResetLazyValues ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getSuspend ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getSuspendGetter ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun getSuspendSetter ()Lorg/jetbrains/kotlin/name/FqName;
+	public final fun root ()Lorg/jetbrains/kotlin/name/FqName;
+}
+
+public final class com/meowool/sweekt/SweektSyntheticDeclarationOrigin : org/jetbrains/kotlin/ir/declarations/IrDeclarationOriginImpl {
+	public static final field INSTANCE Lcom/meowool/sweekt/SweektSyntheticDeclarationOrigin;
+}
+
+public final class com/meowool/sweekt/info/Info {
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun getCallSuperEquals ()Z
+	public final fun getCallSuperHashCode ()Z
+	public final fun getGenerateComponentN ()Z
+	public final fun getGenerateCopy ()Z
+	public final fun getGenerateEquals ()Z
+	public final fun getGenerateHashCode ()Z
+	public final fun getGenerateToString ()Z
+	public final fun getJoinBodyProperties ()Z
+	public final fun getJoinPrimaryProperties ()Z
+	public final fun getJoinPrivateProperties ()Z
+}
+
+public final class com/meowool/sweekt/info/InfoClassChecker : org/jetbrains/kotlin/resolve/checkers/DeclarationChecker {
+	public static final field INSTANCE Lcom/meowool/sweekt/info/InfoClassChecker;
+	public fun check (Lorg/jetbrains/kotlin/psi/KtDeclaration;Lorg/jetbrains/kotlin/descriptors/DeclarationDescriptor;Lorg/jetbrains/kotlin/resolve/checkers/DeclarationCheckerContext;)V
+}
+
+public final class com/meowool/sweekt/info/InfoClassDescriptorResolver {
+	public static final field INSTANCE Lcom/meowool/sweekt/info/InfoClassDescriptorResolver;
+	public final fun createComponentFunctionDescriptor (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lorg/jetbrains/kotlin/descriptors/ValueDescriptor;Lorg/jetbrains/kotlin/name/Name;)Lorg/jetbrains/kotlin/descriptors/impl/SimpleFunctionDescriptorImpl;
+	public final fun createComponentName (I)Lorg/jetbrains/kotlin/name/Name;
+	public final fun createCopyFunctionDescriptor (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Ljava/util/Collection;)Lorg/jetbrains/kotlin/descriptors/SimpleFunctionDescriptor;
+	public final fun getComponentProperties (Ljava/util/List;)Ljava/util/List;
+	public final fun getCopyFunctionName ()Lorg/jetbrains/kotlin/name/Name;
+	public final fun getCopyProperties (Ljava/util/List;)Ljava/util/List;
+	public final fun getInfo (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Lcom/meowool/sweekt/info/Info;
+	public final fun getInfoVariables (Lorg/jetbrains/kotlin/psi/KtClassOrObject;Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lcom/meowool/sweekt/info/Info;Lorg/jetbrains/kotlin/resolve/BindingContext;)Ljava/util/List;
+	public final fun getPsi (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Lorg/jetbrains/kotlin/psi/KtClassOrObject;
+	public final fun isComponentLike (Ljava/lang/String;)Z
+	public final fun isComponentLike (Lorg/jetbrains/kotlin/name/Name;)Z
+}
+
+public final class com/meowool/sweekt/info/InfoClassGeneration : org/jetbrains/kotlin/backend/common/extensions/IrGenerationExtension {
+	public fun <init> (Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+	public fun generate (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;)V
+	public final fun getConfiguration ()Lorg/jetbrains/kotlin/config/CompilerConfiguration;
+	public fun resolveSymbol (Lorg/jetbrains/kotlin/ir/symbols/IrSymbol;Lorg/jetbrains/kotlin/ir/builders/TranslationPluginContext;)Lorg/jetbrains/kotlin/ir/declarations/IrDeclaration;
+}
+
+public final class com/meowool/sweekt/info/InfoClassSynthetic : org/jetbrains/kotlin/resolve/extensions/SyntheticResolveExtension {
+	public fun <init> ()V
+	public fun addSyntheticSupertypes (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Ljava/util/List;)V
+	public fun generateSyntheticClasses (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/resolve/lazy/LazyClassContext;Lorg/jetbrains/kotlin/resolve/lazy/declarations/ClassMemberDeclarationProvider;Ljava/util/Set;)V
+	public fun generateSyntheticClasses (Lorg/jetbrains/kotlin/descriptors/PackageFragmentDescriptor;Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/resolve/lazy/LazyClassContext;Lorg/jetbrains/kotlin/resolve/lazy/declarations/PackageMemberDeclarationProvider;Ljava/util/Set;)V
+	public fun generateSyntheticMethods (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/resolve/BindingContext;Ljava/util/List;Ljava/util/Collection;)V
+	public fun generateSyntheticProperties (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lorg/jetbrains/kotlin/name/Name;Lorg/jetbrains/kotlin/resolve/BindingContext;Ljava/util/ArrayList;Ljava/util/Set;)V
+	public fun generateSyntheticSecondaryConstructors (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Lorg/jetbrains/kotlin/resolve/BindingContext;Ljava/util/Collection;)V
+	public fun getSyntheticCompanionObjectNameIfNeeded (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Lorg/jetbrains/kotlin/name/Name;
+	public fun getSyntheticFunctionNames (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Ljava/util/List;
+	public fun getSyntheticNestedClassNames (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Ljava/util/List;
+}
+
+public final class com/meowool/sweekt/info/InfoErrors : com/meowool/sweekt/AbstractErrors {
+	public static final field ComponentRequiredOperator Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory0;
+	public static final field INSTANCE Lcom/meowool/sweekt/info/InfoErrors;
+	public static final field NeedPrimaryConstructor Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory0;
+	public static final field NotAllowedOverrideSynthetic Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+	public static final field PropertyAndParamNameConflict Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+	public static final field SuperInfoTypes Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+	public static final field UnsupportedSpecialClass Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+}
+
+public final class com/meowool/sweekt/info/InfoErrors$Messages : com/meowool/sweekt/AbstractErrors$Messages {
+	public fun <init> ()V
+}
+
+public final class com/meowool/sweekt/info/InfoFunctionChecker : org/jetbrains/kotlin/resolve/checkers/DeclarationChecker {
+	public static final field INSTANCE Lcom/meowool/sweekt/info/InfoFunctionChecker;
+	public fun check (Lorg/jetbrains/kotlin/psi/KtDeclaration;Lorg/jetbrains/kotlin/descriptors/DeclarationDescriptor;Lorg/jetbrains/kotlin/resolve/checkers/DeclarationCheckerContext;)V
+}
+
+public final class com/meowool/sweekt/info/InfoInvisible {
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun getGenerateComponentN ()Z
+	public final fun getGenerateCopy ()Z
+	public final fun getGenerateEquals ()Z
+	public final fun getGenerateHashCode ()Z
+	public final fun getGenerateToString ()Z
+}
+
+public final class com/meowool/sweekt/lazyinit/LazyInitChecker : org/jetbrains/kotlin/resolve/checkers/DeclarationChecker {
+	public static final field INSTANCE Lcom/meowool/sweekt/lazyinit/LazyInitChecker;
+	public fun check (Lorg/jetbrains/kotlin/psi/KtDeclaration;Lorg/jetbrains/kotlin/descriptors/DeclarationDescriptor;Lorg/jetbrains/kotlin/resolve/checkers/DeclarationCheckerContext;)V
+}
+
+public final class com/meowool/sweekt/lazyinit/LazyInitErrors : com/meowool/sweekt/AbstractErrors {
+	public static final field INSTANCE Lcom/meowool/sweekt/lazyinit/LazyInitErrors;
+	public static final field NotAllowedGetter Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory2;
+	public static final field NotAllowedJvmField Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+	public static final field RequiredInitializer Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+	public static final field ResetArgumentRequiredMarkedProperty Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory0;
+	public static final field ResetReceiverRequiredMarkedProperty Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory0;
+	public static final field ResetRequiredAtLeastOneArgument Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory0;
+}
+
+public final class com/meowool/sweekt/lazyinit/LazyInitErrors$Messages : com/meowool/sweekt/AbstractErrors$Messages {
+	public fun <init> ()V
+}
+
+public final class com/meowool/sweekt/lazyinit/LazyInitGeneration : org/jetbrains/kotlin/backend/common/extensions/IrGenerationExtension {
+	public fun <init> (Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+	public fun generate (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;)V
+	public fun resolveSymbol (Lorg/jetbrains/kotlin/ir/symbols/IrSymbol;Lorg/jetbrains/kotlin/ir/builders/TranslationPluginContext;)Lorg/jetbrains/kotlin/ir/declarations/IrDeclaration;
+}
+
+public final class com/meowool/sweekt/lazyinit/ResetValueChecker : org/jetbrains/kotlin/resolve/calls/checkers/CallChecker {
+	public static final field INSTANCE Lcom/meowool/sweekt/lazyinit/ResetValueChecker;
+	public fun check (Lorg/jetbrains/kotlin/resolve/calls/model/ResolvedCall;Lcom/intellij/psi/PsiElement;Lorg/jetbrains/kotlin/resolve/calls/checkers/CallCheckerContext;)V
+}
+
+public final class com/meowool/sweekt/suspend/SuspendPropertyCallChecker : org/jetbrains/kotlin/resolve/calls/checkers/CallChecker {
+	public static final field INSTANCE Lcom/meowool/sweekt/suspend/SuspendPropertyCallChecker;
+	public fun check (Lorg/jetbrains/kotlin/resolve/calls/model/ResolvedCall;Lcom/intellij/psi/PsiElement;Lorg/jetbrains/kotlin/resolve/calls/checkers/CallCheckerContext;)V
+}
+
+public final class com/meowool/sweekt/suspend/SuspendPropertyChecker : org/jetbrains/kotlin/resolve/checkers/DeclarationChecker {
+	public static final field INSTANCE Lcom/meowool/sweekt/suspend/SuspendPropertyChecker;
+	public fun check (Lorg/jetbrains/kotlin/psi/KtDeclaration;Lorg/jetbrains/kotlin/descriptors/DeclarationDescriptor;Lorg/jetbrains/kotlin/resolve/checkers/DeclarationCheckerContext;)V
+}
+
+public final class com/meowool/sweekt/suspend/SuspendPropertyErrors : com/meowool/sweekt/AbstractErrors {
+	public static final field INSTANCE Lcom/meowool/sweekt/suspend/SuspendPropertyErrors;
+	public static final field RequiredSuspendGetter Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+	public static final field RequiredSuspendSetter Lorg/jetbrains/kotlin/diagnostics/DiagnosticFactory1;
+}
+
+public final class com/meowool/sweekt/suspend/SuspendPropertyErrors$Messages : com/meowool/sweekt/AbstractErrors$Messages {
+	public fun <init> ()V
+}
+
+public final class com/meowool/sweekt/suspend/SuspendPropertyGeneration : org/jetbrains/kotlin/backend/common/extensions/IrGenerationExtension {
+	public fun <init> (Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+	public fun generate (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;)V
+	public fun resolveSymbol (Lorg/jetbrains/kotlin/ir/symbols/IrSymbol;Lorg/jetbrains/kotlin/ir/builders/TranslationPluginContext;)Lorg/jetbrains/kotlin/ir/declarations/IrDeclaration;
+}
+

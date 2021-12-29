@@ -14,7 +14,7 @@ import com.meowool.sweekt.newTask
 /**
  * Returns `true` if the app of [packageName] has been installed.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Context.isPackageInstalled(packageName: String): Boolean =
   this.packageManager.isPackageInstalled(packageName)
@@ -22,7 +22,7 @@ inline fun Context.isPackageInstalled(packageName: String): Boolean =
 /**
  * Returns `true` if the app of [packageName] has been installed.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun PackageManager.isPackageInstalled(packageName: String): Boolean = try {
   this.getPackageInfo(packageName).applicationInfo.enabled
@@ -34,7 +34,7 @@ fun PackageManager.isPackageInstalled(packageName: String): Boolean = try {
  * Uninstall the given [packageName] package.
  *
  * @param packageName the name of package to uninstalled.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Context.uninstallPackage(packageName: String) = Intent {
   action = ACTION_DELETE

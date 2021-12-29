@@ -12,7 +12,7 @@ import android.content.pm.PackageManager
 /**
  * Bridges [PackageManager.getApplicationInfo] to make it more convenient to use.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Context.getApplicationInfo(packageName: String, flags: Int = 0): ApplicationInfo =
   this.packageManager.getApplicationInfo(packageName, flags)
@@ -20,7 +20,7 @@ inline fun Context.getApplicationInfo(packageName: String, flags: Int = 0): Appl
 /**
  * Bridges [PackageManager.getApplicationInfo] to make it more convenient to use.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun PackageManager.getApplicationInfo(packageName: String): ApplicationInfo =
   this.getApplicationInfo(packageName, 0)

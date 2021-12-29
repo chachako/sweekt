@@ -23,7 +23,7 @@ import kotlinx.coroutines.withContext
  * @see CoroutineScope.launch for more details
  * @see Dispatchers.Main
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CoroutineScope.launchUI(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -40,7 +40,7 @@ fun CoroutineScope.launchUI(
  * @see CoroutineScope.launch for more details
  * @see Dispatchers.Default
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CoroutineScope.launchDefault(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -58,7 +58,7 @@ fun CoroutineScope.launchDefault(
  * @see CoroutineScope.async for more details
  * @see Dispatchers.Main
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> CoroutineScope.asyncUI(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -75,7 +75,7 @@ fun <T> CoroutineScope.asyncUI(
  * @see CoroutineScope.async for more details
  * @see Dispatchers.Default
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> CoroutineScope.asyncDefault(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -91,7 +91,7 @@ fun <T> CoroutineScope.asyncDefault(
  * operations, and updating LiveData objects.
  *
  * @see withContext for more details
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 suspend inline fun <T> withUiContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.Main, block)
@@ -104,7 +104,7 @@ suspend inline fun <T> withUiContext(noinline block: suspend CoroutineScope.() -
  * sorting a list and parsing JSON.
  *
  * @see withContext for more details
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 suspend inline fun <T> withDefaultContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.Default, block)

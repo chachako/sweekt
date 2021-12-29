@@ -24,7 +24,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class SuspendPropertyTests : StringSpec({
   "correct result of suspend call" {

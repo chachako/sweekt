@@ -13,7 +13,7 @@ import com.meowool.sweekt.start
 /**
  * Returns the grant status of all given [permissions].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Context.getPermissionStatus(vararg permissions: Permission): Map<Permission.Single, Boolean> =
   permissions.flatMap { it.value }.associate { Permission(it) to (checkSelfPermission(this, it) == PERMISSION_GRANTED) }
@@ -22,7 +22,7 @@ fun Context.getPermissionStatus(vararg permissions: Permission): Map<Permission.
  * Determine whether the context has granted all given [permissions].
  *
  * @return returns `true` if all given [permissions] has been granted.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Context.isGrantedPermissions(vararg permissions: Permission): Boolean =
   permissions.flatMap { it.value }.all { checkSelfPermission(this, it) == PERMISSION_GRANTED }
@@ -33,7 +33,7 @@ fun Context.isGrantedPermissions(vararg permissions: Permission): Boolean =
  * @receiver the context to request permission.
  * @param granted invoke the callback and return all granted permissions.
  * @param denied invoke the callback and return all denied permissions.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Context.requestPermissions(
   vararg permissions: Permission,
@@ -62,7 +62,7 @@ fun Context.requestPermissions(
 /**
  * Run [action] with all [permissions] granted.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Context.runWithPermissions(
   vararg permissions: Permission,

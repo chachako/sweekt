@@ -28,7 +28,7 @@ package com.meowool.sweekt
  *
  * @see suspendGetter
  * @see suspendSetter
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.SOURCE)
@@ -56,7 +56,7 @@ annotation class Suspend
  * ```
  *
  * @see Suspend
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Suppress("UNUSED_PARAMETER")
 fun <R> suspendGetter(block: suspend () -> R): R = compilerImplementation()
@@ -88,7 +88,7 @@ fun <R> suspendGetter(block: suspend () -> R): R = compilerImplementation()
  * ```
  *
  * @see Suspend
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Suppress("UNUSED_PARAMETER")
 inline fun suspendSetter(crossinline block: suspend () -> Unit): Unit = compilerImplementation()

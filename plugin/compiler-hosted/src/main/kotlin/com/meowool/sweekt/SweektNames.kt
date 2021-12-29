@@ -25,7 +25,7 @@ package com.meowool.sweekt
 import org.jetbrains.kotlin.name.FqName
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 object SweektNames {
   const val Root = "com.meowool.sweekt"

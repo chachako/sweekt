@@ -11,7 +11,7 @@ import kotlin.math.roundToLong
  *
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 val Long.dpInt: Int get() = (this * Resources.getSystem().displayMetrics.density).roundToInt()
 
@@ -21,7 +21,7 @@ val Long.dpInt: Int get() = (this * Resources.getSystem().displayMetrics.density
  * @see Context.getResources
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Long.dpInt(context: Context): Int = (this * context.resources.displayMetrics.density).roundToInt()
 
@@ -30,7 +30,7 @@ fun Long.dpInt(context: Context): Int = (this * context.resources.displayMetrics
  *
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 val Long.dpLong: Long get() = (this * Resources.getSystem().displayMetrics.density).roundToLong()
 
@@ -40,7 +40,7 @@ val Long.dpLong: Long get() = (this * Resources.getSystem().displayMetrics.densi
  * @see Context.getResources
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Long.dpLong(context: Context): Long = (this * context.resources.displayMetrics.density).roundToLong()
 
@@ -49,7 +49,7 @@ fun Long.dpLong(context: Context): Long = (this * context.resources.displayMetri
  *
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 val Long.dpFloat: Float get() = this * Resources.getSystem().displayMetrics.density
 
@@ -59,7 +59,7 @@ val Long.dpFloat: Float get() = this * Resources.getSystem().displayMetrics.dens
  * @see Context.getResources
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Long.dpFloat(context: Context): Float = this * context.resources.displayMetrics.density
 
@@ -68,7 +68,7 @@ fun Long.dpFloat(context: Context): Float = this * context.resources.displayMetr
  *
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 val Long.dpDouble: Double get() = (this * Resources.getSystem().displayMetrics.density).toDouble()
 
@@ -78,6 +78,6 @@ val Long.dpDouble: Double get() = (this * Resources.getSystem().displayMetrics.d
  * @see Context.getResources
  * @see Resources.getDisplayMetrics
  * @see DisplayMetrics.density
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Long.dpDouble(context: Context): Double = (this * context.resources.displayMetrics.density).toDouble()

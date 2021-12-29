@@ -9,7 +9,7 @@ private val OSName: String by lazy {
  *
  * [For more details](https://developer.android.com/reference/java/lang/System#getProperties())
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 actual val isAndroidSystem: Boolean by lazy {
   System.getProperty("java.specification.vendor") == "The Android Project"
@@ -18,7 +18,7 @@ actual val isAndroidSystem: Boolean by lazy {
 /**
  * Determine whether the currently running system is windows.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 actual val isWindowsSystem: Boolean by lazy {
   OSName.startsWith("Windows", ignoreCase = true)
@@ -27,7 +27,7 @@ actual val isWindowsSystem: Boolean by lazy {
 /**
  * Determine whether the currently running system is mac.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 actual val isMacSystem: Boolean by lazy {
   OSName.startsWith("Mac", ignoreCase = true)
@@ -36,7 +36,7 @@ actual val isMacSystem: Boolean by lazy {
 /**
  * Determine whether the currently running system is linux.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 actual val isLinuxSystem: Boolean by lazy {
   OSName.startsWith("Linux", ignoreCase = true) && !isAndroidSystem

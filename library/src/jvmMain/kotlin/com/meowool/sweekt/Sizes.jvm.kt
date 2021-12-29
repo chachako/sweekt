@@ -53,7 +53,7 @@ actual object DefaultDataSizeUnits : DataSizeUnits {
  * @param useSI to see [DataSizeUnits.useSI].
  *
  * @see DataSizeUnits
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 actual fun Long.toReadableSize(
   precision: Int,
@@ -98,7 +98,7 @@ actual fun Long.toReadableSize(
  * @param useSI to see [DataSizeUnits.useSI].
  *
  * @see DataSizeUnits
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 actual fun Number.toReadableSize(
   precision: Int,

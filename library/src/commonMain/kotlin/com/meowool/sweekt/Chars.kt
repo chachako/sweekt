@@ -5,42 +5,42 @@ package com.meowool.sweekt
 /**
  * Returns `true` if this character is Chinese.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Char.isChinese(): Boolean = isChineseNotPunctuation() || isChinesePunctuation()
 
 /**
  * Returns `true` if this character is Chinese and not Chinese punctuation.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun Char.isChineseNotPunctuation(): Boolean
 
 /**
  * Returns `true` if this character is Chinese punctuation.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect fun Char.isChinesePunctuation(): Boolean
 
 /**
  * Returns `true` if this character is english.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Char.isEnglish(): Boolean = isEnglishNotPunctuation() || isEnglishPunctuation()
 
 /**
  * Returns `true` if this character is english and not english punctuation.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Char.isEnglishNotPunctuation(): Boolean = this in 'A'..'Z' || this in 'a'..'z'
 
 /**
  * Returns `true` if this character is english punctuation.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Char.isEnglishPunctuation(): Boolean = code.let {
   it in 32..47 || it in 58..64 || it in 91..96 || it in 123..126
@@ -49,7 +49,7 @@ fun Char.isEnglishPunctuation(): Boolean = code.let {
 /**
  * Returns `true` if this character is punctuation.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun Char.isPunctuation(): Boolean = this.category.let {
   it == CharCategory.CONNECTOR_PUNCTUATION

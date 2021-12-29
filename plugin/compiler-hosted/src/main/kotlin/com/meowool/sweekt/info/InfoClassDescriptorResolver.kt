@@ -47,7 +47,7 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.secondaryConstructors
 import org.jetbrains.kotlin.resolve.findOriginalTopMostOverriddenDescriptors
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 object InfoClassDescriptorResolver {
   val CopyFunctionName = Name.identifier("copy")

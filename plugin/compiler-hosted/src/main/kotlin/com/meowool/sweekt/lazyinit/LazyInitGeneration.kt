@@ -60,7 +60,7 @@ import org.jetbrains.kotlin.ir.visitors.transformChildrenVoid
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @OptIn(ObsoleteDescriptorBasedAPI::class)
 class LazyInitGeneration(private val configuration: CompilerConfiguration) : IrGenerationExtension {

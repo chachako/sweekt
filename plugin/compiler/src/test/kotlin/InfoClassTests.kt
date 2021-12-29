@@ -29,7 +29,7 @@ import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class InfoClassTests : StringSpec({
   "constructor parameter cannot have the same name as the defined property" {

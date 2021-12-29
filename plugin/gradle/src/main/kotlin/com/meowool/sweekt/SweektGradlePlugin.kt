@@ -30,7 +30,7 @@ import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
 import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class SweektGradlePlugin : KotlinCompilerPluginSupportPlugin {
   override fun apply(target: Project) {

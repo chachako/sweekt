@@ -1,0 +1,6 @@
+public final class com/meowool/sweekt/LeakingSuppressor : com/intellij/codeInspection/InspectionSuppressor {
+	public fun <init> ()V
+	public fun getSuppressActions (Lcom/intellij/psi/PsiElement;Ljava/lang/String;)[Lcom/intellij/codeInspection/SuppressQuickFix;
+	public fun isSuppressedFor (Lcom/intellij/psi/PsiElement;Ljava/lang/String;)Z
+}
+

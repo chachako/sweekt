@@ -48,7 +48,7 @@ import org.jetbrains.kotlin.platform.TargetPlatform
 import org.jetbrains.kotlin.resolve.extensions.SyntheticResolveExtension
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @AutoService(CommandLineProcessor::class)
 class SweektCommandLineProcessor : CommandLineProcessor {
@@ -70,7 +70,7 @@ class SweektCommandLineProcessor : CommandLineProcessor {
 }
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @AutoService(ComponentRegistrar::class)
 class SweektComponentRegistrar : ComponentRegistrar {
@@ -86,7 +86,7 @@ class SweektComponentRegistrar : ComponentRegistrar {
   }
 
   /**
-   * @author 凛 (https://github.com/RinOrz)
+   * @author 凛 (RinOrz)
    */
   class StorageComponent : StorageComponentContainerContributor {
     override fun registerModuleComponents(
@@ -102,7 +102,7 @@ class SweektComponentRegistrar : ComponentRegistrar {
 }
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 object SweektConfigurationKeys {
   val isLogging: CompilerConfigurationKey<Boolean> = CompilerConfigurationKey.create("Whether to output logging")

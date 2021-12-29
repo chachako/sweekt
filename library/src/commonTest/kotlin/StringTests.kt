@@ -21,7 +21,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotStartWith
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class StringTests : StringSpec({
   "removeBlanks" { "com . meowool . toolkit . sweekt".removeBlanks() shouldBe "com.meowool.sweekt" }

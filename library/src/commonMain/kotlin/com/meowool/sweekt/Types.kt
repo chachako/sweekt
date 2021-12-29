@@ -9,21 +9,21 @@ import kotlin.reflect.KClass
 /**
  * Returns `true` if the instance class of this object is equal to the given [className].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect inline infix fun Any.equalsClass(className: String): Boolean
 
 /**
  * Returns `true` if the instance class of this object is equal to the given [KClass].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect inline infix fun Any.equalsClass(KClass: KClass<*>): Boolean
 
 /**
  * Returns `true` if the instance class of this object is equal to the specified class type of [T].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 expect inline fun <reified T> Any.equalsClass(): Boolean
 
@@ -32,7 +32,7 @@ expect inline fun <reified T> Any.equalsClass(): Boolean
  *
  * @param T result type after conversion
  * @throws ClassCastException [T] type does not match with this object.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Throws(ClassCastException::class)
 inline fun <reified T> Any?.cast(): T {
@@ -46,7 +46,7 @@ inline fun <reified T> Any?.cast(): T {
  * Cast this object type to [T].
  *
  * @param T result type after conversion, returns `null` if the type does not match.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <reified T> Any?.castOrNull(): T? {
   contract {
@@ -60,7 +60,7 @@ inline fun <reified T> Any?.castOrNull(): T? {
  * Safe convert this object to [T] type.
  *
  * @param T result type after conversion, returns `null` if the type does not match.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Deprecated(
   "Deprecated function name, use `castOrNull` instead.",
@@ -82,7 +82,7 @@ inline fun <reified T> Any?.safeCast(): T? = this@safeCast.castOrNull()
  * ```
  *
  * @return returns `null` if the object type is not [T], otherwise returns itself.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <reified T> Any?.withType(action: T.() -> Unit): T? {
   contract {
@@ -106,7 +106,7 @@ inline fun <reified T> Any?.withType(action: T.() -> Unit): T? {
  * ```
  *
  * @return returns `null` if the object type is not [T], otherwise returns the object by given [action] result.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <reified T : Any, R> Any?.ifType(action: T.() -> R): R? {
   contract {
@@ -118,7 +118,7 @@ inline fun <reified T : Any, R> Any?.ifType(action: T.() -> R): R? {
 /**
  * Returns `true` if the instance of this object is null.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Any?.isNull(): Boolean {
   contract {
@@ -130,7 +130,7 @@ inline fun Any?.isNull(): Boolean {
 /**
  * Returns `true` if the instance of this object is not null.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Any?.isNotNull(): Boolean {
   contract {

@@ -15,7 +15,7 @@ import android.content.pm.PackageManager
  * @param archivePath the path of the package to be resolved.
  * @param flags additional option flags to modify the info returned.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun PackageManager.resolvePackageArchive(archivePath: String, flags: Int = 0): PackageInfo? =
   this.getPackageArchiveInfo(archivePath, flags)?.also {
@@ -31,7 +31,7 @@ fun PackageManager.resolvePackageArchive(archivePath: String, flags: Int = 0): P
  * @param archivePath the path of the package to be resolved.
  * @param flags additional option flags to modify the info returned.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Context.resolvePackageArchive(archivePath: String, flags: Int = 0): PackageInfo? =
   this.packageManager.resolvePackageArchive(archivePath, flags)
@@ -59,7 +59,7 @@ inline fun Context.resolvePackageArchive(archivePath: String, flags: Int = 0): P
  * @param apkPath the path of the apk to be resolved.
  * @param flags additional option flags to modify the info returned.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun PackageManager.resolveApk(apkPath: String, flags: Int = 0): ApplicationInfo? =
   this.resolvePackageArchive(apkPath, flags)?.applicationInfo
@@ -70,7 +70,7 @@ inline fun PackageManager.resolveApk(apkPath: String, flags: Int = 0): Applicati
  * @param apkPath the path of the apk to be resolved.
  * @param flags additional option flags to modify the info returned.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Context.resolveApk(apkPath: String, flags: Int = 0): ApplicationInfo? =
   this.resolvePackageArchive(apkPath, flags)?.applicationInfo

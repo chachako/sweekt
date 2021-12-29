@@ -11,7 +11,7 @@ import kotlin.math.max
 /**
  * A mutable bytes object used to build a bytearray at any time, similar to [StringBuilder].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class ByteArrayBuilder {
 
@@ -127,7 +127,7 @@ class ByteArrayBuilder {
  * Builds new byte by populating newly created [ByteArrayBuilder] using provided [builderAction]
  * and then converting it to [ByteArray].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun buildByteArray(builderAction: ByteArrayBuilder.() -> Unit): ByteArray {
   contract { callsInPlace(builderAction, InvocationKind.EXACTLY_ONCE) }
@@ -138,7 +138,7 @@ inline fun buildByteArray(builderAction: ByteArrayBuilder.() -> Unit): ByteArray
  * Builds new bytes by populating newly created [ByteArrayBuilder] initialized with the given
  * [capacity] using provided [builderAction] and then converting it to [ByteArray].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun buildByteArray(capacity: Int, builderAction: ByteArrayBuilder.() -> Unit): ByteArray {
   contract { callsInPlace(builderAction, InvocationKind.EXACTLY_ONCE) }

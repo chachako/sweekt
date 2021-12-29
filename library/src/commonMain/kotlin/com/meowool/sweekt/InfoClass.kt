@@ -29,7 +29,7 @@ package com.meowool.sweekt
  * @param callSuperEquals Generated 'equals' method contains a call to `super.equals(other)`.
  * @param callSuperHashCode Generated 'hashCode' method contains a call to `super.hashCode()`.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
@@ -71,7 +71,7 @@ annotation class Info(
    * @param generateHashCode Generate `hashCode` method for the info class at compile time.
    * @param generateToString Generate `toString` method for the info class at compile time.
    * @param generateComponentN Generate `componentN` method for the info class at compile time.
-   * @author 凛 (https://github.com/RinOrz)
+   * @author 凛 (RinOrz)
    */
   @Target(AnnotationTarget.PROPERTY)
   @Retention(AnnotationRetention.SOURCE)
@@ -87,7 +87,7 @@ annotation class Info(
    * Represents a synthetic interface for class marked with [Info], all classes marked with [Info] will automatically
    * implement this interface.
    *
-   * @author 凛 (https://github.com/RinOrz)
+   * @author 凛 (RinOrz)
    */
   @InternalSweektCompilerApi
   interface Synthetic {

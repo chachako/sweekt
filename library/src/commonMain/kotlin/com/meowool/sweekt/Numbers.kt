@@ -11,7 +11,7 @@ import kotlin.math.roundToLong
 /**
  * Returns this [Number] as [Int].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Number.asInt(): Int = when (this) {
   is Int -> this
@@ -23,7 +23,7 @@ inline fun Number.asInt(): Int = when (this) {
 /**
  * Returns this [Number] as [Float].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Number.asFloat(): Float = when (this) {
   is Float -> this
@@ -33,7 +33,7 @@ inline fun Number.asFloat(): Float = when (this) {
 /**
  * Returns this [Number] as [Long].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Number.asLong(): Long = when (this) {
   is Long -> this
@@ -47,7 +47,7 @@ inline fun Number.asLong(): Long = when (this) {
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Int.addFlag(mask: Int): Int = this or mask
 
@@ -56,7 +56,7 @@ inline fun Int.addFlag(mask: Int): Int = this or mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Int.hasFlag(mask: Int): Boolean = mask and this == mask
 
@@ -65,7 +65,7 @@ inline fun Int.hasFlag(mask: Int): Boolean = mask and this == mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Int.removeFlag(mask: Int): Int = this and mask.inv()
 
@@ -74,7 +74,7 @@ inline fun Int.removeFlag(mask: Int): Int = this and mask.inv()
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Long.addFlag(mask: Long): Long = this or mask
 
@@ -83,7 +83,7 @@ inline fun Long.addFlag(mask: Long): Long = this or mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Long.hasFlag(mask: Long): Boolean = mask and this == mask
 
@@ -92,7 +92,7 @@ inline fun Long.hasFlag(mask: Long): Boolean = mask and this == mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Long.removeFlag(mask: Long): Long = this and mask.inv()
 
@@ -101,7 +101,7 @@ inline fun Long.removeFlag(mask: Long): Long = this and mask.inv()
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Short.addFlag(mask: Short): Short = this or mask
 
@@ -110,7 +110,7 @@ inline fun Short.addFlag(mask: Short): Short = this or mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Short.hasFlag(mask: Short): Boolean = mask and this == mask
 
@@ -119,7 +119,7 @@ inline fun Short.hasFlag(mask: Short): Boolean = mask and this == mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Short.removeFlag(mask: Short): Short = this and mask.inv()
 
@@ -128,7 +128,7 @@ inline fun Short.removeFlag(mask: Short): Short = this and mask.inv()
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Byte.addFlag(mask: Byte): Byte = this or mask
 
@@ -137,7 +137,7 @@ inline fun Byte.addFlag(mask: Byte): Byte = this or mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Byte.hasFlag(mask: Byte): Boolean = mask and this == mask
 
@@ -146,7 +146,7 @@ inline fun Byte.hasFlag(mask: Byte): Boolean = mask and this == mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun Byte.removeFlag(mask: Byte): Byte = this and mask.inv()
 
@@ -155,7 +155,7 @@ inline fun Byte.removeFlag(mask: Byte): Byte = this and mask.inv()
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UInt.addFlag(mask: UInt): UInt = this or mask
 
@@ -164,7 +164,7 @@ inline fun UInt.addFlag(mask: UInt): UInt = this or mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UInt.hasFlag(mask: UInt): Boolean = mask and this == mask
 
@@ -173,7 +173,7 @@ inline fun UInt.hasFlag(mask: UInt): Boolean = mask and this == mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UInt.removeFlag(mask: UInt): UInt = this and mask.inv()
 
@@ -182,7 +182,7 @@ inline fun UInt.removeFlag(mask: UInt): UInt = this and mask.inv()
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun ULong.addFlag(mask: ULong): ULong = this or mask
 
@@ -191,7 +191,7 @@ inline fun ULong.addFlag(mask: ULong): ULong = this or mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun ULong.hasFlag(mask: ULong): Boolean = mask and this == mask
 
@@ -200,7 +200,7 @@ inline fun ULong.hasFlag(mask: ULong): Boolean = mask and this == mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun ULong.removeFlag(mask: ULong): ULong = this and mask.inv()
 
@@ -209,7 +209,7 @@ inline fun ULong.removeFlag(mask: ULong): ULong = this and mask.inv()
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UShort.addFlag(mask: UShort): UShort = this or mask
 
@@ -218,7 +218,7 @@ inline fun UShort.addFlag(mask: UShort): UShort = this or mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UShort.hasFlag(mask: UShort): Boolean = mask and this == mask
 
@@ -227,7 +227,7 @@ inline fun UShort.hasFlag(mask: UShort): Boolean = mask and this == mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UShort.removeFlag(mask: UShort): UShort = this and mask.inv()
 
@@ -236,7 +236,7 @@ inline fun UShort.removeFlag(mask: UShort): UShort = this and mask.inv()
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UByte.addFlag(mask: UByte): UByte = this or mask
 
@@ -245,7 +245,7 @@ inline fun UByte.addFlag(mask: UByte): UByte = this or mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UByte.hasFlag(mask: UByte): Boolean = mask and this == mask
 
@@ -254,7 +254,7 @@ inline fun UByte.hasFlag(mask: UByte): Boolean = mask and this == mask
  *
  * [For more details](https://en.wikipedia.org/wiki/Mask_(computing))
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun UByte.removeFlag(mask: UByte): UByte = this and mask.inv()
 

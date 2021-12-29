@@ -31,7 +31,7 @@ import org.jetbrains.kotlin.diagnostics.rendering.DiagnosticFactoryToRendererMap
 import org.jetbrains.kotlin.diagnostics.rendering.DiagnosticParameterRenderer
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 abstract class AbstractErrors {
   var renderers = DiagnosticFactoryToRendererMap("Sweekt.${this.javaClass.simpleName}")

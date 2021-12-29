@@ -9,6 +9,6 @@ import kotlinx.datetime.TimeZone
  *
  * If the current system time zone changes, this function can reflect this change on the next invocation.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun TimeZone.Companion.system() = currentSystemDefault()

@@ -47,7 +47,7 @@ import org.jetbrains.kotlin.types.KotlinType
 import org.jetbrains.kotlin.types.KotlinTypeFactory.simpleNotNullType
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class InfoClassSynthetic : SyntheticResolveExtension {
   private val tempComponentFunctionName = Name.identifier("component$")

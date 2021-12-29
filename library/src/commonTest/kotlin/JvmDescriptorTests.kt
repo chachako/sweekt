@@ -13,7 +13,7 @@ import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 class JvmDescriptorTests : StringSpec({
   "isJvmPrimitiveType" {

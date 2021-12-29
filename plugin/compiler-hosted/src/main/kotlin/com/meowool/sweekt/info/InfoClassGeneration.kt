@@ -96,7 +96,7 @@ import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @OptIn(ObsoleteDescriptorBasedAPI::class)
 class InfoClassGeneration(val configuration: CompilerConfiguration) : IrGenerationExtension {
@@ -382,7 +382,7 @@ class InfoClassGeneration(val configuration: CompilerConfiguration) : IrGenerati
      *   result.c = c
      * }
      *
-     * @author 凛 (https://github.com/RinOrz)
+     * @author 凛 (RinOrz)
      */
     private inner class CopyGeneration(
       irClass: IrClass,
@@ -449,7 +449,7 @@ class InfoClassGeneration(val configuration: CompilerConfiguration) : IrGenerati
      *   return true
      * }
      *
-     * @author 凛 (https://github.com/RinOrz)
+     * @author 凛 (RinOrz)
      */
     private inner class EqualsGeneration(irClass: IrClass, private val superCall: Boolean) :
       FunctionGeneration(irClass, "equals", "infoEquals", irBuiltIns.booleanType, irBuiltIns.anyNType) {
@@ -513,7 +513,7 @@ class InfoClassGeneration(val configuration: CompilerConfiguration) : IrGenerati
      *   return result
      * }
      *
-     * @author 凛 (https://github.com/RinOrz)
+     * @author 凛 (RinOrz)
      */
     private inner class HashCodeGeneration(irClass: IrClass, private val superCall: Boolean) :
       FunctionGeneration(irClass, "hashCode", "infoHashCode", irBuiltIns.intType) {
@@ -597,7 +597,7 @@ class InfoClassGeneration(val configuration: CompilerConfiguration) : IrGenerati
      * override fun toString(): String =
      *   "User(name=$name, address=${address.contentToString()}, age=$age, email=$email)"
      *
-     * @author 凛 (https://github.com/RinOrz)
+     * @author 凛 (RinOrz)
      */
     private inner class ToStringGeneration(irClass: IrClass) :
       FunctionGeneration(irClass, "toString", "infoToString", irBuiltIns.stringType) {
@@ -638,7 +638,7 @@ class InfoClassGeneration(val configuration: CompilerConfiguration) : IrGenerati
      * operator fun component1(): String = a
      * operator fun component2(): String = b
      *
-     * @author 凛 (https://github.com/RinOrz)
+     * @author 凛 (RinOrz)
      */
     private inner class ComponentNGeneration(
       irClass: IrClass,

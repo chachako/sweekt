@@ -23,6 +23,6 @@ package com.meowool.sweekt
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationOriginImpl
 
 /**
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 object SweektSyntheticDeclarationOrigin : IrDeclarationOriginImpl("SWEEKT_SYNTHETIC_DECLARATION")

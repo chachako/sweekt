@@ -11,35 +11,35 @@ import kotlin.jvm.JvmName
 /**
  * Returns the number of elements in the iterable.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline val <T> Iterable<T>.size: Int get() = this.count()
 
 /**
  * Returns `true` if the iterable instance is empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, I : Iterable<T>> I.isEmpty(): Boolean = this.none()
 
 /**
  * Returns `true` if the iterable instance is null or empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, I : Iterable<T>> I?.isNullOrEmpty(): Boolean = this == null || this.none()
 
 /**
  * Returns `true` if the iterable instance is not empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, I : Iterable<T>> I.isNotEmpty(): Boolean = this.any()
 
 /**
  * Returns `true` if the iterable instance is not `null` and not empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("isNotNullNotEmpty")
 inline fun <T, I : Iterable<T>> I?.isNotEmpty(): Boolean {
@@ -52,7 +52,7 @@ inline fun <T, I : Iterable<T>> I?.isNotEmpty(): Boolean {
 /**
  * Call the given [action] when this iterable instance is not null and not empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("onNotNullNotEmpty")
 inline fun <T, I : Iterable<T>> I?.onNotEmpty(action: (I) -> Unit): I? {
@@ -69,7 +69,7 @@ inline fun <T, I : Iterable<T>> I?.onNotEmpty(action: (I) -> Unit): I? {
 /**
  * Call the given [action] when this iterable instance is not empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, I : Iterable<T>> I.onNotEmpty(action: (I) -> Unit): I {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -82,7 +82,7 @@ inline fun <T, I : Iterable<T>> I.onNotEmpty(action: (I) -> Unit): I {
 /**
  * Call the given [action] when this iterable instance is null or empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, I : Iterable<T>> I?.onNullOrEmpty(action: (I?) -> Unit): I? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -95,7 +95,7 @@ inline fun <T, I : Iterable<T>> I?.onNullOrEmpty(action: (I?) -> Unit): I? {
 /**
  * Call the given [action] when this iterable instance is empty.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, I : Iterable<T>> I.onEmpty(action: (I) -> Unit): I {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -108,7 +108,7 @@ inline fun <T, I : Iterable<T>> I.onEmpty(action: (I) -> Unit): I {
 /**
  * Returns itself if this [Iterable] is not empty, otherwise null.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, I : Iterable<T>> I?.takeIfNotEmpty(): I? {
   contract {
@@ -120,14 +120,14 @@ inline fun <T, I : Iterable<T>> I?.takeIfNotEmpty(): I? {
 /**
  * Returns itself if this [Iterable] is empty, otherwise null.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, I : Iterable<T>> I.takeIfEmpty(): I? = if (isEmpty()) this else null
 
 /**
  * Returns `true` if this iterable starts with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableStartsWith")
 fun <T> Iterable<T>?.startsWith(slice: T): Boolean = this?.first() == slice
@@ -135,14 +135,14 @@ fun <T> Iterable<T>?.startsWith(slice: T): Boolean = this?.first() == slice
 /**
  * Returns `true` if this iterable starts with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> Iterable<T>.startsWith(slice: T): Boolean = this.first() == slice
 
 /**
  * Returns `true` if this iterable ends with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableEndsWith")
 fun <T> Iterable<T>?.endsWith(slice: T) = this?.last() == slice
@@ -150,14 +150,14 @@ fun <T> Iterable<T>?.endsWith(slice: T) = this?.last() == slice
 /**
  * Returns `true` if this iterable ends with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> Iterable<T>.endsWith(slice: T) = this.last() == slice
 
 /**
  * Returns `true` if this iterable starts with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableStartsWith")
 fun <T> Iterable<T>?.startsWith(slice: Iterable<T>) = this?.take(slice.size) == slice.asList()
@@ -165,14 +165,14 @@ fun <T> Iterable<T>?.startsWith(slice: Iterable<T>) = this?.take(slice.size) == 
 /**
  * Returns `true` if this iterable starts with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> Iterable<T>.startsWith(slice: Iterable<T>) = this.take(slice.size) == slice.asList()
 
 /**
  * Returns `true` if this iterable ends with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableEndsWith")
 fun <T> Iterable<T>?.endsWith(slice: Iterable<T>) = this?.asList()?.takeLast(slice.size) == slice.asList()
@@ -180,14 +180,14 @@ fun <T> Iterable<T>?.endsWith(slice: Iterable<T>) = this?.asList()?.takeLast(sli
 /**
  * Returns `true` if this iterable ends with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> Iterable<T>.endsWith(slice: Iterable<T>) = this.asList().takeLast(slice.size) == slice.asList()
 
 /**
  * Returns `true` if this iterable starts with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableStartsWith")
 fun <T> Iterable<T>?.startsWith(slice: Sequence<T>) = this?.take(slice.size) == slice.toList()
@@ -195,14 +195,14 @@ fun <T> Iterable<T>?.startsWith(slice: Sequence<T>) = this?.take(slice.size) == 
 /**
  * Returns `true` if this iterable starts with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> Iterable<T>.startsWith(slice: Sequence<T>) = this.take(slice.size) == slice.toList()
 
 /**
  * Returns `true` if this iterable ends with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableEndsWith")
 fun <T> Iterable<T>?.endsWith(slice: Sequence<T>) = this?.asList()?.takeLast(slice.size) == slice.toList()
@@ -210,14 +210,14 @@ fun <T> Iterable<T>?.endsWith(slice: Sequence<T>) = this?.asList()?.takeLast(sli
 /**
  * Returns `true` if this iterable ends with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> Iterable<T>.endsWith(slice: Sequence<T>) = this.asList().takeLast(slice.size) == slice.toList()
 
 /**
  * Returns `true` if this iterable starts with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableStartsWith")
 fun <T> Iterable<T>?.startsWith(vararg slice: T) = this?.take(slice.size) == slice.toList()
@@ -225,14 +225,14 @@ fun <T> Iterable<T>?.startsWith(vararg slice: T) = this?.take(slice.size) == sli
 /**
  * Returns `true` if this iterable starts with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> Iterable<T>.startsWith(vararg slice: T) = this.take(slice.size) == slice.toList()
 
 /**
  * Returns `true` if this iterable ends with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableEndsWith")
 fun <T> Iterable<T>?.endsWith(vararg slice: T) = this?.asList()?.takeLast(slice.size) == slice.toList()
@@ -240,14 +240,14 @@ fun <T> Iterable<T>?.endsWith(vararg slice: T) = this?.asList()?.takeLast(slice.
 /**
  * Returns `true` if this iterable ends with given [slice].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> Iterable<T>.endsWith(vararg slice: T) = this.asList().takeLast(slice.size) == slice.toList()
 
 /**
  * Returns `true` if at least one element matches the given [predicate].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableContains")
 inline fun <T> Iterable<T>?.contains(predicate: (T) -> Boolean): Boolean = this != null && any(predicate)
@@ -255,14 +255,14 @@ inline fun <T> Iterable<T>?.contains(predicate: (T) -> Boolean): Boolean = this 
 /**
  * Returns `true` if at least one element matches the given [predicate].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> Iterable<T>.contains(predicate: (T) -> Boolean): Boolean = any(predicate)
 
 /**
  * Returns `true` if at least one element matches the given [predicate].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("nullableIterableHas")
 inline fun <T> Iterable<T>?.has(predicate: (T) -> Boolean): Boolean = this != null && any(predicate)
@@ -270,21 +270,21 @@ inline fun <T> Iterable<T>?.has(predicate: (T) -> Boolean): Boolean = this != nu
 /**
  * Returns `true` if at least one element matches the given [predicate].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> Iterable<T>.has(predicate: (T) -> Boolean): Boolean = any(predicate)
 
 /**
  * Converts [Iterable] to [Array].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <reified T> Iterable<T>.toArray(): Array<T> = this.asCollection().toTypedArray()
 
 /**
  * Drops the first element of this [Iterable] and returns a new list.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> Iterable<T>.dropFirst(): List<T> = drop(1)
 
@@ -292,6 +292,6 @@ inline fun <T> Iterable<T>.dropFirst(): List<T> = drop(1)
  * Returns a list containing all elements except first [n] elements.
  *
  * @throws IllegalArgumentException if [n] is negative.
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> Iterable<T>.dropFirst(n: Int): List<T> = drop(n)

@@ -24,7 +24,7 @@ import kotlinx.coroutines.withContext
  * @see CoroutineScope.launch for more details
  * @see Dispatchers.IO
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun CoroutineScope.launchIO(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -42,7 +42,7 @@ fun CoroutineScope.launchIO(
  * @see CoroutineScope.async for more details
  * @see Dispatchers.IO
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T> CoroutineScope.asyncIO(
   start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -58,7 +58,7 @@ fun <T> CoroutineScope.asyncIO(
  * operations.
  *
  * @see withContext for more details
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 suspend inline fun <T> withIOContext(noinline block: suspend CoroutineScope.() -> T): T =
   withContext(Dispatchers.IO, block)

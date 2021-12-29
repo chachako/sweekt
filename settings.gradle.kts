@@ -12,16 +12,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.meowool.gradle.toolkit") version "0.1.0-SNAPSHOT"
-}
-
-dependencyMapper {
-  libraries {
-    map("com.github.tschuchortdev:kotlin-compile-testing" to "KotlinCompileTesting")
-  }
-  plugins {
-    map("com.github.gmazzo.buildconfig" to "BuildConfig")
-  }
+  id("com.meowool.gradle.toolkit") version "0.1.1-SNAPSHOT"
 }
 
 gradleToolkit {

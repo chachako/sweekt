@@ -5,7 +5,7 @@ import kotlin.jvm.JvmName
 /**
  * If this list starts with the given [prefix], then removes the prefix and returns list itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.removePrefix(prefix: T): I = apply {
   if (startsWith(prefix)) removeFirst()
@@ -14,7 +14,7 @@ fun <T, I : MutableList<T>> I.removePrefix(prefix: T): I = apply {
 /**
  * If this list starts with the given [prefix], then removes the prefix and returns list itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.removePrefix(vararg prefix: T): I = apply {
   if (startsWith(*prefix)) removeFirst(prefix.size)
@@ -23,7 +23,7 @@ fun <T, I : MutableList<T>> I.removePrefix(vararg prefix: T): I = apply {
 /**
  * If this list starts with the given [prefix], then removes the prefix and returns list itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("removePrefixArray")
 fun <T, I : MutableList<T>> I.removePrefix(prefix: Array<out T>): I = apply {
@@ -33,7 +33,7 @@ fun <T, I : MutableList<T>> I.removePrefix(prefix: Array<out T>): I = apply {
 /**
  * If this list starts with the given [prefix], then removes the prefix and returns list itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.removePrefix(prefix: Iterable<T>): I = apply {
   if (startsWith(prefix)) removeFirst(prefix.size)
@@ -42,7 +42,7 @@ fun <T, I : MutableList<T>> I.removePrefix(prefix: Iterable<T>): I = apply {
 /**
  * If this list ends with the given [suffix], then removes the suffix and returns list itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.removeSuffix(suffix: T): I = apply {
   if (endsWith(suffix)) removeLast()
@@ -51,7 +51,7 @@ fun <T, I : MutableList<T>> I.removeSuffix(suffix: T): I = apply {
 /**
  * If this list ends with the given [suffix], then removes the suffix and returns list itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.removeSuffix(vararg suffix: T): I = apply {
   if (endsWith(*suffix)) removeLast(suffix.size)
@@ -60,7 +60,7 @@ fun <T, I : MutableList<T>> I.removeSuffix(vararg suffix: T): I = apply {
 /**
  * If this list ends with the given [suffix], then removes the suffix and returns list itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("removeSuffixArray")
 fun <T, I : MutableList<T>> I.removeSuffix(suffix: Array<out T>): I = apply {
@@ -70,7 +70,7 @@ fun <T, I : MutableList<T>> I.removeSuffix(suffix: Array<out T>): I = apply {
 /**
  * If this list ends with the given [suffix], then removes the suffix and returns list itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.removeSuffix(suffix: Iterable<T>): I = apply {
   if (endsWith(suffix)) removeLast(suffix.size)
@@ -79,7 +79,7 @@ fun <T, I : MutableList<T>> I.removeSuffix(suffix: Iterable<T>): I = apply {
 /**
  * Removes the first [n] elements from this mutable list and return itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.removeLast(n: Int): I = apply {
   subList(this.size - n, this.size).clear()
@@ -88,7 +88,7 @@ fun <T, I : MutableList<T>> I.removeLast(n: Int): I = apply {
 /**
  * Removes the first [n] elements from this mutable list and return itself.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.removeFirst(n: Int): I = apply {
   subList(0, n).clear()
@@ -97,21 +97,21 @@ fun <T, I : MutableList<T>> I.removeFirst(n: Int): I = apply {
 /**
  * Inserts the given [element] at the [index] of the [Iterable] object and returns a new [MutableList].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertAt(index: Int, element: T): I = apply { add(index, element) }
 
 /**
  * Inserts the given all [elements] at the [index] of the [Iterable] object and returns a new [MutableList].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertAt(index: Int, vararg elements: T): I = apply { addAll(index, elements.toList()) }
 
 /**
  * Inserts the given all [elements] at the [index] of the [Iterable] object and returns a new [MutableList].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("insertArrayAt")
 fun <T, I : MutableList<T>> I.insertAt(index: Int, elements: Array<out T>): I =
@@ -120,7 +120,7 @@ fun <T, I : MutableList<T>> I.insertAt(index: Int, elements: Array<out T>): I =
 /**
  * Inserts the given all [elements] at the [index] of the [Iterable] object and returns a new [MutableList].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertAt(index: Int, elements: Iterable<T>): I =
   apply { addAll(index, elements.asList()) }
@@ -128,21 +128,21 @@ fun <T, I : MutableList<T>> I.insertAt(index: Int, elements: Iterable<T>): I =
 /**
  * Inserts the given [element] at the first of this list object and returns a new [MutableList].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertFirst(element: T): I = apply { add(0, element) }
 
 /**
  * Inserts the given all [elements] at the first of this list object and returns a new [MutableList].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertFirst(vararg elements: T): I = apply { addAll(0, elements.toList()) }
 
 /**
  * Inserts the given all [elements] at the first of this list object and returns a new [MutableList].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("insertFirstArray")
 fun <T, I : MutableList<T>> I.insertFirst(elements: Array<out T>): I = apply { addAll(0, elements.toList()) }
@@ -150,7 +150,7 @@ fun <T, I : MutableList<T>> I.insertFirst(elements: Array<out T>): I = apply { a
 /**
  * Inserts the given all [elements] at the first of this list object and returns a new [MutableList].
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertFirst(elements: Iterable<T>): I = apply { addAll(0, elements.toList()) }
 
@@ -158,7 +158,7 @@ fun <T, I : MutableList<T>> I.insertFirst(elements: Iterable<T>): I = apply { ad
  * Inserts the given [element] at the last of the [Iterable] object and returns a new [MutableList].
  *
  * @see MutableCollection.append
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertLast(element: T): I = apply { add(element) }
 
@@ -166,7 +166,7 @@ fun <T, I : MutableList<T>> I.insertLast(element: T): I = apply { add(element) }
  * Inserts the given all [elements] at the last of the [Iterable] object and returns a new [MutableList].
  *
  * @see MutableCollection.append
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertLast(vararg elements: T): I = apply { addAll(elements) }
 
@@ -174,7 +174,7 @@ fun <T, I : MutableList<T>> I.insertLast(vararg elements: T): I = apply { addAll
  * Inserts the given all [elements] at the last of the [Iterable] object and returns a new [MutableList].
  *
  * @see MutableCollection.append
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 @JvmName("insertLastArray")
 fun <T, I : MutableList<T>> I.insertLast(elements: Array<out T>): I = apply { addAll(elements) }
@@ -183,6 +183,6 @@ fun <T, I : MutableList<T>> I.insertLast(elements: Array<out T>): I = apply { ad
  * Inserts the given all [elements] at the last of the [Iterable] object and returns a new [MutableList].
  *
  * @see MutableCollection.append
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 fun <T, I : MutableList<T>> I.insertLast(elements: Iterable<T>): MutableList<T> = apply { addAll(elements) }

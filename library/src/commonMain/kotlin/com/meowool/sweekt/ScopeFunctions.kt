@@ -10,7 +10,7 @@ import kotlin.contracts.contract
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.run
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> run(catching: (Throwable) -> R, block: () -> R): R {
   contract {
@@ -30,7 +30,7 @@ inline fun <R> run(catching: (Throwable) -> R, block: () -> R): R {
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.run
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, R> T.run(catching: T.(Throwable) -> R, block: T.() -> R): R {
   contract {
@@ -50,7 +50,7 @@ inline fun <T, R> T.run(catching: T.(Throwable) -> R, block: T.() -> R): R {
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.run
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <R> runOrNull(block: () -> R): R? {
   contract {
@@ -70,7 +70,7 @@ inline fun <R> runOrNull(block: () -> R): R? {
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.run
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, R> T.runOrNull(block: T.() -> R): R? {
   contract {
@@ -90,7 +90,7 @@ inline fun <T, R> T.runOrNull(block: T.() -> R): R? {
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.apply
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, R> T.apply(catching: T.(Throwable) -> Unit, block: T.() -> Unit): T {
   contract {
@@ -111,7 +111,7 @@ inline fun <T, R> T.apply(catching: T.(Throwable) -> Unit, block: T.() -> Unit):
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.apply
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T.applyOrNull(block: T.() -> Unit): T? {
   contract {
@@ -132,7 +132,7 @@ inline fun <T> T.applyOrNull(block: T.() -> Unit): T? {
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.also
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, R> T.also(catching: (receiver: T, t: Throwable) -> Unit, block: (receiver: T) -> Unit): T {
   contract {
@@ -153,7 +153,7 @@ inline fun <T, R> T.also(catching: (receiver: T, t: Throwable) -> Unit, block: (
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.apply
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T.alsoOrNull(block: (receiver: T) -> Unit): T? {
   contract {
@@ -174,7 +174,7 @@ inline fun <T> T.alsoOrNull(block: (receiver: T) -> Unit): T? {
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.let
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, R> T.let(catching: (receiver: T, t: Throwable) -> R, block: (receiver: T) -> R): R {
   contract {
@@ -194,7 +194,7 @@ inline fun <T, R> T.let(catching: (receiver: T, t: Throwable) -> R, block: (rece
  * This is a lighter implementation than [runCatching].
  *
  * @see kotlin.let
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T, R> T.letOrNull(block: (receiver: T) -> R): R? {
   contract {
@@ -219,7 +219,7 @@ inline fun <T, R> T.letOrNull(block: (receiver: T) -> R): R? {
  * ```
  *
  * @see kotlin.takeIf
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T.takeTryIf(predicate: (T) -> Boolean): T? {
   contract {
@@ -239,7 +239,7 @@ inline fun <T> T.takeTryIf(predicate: (T) -> Boolean): T? {
  * ```
  *
  * @see kotlin.takeUnless
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T.takeTryUnless(predicate: (T) -> Boolean): T? {
   contract {
@@ -257,7 +257,7 @@ inline fun <T> T.takeTryUnless(predicate: (T) -> Boolean): T? {
  * returns `null`, otherwise returns `this`.
  *
  * @see takeTryUnless
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T.takeTryIfNot(predicate: (T) -> Boolean): T? = takeTryUnless(predicate)
 
@@ -265,7 +265,7 @@ inline fun <T> T.takeTryIfNot(predicate: (T) -> Boolean): T? = takeTryUnless(pre
  * Returns `this` value if it _does not_ satisfy the given [predicate] or `null`, if it does.
  *
  * @see kotlin.takeUnless
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T.takeIfNot(predicate: (T) -> Boolean): T? = takeUnless(predicate)
 
@@ -273,7 +273,7 @@ inline fun <T> T.takeIfNot(predicate: (T) -> Boolean): T? = takeUnless(predicate
  * If the result of the [predicate] is `null`, returns `this` value, otherwise returns `null`.
  *
  * @see kotlin.takeIf
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T.takeIfNull(predicate: (T) -> Any?): T? = takeIf { predicate(it) == null }
 
@@ -281,14 +281,14 @@ inline fun <T> T.takeIfNull(predicate: (T) -> Any?): T? = takeIf { predicate(it)
  * If the result of the [predicate] is not `null`, returns `this` value, otherwise returns `null`.
  *
  * @see kotlin.takeIf
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T.takeIfNotNull(predicate: (T) -> Any?): T? = takeIfNot { predicate(it) == null }
 
 /**
  * If this [T] is not null then this is returned, otherwise [another] is executed and its result is returned.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T?.ifNull(another: () -> T): T {
   contract { callsInPlace(another, InvocationKind.AT_MOST_ONCE) }
@@ -299,7 +299,7 @@ inline fun <T> T?.ifNull(another: () -> T): T {
  * If this [T] value is `null`, executes the given [action], and then returns to itself, otherwise, if this value is
  * empty, returns to itself directly.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T?.onNull(action: () -> T): T? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
@@ -310,7 +310,7 @@ inline fun <T> T?.onNull(action: () -> T): T? {
  * If this [T] value is not `null`, executes the given [action], and then returns to itself, otherwise, if this value
  * is empty, returns to itself directly.
  *
- * @author 凛 (https://github.com/RinOrz)
+ * @author 凛 (RinOrz)
  */
 inline fun <T> T?.onNotNull(action: () -> T): T? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
