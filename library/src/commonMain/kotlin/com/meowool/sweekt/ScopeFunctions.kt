@@ -301,7 +301,7 @@ inline fun <T> T?.ifNull(another: () -> T): T {
  *
  * @author 凛 (RinOrz)
  */
-inline fun <T> T?.onNull(action: () -> T): T? {
+inline fun <T> T?.onNull(action: () -> Unit): T? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
   return this.also { if (it == null) action() }
 }
@@ -312,7 +312,7 @@ inline fun <T> T?.onNull(action: () -> T): T? {
  *
  * @author 凛 (RinOrz)
  */
-inline fun <T> T?.onNotNull(action: () -> T): T? {
+inline fun <T> T?.onNotNull(action: () -> Unit): T? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
   return this.also { if (it != null) action() }
 }
