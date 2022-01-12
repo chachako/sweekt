@@ -44,7 +44,7 @@ tasks {
     dependencies {
       exclude(project(Projects.Library))
     }
-    // Don't use the embedded Kotlin Compiler APIs, redirect them to use the Intellij internal
+    // Don't use intellij internal APIs, redirect them to embedded Kotlin Compiler APIs
     relocate("com.intellij", "org.jetbrains.kotlin.com.intellij")
   }
   // Replace the standard jar with the one built by 'shadowJar' in both api and runtime variants

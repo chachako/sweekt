@@ -31,8 +31,10 @@ dependencies {
   compileOnlyOf(
     Libs.Kotlin.Compiler,
     Libs.Kotlin.Stdlib.Common,
+  )
+  implementationOf(
+    project(Projects.Library),
     Libs.Google.Auto.Service.Annotations
   )
-  ksp(Libs.Google.Auto.Service)
-  implementationProject(Projects.Library)
+  ksp(Libs.Google.Auto.Service.Ksp)
 }
