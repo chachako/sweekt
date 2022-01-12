@@ -21,13 +21,13 @@
 package com.meowool.sweekt.suspend
 
 import com.meowool.sweekt.AbstractIrTransformer
+import com.meowool.sweekt.ModuleLoweringPass
 import com.meowool.sweekt.SweektNames.Suspend
 import com.meowool.sweekt.SweektNames.realSuspendGetter
 import com.meowool.sweekt.SweektNames.realSuspendSetter
 import com.meowool.sweekt.SweektNames.suspendGetter
 import com.meowool.sweekt.SweektNames.suspendSetter
 import com.meowool.sweekt.castOrNull
-import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.ir.addChild
 import org.jetbrains.kotlin.config.CompilerConfiguration
@@ -59,15 +59,19 @@ import org.jetbrains.kotlin.name.Name
  * @author 凛 (RinOrz)
  */
 @OptIn(ObsoleteDescriptorBasedAPI::class)
-class SuspendPropertyGeneration(private val configuration: CompilerConfiguration) : IrGenerationExtension {
-  override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
+class SuspendPropertyGeneration(
+  private val pluginContext: IrPluginContext,
+  private val configuration: CompilerConfiguration
+) : ModuleLoweringPass {
+  override fun lower(module: IrModuleFragment) {
     val suspendSymbols = mutableMapOf<IrSimpleFunctionSymbol, IrSimpleFunctionSymbol>()
-    moduleFragment.transformChildrenVoid(PropertiesCollector(pluginContext, suspendSymbols))
+
+    module.transformChildrenVoid(PropertiesCollector(pluginContext, suspendSymbols))
 
     val remapper = PropertiesRemapper(suspendSymbols)
-    moduleFragment.acceptVoid(remapper)
-    moduleFragment.transformChildrenVoid(PropertiesTransformer(remapper, suspendSymbols))
-    moduleFragment.patchDeclarationParents()
+    module.acceptVoid(remapper)
+    module.transformChildrenVoid(PropertiesTransformer(remapper, suspendSymbols))
+    module.patchDeclarationParents()
   }
 
   private inner class PropertiesCollector(

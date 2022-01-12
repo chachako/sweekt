@@ -23,17 +23,18 @@ package com.meowool.sweekt
 import com.google.auto.service.AutoService
 import com.intellij.mock.MockProject
 import com.meowool.sweekt.info.InfoClassChecker
-import com.meowool.sweekt.info.InfoClassGeneration
 import com.meowool.sweekt.info.InfoClassSynthetic
+import com.meowool.sweekt.info.InfoClassTransformer
 import com.meowool.sweekt.info.InfoFunctionChecker
 import com.meowool.sweekt.lazyinit.LazyInitChecker
-import com.meowool.sweekt.lazyinit.LazyInitGeneration
+import com.meowool.sweekt.lazyinit.LazyInitTransformer
 import com.meowool.sweekt.lazyinit.ResetValueChecker
 import com.meowool.sweekt.suspend.SuspendPropertyCallChecker
 import com.meowool.sweekt.suspend.SuspendPropertyChecker
 import com.meowool.sweekt.suspend.SuspendPropertyGeneration
 import com.meowool.toolkit.compiler_hosted.BuildConfig
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
+import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
 import org.jetbrains.kotlin.compiler.plugin.CliOption
 import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
@@ -44,6 +45,7 @@ import org.jetbrains.kotlin.container.StorageComponentContainer
 import org.jetbrains.kotlin.container.useInstance
 import org.jetbrains.kotlin.descriptors.ModuleDescriptor
 import org.jetbrains.kotlin.extensions.StorageComponentContainerContributor
+import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
 import org.jetbrains.kotlin.platform.TargetPlatform
 import org.jetbrains.kotlin.resolve.extensions.SyntheticResolveExtension
 
@@ -75,14 +77,18 @@ class SweektCommandLineProcessor : CommandLineProcessor {
 @AutoService(ComponentRegistrar::class)
 class SweektComponentRegistrar : ComponentRegistrar {
   override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
-    IrGenerationExtension.registerExtension(project, LazyInitGeneration(configuration))
-
-    IrGenerationExtension.registerExtension(project, SuspendPropertyGeneration(configuration))
-
-    IrGenerationExtension.registerExtension(project, InfoClassGeneration(configuration))
-    SyntheticResolveExtension.registerExtension(project, InfoClassSynthetic())
-
     StorageComponentContainerContributor.registerExtension(project, StorageComponent())
+    SyntheticResolveExtension.registerExtension(project, InfoClassSynthetic())
+    IrGenerationExtension.registerExtension(
+      project,
+      object : IrGenerationExtension {
+        override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
+          LazyInitTransformer(pluginContext, configuration).lower(moduleFragment)
+          InfoClassTransformer(pluginContext, configuration).lower(moduleFragment)
+          SuspendPropertyGeneration(pluginContext, configuration).lower(moduleFragment)
+        }
+      }
+    )
   }
 
   /**

@@ -16,8 +16,101 @@ public abstract class com/meowool/sweekt/AbstractErrors$Messages : org/jetbrains
 	public fun getMap ()Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticFactoryToRendererMap;
 }
 
+public abstract class com/meowool/sweekt/AbstractIrTransformer : org/jetbrains/kotlin/ir/visitors/IrElementTransformerVoid {
+	public field currentFile Lorg/jetbrains/kotlin/ir/declarations/IrFile;
+	public fun <init> (Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+	public final fun addFunction (Lorg/jetbrains/kotlin/ir/declarations/IrDeclarationParent;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public static synthetic fun addFunction$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrDeclarationParent;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public final fun addProperty (Lorg/jetbrains/kotlin/ir/declarations/IrDeclarationParent;Ljava/lang/String;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lorg/jetbrains/kotlin/ir/types/IrType;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrProperty;
+	public static synthetic fun addProperty$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrDeclarationParent;Ljava/lang/String;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lorg/jetbrains/kotlin/ir/types/IrType;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrProperty;
+	public final fun buildIr (Lorg/jetbrains/kotlin/ir/declarations/IrField;IILkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public final fun buildIr (Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;IILkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static synthetic fun buildIr$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrField;IILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun buildIr$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;IILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun containsValueParameter (Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lorg/jetbrains/kotlin/name/Name;)Z
+	public final fun copy (Lorg/jetbrains/kotlin/ir/declarations/IrField;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrField;
+	public final fun copy (Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public final fun copy (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrProperty;
+	public final fun copy (Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public final fun copy (Lorg/jetbrains/kotlin/ir/expressions/IrCall;IILorg/jetbrains/kotlin/ir/types/IrType;Lorg/jetbrains/kotlin/ir/symbols/IrSimpleFunctionSymbol;IILorg/jetbrains/kotlin/ir/expressions/IrStatementOrigin;Lorg/jetbrains/kotlin/ir/symbols/IrClassSymbol;)Lorg/jetbrains/kotlin/ir/expressions/impl/IrCallImpl;
+	public static synthetic fun copy$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrField;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrField;
+	public static synthetic fun copy$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public static synthetic fun copy$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrProperty;
+	public static synthetic fun copy$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public static synthetic fun copy$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/expressions/IrCall;IILorg/jetbrains/kotlin/ir/types/IrType;Lorg/jetbrains/kotlin/ir/symbols/IrSimpleFunctionSymbol;IILorg/jetbrains/kotlin/ir/expressions/IrStatementOrigin;Lorg/jetbrains/kotlin/ir/symbols/IrClassSymbol;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/expressions/impl/IrCallImpl;
+	public final fun createGetter (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public static synthetic fun createGetter$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public final fun createSetter (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public static synthetic fun createSetter$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public final fun findFunctions (Lorg/jetbrains/kotlin/ir/declarations/IrDeclarationContainer;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrFunction;
+	public final fun findOverridenFunctionSymbols (Lorg/jetbrains/kotlin/ir/declarations/IrClass;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public final fun findOverridenFunctions (Lorg/jetbrains/kotlin/ir/declarations/IrClass;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public final fun findValueParameter (Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Ljava/lang/String;)Lorg/jetbrains/kotlin/ir/declarations/IrValueParameter;
+	public final fun findValueParameter (Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lorg/jetbrains/kotlin/name/Name;)Lorg/jetbrains/kotlin/ir/declarations/IrValueParameter;
+	public final fun getByName (Lkotlin/sequences/Sequence;Lorg/jetbrains/kotlin/name/Name;)Lorg/jetbrains/kotlin/ir/declarations/IrProperty;
+	public final fun getConfiguration ()Lorg/jetbrains/kotlin/config/CompilerConfiguration;
+	public final fun getCurrentFile ()Lorg/jetbrains/kotlin/ir/declarations/IrFile;
+	public final fun getErasedUpperBound (Lorg/jetbrains/kotlin/ir/declarations/IrTypeParameter;)Lorg/jetbrains/kotlin/ir/declarations/IrClass;
+	public final fun getIntPlusSymbol ()Lorg/jetbrains/kotlin/ir/symbols/IrSimpleFunctionSymbol;
+	public final fun getIntTimesSymbol ()Lorg/jetbrains/kotlin/ir/symbols/IrSimpleFunctionSymbol;
+	public final fun getIrBuiltIns ()Lorg/jetbrains/kotlin/ir/IrBuiltIns;
+	public final fun getIrFactory ()Lorg/jetbrains/kotlin/ir/declarations/IrFactory;
+	public final fun getMessenger ()Lorg/jetbrains/kotlin/ir/util/IrMessageLogger;
+	public final fun getOrAddGetter (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
+	public final fun getParentContainer (Lorg/jetbrains/kotlin/ir/declarations/IrDeclaration;)Lorg/jetbrains/kotlin/ir/declarations/IrDeclarationContainer;
+	public final fun getPluginContext ()Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;
+	public final fun getSuperClass (Lorg/jetbrains/kotlin/ir/declarations/IrClass;)Lorg/jetbrains/kotlin/ir/declarations/IrClass;
+	public final fun getThisReceiver (Lorg/jetbrains/kotlin/ir/declarations/IrFunction;)Lorg/jetbrains/kotlin/ir/declarations/IrValueParameter;
+	public final fun getType (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/types/IrType;
+	public final fun getValueParameter (Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lorg/jetbrains/kotlin/name/Name;)Lorg/jetbrains/kotlin/ir/declarations/IrValueParameter;
+	public final fun irAndAnd (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;[Lorg/jetbrains/kotlin/ir/expressions/IrExpression;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
+	public final fun irCallWithArgs (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;[Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrStatementOrigin;Lorg/jetbrains/kotlin/ir/symbols/IrClassSymbol;)Lorg/jetbrains/kotlin/ir/expressions/IrCall;
+	public final fun irCallWithArgs (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/symbols/IrSimpleFunctionSymbol;[Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrStatementOrigin;Lorg/jetbrains/kotlin/ir/symbols/IrClassSymbol;)Lorg/jetbrains/kotlin/ir/expressions/IrCall;
+	public static synthetic fun irCallWithArgs$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;[Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrStatementOrigin;Lorg/jetbrains/kotlin/ir/symbols/IrClassSymbol;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/expressions/IrCall;
+	public static synthetic fun irCallWithArgs$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/symbols/IrSimpleFunctionSymbol;[Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/expressions/IrStatementOrigin;Lorg/jetbrains/kotlin/ir/symbols/IrClassSymbol;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/expressions/IrCall;
+	public final fun irGetField (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/expressions/IrGetField;
+	public final fun irGetField (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/expressions/IrGetField;
+	public final fun irGetProperty (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
+	public final fun irGetProperty (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
+	public final fun irReturnExprBody (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;)Lorg/jetbrains/kotlin/ir/expressions/IrExpressionBody;
+	public final fun irSet (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrVariable;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;)Lorg/jetbrains/kotlin/ir/expressions/impl/IrSetValueImpl;
+	public final fun irSetField (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
+	public final fun irSetField (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
+	public final fun irSetProperty (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
+	public final fun irSetProperty (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;Lorg/jetbrains/kotlin/ir/declarations/IrProperty;Lorg/jetbrains/kotlin/ir/expressions/IrExpression;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
+	public final fun irThis (Lcom/meowool/sweekt/AbstractIrTransformer$FunctionBodyBuilder;)Lorg/jetbrains/kotlin/ir/expressions/impl/IrGetValueImpl;
+	public final fun irThisOrNull (Lcom/meowool/sweekt/AbstractIrTransformer$FunctionBodyBuilder;)Lorg/jetbrains/kotlin/ir/expressions/impl/IrGetValueImpl;
+	public final fun irWhen (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/types/IrType;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/expressions/IrWhen;
+	public static synthetic fun irWhen$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/types/IrType;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/expressions/IrWhen;
+	public final fun isAccessThisClass (Lorg/jetbrains/kotlin/ir/expressions/IrGetValue;)Z
+	public final fun isAccessToObject (Lorg/jetbrains/kotlin/ir/expressions/IrGetValue;)Z
+	public final fun isBoxedOrPrimitiveArray (Lorg/jetbrains/kotlin/ir/types/IrType;)Z
+	public final fun isClassBodyProperty (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Z
+	public final fun isPrimaryConstructorParameter (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Z
+	public final fun log (Lkotlin/jvm/functions/Function0;)V
+	public final fun reportWarn (Lorg/jetbrains/kotlin/ir/IrElement;Ljava/lang/Object;Lorg/jetbrains/kotlin/ir/declarations/IrFile;)V
+	public static synthetic fun reportWarn$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/IrElement;Ljava/lang/Object;Lorg/jetbrains/kotlin/ir/declarations/IrFile;ILjava/lang/Object;)V
+	public final fun setCurrentFile (Lorg/jetbrains/kotlin/ir/declarations/IrFile;)V
+	public final fun thisExpr (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;)Lorg/jetbrains/kotlin/ir/expressions/impl/IrGetValueImpl;
+	public fun visitFile (Lorg/jetbrains/kotlin/ir/declarations/IrFile;)Lorg/jetbrains/kotlin/ir/declarations/IrFile;
+}
+
+public final class com/meowool/sweekt/AbstractIrTransformer$BranchBuilder : org/jetbrains/kotlin/ir/builders/IrBuilderWithScope {
+	public fun <init> (Lorg/jetbrains/kotlin/ir/expressions/IrWhen;Lorg/jetbrains/kotlin/ir/builders/IrGeneratorContext;Lorg/jetbrains/kotlin/ir/builders/Scope;II)V
+	public final fun unaryPlus (Lorg/jetbrains/kotlin/ir/expressions/IrBranch;)V
+}
+
+public final class com/meowool/sweekt/AbstractIrTransformer$FunctionBodyBuilder : org/jetbrains/kotlin/ir/builders/IrBuilderWithScope {
+	public fun <init> (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;)V
+	public final fun getFunction ()Lorg/jetbrains/kotlin/ir/declarations/IrFunction;
+}
+
 public final class com/meowool/sweekt/AbstractIrTransformerKt {
 	public static final fun getAnnotationBooleanOrNull (Lorg/jetbrains/kotlin/ir/expressions/IrConstructorCall;Ljava/lang/String;)Ljava/lang/Boolean;
+}
+
+public abstract interface class com/meowool/sweekt/ModuleLoweringPass {
+	public abstract fun lower (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;)V
 }
 
 public final class com/meowool/sweekt/SweektCommandLineProcessor : org/jetbrains/kotlin/compiler/plugin/CommandLineProcessor {
@@ -105,13 +198,6 @@ public final class com/meowool/sweekt/info/InfoClassDescriptorResolver {
 	public final fun isComponentLike (Lorg/jetbrains/kotlin/name/Name;)Z
 }
 
-public final class com/meowool/sweekt/info/InfoClassGeneration : org/jetbrains/kotlin/backend/common/extensions/IrGenerationExtension {
-	public fun <init> (Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
-	public fun generate (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;)V
-	public final fun getConfiguration ()Lorg/jetbrains/kotlin/config/CompilerConfiguration;
-	public fun resolveSymbol (Lorg/jetbrains/kotlin/ir/symbols/IrSymbol;Lorg/jetbrains/kotlin/ir/builders/TranslationPluginContext;)Lorg/jetbrains/kotlin/ir/declarations/IrDeclaration;
-}
-
 public final class com/meowool/sweekt/info/InfoClassSynthetic : org/jetbrains/kotlin/resolve/extensions/SyntheticResolveExtension {
 	public fun <init> ()V
 	public fun addSyntheticSupertypes (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;Ljava/util/List;)V
@@ -123,6 +209,13 @@ public final class com/meowool/sweekt/info/InfoClassSynthetic : org/jetbrains/ko
 	public fun getSyntheticCompanionObjectNameIfNeeded (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Lorg/jetbrains/kotlin/name/Name;
 	public fun getSyntheticFunctionNames (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Ljava/util/List;
 	public fun getSyntheticNestedClassNames (Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Ljava/util/List;
+}
+
+public final class com/meowool/sweekt/info/InfoClassTransformer : com/meowool/sweekt/AbstractIrTransformer, com/meowool/sweekt/ModuleLoweringPass, org/jetbrains/kotlin/backend/common/ClassLoweringPass {
+	public fun <init> (Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+	public fun lower (Lorg/jetbrains/kotlin/ir/declarations/IrClass;)V
+	public fun lower (Lorg/jetbrains/kotlin/ir/declarations/IrFile;)V
+	public fun lower (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;)V
 }
 
 public final class com/meowool/sweekt/info/InfoErrors : com/meowool/sweekt/AbstractErrors {
@@ -172,10 +265,12 @@ public final class com/meowool/sweekt/lazyinit/LazyInitErrors$Messages : com/meo
 	public fun <init> ()V
 }
 
-public final class com/meowool/sweekt/lazyinit/LazyInitGeneration : org/jetbrains/kotlin/backend/common/extensions/IrGenerationExtension {
-	public fun <init> (Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
-	public fun generate (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;)V
-	public fun resolveSymbol (Lorg/jetbrains/kotlin/ir/symbols/IrSymbol;Lorg/jetbrains/kotlin/ir/builders/TranslationPluginContext;)Lorg/jetbrains/kotlin/ir/declarations/IrDeclaration;
+public final class com/meowool/sweekt/lazyinit/LazyInitTransformer : com/meowool/sweekt/AbstractIrTransformer, com/meowool/sweekt/ModuleLoweringPass {
+	public fun <init> (Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+	public fun lower (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;)V
+	public fun visitCall (Lorg/jetbrains/kotlin/ir/expressions/IrCall;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
+	public fun visitField (Lorg/jetbrains/kotlin/ir/declarations/IrField;)Lorg/jetbrains/kotlin/ir/IrStatement;
+	public fun visitProperty (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/IrStatement;
 }
 
 public final class com/meowool/sweekt/lazyinit/ResetValueChecker : org/jetbrains/kotlin/resolve/calls/checkers/CallChecker {
@@ -203,9 +298,8 @@ public final class com/meowool/sweekt/suspend/SuspendPropertyErrors$Messages : c
 	public fun <init> ()V
 }
 
-public final class com/meowool/sweekt/suspend/SuspendPropertyGeneration : org/jetbrains/kotlin/backend/common/extensions/IrGenerationExtension {
-	public fun <init> (Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
-	public fun generate (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;)V
-	public fun resolveSymbol (Lorg/jetbrains/kotlin/ir/symbols/IrSymbol;Lorg/jetbrains/kotlin/ir/builders/TranslationPluginContext;)Lorg/jetbrains/kotlin/ir/declarations/IrDeclaration;
+public final class com/meowool/sweekt/suspend/SuspendPropertyGeneration : com/meowool/sweekt/ModuleLoweringPass {
+	public fun <init> (Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+	public fun lower (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;)V
 }
 

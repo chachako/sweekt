@@ -20,6 +20,7 @@
  */
 package com.meowool.sweekt.suspend
 
+import com.meowool.sweekt.SweektNames
 import com.meowool.sweekt.SweektNames.suspendGetter
 import com.meowool.sweekt.SweektNames.suspendSetter
 import org.jetbrains.kotlin.descriptors.DeclarationDescriptor
@@ -46,6 +47,7 @@ object SuspendPropertyChecker : DeclarationChecker {
   ) {
     if (descriptor !is PropertyDescriptor) return
     if (declaration !is KtProperty) return
+    if (!descriptor.annotations.hasAnnotation(SweektNames.Suspend)) return
 
     declaration.getter?.also { it.requiredSuspendGetter(context.trace, descriptor) }
     declaration.setter?.also { it.requiredSuspendSetter(context.trace, descriptor) }

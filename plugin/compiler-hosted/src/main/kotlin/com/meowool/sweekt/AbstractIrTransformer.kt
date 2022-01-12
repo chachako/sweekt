@@ -93,14 +93,14 @@ import org.jetbrains.kotlin.util.OperatorNameConventions
  * @author 凛 (RinOrz)
  */
 @OptIn(ObsoleteDescriptorBasedAPI::class)
-internal abstract class AbstractIrTransformer(
+abstract class AbstractIrTransformer(
   val pluginContext: IrPluginContext,
   val configuration: CompilerConfiguration
 ) : IrElementTransformerVoidWithContext() {
   val irFactory get() = pluginContext.irFactory
   val irBuiltIns get() = pluginContext.irBuiltIns
 
-  private val messenger = pluginContext.createDiagnosticReporter("Sweekt.${this.javaClass.simpleName}")
+  val messenger = pluginContext.createDiagnosticReporter("Sweekt.${this.javaClass.simpleName}")
 
   inline fun log(logging: () -> Any) {
     if (configuration.get(SweektConfigurationKeys.isLogging, false))
