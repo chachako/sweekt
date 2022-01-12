@@ -21,9 +21,7 @@
 package com.meowool.sweekt
 
 import com.meowool.toolkit.gradle.BuildConfig
-import org.gradle.api.Project
 import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.hasPlugin
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
 import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
@@ -33,19 +31,15 @@ import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
  * @author 凛 (RinOrz)
  */
 class SweektGradlePlugin : KotlinCompilerPluginSupportPlugin {
-  override fun apply(target: Project) {
-    super.apply(target)
-    target.afterEvaluate {
-      if (configurations.names.contains("implementation")) {
-        dependencies.add("implementation", "${BuildConfig.GroupId}:sweekt:${BuildConfig.Version}")
-      }
-    }
-  }
-
   override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
 
-  override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> =
-    kotlinCompilation.target.project.provider { emptyList() }
+  override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
+    // Add sweekt runtime
+    kotlinCompilation.dependencies {
+      implementation("${BuildConfig.GroupId}:sweekt:${BuildConfig.Version}")
+    }
+    return kotlinCompilation.target.project.provider { emptyList() }
+  }
 
   override fun getCompilerPluginId(): String = BuildConfig.CompilerId
 
