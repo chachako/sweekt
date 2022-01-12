@@ -42,8 +42,7 @@ class SweektGradlePlugin : KotlinCompilerPluginSupportPlugin {
     }
   }
 
-  override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean =
-    kotlinCompilation.target.project.plugins.hasPlugin(SweektGradlePlugin::class)
+  override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
 
   override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> =
     kotlinCompilation.target.project.provider { emptyList() }
