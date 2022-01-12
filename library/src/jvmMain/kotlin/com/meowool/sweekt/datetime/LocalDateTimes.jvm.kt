@@ -1,3 +1,5 @@
+@file:Suppress("NewApi")
+
 package com.meowool.sweekt.datetime
 
 import com.meowool.sweekt.Locale

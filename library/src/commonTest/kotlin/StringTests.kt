@@ -24,7 +24,7 @@ import io.kotest.matchers.string.shouldNotStartWith
  * @author 凛 (RinOrz)
  */
 class StringTests : StringSpec({
-  "removeBlanks" { "com . meowool . toolkit . sweekt".removeBlanks() shouldBe "com.meowool.sweekt" }
+  "removeBlanks" { "com . meowool . toolkit . sweekt".removeBlanks() shouldBe "com.meowool.toolkit.sweekt" }
 
   "firstCharTitlecase" {
     "sweekt".firstCharTitlecase() shouldBe "Sweekt"

@@ -371,8 +371,8 @@ fun CharSequence.substringAfterLast(
  * @author 凛 (RinOrz)
  */
 fun CharSequence.remove(index: Int): String = buildString(length) {
-  append(substringBefore(index))
-  append(substringAfter(index))
+  append(this@remove.substringBefore(index))
+  append(this@remove.substringAfter(index))
 }
 
 /**

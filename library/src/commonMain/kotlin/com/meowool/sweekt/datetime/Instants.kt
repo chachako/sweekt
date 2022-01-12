@@ -31,7 +31,7 @@ inline val Instant.epochMillis: Long get() = this.toEpochMilliseconds()
  * @param zone the time-zone to create zoned date-time.
  * @author 凛 (RinOrz)
  */
-inline fun Instant.toDateTime(zone: TimeZone = TimeZone.system()): LocalDateTime = toLocalDateTime(zone)
+inline fun Instant.toDateTime(zone: TimeZone = TimeZone.system()): LocalDateTime = toLocalDateTime(timeZone = zone)
 
 /**
  * Returns `true` if this instant belongs to this year.

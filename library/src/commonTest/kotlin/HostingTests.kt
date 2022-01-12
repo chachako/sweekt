@@ -1,5 +1,6 @@
 import com.meowool.sweekt.HostingStack
 import com.meowool.sweekt.hosting
+import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
@@ -13,7 +14,7 @@ import io.kotest.matchers.shouldBe
  * @author 凛 (RinOrz)
  */
 class HostingTests : BehaviorSpec({
-  val host = hosting<Int>()
+  val host = hosting<Int>("one")
 
   given("empty hosting") {
     `when`("entry") {
@@ -43,26 +44,30 @@ class HostingTests : BehaviorSpec({
       host.isHosting() shouldBe true
       host.value shouldBe -1
     }
+    then("invalidate hosting") {
+      HostingStack["one"].invalidate()
+      shouldThrow<IllegalStateException> { host.value }.message shouldBe "You have not hosted any value!"
+    }
   }
 
-  val delegatedHost by hosting("one") { listOf(1, 2, 3) }
+  val delegatedHost by hosting("two") { listOf(1, 2, 3) }
   given("hosting property") {
     `when`("entry") {
       delegatedHost shouldHaveSize 3
-      HostingStack["one"].value shouldBe delegatedHost
+      HostingStack["two"].value shouldBe delegatedHost
     }
     then("invalidate hosting") {
-      HostingStack["one"].invalidate()
-      shouldThrow<IllegalStateException> { delegatedHost }.message shouldBe "You have not hosted any value!"
+      HostingStack["two"].invalidate()
+      shouldNotThrow<IllegalStateException> { delegatedHost }
     }
     then("hosting new") {
-      HostingStack.take<List<Int>>("one").value = emptyList()
+      HostingStack.take<List<Int>>("two").value = emptyList()
       delegatedHost shouldHaveSize 0
       delegatedHost.shouldBeEmpty()
     }
     then("remove the hosting from stack") {
-      HostingStack.remove("one")
-      HostingStack.find("one").shouldBeNull()
+      HostingStack.remove("two")
+      HostingStack.find("two").shouldBeNull()
       shouldNotThrowAny { delegatedHost.toString() }
     }
   }

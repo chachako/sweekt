@@ -28,6 +28,14 @@ inline val nowDateTime: LocalDateTime get() = nowInstant.toLocalDateTime(TimeZon
 inline val LocalDateTime.epochMillis: Long get() = this.toInstant(TimeZone.currentSystemDefault()).epochMillis
 
 /**
+ * Converts the instant to zoned date-time.
+ *
+ * @param zone the time-zone to create zoned date-time.
+ * @author 凛 (RinOrz)
+ */
+inline fun LocalDateTime.toInstant(zone: TimeZone = TimeZone.system()): Instant = toInstant(timeZone = zone)
+
+/**
  * Returns `true` if this zoned date-time belongs to this year.
  *
  * @author 凛 (RinOrz)

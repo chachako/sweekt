@@ -640,6 +640,8 @@ public final class com/meowool/sweekt/datetime/LocalDateTimesKt {
 	public static final fun isCurrentMonth (Lkotlinx/datetime/LocalDateTime;)Z
 	public static final fun isCurrentYear (Lkotlinx/datetime/LocalDateTime;)Z
 	public static final fun isToday (Lkotlinx/datetime/LocalDateTime;)Z
+	public static final fun toInstant (Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/TimeZone;)Lkotlinx/datetime/Instant;
+	public static synthetic fun toInstant$default (Lkotlinx/datetime/LocalDateTime;Lkotlinx/datetime/TimeZone;ILjava/lang/Object;)Lkotlinx/datetime/Instant;
 }
 
 public final class com/meowool/sweekt/datetime/LocalDateTimes_jvmKt {

@@ -57,7 +57,6 @@ class LazyInitTests : StringSpec({
       """,
     ) { line ->
       fun error(name: String) = "Property '$name' marked with @LazyInit cannot declare getter (`get() = 0`) at the same time."
-      messages.trimEnd().lines().shouldHaveSize(2)
       messages shouldContain "(${line(2)}, 3): ${error("a")}"
       messages shouldContain "(${line(4)}, 22): ${error("b")}"
     }

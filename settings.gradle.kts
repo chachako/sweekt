@@ -15,6 +15,12 @@ plugins {
   id("com.meowool.gradle.toolkit") version "0.1.1-SNAPSHOT"
 }
 
+buildscript {
+  configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+  }
+}
+
 gradleToolkit {
   useMeowoolSpec()
   allprojects {
