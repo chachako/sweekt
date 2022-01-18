@@ -14,15 +14,12 @@ package com.meowool.sweekt
 annotation class InternalSweektApi
 
 /**
- * Used to mark APIs that are only available for compiler.
+ * Represents APIs are only available for compiler.
  *
  * @author 凛 (RinOrz)
  */
-@RequiresOptIn(
-  level = RequiresOptIn.Level.ERROR,
-  message = "This is an internal compiler API of 'com.meowool.sweekt' that should not be used from outside."
-)
-annotation class InternalSweektCompilerApi
+@PublishedApi
+internal const val InternalSweektCompilerApi = "This is an internal compiler API of 'com.meowool.sweekt' that should not be used from outside."
 
 @PublishedApi
 internal fun compilerImplementation(): Nothing = throw UnsupportedOperationException(

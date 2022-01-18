@@ -89,7 +89,7 @@ annotation class Info(
    *
    * @author 凛 (RinOrz)
    */
-  @InternalSweektCompilerApi
+  @Deprecated(InternalSweektCompilerApi, level = DeprecationLevel.HIDDEN)
   interface Synthetic {
 
     /**

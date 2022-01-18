@@ -98,10 +98,8 @@ inline fun suspendSetter(crossinline block: suspend () -> Unit): Unit = compiler
 ////                            Internal APIs                            ////
 /////////////////////////////////////////////////////////////////////////////
 
-@InternalSweektCompilerApi
-@Deprecated("@InternalSweektCompilerApi", level = DeprecationLevel.HIDDEN)
-suspend inline fun <R> `-$suspendGetter`(crossinline block: suspend () -> R): R = block()
+@Deprecated(InternalSweektCompilerApi, level = DeprecationLevel.HIDDEN)
+suspend inline fun <R> suspendGetterInlined(crossinline block: suspend () -> R): R = block()
 
-@InternalSweektCompilerApi
-@Deprecated("@InternalSweektCompilerApi", level = DeprecationLevel.HIDDEN)
-suspend inline fun `-$suspendSetter`(crossinline block: suspend () -> Unit): Unit = block()
+@Deprecated(InternalSweektCompilerApi, level = DeprecationLevel.HIDDEN)
+suspend inline fun suspendSetterInlined(crossinline block: suspend () -> Unit): Unit = block()
