@@ -8,6 +8,7 @@ env:
 
 jobs:
   build:
+    if: ${{ false }} # TODO REMOVE
     name: Build & Check
     runs-on: ubuntu-latest
 
