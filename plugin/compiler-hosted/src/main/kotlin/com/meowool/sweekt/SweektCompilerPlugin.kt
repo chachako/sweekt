@@ -22,16 +22,15 @@ package com.meowool.sweekt
 
 import com.google.auto.service.AutoService
 import com.intellij.mock.MockProject
+import com.intellij.openapi.project.Project
 import com.meowool.sweekt.info.InfoClassChecker
 import com.meowool.sweekt.info.InfoClassSynthetic
-import com.meowool.sweekt.info.InfoClassTransformer
 import com.meowool.sweekt.info.InfoFunctionChecker
 import com.meowool.sweekt.lazyinit.LazyInitChecker
 import com.meowool.sweekt.lazyinit.LazyInitTransformer
 import com.meowool.sweekt.lazyinit.ResetValueChecker
 import com.meowool.sweekt.suspend.SuspendPropertyCallChecker
 import com.meowool.sweekt.suspend.SuspendPropertyChecker
-import com.meowool.sweekt.suspend.SuspendPropertyGeneration
 import com.meowool.toolkit.compiler_hosted.BuildConfig
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
@@ -76,20 +75,8 @@ class SweektCommandLineProcessor : CommandLineProcessor {
  */
 @AutoService(ComponentRegistrar::class)
 class SweektComponentRegistrar : ComponentRegistrar {
-  override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
-    StorageComponentContainerContributor.registerExtension(project, StorageComponent())
-    SyntheticResolveExtension.registerExtension(project, InfoClassSynthetic())
-    IrGenerationExtension.registerExtension(
-      project,
-      object : IrGenerationExtension {
-        override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
-          LazyInitTransformer(pluginContext, configuration).lower(moduleFragment)
-          InfoClassTransformer(pluginContext, configuration).lower(moduleFragment)
-          SuspendPropertyGeneration(pluginContext, configuration).lower(moduleFragment)
-        }
-      }
-    )
-  }
+  override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) =
+    registerExtensions(project, configuration)
 
   /**
    * @author 凛 (RinOrz)
@@ -104,6 +91,23 @@ class SweektComponentRegistrar : ComponentRegistrar {
       LazyInitChecker, ResetValueChecker,
       SuspendPropertyChecker, SuspendPropertyCallChecker
     ).forEach(container::useInstance)
+  }
+
+  companion object {
+    fun registerExtensions(project: Project, configuration: CompilerConfiguration) {
+      StorageComponentContainerContributor.registerExtension(project, StorageComponent())
+      SyntheticResolveExtension.registerExtension(project, InfoClassSynthetic())
+      IrGenerationExtension.registerExtension(
+        project,
+        object : IrGenerationExtension {
+          override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
+            LazyInitTransformer(pluginContext, configuration).lower(moduleFragment)
+//            InfoClassTransformer(pluginContext, configuration).lower(moduleFragment)
+//            SuspendPropertyGeneration(pluginContext, configuration).lower(moduleFragment)
+          }
+        }
+      )
+    }
   }
 }
 

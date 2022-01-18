@@ -34,7 +34,6 @@ import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.descriptors.DescriptorVisibilities
 import org.jetbrains.kotlin.ir.IrStatement
-import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
 import org.jetbrains.kotlin.ir.builders.IrBuilderWithScope
 import org.jetbrains.kotlin.ir.builders.irBlock
 import org.jetbrains.kotlin.ir.builders.irBoolean
@@ -55,14 +54,13 @@ import org.jetbrains.kotlin.ir.expressions.IrExpression
 import org.jetbrains.kotlin.ir.expressions.IrGetValue
 import org.jetbrains.kotlin.ir.expressions.IrVararg
 import org.jetbrains.kotlin.ir.expressions.impl.IrGetValueImpl
+import org.jetbrains.kotlin.ir.types.classFqName
 import org.jetbrains.kotlin.ir.util.hasAnnotation
 import org.jetbrains.kotlin.ir.visitors.transformChildrenVoid
-import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
 /**
  * @author 凛 (RinOrz)
  */
-@OptIn(ObsoleteDescriptorBasedAPI::class)
 class LazyInitTransformer(
   context: IrPluginContext,
   configuration: CompilerConfiguration,
@@ -163,7 +161,7 @@ class LazyInitTransformer(
       return irSetField(callProperty.dispatchReceiver, isInitValue, irFalse())
     }
 
-    when (expression.symbol.descriptor.fqNameSafe) {
+    when (expression.type.classFqName) {
       resetLazyValue -> {
         result = declaration.buildIr(expression.startOffset, expression.endOffset) {
           resetInit(expression.extensionReceiver.cast()) ?: return result
