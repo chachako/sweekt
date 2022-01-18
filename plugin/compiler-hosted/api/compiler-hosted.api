@@ -16,8 +16,7 @@ public abstract class com/meowool/sweekt/AbstractErrors$Messages : org/jetbrains
 	public fun getMap ()Lorg/jetbrains/kotlin/diagnostics/rendering/DiagnosticFactoryToRendererMap;
 }
 
-public abstract class com/meowool/sweekt/AbstractIrTransformer : org/jetbrains/kotlin/ir/visitors/IrElementTransformerVoid {
-	public field currentFile Lorg/jetbrains/kotlin/ir/declarations/IrFile;
+public abstract class com/meowool/sweekt/AbstractIrTransformer : org/jetbrains/kotlin/backend/common/IrElementTransformerVoidWithContext {
 	public fun <init> (Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
 	public final fun addFunction (Lorg/jetbrains/kotlin/ir/declarations/IrDeclarationParent;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lkotlin/jvm/functions/Function1;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
 	public static synthetic fun addFunction$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/declarations/IrDeclarationParent;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/jetbrains/kotlin/ir/declarations/IrSimpleFunction;
@@ -49,7 +48,6 @@ public abstract class com/meowool/sweekt/AbstractIrTransformer : org/jetbrains/k
 	public final fun findValueParameter (Lorg/jetbrains/kotlin/ir/declarations/IrFunction;Lorg/jetbrains/kotlin/name/Name;)Lorg/jetbrains/kotlin/ir/declarations/IrValueParameter;
 	public final fun getByName (Lkotlin/sequences/Sequence;Lorg/jetbrains/kotlin/name/Name;)Lorg/jetbrains/kotlin/ir/declarations/IrProperty;
 	public final fun getConfiguration ()Lorg/jetbrains/kotlin/config/CompilerConfiguration;
-	public final fun getCurrentFile ()Lorg/jetbrains/kotlin/ir/declarations/IrFile;
 	public final fun getErasedUpperBound (Lorg/jetbrains/kotlin/ir/declarations/IrTypeParameter;)Lorg/jetbrains/kotlin/ir/declarations/IrClass;
 	public final fun getIntPlusSymbol ()Lorg/jetbrains/kotlin/ir/symbols/IrSimpleFunctionSymbol;
 	public final fun getIntTimesSymbol ()Lorg/jetbrains/kotlin/ir/symbols/IrSimpleFunctionSymbol;
@@ -90,9 +88,7 @@ public abstract class com/meowool/sweekt/AbstractIrTransformer : org/jetbrains/k
 	public final fun log (Lkotlin/jvm/functions/Function0;)V
 	public final fun reportWarn (Lorg/jetbrains/kotlin/ir/IrElement;Ljava/lang/Object;Lorg/jetbrains/kotlin/ir/declarations/IrFile;)V
 	public static synthetic fun reportWarn$default (Lcom/meowool/sweekt/AbstractIrTransformer;Lorg/jetbrains/kotlin/ir/IrElement;Ljava/lang/Object;Lorg/jetbrains/kotlin/ir/declarations/IrFile;ILjava/lang/Object;)V
-	public final fun setCurrentFile (Lorg/jetbrains/kotlin/ir/declarations/IrFile;)V
 	public final fun thisExpr (Lorg/jetbrains/kotlin/ir/builders/IrBuilderWithScope;Lorg/jetbrains/kotlin/ir/declarations/IrFunction;)Lorg/jetbrains/kotlin/ir/expressions/impl/IrGetValueImpl;
-	public fun visitFile (Lorg/jetbrains/kotlin/ir/declarations/IrFile;)Lorg/jetbrains/kotlin/ir/declarations/IrFile;
 }
 
 public final class com/meowool/sweekt/AbstractIrTransformer$BranchBuilder : org/jetbrains/kotlin/ir/builders/IrBuilderWithScope {
@@ -125,8 +121,13 @@ public final class com/meowool/sweekt/SweektCommandLineProcessor : org/jetbrains
 }
 
 public final class com/meowool/sweekt/SweektComponentRegistrar : org/jetbrains/kotlin/compiler/plugin/ComponentRegistrar {
+	public static final field Companion Lcom/meowool/sweekt/SweektComponentRegistrar$Companion;
 	public fun <init> ()V
 	public fun registerProjectComponents (Lcom/intellij/mock/MockProject;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
+}
+
+public final class com/meowool/sweekt/SweektComponentRegistrar$Companion {
+	public final fun registerExtensions (Lcom/intellij/openapi/project/Project;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
 }
 
 public final class com/meowool/sweekt/SweektComponentRegistrar$StorageComponent : org/jetbrains/kotlin/extensions/StorageComponentContainerContributor {
@@ -269,8 +270,8 @@ public final class com/meowool/sweekt/lazyinit/LazyInitTransformer : com/meowool
 	public fun <init> (Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
 	public fun lower (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;)V
 	public fun visitCall (Lorg/jetbrains/kotlin/ir/expressions/IrCall;)Lorg/jetbrains/kotlin/ir/expressions/IrExpression;
-	public fun visitField (Lorg/jetbrains/kotlin/ir/declarations/IrField;)Lorg/jetbrains/kotlin/ir/IrStatement;
-	public fun visitProperty (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/IrStatement;
+	public fun visitFieldNew (Lorg/jetbrains/kotlin/ir/declarations/IrField;)Lorg/jetbrains/kotlin/ir/IrStatement;
+	public fun visitPropertyNew (Lorg/jetbrains/kotlin/ir/declarations/IrProperty;)Lorg/jetbrains/kotlin/ir/IrStatement;
 }
 
 public final class com/meowool/sweekt/lazyinit/ResetValueChecker : org/jetbrains/kotlin/resolve/calls/checkers/CallChecker {

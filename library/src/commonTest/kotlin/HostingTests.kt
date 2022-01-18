@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 import com.meowool.sweekt.HostingStack
 import com.meowool.sweekt.hosting
 import io.kotest.assertions.throwables.shouldNotThrow

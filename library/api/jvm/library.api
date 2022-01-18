@@ -220,9 +220,6 @@ public final class com/meowool/sweekt/InternalKt {
 public abstract interface annotation class com/meowool/sweekt/InternalSweektApi : java/lang/annotation/Annotation {
 }
 
-public abstract interface annotation class com/meowool/sweekt/InternalSweektCompilerApi : java/lang/annotation/Annotation {
-}
-
 public final class com/meowool/sweekt/JvmDescriptorsKt {
 	public static final fun isJvmArrayTypeDescriptor (Ljava/lang/CharSequence;)Z
 	public static final fun isJvmPrimitiveType (Ljava/lang/CharSequence;)Z
@@ -364,10 +361,10 @@ public abstract interface annotation class com/meowool/sweekt/Suspend : java/lan
 }
 
 public final class com/meowool/sweekt/SuspendPropertyKt {
-	public static final synthetic fun -$suspendGetter (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final synthetic fun -$suspendSetter (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun suspendGetter (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final synthetic fun suspendGetterInlined (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun suspendSetter (Lkotlin/jvm/functions/Function1;)V
+	public static final synthetic fun suspendSetterInlined (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/meowool/sweekt/Systems_jvmKt {

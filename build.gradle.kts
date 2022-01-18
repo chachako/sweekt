@@ -18,33 +18,38 @@
  *
  * 如果您修改了此项目，则必须确保源文件中包含 Meowool 组织 URL: https://github.com/meowool
  */
-@file:Suppress("SpellCheckingInspection")
+@file:Suppress
 
-rootProject.name = "sweekt"
+val internalMarkers = arrayOf(
+  "com.meowool.sweekt.InternalSweektApi"
+)
 
-pluginManagement {
-  repositories {
-    maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
-    google()
-    mavenCentral()
-    gradlePluginPortal()
+apiValidation {
+  nonPublicMarkers += internalMarkers
+}
+
+allprojects {
+  optIn(*internalMarkers)
+  dokka(DokkaFormat.Html) {
+    outputDirectory.set(rootDir.resolve("docs/apis"))
   }
 }
 
-plugins {
-  id("com.meowool.gradle.toolkit") version "0.1.1-SNAPSHOT"
-}
+publication.data {
+  val baseVersion = "0.1.0"
+  version = "$baseVersion-LOCAL"
+  // Used to publish non-local versions of artifacts in CI environment
+  versionInCI = "$baseVersion-SNAPSHOT"
 
-buildscript {
-  configurations.all {
-    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
+  displayName = "Sweekt"
+  artifactId = "sweekt"
+  groupId = "com.meowool.toolkit"
+  description = "A common toolkit (utils) built to help you further reduce Kotlin boilerplate code and improve development efficiency."
+  url = "https://github.com/meowool-toolkit/${rootProject.name}"
+  vcs = "$url.git"
+  developer {
+    id = "rin"
+    name = "Rin Orz"
+    url = "https://github.com/RinOrz/"
   }
 }
-
-gradleToolkitWithMeowoolSpec()
-
-importProjects(rootDir)
-
-// Only set in the CI environment, waiting the issue to be fixed:
-// https://youtrack.jetbrains.com/issue/KT-48291
-if (isCiEnvironment) extra["kotlin.mpp.enableGranularSourceSetsMetadata"] = true

@@ -1,4 +1,4 @@
-@file:Suppress("OVERRIDE_BY_INLINE", "NOTHING_TO_INLINE", "UNCHECKED_CAST", "NO_ACTUAL_FOR_EXPECT")
+@file:Suppress("OVERRIDE_BY_INLINE", "NOTHING_TO_INLINE", "UNCHECKED_CAST", "NO_ACTUAL_FOR_EXPECT", "DEPRECATION")
 
 package com.meowool.sweekt
 
@@ -9,7 +9,7 @@ import kotlin.reflect.KProperty
  *
  * @author 凛 (RinOrz)
  */
-@Deprecated("Use `@LazyInit var foo = ???` instead.", ReplaceWith("@LazyInit"))
+@Deprecated("Use `@LazyInit` instead.")
 interface Hosting<T> {
 
   /**
@@ -67,6 +67,7 @@ interface Hosting<T> {
  *
  * @author 凛 (RinOrz)
  */
+@Deprecated("Use `@LazyInit` instead.")
 object HostingStack {
   private val instances = mutableMapOf<Any, Hosting<*>>()
 
@@ -115,7 +116,7 @@ object HostingStack {
  *
  * @author 凛 (RinOrz)
  */
-@Deprecated("Use `@LazyInit var foo = ???` instead.", ReplaceWith("@LazyInit"))
+@Deprecated("Use `@LazyInit var foo = ???` instead.", ReplaceWith("@LazyInit var ? = ???"))
 fun <T> hosting(key: Any? = null): Hosting<T> = HostingImpl<T>().also { instance ->
   key?.let { HostingStack.record(it, instance) }
 }
@@ -123,7 +124,7 @@ fun <T> hosting(key: Any? = null): Hosting<T> = HostingImpl<T>().also { instance
 /**
  * Create a lazy [Hosting] instance.
  *
- * Only when the hosted value is called and it does not exist, will create a new value uses the
+ * Only when the hosted value is called, and it does not exist, will create a new value uses the
  * specified [initializer] and hosted it.
  *
  * This allows hosting to have the same behavior as [Lazy], please see [kotlin.lazy] for [lock]
@@ -132,7 +133,7 @@ fun <T> hosting(key: Any? = null): Hosting<T> = HostingImpl<T>().also { instance
  * @param key if the key exists, the hosting instance will be recorded in the stack to find them at any time.
  * @author 凛 (RinOrz)
  */
-@Deprecated("Use `@LazyInit var foo = ???` instead.", ReplaceWith("@LazyInit"))
+@Deprecated("Use `@LazyInit var foo = ???` instead.", ReplaceWith("@LazyInit var ? = ???"))
 fun <T> hosting(
   key: Any? = null,
   lock: Any? = null,

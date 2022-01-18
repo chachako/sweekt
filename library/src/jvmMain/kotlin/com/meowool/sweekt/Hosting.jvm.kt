@@ -1,4 +1,4 @@
-@file:Suppress("UNCHECKED_CAST", "PropertyName", "OVERRIDE_BY_INLINE", "NOTHING_TO_INLINE")
+@file:Suppress("UNCHECKED_CAST", "PropertyName", "OVERRIDE_BY_INLINE", "NOTHING_TO_INLINE", "DEPRECATION")
 
 package com.meowool.sweekt
 
