@@ -18,19 +18,18 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Check APIs
-        if: ${{ false }} # TODO REMOVE
-        uses: gradle/gradle-build-action@v1
-        with:
-          distributions-cache-enabled: true
-          configuration-cache-enabled: true
-          dependencies-cache-enabled: true
-          arguments: |
-            spotlessCheck 
-            apiCheck 
-            test 
-            --stacktrace 
-            --scan
+#      - name: Check APIs
+#        uses: gradle/gradle-build-action@v1
+#        with:
+#          distributions-cache-enabled: true
+#          configuration-cache-enabled: true
+#          dependencies-cache-enabled: true
+#          arguments: |
+#            spotlessCheck
+#            apiCheck
+#            test
+#            --stacktrace
+#            --scan
 
       - name: Clean project
         uses: gradle/gradle-build-action@v1
