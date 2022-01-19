@@ -57,3 +57,5 @@ androidTarget {
     )
   }
 }
+
+publication.data.artifactId = "sweekt"

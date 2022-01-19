@@ -42,7 +42,6 @@ publication.data {
   versionInCI = "$baseVersion-SNAPSHOT"
 
   displayName = "Sweekt"
-  artifactId = "sweekt"
   groupId = "com.meowool.toolkit"
   description = "A common toolkit (utils) built to help you further reduce Kotlin boilerplate code and improve development efficiency."
   url = "https://github.com/meowool-toolkit/${rootProject.name}"
