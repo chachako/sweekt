@@ -8,7 +8,6 @@ env:
 
 jobs:
   build:
-    if: ${{ false }} # TODO REMOVE
     name: Build & Check
     runs-on: ubuntu-latest
 
@@ -20,6 +19,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Check APIs
+        if: ${{ false }} # TODO REMOVE
         uses: gradle/gradle-build-action@v1
         with:
           distributions-cache-enabled: true
