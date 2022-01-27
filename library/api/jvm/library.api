@@ -168,24 +168,24 @@ public final class com/meowool/sweekt/HostingStack {
 }
 
 public abstract interface annotation class com/meowool/sweekt/Info : java/lang/annotation/Annotation {
-	public abstract fun callSuperEquals ()Z
-	public abstract fun callSuperHashCode ()Z
-	public abstract fun generateComponentN ()Z
-	public abstract fun generateCopy ()Z
-	public abstract fun generateEquals ()Z
-	public abstract fun generateHashCode ()Z
-	public abstract fun generateToString ()Z
-	public abstract fun joinBodyProperties ()Z
-	public abstract fun joinPrimaryProperties ()Z
-	public abstract fun joinPrivateProperties ()Z
+	public abstract fun bodyProperties ()Z
+	public abstract fun copyable ()Z
+	public abstract fun destructurable ()Z
+	public abstract fun equatable ()Z
+	public abstract fun hashable ()Z
+	public abstract fun primaryProperties ()Z
+	public abstract fun privateProperties ()Z
+	public abstract fun readable ()Z
+	public abstract fun superEquals ()Z
+	public abstract fun superHashCode ()Z
 }
 
-public abstract interface annotation class com/meowool/sweekt/Info$Invisible : java/lang/annotation/Annotation {
-	public abstract fun generateComponentN ()Z
-	public abstract fun generateCopy ()Z
-	public abstract fun generateEquals ()Z
-	public abstract fun generateHashCode ()Z
-	public abstract fun generateToString ()Z
+public abstract interface annotation class com/meowool/sweekt/Info$Disable : java/lang/annotation/Annotation {
+	public abstract fun enabledComponent ()Z
+	public abstract fun enabledCopy ()Z
+	public abstract fun enabledEquals ()Z
+	public abstract fun enabledHashCode ()Z
+	public abstract fun enabledToString ()Z
 }
 
 public abstract interface class com/meowool/sweekt/Info$Synthetic {
@@ -310,7 +310,7 @@ public final class com/meowool/sweekt/ScopeFunctionsKt {
 	public static final fun ifNull (Ljava/lang/Object;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
 	public static final fun let (Ljava/lang/Object;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static final fun letOrNull (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
-	public static final fun onNotNull (Ljava/lang/Object;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public static final fun onNotNull (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static final fun onNull (Ljava/lang/Object;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
 	public static final fun run (Ljava/lang/Object;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static final fun run (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;

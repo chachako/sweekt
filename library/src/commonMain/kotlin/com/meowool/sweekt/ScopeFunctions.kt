@@ -312,7 +312,7 @@ inline fun <T> T?.onNull(action: () -> Unit): T? {
  *
  * @author 凛 (RinOrz)
  */
-inline fun <T> T?.onNotNull(action: () -> Unit): T? {
+inline fun <T> T?.onNotNull(action: (T) -> Unit): T? {
   contract { callsInPlace(action, InvocationKind.AT_MOST_ONCE) }
-  return this.also { if (it != null) action() }
+  return this.also { if (it != null) action(it) }
 }
