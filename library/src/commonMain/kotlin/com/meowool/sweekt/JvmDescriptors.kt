@@ -282,7 +282,7 @@ fun CharSequence?.toJvmQualifiedTypeName(
       when (qualified) {
         "I" -> "int"
         "Z" -> "boolean"
-        "C" -> "int"
+        "C" -> "char"
         "D" -> "double"
         "F" -> "float"
         "J" -> "long"
