@@ -6,7 +6,6 @@ package com.meowool.sweekt.array
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
-import kotlin.math.max
 
 /**
  * A mutable bytes object used to build a bytearray at any time, similar to [StringBuilder].
@@ -22,18 +21,17 @@ class ByteArrayBuilder {
     private set
 
   /** Constructs an empty bytearray builder. */
-  constructor() : this(capacity = 8)
+  constructor() : this(capacity = 32)
 
   /** Constructs a builder that contains the same bytes as the specified [content] bytearray. */
   constructor(content: ByteArray) {
-    value = content.copyOf(content.size + 8)
+    value = content.copyOf(content.size + 32)
   }
 
   /** Constructs an empty bytearray builder with the specified initial [capacity]. */
   constructor(capacity: Int) {
     value = when {
-      capacity > 0 -> ByteArray(capacity)
-      capacity == 0 -> EmptyByteArray
+      capacity >= 0 -> ByteArray(capacity)
       else -> throw IllegalArgumentException("Illegal Capacity: $capacity")
     }
   }
@@ -51,7 +49,7 @@ class ByteArrayBuilder {
   fun append(value: ByteArray): ByteArrayBuilder = apply {
     val oldSize = this.size
     this.size += value.size
-    ensureCapacity(this.size).write(value, oldSize)
+    ensureCapacity().write(value, oldSize)
   }
 
   /** Appends the specified byte [value] into byte array. */
@@ -76,17 +74,19 @@ class ByteArrayBuilder {
   fun reverse(): ByteArrayBuilder = apply { value.reverse() }
 
   /**
-   * Ensures that the capacity of this bytearray builder is at least equal to the
-   * specified [minimumCapacity].
+   * Increases the capacity if necessary to ensure that it can hold
+   * at least the number of elements specified by the minimum
+   * capacity argument.
    *
-   * If the current capacity is less than the [minimumCapacity], a new backing storage is allocated
-   * with greater capacity. Otherwise, this method takes no action and simply returns.
+   * @param  minCapacity the desired minimum capacity
+   * @throws IllegalArgumentException if `minCapacity < 0`. This is interpreted as a request for the
+   *   unsatisfiable large capacity `Int.MAX_VALUE.toLong() + (minCapacity - Int.MAX_VALUE)`.
    */
-  fun ensureCapacity(minimumCapacity: Int = value.size + 1): ByteArray = when {
-    minimumCapacity > value.size &&
-      !(value.contentEquals(EmptyByteArray) &&
-        minimumCapacity <= DefaultCapacity) -> grow(minimumCapacity)
-    else -> value
+  private fun ensureCapacity(minCapacity: Int = this.size): ByteArray {
+    // overflow-conscious code
+    if (minCapacity - value.size > 0) grow(minCapacity)
+
+    return value
   }
 
   /**
@@ -94,32 +94,31 @@ class ByteArrayBuilder {
    * number of elements specified by the minimum capacity argument.
    *
    * @param minCapacity the desired minimum capacity
-   * @throws IllegalArgumentException if minCapacity is less than zero
    */
-  private fun grow(minCapacity: Int = size + 1): ByteArray =
-    value.copyOf(newCapacity(minCapacity)).also { value = it }
-
-  private fun newCapacity(minCapacity: Int): Int {
+  private fun grow(minCapacity: Int) {
+    // overflow-conscious code
     val oldCapacity: Int = value.size
-    val newCapacity = oldCapacity + (oldCapacity shr 1)
-    if (newCapacity - minCapacity <= 0) {
-      if (value.contentEquals(EmptyByteArray)) return max(DefaultCapacity, minCapacity)
-      require(minCapacity >= 0) { "minCapacity:$minCapacity < 0" }
-      return minCapacity
-    }
-    return if (newCapacity - MaxArraySize <= 0) newCapacity else hugeCapacity(minCapacity)
+    var newCapacity = oldCapacity shl 1
+    if (newCapacity - minCapacity < 0) newCapacity = minCapacity
+    if (newCapacity - MaxArraySize > 0) newCapacity = hugeCapacity(minCapacity)
+    value = value.copyOf(newCapacity)
   }
 
   private fun hugeCapacity(minCapacity: Int): Int {
-    require(minCapacity >= 0) { "minCapacity:$minCapacity < 0" }
+    require(minCapacity >= 0) { "OOM! minCapacity:$minCapacity < 0" }
     return if (minCapacity > MaxArraySize) Int.MAX_VALUE else MaxArraySize
   }
 
-  /** Reference JVM [ArrayList] */
+  /** Reference Jvm [`ByteArrayOutputStream`] */
   private companion object {
-    const val DefaultCapacity = 10
+
+    /**
+     * The maximum size of array to allocate.
+     * Some VMs reserve some header words in an array.
+     * Attempts to allocate larger arrays may result in
+     * OutOfMemoryError: Requested array size exceeds VM limit
+     */
     const val MaxArraySize = Int.MAX_VALUE - 8
-    val EmptyByteArray = ByteArray(0)
   }
 }
 
