@@ -2,6 +2,8 @@
 
 package com.meowool.sweekt.array
 
+import kotlin.jvm.JvmName
+
 /**
  * Write the given [bytes] into this array.
  *
@@ -74,13 +76,51 @@ inline fun ByteArray.subarray(startIndex: Int = 0, endIndex: Int = this.size): B
  *
  * @author 凛 (RinOrz)
  */
-fun ByteArray.startsWith(vararg prefix: Byte): Boolean {
+fun ByteArray.startsWith(prefix: ByteArray): Boolean {
   if (this.size < prefix.size) return false
-   prefix.forEachIndexed { index, expected ->
+  prefix.forEachIndexed { index, expected ->
     if (expected != this[index]) return false
   }
   return true
 }
+
+/**
+ * Returns `true` if the beginning of this array with the given [prefix].
+ *
+ * @param prefix the prefix to be looking.
+ *
+ * @author 凛 (RinOrz)
+ */
+@JvmName("startsWithVararg")
+inline fun ByteArray.startsWith(vararg prefix: Byte): Boolean = startsWith(prefix)
+
+/**
+ * Returns `true` if the end of this array with the given [suffix].
+ *
+ * @param suffix the suffix to be looking.
+ *
+ * @author 凛 (RinOrz)
+ */
+fun ByteArray.endsWith(suffix: ByteArray): Boolean {
+  val start: Int = this.size - suffix.size
+  if (start < 0) return false
+
+  for (i in start until this.size) {
+    if (this[i] != suffix[i - start]) return false
+  }
+
+  return true
+}
+
+/**
+ * Returns `true` if the end of this array with the given [suffix].
+ *
+ * @param suffix the suffix to be looking.
+ *
+ * @author 凛 (RinOrz)
+ */
+@JvmName("endsWithVararg")
+inline fun ByteArray.endsWith(vararg suffix: Byte): Boolean = endsWith(suffix)
 
 /**
  * Returns a (new) array and adds the given [value] at the array first.

@@ -303,7 +303,7 @@ fun CharSequence?.toJvmQualifiedTypeName(
  * Z -> boolean
  * [I -> int[]
  * java.lang.Object -> Object
- * [La.b.Foo$Bar -> Bar
+ * [La.b.Foo$Bar -> Bar[]
  * ```
  *
  * @return Returns the JVM package name, if this [CharSequence] is `null` or empty, returns empty string.

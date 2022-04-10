@@ -70,7 +70,7 @@ class JvmDescriptorTests : StringSpec({
     "Z".toJvmTypeSimpleName() shouldBe "boolean"
     "[I".toJvmTypeSimpleName() shouldBe "int[]"
     "java.lang.Object".toJvmTypeSimpleName() shouldBe "Object"
-    "La.b.Foo\$Bar".toJvmTypeSimpleName() shouldBe "Bar"
+    "La.b.Foo\$Bar".toJvmTypeSimpleName() shouldBe "Bar[]"
   }
 
   "toJvmPackageName" {
