@@ -48,13 +48,14 @@ class ByteArrayBuilder {
   /** Appends all the specified byte array [value] into this byte array. */
   fun append(value: ByteArray): ByteArrayBuilder = apply {
     val oldSize = this.size
-    this.size += value.size
-    ensureCapacity().write(value, oldSize)
+    val newSize = oldSize + value.size
+    ensureCapacity(newSize).write(value, oldSize)
+    this.size = newSize
   }
 
   /** Appends the specified byte [value] into byte array. */
   fun append(value: Byte): ByteArrayBuilder = apply {
-    ensureCapacity().write(value, this.size)
+    ensureCapacity(this.size + 1).write(value, this.size)
     this.size++
   }
 
@@ -82,7 +83,7 @@ class ByteArrayBuilder {
    * @throws IllegalArgumentException if `minCapacity < 0`. This is interpreted as a request for the
    *   unsatisfiable large capacity `Int.MAX_VALUE.toLong() + (minCapacity - Int.MAX_VALUE)`.
    */
-  private fun ensureCapacity(minCapacity: Int = this.size): ByteArray {
+  private fun ensureCapacity(minCapacity: Int): ByteArray {
     // overflow-conscious code
     if (minCapacity - value.size > 0) grow(minCapacity)
 
