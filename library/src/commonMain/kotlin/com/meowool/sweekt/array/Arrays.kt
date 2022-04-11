@@ -19,6 +19,7 @@ inline fun <T> Array<T>?.isNotEmpty(): Boolean {
   contract {
     returns(true) implies (this@isNotEmpty != null)
   }
+  @Suppress("ReplaceSizeCheckWithIsNotEmpty")
   return this != null && size > 0
 }
 
@@ -271,4 +272,42 @@ fun <T> Array<T>.dropSuffix(suffix: Array<out T>): List<T> = let {
  */
 fun <T> Array<T>.dropSuffix(suffix: Iterable<T>): List<T> = let {
   if (endsWith(suffix)) dropLast(suffix.size) else it.toList()
+}
+
+/**
+ * Returns a new list which filters out all duplicate items from this array.
+ *
+ * ## Examples
+ *
+ * ```
+ * val array = arrayOf("orange", "apple", "apple", "banana", "water", "bread", "banana")
+ *
+ * assert(array.filterDuplicates() == listOf("apple", "banana"))
+ * ```
+ *
+ * @author RinOrz
+ */
+fun <T> Array<T>.filterDuplicates(): List<T> = filterDuplicatesBy { it }
+
+/**
+ * Returns a new list which filters out all duplicate items from this array.
+ *
+ * ## Examples
+ *
+ * ```
+ * val array = arrayOf("orange;", "orange", "apple", "banana", "banana")
+ *
+ * assert(array.filterDuplicatesBy { it.removeSuffix(';') } == listOf("orange", "banana"))
+ * ```
+ *
+ * @author RinOrz
+ */
+inline fun <T, K> Array<T>.filterDuplicatesBy(selector: (T) -> K): List<T> {
+  val set = HashSet<K>()
+  val list = ArrayList<T>()
+  for (item in this) {
+    val key = selector(item)
+    if (!set.add(key)) list.add(item)
+  }
+  return list
 }

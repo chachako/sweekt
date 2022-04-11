@@ -295,3 +295,41 @@ inline fun <T> Iterable<T>.dropFirst(): List<T> = drop(1)
  * @author 凛 (RinOrz)
  */
 inline fun <T> Iterable<T>.dropFirst(n: Int): List<T> = drop(n)
+
+/**
+ * Returns a new list which filters out all duplicate items from this iterate object.
+ *
+ * ## Examples
+ *
+ * ```
+ * val list = listOf("orange", "apple", "apple", "banana", "water", "bread", "banana")
+ *
+ * assert(list.filterDuplicates() == listOf("apple", "banana"))
+ * ```
+ *
+ * @author RinOrz
+ */
+fun <T> Iterable<T>.filterDuplicates(): List<T> = filterDuplicatesBy { it }
+
+/**
+ * Returns a new list which filters out all duplicate items from this iterate object.
+ *
+ * ## Examples
+ *
+ * ```
+ * val list = listOf("orange;", "orange", "apple", "banana", "banana")
+ *
+ * assert(list.filterDuplicatesBy { it.removeSuffix(';') } == listOf("orange", "banana"))
+ * ```
+ *
+ * @author RinOrz
+ */
+inline fun <T, K> Iterable<T>.filterDuplicatesBy(selector: (T) -> K): List<T> {
+  val set = HashSet<K>()
+  val list = ArrayList<T>()
+  for (item in this) {
+    val key = selector(item)
+    if (!set.add(key)) list.add(item)
+  }
+  return list
+}
